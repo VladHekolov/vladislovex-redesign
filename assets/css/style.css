@@ -9556,3 +9556,46 @@ html[data-vh-theme="light"] .vh-price-calc__note {
 html[data-vh-theme="light"] .vh-contact-card__arrow::before {
   border-color: #b65b0a !important;
 }
+
+/* ===== STANDALONE DESKTOP HERO FIX — 2026-07-14 =====
+   Keeps the standalone layout aligned with the original Tilda version.
+   Mobile/tablet rules below 1024px remain unchanged. */
+@media (min-width: 1025px) {
+  .vh-hero__content {
+    max-width: 780px;
+  }
+
+  .vh-hero__title span,
+  .vh-hero__title strong {
+    font-size: clamp(64px, 5.35vw, 92px);
+    letter-spacing: 0.035em;
+  }
+
+  .vh-hero__text--offer,
+  .vh-hero-offer {
+    max-width: 620px;
+  }
+}
+
+@media (min-width: 1025px) and (max-height: 900px) {
+  .vh-hero {
+    padding-top: 116px;
+    padding-bottom: 238px;
+  }
+
+  .vh-hero__label {
+    margin-bottom: 20px;
+  }
+
+  .vh-hero__title {
+    gap: 10px;
+  }
+
+  .vh-hero__text--offer {
+    margin-top: 18px;
+  }
+
+  .vh-hero__buttons {
+    margin-top: 18px;
+  }
+}
