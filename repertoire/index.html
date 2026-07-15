@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Интерактивный живой репертуар музыкантов VOCAVA: поиск песен, избранное, стоп-лист и PDF.">
+  <meta name="robots" content="index,follow">
+  <title>Живой репертуар VOCAVA</title>
+  <link rel="canonical" href="https://vladislovex.ru/repertoire/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/subpages.css?v=1">
+  <link rel="stylesheet" href="/assets/css/repertoire.css?v=1">
+  <script>
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110736648','ym');
+    ym(110736648,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+  </script>
+</head>
+<body class="vh-subpage">
+  <noscript><div><img src="https://mc.yandex.ru/watch/110736648" style="position:absolute;left:-9999px" alt=""></div></noscript>
+
+  <header class="vh-subpage-header">
+    <div class="vh-subpage-header__inner">
+      <a class="vh-subpage-brand" href="/" aria-label="На главную">
+        <img src="https://storage.yandexcloud.net/vocava/%D0%98%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8/%D0%9B%D0%BE%D0%B3%D0%BE.png" alt="Владислав Хеколов">
+        <span><strong>Владислав Хеколов</strong><small>Гитарист-вокалист на праздник</small></span>
+      </a>
+      <nav class="vh-subpage-nav" aria-label="Навигация">
+        <a href="/">Главная</a>
+        <a href="/artists/">Музыканты</a>
+        <a href="/repertoire/" aria-current="page">Репертуар</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="vr-page" id="vr"
+    data-api-url="https://script.google.com/macros/s/AKfycbyTl38xulJv0frCgutRTM1VRSk7GQYTaDSv9twuYBJYk8kcLhGE3cxbO-Cxmi7IJevS/exec"
+    data-artist-id=""
+    data-artist-name="">
+    <div class="vr-page__inner">
+      <header class="vr-head">
+        <div class="vr-head__content">
+          <p class="vr-head__badge"><span>VOCAVA</span> / ЖИВОЙ РЕПЕРТУАР</p>
+          <h1 class="vr-head__title" id="vrArtistName"></h1>
+          <span class="vr-head__meta" id="vrArtistMeta">Загрузка репертуара...</span>
+        </div>
+      </header>
+
+      <div class="vr-picker" id="vrArtistPicker" hidden>
+        <span class="vr-picker__label">Музыкант</span>
+        <div class="vr-artist-select" id="vrArtistDropdown">
+          <button class="vr-artist-select__button" id="vrArtistDropdownButton" type="button" aria-label="Выбрать музыканта" aria-expanded="false">
+            <span id="vrArtistDropdownText">Выберите музыканта</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg>
+          </button>
+          <div class="vr-artist-select__menu" id="vrArtistDropdownMenu"></div>
+          <select id="vrArtistSelect" hidden aria-hidden="true"><option value="">Выберите музыканта</option></select>
+        </div>
+      </div>
+
+      <div class="vr-toolbar-sentinel" id="vrToolbarSentinel" aria-hidden="true"></div>
+      <div class="vr-toolbar" id="vrToolbar">
+        <div class="vr-filter" id="vrFilter">
+          <button class="vr-icon-btn" id="vrFilterButton" type="button" aria-label="Фильтр" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18"></path><path d="M7 12h10"></path><path d="M10 19h4"></path></svg>
+            <span class="vr-filter__badge" id="vrFilterBadge" hidden>0</span>
+          </button>
+          <div class="vr-filter__menu" id="vrFilterMenu">
+            <button class="vr-menu-reset" id="vrFilterReset" type="button">Сбросить фильтр</button>
+            <div class="vr-filter__options" id="vrFilterOptions"></div>
+          </div>
+        </div>
+
+        <button class="vr-favorites-toggle" id="vrFavoritesToggle" type="button" aria-label="Избранные песни" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"></path></svg>
+        </button>
+
+        <button class="vr-stop-toggle" id="vrStopToggle" type="button" aria-label="Стоп-лист" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 8l8 8"></path></svg>
+        </button>
+
+        <div class="vr-sort" id="vrSort">
+          <div class="vr-sort__button">
+            <button class="vr-sort__text" id="vrSortText" type="button" aria-label="Сменить направление сортировки">По названию ↑</button>
+            <button class="vr-icon-btn vr-sort__icon" id="vrSortButton" type="button" aria-label="Сортировка" aria-expanded="false">
+              <svg viewBox="0 0 24 24"><path d="M8 7h12"></path><path d="M8 12h9"></path><path d="M8 17h6"></path><path d="M4 7v10"></path><path d="m2 15 2 2 2-2"></path></svg>
+            </button>
+          </div>
+          <div class="vr-sort__menu" id="vrSortMenu">
+            <button type="button" data-sort="title">По названию</button>
+            <button type="button" data-sort="artist">По исполнителю</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vr-tools">
+        <label class="vr-search-field" aria-label="Поиск песни">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+          <input id="vrSearch" type="search" placeholder="Название песни, исполнитель, жанр">
+        </label>
+        <div class="vr-actions">
+          <button id="vrPdf" type="button">Скачать PDF</button>
+          <a class="vr-artist-card-link" id="vrArtistCard" href="/artists/#artists">Карточка артиста</a>
+        </div>
+      </div>
+
+      <div class="vr-summary" id="vrSummary">
+        <span class="vr-shown"><b>0</b> показано</span>
+        <button class="vr-info-button" id="vrInfoButton" type="button" aria-label="Как выбирать песни" aria-haspopup="dialog"><span aria-hidden="true">i</span></button>
+      </div>
+
+      <div class="vr-state is-loading" id="vrState"><span class="vr-loader" aria-hidden="true"></span><span>Загрузка песен...</span></div>
+      <div class="vr-list" id="vrList"></div>
+    </div>
+
+    <div class="vr-guide" id="vrGuide" hidden>
+      <div class="vr-guide__backdrop" data-guide-close></div>
+      <section class="vr-guide__dialog" role="dialog" aria-modal="true" aria-labelledby="vrGuideTitle">
+        <button class="vr-guide__close" type="button" data-guide-close aria-label="Закрыть инструкцию">×</button>
+        <div class="vr-guide__stack" id="vrGuideStack" aria-live="polite"></div>
+        <div class="vr-guide__dots" id="vrGuideDots" aria-hidden="true"></div>
+      </section>
+    </div>
+  </section>
+
+  <footer class="vh-subpage-footer">© 2026 Владислав Хеколов · <a href="/">Вернуться на главную</a></footer>
+  <script src="/assets/js/repertoire.js?v=1" defer></script>
+</body>
+</html>
