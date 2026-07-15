@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Каталог музыкантов VOCAVA: выберите артиста на свадьбу, день рождения, корпоратив или частное мероприятие.">
+  <meta name="robots" content="index,follow">
+  <title>Музыканты VOCAVA — выбрать артиста</title>
+  <link rel="canonical" href="https://vladislovex.ru/artists/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/subpages.css?v=1">
+  <link rel="stylesheet" href="/assets/css/artists.css?v=1">
+  <script>
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110736648','ym');
+    ym(110736648,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+  </script>
+</head>
+<body class="vh-subpage">
+  <noscript><div><img src="https://mc.yandex.ru/watch/110736648" style="position:absolute;left:-9999px" alt=""></div></noscript>
+
+  <header class="vh-subpage-header">
+    <div class="vh-subpage-header__inner">
+      <a class="vh-subpage-brand" href="/" aria-label="На главную">
+        <img src="https://storage.yandexcloud.net/vocava/%D0%98%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8/%D0%9B%D0%BE%D0%B3%D0%BE.png" alt="Владислав Хеколов">
+        <span><strong>Владислав Хеколов</strong><small>Гитарист-вокалист на праздник</small></span>
+      </a>
+      <nav class="vh-subpage-nav" aria-label="Навигация">
+        <a href="/">Главная</a>
+        <a href="/artists/" aria-current="page">Музыканты</a>
+        <a href="/repertoire/">Репертуар</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="vh-artists-page" id="artists"
+    data-api-url="https://script.google.com/macros/s/AKfycbyHOTV927o8yONFSj9P3nYFBwOHuLCONbZzFUXYvY2W2NdDJgqMM3Acg1g1URi3-ez9/exec"
+    data-json-url="https://storage.yandexcloud.net/vocava-media/data/artists-public.json"
+    data-repertoire-url="/repertoire/">
+    <div class="vh-artists-page__bg" aria-hidden="true"></div>
+
+    <div class="vh-artists-page__container">
+      <div class="vh-artists-page__head">
+        <div class="vh-artists-page__label"><span></span><p>Музыканты Vocava</p></div>
+        <div class="vh-artists-page__title-row">
+          <div>
+            <h1 class="vh-artists-page__title">Выберите <span>музыканта</span></h1>
+            <p class="vh-artists-page__subtitle">Выберите понравившихся артистов, добавьте их в избранное и отправьте мне список. Я проверю дату, согласую условия и забронирую для вас музыканта.</p>
+          </div>
+          <a href="https://t.me/vladislove_xv" class="vh-artists-page__main-btn" target="_blank" rel="noopener">Подобрать артиста</a>
+        </div>
+      </div>
+
+      <div class="vh-artists-page__toolbar vh-artists-page__toolbar--cian">
+        <div class="vh-mobile-filter" id="vhMobileFilter">
+          <button class="vh-mobile-filter__button" type="button" id="vhMobileFilterBtn" aria-expanded="false" aria-label="Фильтры">
+            <span class="vh-mobile-filter__badge" id="vhMobileFilterCount" hidden>0</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M7 12h10"></path><path d="M10 17h4"></path></svg>
+          </button>
+          <div class="vh-mobile-filter__menu" id="vhMobileFilterMenu">
+            <div class="vh-mobile-filter__reset-wrap"><button class="vh-mobile-filter__reset" type="button" id="vhMobileFilterReset">Сбросить фильтр</button></div>
+            <button class="vh-mobile-filter__section" type="button" data-mobile-filter-section="role"><span>Тип музыканта</span><b id="vhMobileRoleCurrent">Все музыканты</b></button>
+            <div class="vh-mobile-filter__options" id="vhMobileRoleMenu"></div>
+            <button class="vh-mobile-filter__section" type="button" data-mobile-filter-section="gender"><span>Пол</span><b id="vhMobileGenderCurrent">Любой</b></button>
+            <div class="vh-mobile-filter__options" id="vhMobileGenderMenu"></div>
+          </div>
+        </div>
+
+        <button class="vh-favorites-filter" type="button" id="vhFavoritesOnlyFilter" aria-pressed="false" aria-label="Показать избранных музыкантов" title="Избранные" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.4-9.5-9.1C.7 8.3 2.5 4.5 6.4 4.1c2.1-.2 4.1.9 5.1 2.6 1-1.7 3-2.8 5.1-2.6 3.9.4 5.7 4.2 3.9 7.8C19.2 16.6 12 21 12 21z"></path></svg>
+        </button>
+
+        <div class="vh-sort-dd" id="vhSortDropdown">
+          <button class="vh-sort-dd__button" type="button" id="vhSortDropdownBtn" aria-expanded="false" aria-label="Сортировка">
+            <span class="vh-sort-dd__text">Рекомендуемые</span>
+            <span class="vh-sort-dd__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4v14"></path><path d="M4 15l3 3 3-3"></path><path d="M17 20V6"></path><path d="M14 9l3-3 3 3"></path></svg></span>
+          </button>
+          <div class="vh-sort-dd__menu" id="vhSortDropdownMenu">
+            <button class="vh-sort-dd__shuffle" type="button" data-sort-shuffle>Перемешать</button>
+            <button type="button" data-sort="recommended">Рекомендуемые</button>
+            <button type="button" data-sort="name">По имени</button>
+            <button type="button" data-sort="category">По типу музыканта</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vh-artists-page__grid" id="vhArtistsGrid"><div class="vh-artists-page__state" id="vhArtistsState">Загрузка музыкантов...</div></div>
+    </div>
+
+    <div class="vh-favorites-panel" id="vhFavoritesPanel">
+      <div class="vh-favorites-panel__inner">
+        <div class="vh-favorites-panel__info"><strong id="vhFavoritesCount">Вы выбрали 0 музыкантов</strong></div>
+        <div class="vh-favorites-panel__actions"><button type="button" id="vhFavoritesPdf">Скачать PDF</button><button type="button" id="vhFavoritesReset" class="vh-favorites-panel__reset">Сбросить</button></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="vh-artist-modal" id="vhArtistModal" aria-hidden="true">
+    <div class="vh-artist-modal__overlay" data-modal-close></div>
+    <div class="vh-artist-modal__dialog" role="dialog" aria-modal="true">
+      <button class="vh-artist-modal__close" type="button" data-modal-close aria-label="Закрыть">×</button>
+      <div class="vh-artist-modal__media" id="vhArtistModalMedia"></div>
+      <div class="vh-artist-modal__content">
+        <div class="vh-artist-modal__label" id="vhArtistModalType">Тип артиста</div>
+        <div class="vh-artist-modal__age-pill" id="vhArtistModalAgeCard" hidden><span id="vhArtistModalAge"></span></div>
+        <div class="vh-artist-modal__title-row"><h2 id="vhArtistModalName">Имя артиста</h2><div class="vh-artist-modal__repertoire-inline" id="vhArtistModalRepertoireInline" hidden></div></div>
+        <p class="vh-artist-modal__about" id="vhArtistModalAbout"></p>
+        <div class="vh-artist-modal__photos" id="vhArtistModalPhotos" aria-label="Фотографии музыканта"></div>
+        <div class="vh-artist-modal__info-grid">
+          <div class="vh-artist-modal__info-card vh-artist-modal__repertoire-card" id="vhArtistModalRepertoireCard"><span>Репертуар</span><p id="vhArtistModalRepertoire"></p></div>
+          <div class="vh-artist-modal__info-card" id="vhArtistModalRepertoireDescriptionCard"><span>Описание репертуара</span><p id="vhArtistModalRepertoireDescription"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vh-photo-viewer" id="vhPhotoViewer" aria-hidden="true">
+    <div class="vh-photo-viewer__overlay" data-photo-close></div>
+    <button class="vh-photo-viewer__close" type="button" data-photo-close aria-label="Закрыть">×</button>
+    <button class="vh-photo-viewer__arrow vh-photo-viewer__arrow--prev" type="button" id="vhPhotoPrev" aria-label="Предыдущее фото">‹</button>
+    <button class="vh-photo-viewer__arrow vh-photo-viewer__arrow--next" type="button" id="vhPhotoNext" aria-label="Следующее фото">›</button>
+    <div class="vh-photo-viewer__stage"><img src="" alt="" id="vhPhotoViewerImage"><div class="vh-photo-viewer__empty" id="vhPhotoViewerEmpty">Фото пока не добавлено</div></div>
+    <div class="vh-photo-viewer__thumbs" id="vhPhotoViewerThumbs" aria-label="Фотографии"></div>
+    <div class="vh-photo-viewer__caption"><strong id="vhPhotoViewerName">Музыкант</strong><span id="vhPhotoViewerCounter">1 / 1</span></div>
+  </div>
+
+  <div class="vh-pdf-stage" id="vhPdfStage"></div>
+  <footer class="vh-subpage-footer">© 2026 Владислав Хеколов · <a href="/">Вернуться на главную</a></footer>
+
+  <script src="/assets/vendor/html2canvas.min.js"></script>
+  <script src="/assets/vendor/jspdf.umd.min.js"></script>
+  <script src="/assets/js/artists.js?v=1" defer></script>
+</body>
+</html>
