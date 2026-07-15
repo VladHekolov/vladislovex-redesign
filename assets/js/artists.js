@@ -4,7 +4,7 @@
 
   var apiUrl = (root.getAttribute('data-api-url') || '').trim().replace(/\/dev(\?|$)/, '/exec$1');
   var jsonUrl = (root.getAttribute('data-json-url') || '').trim();
-  var repertoireBaseUrl = (root.getAttribute('data-repertoire-url') || 'https://vladislovex.ru/repertoire').trim();
+  var repertoireBaseUrl = (root.getAttribute('data-repertoire-url') || '/repertoire/').trim();
 
   var grid = document.getElementById('vhArtistsGrid') || root.querySelector('.vh-artists-page__grid');
   var sortDropdown = document.getElementById('vhSortDropdown');
@@ -919,10 +919,10 @@
 
   function repertoireUrl(artist) {
     var rawId = String((artist && artist.id) || '').trim();
-    var base = repertoireBaseUrl || 'https://vladislovex.ru/repertoire';
+    var base = repertoireBaseUrl || '/repertoire/';
 
     if (!base || base.charAt(0) === '#') {
-      base = 'https://vladislovex.ru/repertoire';
+      base = '/repertoire/';
     }
 
     try {

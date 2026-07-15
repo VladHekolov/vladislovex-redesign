@@ -547,8 +547,8 @@
 
   function getArtistCardUrl(id) {
     var cleanId = String(id || '').trim();
-    if (!cleanId) return 'https://vladislovex.ru/artists#artists';
-    return 'https://vladislovex.ru/artists?artist=' + encodeURIComponent(cleanId) + '&open=artist#artists';
+    if (!cleanId) return '/artists/#artists';
+    return '/artists/?artist=' + encodeURIComponent(cleanId) + '&open=artist#artists';
   }
 
   function updateArtistCardLink() {
