@@ -4,14 +4,13 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/vendor-vocava-pages.yml'
 
 permissions:
   contents: write
 
 jobs:
   localize-assets:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
