@@ -1,0 +1,135 @@
+/* Shared standalone shell for /artists/ and /repertoire/. */
+:root {
+  color-scheme: dark;
+  --subpage-header-height: 72px;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #050505;
+}
+
+body.vh-subpage {
+  margin: 0;
+  min-width: 320px;
+  background: #050505;
+  color: #fff;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+.vh-subpage-header {
+  position: fixed;
+  z-index: 2500;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: var(--subpage-header-height);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(5,5,5,.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.vh-subpage-header__inner {
+  width: min(1200px, calc(100% - 32px));
+  min-height: var(--subpage-header-height);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.vh-subpage-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.vh-subpage-brand img {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.vh-subpage-brand span {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.vh-subpage-brand strong {
+  font-size: 14px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.vh-subpage-brand small {
+  color: rgba(255,255,255,.58);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.vh-subpage-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vh-subpage-nav a {
+  min-height: 40px;
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 999px;
+  color: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.035);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 650;
+  transition: .18s ease;
+}
+
+.vh-subpage-nav a:hover,
+.vh-subpage-nav a:focus-visible,
+.vh-subpage-nav a[aria-current="page"] {
+  color: #fff;
+  border-color: rgba(255,189,109,.34);
+  background: rgba(246,138,31,.12);
+  outline: none;
+}
+
+.vh-subpage-footer {
+  padding: 28px 20px 34px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.52);
+  background: #050505;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.vh-subpage-footer a {
+  color: #ffbd6d;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  :root { --subpage-header-height: 64px; }
+  .vh-subpage-header__inner { width: min(100% - 20px, 1200px); gap: 10px; }
+  .vh-subpage-brand img { width: 36px; height: 36px; flex-basis: 36px; }
+  .vh-subpage-brand small { display: none; }
+  .vh-subpage-brand strong { font-size: 11px; }
+  .vh-subpage-nav { gap: 5px; }
+  .vh-subpage-nav a { min-height: 36px; padding: 0 10px; font-size: 10px; }
+}
