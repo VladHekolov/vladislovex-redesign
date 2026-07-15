@@ -1,0 +1,82 @@
+name: Fix internal links
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-internal-links.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Replace hard-coded personal-site links
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          changed = []
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8')
+          updated = re.sub(
+              r'https://(?:www\.)?vladislovex\.ru/artists/?(?=([#?"\']))',
+              '/artists/',
+              text,
+          )
+          updated = re.sub(
+              r'https://(?:www\.)?vladislovex\.ru/repertoire/?(?=([#?"\']))',
+              '/repertoire/',
+              updated,
+          )
+          if updated != text:
+              index.write_text(updated, encoding='utf-8')
+              changed.append(str(index))
+
+          for path in Path('assets/js').glob('*.js'):
+              text = path.read_text(encoding='utf-8')
+              updated = re.sub(
+                  r'https://(?:www\.)?vladislovex\.ru/artists/?',
+                  '/artists/',
+                  text,
+              )
+              updated = re.sub(
+                  r'https://(?:www\.)?vladislovex\.ru/repertoire/?',
+                  '/repertoire/',
+                  updated,
+              )
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('Changed files:', ', '.join(changed) if changed else 'none')
+
+      - name: Verify old internal URLs are gone from runtime code
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE 'https://(www\.)?vladislovex\.ru/(artists|repertoire)' index.html assets/js; then
+            echo 'Hard-coded internal links still remain.'
+            exit 1
+          fi
+
+      - name: Commit corrected links
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html assets/js; then
+            echo 'Internal links are already relative.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html assets/js
+          git commit -m 'Use relative links for internal pages'
+          git push
