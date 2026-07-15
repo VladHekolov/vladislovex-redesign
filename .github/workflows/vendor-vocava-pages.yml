@@ -1,0 +1,55 @@
+name: Localize artists and repertoire assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/vendor-vocava-pages.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  localize-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download current page assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/css assets/js
+          curl --fail --location --retry 3 \
+            'https://storage.yandexcloud.net/vocava-media/admin/vocava-artists.css' \
+            --output assets/css/artists.css
+          curl --fail --location --retry 3 \
+            'https://storage.yandexcloud.net/vocava-media/admin/vocava-artists.js?v=2' \
+            --output assets/js/artists.js
+          curl --fail --location --retry 3 \
+            'https://storage.yandexcloud.net/vocava-media/admin/vocava-repertoire.css?v=14' \
+            --output assets/css/repertoire.css
+          curl --fail --location --retry 3 \
+            'https://storage.yandexcloud.net/vocava-media/admin/vocava-repertoire.js?v=13' \
+            --output assets/js/repertoire.js
+
+          test -s assets/css/artists.css
+          test -s assets/js/artists.js
+          test -s assets/css/repertoire.css
+          test -s assets/js/repertoire.js
+
+      - name: Commit localized assets
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/css/artists.css assets/js/artists.js assets/css/repertoire.css assets/js/repertoire.js; then
+            echo 'Assets are already up to date.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/css/artists.css assets/js/artists.js assets/css/repertoire.css assets/js/repertoire.js
+          git commit -m 'Store artists and repertoire code locally'
+          git push
