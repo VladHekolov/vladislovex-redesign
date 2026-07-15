@@ -1,0 +1,72 @@
+name: Connect personal pages to VOCAVA public API
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/connect-public-api.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  connect-public-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure artists and repertoire pages
+        shell: python
+        run: |
+          from pathlib import Path
+
+          artists = Path('artists/index.html')
+          artists_text = artists.read_text(encoding='utf-8')
+          artists_text = artists_text.replace(
+              'data-json-url="https://storage.yandexcloud.net/vocava-media/data/artists-public.json"',
+              'data-json-url="https://api.vocava.ru/api/public/artists"'
+          )
+          artists_loader = (
+              '  <script src="/assets/js/config.js?v=2"></script>\n'
+              '  <script src="/assets/js/vocava-data-adapter.js?v=1"></script>\n'
+          )
+          if '/assets/js/vocava-data-adapter.js' not in artists_text:
+              artists_text = artists_text.replace(
+                  '  <script src="/assets/vendor/html2canvas.min.js"></script>\n',
+                  artists_loader + '  <script src="/assets/vendor/html2canvas.min.js"></script>\n'
+              )
+          artists.write_text(artists_text, encoding='utf-8')
+
+          repertoire = Path('repertoire/index.html')
+          repertoire_text = repertoire.read_text(encoding='utf-8')
+          repertoire_loader = (
+              '  <script src="/assets/js/config.js?v=2"></script>\n'
+              '  <script src="/assets/js/vocava-data-adapter.js?v=1"></script>\n'
+          )
+          if '/assets/js/vocava-data-adapter.js' not in repertoire_text:
+              repertoire_text = repertoire_text.replace(
+                  '  <script src="/assets/js/repertoire.js?v=1" defer></script>\n',
+                  repertoire_loader + '  <script src="/assets/js/repertoire.js?v=2" defer></script>\n'
+              )
+          repertoire.write_text(repertoire_text, encoding='utf-8')
+
+      - name: Validate local JavaScript
+        run: |
+          node --check assets/js/vocava-data-adapter.js
+          node --check assets/js/artists.js
+          node --check assets/js/repertoire.js
+
+      - name: Commit page configuration
+        shell: bash
+        run: |
+          if git diff --quiet -- artists/index.html repertoire/index.html; then
+            echo 'Pages are already configured.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artists/index.html repertoire/index.html
+          git commit -m 'Use VOCAVA public API for artists and repertoire'
+          git push
