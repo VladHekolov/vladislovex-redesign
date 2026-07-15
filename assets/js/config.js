@@ -1,6 +1,6 @@
 /* Public runtime configuration. Never place database passwords or private API keys here. */
 window.VLADISLOVEX_CONFIG = Object.freeze({
-  apiBaseUrl: 'https://api.vocava.ru',
+  apiBaseUrl: 'https://vladhekolov-vocava-platform-0623.twc1.net',
   artistSlug: 'vladislav-hekolov',
   leadEndpoint: '/api/public/leads',
   artistsEndpoint: '/api/public/artists',
