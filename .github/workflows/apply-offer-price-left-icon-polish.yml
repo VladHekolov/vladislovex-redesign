@@ -2,10 +2,13 @@ name: Apply offer price left and icon polish
 on:
   push:
     branches: [agent/offer-price-left-icon-polish]
+  pull_request:
+    branches: [main]
 permissions:
   contents: write
 jobs:
   apply:
+    if: github.event_name == 'push' || github.head_ref == 'agent/offer-price-left-icon-polish'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
