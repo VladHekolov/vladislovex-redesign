@@ -47,8 +47,11 @@ jobs:
           grep -q '/assets/css/components.css' repertoire/index.html
           grep -q '/assets/css/themes.css' artists/index.html
           grep -q '/assets/css/themes.css' repertoire/index.html
-          grep -q '/assets/css/typography.css' assets/js/config.js
-          grep -q '/assets/css/components.css' assets/js/config.js
+          grep -q '/assets/css/typography.css' index.html
+          grep -q '/assets/css/components.css' index.html
+          grep -q '/assets/css/home-system.css' index.html
+          grep -q '/assets/css/visual-fixes.css' index.html
+          ! grep -q 'loadStylesheet' assets/js/config.js
 
       - name: Verify design system contract
         run: |
