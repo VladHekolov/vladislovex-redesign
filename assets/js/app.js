@@ -1478,14 +1478,14 @@
 
         '<div class="vh-offer-header">' +
           '<div>' +
-            '<h1 class="vh-offer-title">Коммерческое<br>предложение</h1>' +
+            '<div class="vh-offer-kicker">Коммерческое предложение</div><h1 class="vh-offer-title">Выступление<br>гитариста-вокалиста</h1>' +
             '<div class="vh-offer-title-line"></div>' +
-            '<div class="vh-offer-subtitle">Живое выступление гитариста-вокалиста</div>' +
+            '<div class="vh-offer-subtitle">Живая музыка для вашего события</div>' +
           '</div>' +
 
           '<div class="vh-offer-person">' +
             '<div class="vh-offer-name">Владислав Хеколов</div>' +
-            '<div class="vh-offer-role">Гитарист-вокалист</div>' +
+            '<div class="vh-offer-role">Гитарист · вокалист · ведущий музыкальной части</div>' +
             '<div class="vh-offer-contacts">' +
               '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Телефон</span><span>+7 999 800 31-91</span></div>' +
               '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Telegram</span><span>@vladislove_xv</span></div>' +
@@ -1504,37 +1504,30 @@
           '<div>' +
             '<div class="vh-offer-options">' +
               priceOptionsHtml +
-              '<div class="vh-offer-next">Ставка состава — <span>' + escapeHtml(data.nextHourText) + '/час</span></div>' +
+              '<div class="vh-offer-next">Стоимость дополнительного часа — <span>' + escapeHtml(data.nextHourText) + '</span></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
 
-        '<div class="vh-offer-main-grid">' +
+        '<div class="vh-offer-event-grid">' +
           '<div class="vh-offer-card">' +
             '<h2 class="vh-offer-section-title">Детали мероприятия</h2>' +
             detailsHtml +
           '</div>' +
-
-          '<div>' +
-            '<h2 class="vh-offer-section-title">Почему гостям будет комфортно</h2>' +
-            '<div class="vh-offer-advantages">' + advantagesHtml + '</div>' +
-          '</div>' +
-        '</div>' +
-
-        '<div class="vh-offer-bottom-grid">' +
           '<div class="vh-offer-card">' +
             '<h2 class="vh-offer-section-title">Как считаем стоимость</h2>' +
             breakdownHtml +
           '</div>' +
+        '</div>' +
 
-          '<div class="vh-offer-card vh-offer-message">' +
-            '<div class="vh-offer-message-text">Живая музыка помогает собрать гостей вместе и сделать вечер теплее.</div>' +
-            '<div class="vh-offer-line"></div>' +
-            '<div class="vh-offer-message-muted">Формат можно адаптировать под атмосферу мероприятия: от камерного поздравления до живой вечеринки с кахоном.</div>' +
-            '<div class="vh-offer-small-info">' +
-              'Дата закрепляется после подтверждения бронирования.' +
-            '</div>' +
+        '<div class="vh-offer-value-card">' +
+          '<div class="vh-offer-value-copy">' +
+            '<div class="vh-offer-value-kicker">Что получат гости</div>' +
+            '<h2 class="vh-offer-section-title">Живая музыка, которая объединяет людей</h2>' +
+            '<p>Формат адаптируется под настроение события — от камерного поздравления до энергичной вечеринки с кахоном.</p>' +
           '</div>' +
+          '<div class="vh-offer-advantages">' + advantagesHtml + '</div>' +
+          '<div class="vh-offer-small-info">Дата закрепляется после подтверждения бронирования.</div>' +
         '</div>' +
 
       '</div>';
