@@ -48,6 +48,12 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   loadStylesheet('/assets/css/light-theme.css?v=20260716-1', 'data-vh-light-theme');
   loadStylesheet('/assets/css/icons.css?v=20260716-2', 'data-vh-icons');
 
+  var isHomepage = document.body && document.body.id === 'top';
+  if (isHomepage) {
+    loadStylesheet('/assets/css/home-system.css?v=20260716-1', 'data-vh-home-system');
+    loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
+  }
+
   /* Same delivery principle as VOCAVA: selected icons are bundled with the site. */
   loadScript('/assets/vendor/vh-icons.bundle.js?v=20260716-1', 'data-vh-icon-bundle', function () {
     if (!window.VHIcons) return;
