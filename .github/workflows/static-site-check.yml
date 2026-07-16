@@ -23,6 +23,8 @@ jobs:
           node --check assets/js/theme.js
           node --check assets/js/config.js
           node --check assets/js/icons.js
+          node --check assets/js/artist-modal.js
+          node --check assets/js/repertoire.js
           node --check assets/vendor/vh-icons.bundle.js
 
       - name: Verify shared design assets
@@ -31,6 +33,7 @@ jobs:
           test -f assets/css/typography.css
           test -f assets/css/themes.css
           test -f assets/css/icons.css
+          test -f assets/css/artist-modal.css
           grep -q 'data-vh-theme="dark"' artists/index.html
           grep -q 'data-vh-theme="dark"' repertoire/index.html
           grep -q '/assets/js/theme.js' artists/index.html
@@ -40,6 +43,14 @@ jobs:
           grep -q '/assets/css/themes.css' artists/index.html
           grep -q '/assets/css/themes.css' repertoire/index.html
           grep -q '/assets/css/typography.css' assets/js/config.js
+
+      - name: Verify repertoire artist popup
+        run: |
+          grep -q 'data-vh-artist-modal-trigger' repertoire/index.html
+          grep -q 'id="vhRepertoireArtistModal"' repertoire/index.html
+          grep -q '/assets/css/artist-modal.css' repertoire/index.html
+          grep -q '/assets/js/artist-modal.js' repertoire/index.html
+          ! grep -q 'id="vrArtistCard" href="/artists/' repertoire/index.html
 
       - name: Reject external icon CDN dependencies
         run: |
