@@ -1519,7 +1519,7 @@
           '<div>' +
             '<div class="vh-offer-options">' +
               priceOptionsHtml +
-              '<div class="vh-offer-next">Стоимость продления — <span>' + escapeHtml(data.nextHourText) + '/час</span></div>' +
+              '<div class="vh-offer-next">Стоимость продления — <span>' + escapeHtml(data.nextHourText) + ' / час</span></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
