@@ -1,4 +1,8 @@
 /* Public runtime configuration. Never place database passwords or private API keys here. */
+try { localStorage.removeItem('vh-color-theme'); } catch (error) {}
+document.documentElement.setAttribute('data-vh-theme', 'dark');
+document.documentElement.style.colorScheme = 'dark';
+
 window.VLADISLOVEX_CONFIG = Object.freeze({
   apiBaseUrl: 'https://vladhekolov-vocava-platform-0623.twc1.net',
   artistSlug: 'vladislav-hekolov',
@@ -45,14 +49,19 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   loadStylesheet('/assets/css/typography.css?v=20260716-1', 'data-vh-typography');
   loadStylesheet('/assets/css/components.css?v=20260716-1', 'data-vh-components');
   loadStylesheet('/assets/css/themes.css?v=20260716-1', 'data-vh-themes');
-  loadStylesheet('/assets/css/light-theme.css?v=20260716-1', 'data-vh-light-theme');
   loadStylesheet('/assets/css/icons.css?v=20260716-2', 'data-vh-icons');
 
   var isHomepage = document.body && document.body.id === 'top';
   if (isHomepage) {
     loadStylesheet('/assets/css/home-system.css?v=20260716-1', 'data-vh-home-system');
-    loadStylesheet('/assets/css/visual-fixes.css?v=20260716-1', 'data-vh-visual-fixes');
+    loadStylesheet('/assets/css/visual-fixes.css?v=20260716-3', 'data-vh-visual-fixes');
+    loadStylesheet('/assets/css/mobile-layout.css?v=20260716-1', 'data-vh-mobile-layout');
+    loadStylesheet('/assets/css/mobile-components.css?v=20260716-1', 'data-vh-mobile-components');
+
     loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
+    loadScript('/assets/js/mobile-cleanup.js?v=20260716-1', 'data-vh-mobile-cleanup');
+    loadScript('/assets/js/mobile-video-previews.js?v=20260716-1', 'data-vh-mobile-video-previews');
+    loadScript('/assets/js/mobile-reviews-autoplay.js?v=20260716-1', 'data-vh-mobile-reviews-autoplay');
   }
 
   /* Same delivery principle as VOCAVA: selected icons are bundled with the site. */

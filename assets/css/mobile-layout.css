@@ -1,0 +1,184 @@
+/* Final mobile layout layer. */
+
+[data-vh-theme-toggle],
+[data-vh-subpage-theme-toggle] {
+  display: none !important;
+}
+
+body#top .vh-booking {
+  display: none !important;
+}
+
+body#top :is(
+  .vh-video-section__title,
+  .vh-formats-title,
+  .vh-price-calc__title,
+  .vh-reviews-title,
+  .vh-faq__title,
+  .vh-contacts-section__title
+) {
+  font-size: clamp(3.15rem, 4.65vw, 4.7rem) !important;
+  line-height: 1 !important;
+}
+
+body#top .vh-hero-offer__line {
+  font-size: clamp(1.25rem, 1.55vw, 1.75rem) !important;
+  line-height: 1.34 !important;
+}
+
+@media (max-width: 760px) {
+  body#top {
+    --vh-home-gutter: 12px;
+  }
+
+  body#top :is(
+    .vh-video-section__title,
+    .vh-formats-title,
+    .vh-price-calc__title,
+    .vh-reviews-title,
+    .vh-faq__title,
+    .vh-contacts-section__title
+  ) {
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 10.8vw, 3rem) !important;
+    line-height: 1.01 !important;
+  }
+
+  body#top .vh-hero-offer__line {
+    font-size: clamp(1.08rem, 4.65vw, 1.22rem) !important;
+    line-height: 1.38 !important;
+  }
+
+  body#top :is(
+    .vh-price-calc,
+    .vh-reviews-section,
+    .vh-faq,
+    .vh-contacts-section
+  ) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body#top :is(
+    .vh-video-section__container,
+    .vh-price-calc__wrap,
+    .vh-reviews-inner,
+    .vh-faq__wrap,
+    .vh-contacts-section__inner
+  ) {
+    padding-left: var(--vh-home-gutter) !important;
+    padding-right: var(--vh-home-gutter) !important;
+  }
+
+  body#top .vh-formats-section {
+    padding-left: var(--vh-home-gutter) !important;
+    padding-right: var(--vh-home-gutter) !important;
+  }
+
+  body#top .vh-video-section__container {
+    padding-right: 0 !important;
+  }
+
+  body#top .vh-video-section__header {
+    margin-right: var(--vh-home-gutter) !important;
+  }
+
+  body#top .vh-video-grid {
+    gap: 12px !important;
+    padding-right: var(--vh-home-gutter) !important;
+  }
+
+  body#top .vh-video-card {
+    flex-basis: 90vw !important;
+    max-width: 360px !important;
+  }
+
+  body#top .vh-hero {
+    padding-bottom: 218px !important;
+  }
+
+  body#top .vh-hero-benefits {
+    bottom: 16px !important;
+  }
+
+  body#top .vh-benefits-rail {
+    padding-top: 4px !important;
+    padding-bottom: 6px !important;
+  }
+
+  body#top .vh-benefit-card {
+    flex-basis: 58vw !important;
+    max-width: 228px !important;
+    min-height: 150px !important;
+    padding: 34px 12px 13px !important;
+    grid-template-columns: 40px 1fr !important;
+    column-gap: 11px !important;
+    row-gap: 11px !important;
+    border-radius: var(--vh-radius-md) !important;
+  }
+
+  body#top .vh-benefit-number {
+    top: 12px !important;
+    left: 13px !important;
+    font-size: 9px !important;
+  }
+
+  body#top .vh-benefit-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  body#top .vh-benefit-icon :is(img, svg) {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  body#top .vh-benefit-text h3 {
+    font-size: 14.2px !important;
+    line-height: 1.12 !important;
+  }
+
+  body#top .vh-benefit-text p {
+    font-size: 10.1px !important;
+    line-height: 1.42 !important;
+  }
+
+  body#top .vh-price-calc__wrap {
+    max-width: none !important;
+  }
+
+  body#top .vh-price-calc__grid {
+    gap: 14px !important;
+  }
+
+  body#top :is(.vh-price-calc__panel, .vh-price-calc__result-card) {
+    padding: 16px 14px !important;
+    border-radius: var(--vh-radius-lg) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  body#top {
+    --vh-home-gutter: 10px;
+  }
+
+  body#top :is(
+    .vh-video-section__title,
+    .vh-formats-title,
+    .vh-price-calc__title,
+    .vh-reviews-title,
+    .vh-faq__title,
+    .vh-contacts-section__title
+  ) {
+    font-size: clamp(2.25rem, 10.5vw, 2.65rem) !important;
+  }
+
+  body#top .vh-video-card {
+    flex-basis: 92vw !important;
+  }
+
+  body#top .vh-benefit-card {
+    flex-basis: 60vw !important;
+    max-width: 220px !important;
+  }
+}
