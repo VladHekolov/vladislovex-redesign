@@ -1,4 +1,4 @@
-/* Final public-site cleanup: dark theme only and removed booking block. */
+/* Final public-site cleanup: dark theme only, simplified calculator and local arrows. */
 (function () {
   'use strict';
 
@@ -20,12 +20,37 @@
       link.remove();
     });
 
+    var durationText = document.getElementById('vhCalcDurationText');
+    if (durationText) {
+      durationText.removeAttribute('role');
+      durationText.removeAttribute('tabindex');
+      durationText.removeAttribute('title');
+      durationText.setAttribute('aria-live', 'polite');
+    }
+
+    var durationScale = document.querySelector('.vh-price-calc__range-scale');
+    if (durationScale && durationScale.lastElementChild) {
+      durationScale.lastElementChild.textContent = '5';
+    }
+
+    document.querySelectorAll('.vh-contact-card__arrow').forEach(function (arrow) {
+      if (arrow.querySelector('[data-vh-icon="arrow-right"], [data-vh-icon-name="arrow-right"]')) return;
+      arrow.textContent = '';
+      var placeholder = document.createElement('i');
+      placeholder.setAttribute('data-vh-icon', 'arrow-right');
+      placeholder.setAttribute('aria-hidden', 'true');
+      arrow.appendChild(placeholder);
+    });
+
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = '#040404';
+
+    if (typeof window.VHRefreshIcons === 'function') window.VHRefreshIcons();
   }
 
   apply();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', apply, { once: true });
   }
+  window.addEventListener('load', apply, { once: true });
 }());
