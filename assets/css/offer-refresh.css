@@ -657,3 +657,50 @@
   font-size: 10.4px !important;
   line-height: 1.43 !important;
 }
+
+/* Offer price left alignment and equipment icon polish */
+.vh-offer-card--cost .vh-offer-cost-row > b {
+  justify-self: start !important;
+  text-align: left !important;
+}
+
+.vh-offer-card--cost .vh-offer-cost-row--optional > b {
+  justify-self: start !important;
+}
+
+.vh-offer-card--cost .vh-offer-optional-price {
+  width: 64px !important;
+  text-align: left !important;
+}
+
+.vh-offer-option > div:last-child {
+  position: relative;
+  top: 2px;
+}
+
+.vh-offer-small-info {
+  font-size: 9px !important;
+}
+
+.vh-offer-equipment-trial {
+  display: grid !important;
+  grid-template-columns: 32px minmax(0, 1fr) !important;
+  column-gap: 11px !important;
+  align-items: start !important;
+}
+
+.vh-offer-equipment-trial-icon {
+  width: 32px !important;
+  height: 32px !important;
+  margin-top: 1px;
+  border-radius: 9px !important;
+}
+
+.vh-offer-equipment-trial-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.vh-offer-equipment-trial-copy {
+  min-width: 0;
+}

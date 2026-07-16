@@ -1545,12 +1545,15 @@
       : '';
 
     var equipmentTrialHtml = !data.selectedModel.equipmentPrice
-      ? '<div class="vh-offer-equipment-trial">' +
+    ? '<div class="vh-offer-equipment-trial">' +
+        '<span class="vh-offer-equipment-trial-icon" aria-hidden="true"><i data-vh-icon="mic-2"></i></span>' +
+        '<div class="vh-offer-equipment-trial-copy">' +
           '<h3>Попробуйте выступление с оборудованием</h3>' +
           '<p>Возьму с собой колонку и микрофон.</p>' +
           '<p>Если не зайдет — вы ничего не платите.</p>' +
-        '</div>'
-      : '';
+        '</div>' +
+      '</div>'
+    : '';
 
     pdfStage.innerHTML =
       '<div class="vh-offer-page" id="vhOfferPage">' +
