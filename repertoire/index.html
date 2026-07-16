@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/assets/css/typography.css?v=20260716-1" data-vh-typography>
   <link rel="stylesheet" href="/assets/css/subpages.css?v=1">
   <link rel="stylesheet" href="/assets/css/repertoire.css?v=1">
+  <link rel="stylesheet" href="/assets/css/artist-modal.css?v=20260716-1">
   <link rel="stylesheet" href="/assets/css/themes.css?v=20260716-1" data-vh-themes>
   <link rel="stylesheet" href="/assets/css/icons.css?v=20260716-2" data-vh-icons>
   <script>
@@ -111,7 +112,7 @@
         </label>
         <div class="vr-actions">
           <button id="vrPdf" type="button">Скачать PDF</button>
-          <a class="vr-artist-card-link" id="vrArtistCard" href="/artists/#artists">Карточка артиста</a>
+          <button class="vr-artist-card-link" id="vrArtistCard" type="button" data-vh-artist-modal-trigger aria-haspopup="dialog">Карточка артиста</button>
         </div>
       </div>
 
@@ -134,9 +135,36 @@
     </div>
   </section>
 
+  <div class="vh-artist-modal vh-repertoire-artist-modal" id="vhRepertoireArtistModal" aria-hidden="true">
+    <div class="vh-artist-modal__overlay" data-vh-artist-modal-close></div>
+    <section class="vh-artist-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="vhRepertoireArtistName">
+      <button class="vh-artist-modal__close" type="button" data-vh-artist-modal-close aria-label="Закрыть карточку">×</button>
+      <div class="vh-artist-modal__media" id="vhRepertoireArtistMedia">
+        <div class="vh-artist-modal__loading">Загружаю карточку артиста…</div>
+      </div>
+      <div class="vh-artist-modal__content">
+        <div class="vh-artist-modal__label" id="vhRepertoireArtistType">VOCAVA</div>
+        <div class="vh-artist-modal__title-row"><h2 id="vhRepertoireArtistName">Карточка артиста</h2></div>
+        <div class="vh-artist-modal__age-pill" id="vhRepertoireArtistAgeCard" hidden><span id="vhRepertoireArtistAge"></span></div>
+        <p class="vh-artist-modal__about" id="vhRepertoireArtistAbout">Собираю информацию, фотографии и видео.</p>
+        <div class="vh-artist-modal__photos" id="vhRepertoireArtistPhotos"></div>
+        <div class="vh-artist-modal__info-grid">
+          <div class="vh-artist-modal__info-card" id="vhRepertoireArtistRepertoireCard" hidden><span>Репертуар</span><p id="vhRepertoireArtistRepertoire"></p></div>
+          <div class="vh-artist-modal__info-card" id="vhRepertoireArtistRepertoireDescriptionCard" hidden><span>Описание репертуара</span><p id="vhRepertoireArtistRepertoireDescription"></p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="vh-artist-modal__photo-preview" id="vhRepertoireArtistPhotoPreview" aria-hidden="true">
+    <button type="button" data-vh-artist-photo-close aria-label="Закрыть фотографию">×</button>
+    <img id="vhRepertoireArtistPhotoPreviewImage" src="" alt="">
+  </div>
+
   <footer class="vh-subpage-footer">© 2026 Владислав Хеколов · <a href="/">Вернуться на главную</a></footer>
   <script src="/assets/js/config.js?v=3"></script>
   <script src="/assets/js/vocava-data-adapter.js?v=1"></script>
+  <script src="/assets/js/artist-modal.js?v=20260716-1" defer></script>
   <script src="/assets/js/repertoire.js?v=2" defer></script>
 </body>
 </html>
