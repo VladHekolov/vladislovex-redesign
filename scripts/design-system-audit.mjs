@@ -1,0 +1,131 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const migratedFiles = [
+  'assets/css/subpages.css',
+  'assets/css/artist-modal.css'
+];
+
+const requiredTokens = [
+  '--vh-font-family',
+  '--vh-weight-heading',
+  '--vh-weight-button',
+  '--vh-control-height-md',
+  '--vh-radius-pill',
+  '--vh-text',
+  '--vh-surface',
+  '--vh-border'
+];
+
+const forbiddenRules = [
+  {
+    pattern: /font-family\s*:/gi,
+    message: 'Use --vh-font-family instead of declaring a local font family.'
+  },
+  {
+    pattern: /font\s*:\s*([^;}\n]+)/gi,
+    validate: (value) => value.trim() !== 'inherit',
+    message: 'Avoid local font shorthand; consume typography tokens or shared components.'
+  },
+  {
+    pattern: /font-weight\s*:\s*([^;}\n]+)/gi,
+    validate: (value) => !value.trim().startsWith('var('),
+    message: 'Use a --vh-weight-* token instead of a local font weight.'
+  },
+  {
+    pattern: /border-radius\s*:\s*([^;}\n]+)/gi,
+    validate: (value) => !value.trim().startsWith('var('),
+    message: 'Use a --vh-radius-* token instead of a local radius.'
+  },
+  {
+    pattern: /--vh-(?:page|page-alt|surface|text|accent|danger|success|weight|radius|control-height)\s*:/gi,
+    message: 'Global design tokens may only be declared in design-tokens.css.'
+  }
+];
+
+function read(relativePath) {
+  return fs.readFileSync(path.join(root, relativePath), 'utf8');
+}
+
+function lineNumber(source, index) {
+  return source.slice(0, index).split('\n').length;
+}
+
+const errors = [];
+
+for (const relativePath of migratedFiles) {
+  const source = read(relativePath);
+
+  if (!source.includes('var(--vh-')) {
+    errors.push(`${relativePath}: file does not consume design-system tokens.`);
+  }
+
+  for (const rule of forbiddenRules) {
+    rule.pattern.lastIndex = 0;
+    let match;
+    while ((match = rule.pattern.exec(source))) {
+      const value = match[1] || '';
+      if (rule.validate && !rule.validate(value)) continue;
+      errors.push(`${relativePath}:${lineNumber(source, match.index)} ${rule.message}`);
+    }
+  }
+}
+
+const tokensSource = read('assets/css/design-tokens.css');
+for (const token of requiredTokens) {
+  if (!tokensSource.includes(token)) {
+    errors.push(`assets/css/design-tokens.css: missing required token ${token}.`);
+  }
+}
+
+const componentsSource = read('assets/css/components.css');
+for (const selector of ['.vh-button', '.vh-title', '.vh-card', '.vh-input']) {
+  if (!componentsSource.includes(selector)) {
+    errors.push(`assets/css/components.css: missing shared component ${selector}.`);
+  }
+}
+
+const pages = ['artists/index.html', 'repertoire/index.html'];
+for (const page of pages) {
+  const source = read(page);
+  if (!source.includes('/assets/css/components.css')) {
+    errors.push(`${page}: shared components.css is not connected.`);
+  }
+  if (!source.includes('vh-title')) {
+    errors.push(`${page}: page title is not connected to the shared title component.`);
+  }
+  if (!source.includes('vh-button')) {
+    errors.push(`${page}: primary actions are not connected to the shared button component.`);
+  }
+}
+
+const legacyFiles = [
+  'assets/css/style.css',
+  'assets/css/repertoire.css',
+  'assets/css/artists.css',
+  'assets/css/themes.css'
+];
+
+const legacyStats = legacyFiles.map((relativePath) => {
+  const source = read(relativePath);
+  return {
+    file: relativePath,
+    fontWeights: (source.match(/font-weight\s*:/gi) || []).length,
+    radii: (source.match(/border-radius\s*:/gi) || []).length,
+    controlHeights: (source.match(/(?:min-)?height\s*:/gi) || []).length
+  };
+});
+
+console.log('Design-system migration report:');
+for (const stat of legacyStats) {
+  console.log(`- ${stat.file}: weights=${stat.fontWeights}, radii=${stat.radii}, heights=${stat.controlHeights}`);
+}
+
+if (errors.length) {
+  console.error('\nDesign-system contract violations:');
+  for (const error of errors) console.error(`- ${error}`);
+  process.exit(1);
+}
+
+console.log('\nDesign-system audit passed.');

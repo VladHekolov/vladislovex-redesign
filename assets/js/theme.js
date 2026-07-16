@@ -64,7 +64,7 @@
 
     var button = document.createElement('button');
     button.type = 'button';
-    button.className = 'vh-subpage-theme-toggle';
+    button.className = 'vh-subpage-theme-toggle vh-button vh-button--sm vh-button--ghost';
     button.setAttribute('data-vh-subpage-theme-toggle', '');
     button.innerHTML =
       '<span class="vh-subpage-theme-toggle__icon" aria-hidden="true">' +
@@ -97,4 +97,4 @@
     set: function (theme) { apply(theme, true); },
     toggle: function () { apply(root.getAttribute('data-vh-theme') === 'light' ? 'dark' : 'light', true); }
   });
-})();
+}());

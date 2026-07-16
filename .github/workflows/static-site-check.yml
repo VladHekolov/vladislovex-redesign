@@ -26,6 +26,7 @@ jobs:
           node --check assets/js/artist-modal.js
           node --check assets/js/repertoire.js
           node --check assets/vendor/vh-icons.bundle.js
+          node --check scripts/design-system-audit.mjs
 
       - name: Verify shared design assets
         run: |
@@ -35,6 +36,7 @@ jobs:
           test -f assets/css/themes.css
           test -f assets/css/icons.css
           test -f assets/css/artist-modal.css
+          test -f scripts/design-system-audit.mjs
           grep -q 'data-vh-theme="dark"' artists/index.html
           grep -q 'data-vh-theme="dark"' repertoire/index.html
           grep -q '/assets/js/theme.js' artists/index.html
@@ -60,6 +62,9 @@ jobs:
           grep -q 'vh-title--page' repertoire/index.html
           grep -q 'vh-button--primary' artists/index.html
           grep -q 'vh-button--primary' repertoire/index.html
+
+      - name: Audit local CSS overrides
+        run: node scripts/design-system-audit.mjs
 
       - name: Verify repertoire artist popup
         run: |
