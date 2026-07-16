@@ -42,6 +42,7 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   }
 
   loadStylesheet('/assets/css/design-tokens.css?v=20260716-1', 'data-vh-design-tokens');
+  loadStylesheet('/assets/css/typography.css?v=20260716-1', 'data-vh-typography');
   loadStylesheet('/assets/css/themes.css?v=20260716-1', 'data-vh-themes');
   loadStylesheet('/assets/css/light-theme.css?v=20260716-1', 'data-vh-light-theme');
   loadStylesheet('/assets/css/icons.css?v=20260716-2', 'data-vh-icons');
