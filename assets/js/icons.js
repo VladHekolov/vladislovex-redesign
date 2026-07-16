@@ -51,6 +51,7 @@
       target.setAttribute('aria-hidden', 'true');
     }
 
+    target.dataset.vhIconProcessed = 'true';
     if (source.getAttribute('title')) target.setAttribute('title', source.getAttribute('title'));
   }
 
@@ -68,14 +69,18 @@
   }
 
   function replaceExistingSvg(selector, iconName) {
+    var replaced = false;
     document.querySelectorAll(selector).forEach(function (source) {
-      if (source.dataset.vhIconProcessed === 'true') return;
+      if (source.dataset.vhIconProcessed === 'true' || source.classList.contains('vh-lucide-icon')) return;
       var placeholder = document.createElement('i');
       placeholder.setAttribute('data-lucide', iconName);
       placeholder.className = (source.getAttribute('class') || '') + ' vh-lucide-icon';
       placeholder.setAttribute('aria-hidden', 'true');
+      placeholder.dataset.vhIconProcessed = 'true';
       source.replaceWith(placeholder);
+      replaced = true;
     });
+    return replaced;
   }
 
   function render(root) {
@@ -87,11 +92,10 @@
     });
 
     if (scope === document) {
-      replaceExistingSvg('.vh-theme-toggle__moon', 'moon');
-      replaceExistingSvg('.vh-theme-toggle__sun', 'sun');
-      replaceExistingSvg('.vh-video-modal__close svg', 'x');
-      replaceExistingSvg('.vh-reviews-lb-close svg', 'x');
-      changed = true;
+      if (replaceExistingSvg('.vh-theme-toggle__moon', 'moon')) changed = true;
+      if (replaceExistingSvg('.vh-theme-toggle__sun', 'sun')) changed = true;
+      if (replaceExistingSvg('.vh-video-modal__close svg', 'x')) changed = true;
+      if (replaceExistingSvg('.vh-reviews-lb-close svg', 'x')) changed = true;
     }
 
     if (!changed && !scope.querySelector('i[data-lucide]')) return;
@@ -108,6 +112,7 @@
     document.querySelectorAll('svg[data-lucide]').forEach(function (svg) {
       svg.removeAttribute('data-lucide');
       svg.classList.add('vh-lucide-icon');
+      svg.dataset.vhIconProcessed = 'true';
     });
   }
 
