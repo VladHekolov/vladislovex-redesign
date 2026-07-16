@@ -1473,6 +1473,21 @@
       );
     }).join('');
 
+    var possibleAdditions = [];
+    if (!data.selectedModel.equipmentPrice) possibleAdditions.push('Оборудование');
+    if (!data.selectedModel.cajonPrice) possibleAdditions.push('Кахонист');
+
+    var possibleAdditionsHtml = possibleAdditions.length
+      ? '<div class="vh-offer-additions">' +
+          '<div class="vh-offer-additions-title">Возможные дополнения</div>' +
+          '<div class="vh-offer-additions-list">' +
+            possibleAdditions.map(function (item) {
+              return '<span class="vh-offer-addition">' + escapeHtml(item) + '</span>';
+            }).join('') +
+          '</div>' +
+        '</div>'
+      : '';
+
     pdfStage.innerHTML =
       '<div class="vh-offer-page" id="vhOfferPage">' +
 
@@ -1517,6 +1532,7 @@
           '<div class="vh-offer-card">' +
             '<h2 class="vh-offer-section-title">Как считаем стоимость</h2>' +
             breakdownHtml +
+            possibleAdditionsHtml +
           '</div>' +
         '</div>' +
 

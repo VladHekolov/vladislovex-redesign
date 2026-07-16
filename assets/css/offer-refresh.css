@@ -136,3 +136,75 @@
   margin-top: 12px !important;
   padding-top: 10px !important;
 }
+
+
+/* Offer layout centering and additions */
+.vh-offer-title {
+  max-width: 100% !important;
+  font-size: 42px !important;
+  line-height: 1.04 !important;
+  font-weight: 900 !important;
+  letter-spacing: .03em !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+.vh-offer-next {
+  width: 100% !important;
+  justify-self: stretch !important;
+  text-align: right !important;
+}
+
+.vh-offer-detail,
+.vh-offer-cost-row {
+  align-items: center !important;
+}
+
+.vh-offer-detail-label,
+.vh-offer-cost-row > span,
+.vh-offer-detail-value,
+.vh-offer-cost-row > b {
+  align-self: center !important;
+}
+
+.vh-offer-adv-number {
+  display: inline !important;
+  margin-right: 8px !important;
+  vertical-align: baseline !important;
+}
+
+.vh-offer-additions {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.vh-offer-additions-title {
+  color: #9b6a3a;
+  font-size: 10px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.vh-offer-additions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.vh-offer-addition {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 5px 10px;
+  border: 1px solid rgba(246, 138, 31, .28);
+  border-radius: 999px;
+  background: rgba(246, 138, 31, .07);
+  color: #27231f;
+  font-size: 10.5px;
+  line-height: 1.25;
+  font-weight: 600;
+}
