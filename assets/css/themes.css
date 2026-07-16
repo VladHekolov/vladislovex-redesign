@@ -1,0 +1,442 @@
+/* Shared theme layer for the main site, /artists/ and /repertoire/. */
+
+html,
+body {
+  background: var(--vh-page);
+}
+
+body.vh-subpage {
+  background: var(--vh-page);
+  color: var(--vh-text);
+  transition: background-color var(--vh-transition), color var(--vh-transition);
+}
+
+/* ===== SHARED SUBPAGE THEME CONTROL ===== */
+.vh-subpage-theme-toggle {
+  min-height: 40px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  border: 1px solid var(--vh-border);
+  border-radius: 999px;
+  color: var(--vh-text-muted);
+  background: var(--vh-surface-soft);
+  font: 650 12px/1 "Montserrat", Arial, sans-serif;
+  cursor: pointer;
+  transition: color var(--vh-transition), border-color var(--vh-transition), background var(--vh-transition), transform var(--vh-transition);
+}
+
+.vh-subpage-theme-toggle:hover {
+  color: var(--vh-text-strong);
+  border-color: color-mix(in srgb, var(--vh-accent) 38%, var(--vh-border));
+  background: var(--vh-accent-soft);
+  transform: translateY(-1px);
+}
+
+.vh-subpage-theme-toggle__icon {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+}
+
+.vh-subpage-theme-toggle__icon > i,
+.vh-subpage-theme-toggle__icon > svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+}
+
+html[data-vh-theme="dark"] .vh-subpage-theme-toggle [data-vh-icon-name="moon"],
+html[data-vh-theme="light"] .vh-subpage-theme-toggle [data-vh-icon-name="sun"] {
+  display: none;
+}
+
+/* ===== LIGHT SUBPAGE SHELL ===== */
+html[data-vh-theme="light"] body.vh-subpage {
+  background:
+    radial-gradient(circle at 82% 6%, rgba(225, 138, 54, .12), transparent 30%),
+    radial-gradient(circle at 8% 78%, rgba(199, 101, 13, .07), transparent 28%),
+    linear-gradient(180deg, var(--vh-page) 0%, #f9f5ef 48%, var(--vh-page) 100%);
+  color: var(--vh-text);
+}
+
+html[data-vh-theme="light"] .vh-subpage-header {
+  border-bottom-color: var(--vh-border);
+  background: rgba(255, 253, 249, .84);
+  box-shadow: 0 8px 28px rgba(79, 48, 23, .055);
+}
+
+html[data-vh-theme="light"] .vh-subpage-brand {
+  color: var(--vh-text-strong);
+}
+
+html[data-vh-theme="light"] .vh-subpage-brand small {
+  color: var(--vh-text-soft);
+}
+
+html[data-vh-theme="light"] .vh-subpage-nav a {
+  border-color: var(--vh-border);
+  color: var(--vh-text-muted);
+  background: rgba(255, 255, 255, .62);
+}
+
+html[data-vh-theme="light"] .vh-subpage-nav a:hover,
+html[data-vh-theme="light"] .vh-subpage-nav a:focus-visible,
+html[data-vh-theme="light"] .vh-subpage-nav a[aria-current="page"] {
+  color: var(--vh-text-strong);
+  border-color: rgba(199, 101, 13, .30);
+  background: rgba(199, 101, 13, .09);
+}
+
+html[data-vh-theme="light"] .vh-subpage-footer {
+  border-top-color: var(--vh-border);
+  color: var(--vh-text-soft);
+  background: #eee5d9;
+}
+
+html[data-vh-theme="light"] .vh-subpage-footer a {
+  color: var(--vh-accent);
+}
+
+/* ===== CATALOG ROOT ===== */
+html[data-vh-theme="light"] .vh-artists-page {
+  --vh-bg: var(--vh-page);
+  --vh-card: var(--vh-surface);
+  --vh-border: rgba(87, 60, 38, .14);
+  --vh-text: var(--vh-text-strong);
+  --vh-muted: var(--vh-text-muted);
+  --vh-soft: var(--vh-text-soft);
+  --vh-orange: var(--vh-accent);
+  --vh-orange-light: var(--vh-accent-light);
+  background:
+    radial-gradient(circle at 82% 8%, rgba(225, 138, 54, .15), transparent 32%),
+    radial-gradient(circle at 12% 80%, rgba(199, 101, 13, .08), transparent 30%),
+    linear-gradient(180deg, #f5f0e8 0%, #fffaf4 52%, #f1e9df 100%);
+  color: var(--vh-text-strong);
+}
+
+html[data-vh-theme="light"] .vh-artists-page__bg::before {
+  opacity: .22;
+  background-image: radial-gradient(circle, rgba(83, 56, 34, .12) 1px, transparent 1.4px);
+}
+
+html[data-vh-theme="light"] .vh-artists-page__bg::after {
+  background:
+    linear-gradient(90deg, rgba(245, 240, 232, .58), transparent 28%, transparent 72%, rgba(245, 240, 232, .58)),
+    radial-gradient(circle at center, transparent 0%, rgba(126, 86, 54, .05) 100%);
+}
+
+html[data-vh-theme="light"] .vh-artists-page__title,
+html[data-vh-theme="light"] .vh-artists-page__state strong,
+html[data-vh-theme="light"] .vh-artists-page__note strong,
+html[data-vh-theme="light"] #artists .vh-artist-card h2,
+html[data-vh-theme="light"] #artists .vh-artist-card h3 {
+  color: var(--vh-text-strong);
+}
+
+html[data-vh-theme="light"] .vh-artists-page__subtitle,
+html[data-vh-theme="light"] .vh-artists-page__state,
+html[data-vh-theme="light"] .vh-artists-page__note p,
+html[data-vh-theme="light"] #artists .vh-artist-card p,
+html[data-vh-theme="light"] #artists .vh-artist-card__meta {
+  color: var(--vh-text-muted);
+}
+
+html[data-vh-theme="light"] .vh-artists-page__state,
+html[data-vh-theme="light"] .vh-artists-page__note,
+html[data-vh-theme="light"] .vh-artists-page__results,
+html[data-vh-theme="light"] .vh-artists-page__toolbar {
+  border-color: var(--vh-border);
+  background: rgba(255, 255, 255, .72);
+  box-shadow: var(--vh-shadow-sm);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+html[data-vh-theme="light"] #artists .vh-artist-card {
+  border-color: var(--vh-border);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(225, 138, 54, .10), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, .96), rgba(250, 244, 237, .94));
+  box-shadow: var(--vh-shadow-md);
+}
+
+html[data-vh-theme="light"] #artists .vh-artist-card:hover {
+  border-color: rgba(199, 101, 13, .34);
+  box-shadow: var(--vh-shadow-lg);
+}
+
+html[data-vh-theme="light"] #artists .vh-artist-card__favorite {
+  color: rgba(43, 33, 25, .72);
+  filter: drop-shadow(0 3px 10px rgba(255, 255, 255, .65));
+}
+
+html[data-vh-theme="light"] .vh-mobile-filter__menu,
+html[data-vh-theme="light"] .vh-sort-dd__menu {
+  border-color: var(--vh-border);
+  color: var(--vh-text);
+  background: rgba(255, 253, 249, .97);
+  box-shadow: var(--vh-shadow-md);
+}
+
+html[data-vh-theme="light"] .vh-mobile-filter__menu button,
+html[data-vh-theme="light"] .vh-sort-dd__menu button,
+html[data-vh-theme="light"] .vh-sort-dd__button,
+html[data-vh-theme="light"] .vh-mobile-filter__button,
+html[data-vh-theme="light"] .vh-favorites-filter {
+  color: var(--vh-text-muted);
+}
+
+html[data-vh-theme="light"] .vh-mobile-filter__menu button:hover,
+html[data-vh-theme="light"] .vh-sort-dd__menu button:hover {
+  color: var(--vh-text-strong);
+  background: var(--vh-accent-soft);
+}
+
+html[data-vh-theme="light"] .vh-favorites-panel__inner {
+  border-color: rgba(199, 101, 13, .20);
+  background: rgba(255, 253, 249, .92);
+  box-shadow: var(--vh-shadow-lg);
+}
+
+html[data-vh-theme="light"] .vh-favorites-panel__info strong {
+  color: var(--vh-text-strong);
+}
+
+html[data-vh-theme="light"] .vh-favorites-panel__info p {
+  color: var(--vh-text-muted);
+}
+
+html[data-vh-theme="light"] #artists #vhFavoritesReset {
+  border-color: var(--vh-border-strong);
+  color: var(--vh-text-muted);
+  background: rgba(83, 56, 34, .045);
+}
+
+/* ===== ARTIST MODAL + PHOTO VIEWER ===== */
+html[data-vh-theme="light"] .vh-artist-modal__overlay,
+html[data-vh-theme="light"] .vh-photo-viewer__overlay {
+  background: rgba(49, 35, 25, .52);
+}
+
+html[data-vh-theme="light"] .vh-artist-modal__dialog,
+html[data-vh-theme="light"] .vh-photo-viewer__stage {
+  border-color: var(--vh-border);
+  color: var(--vh-text);
+  background: var(--vh-surface-solid);
+  box-shadow: var(--vh-shadow-lg);
+}
+
+html[data-vh-theme="light"] .vh-artist-modal__content,
+html[data-vh-theme="light"] .vh-artist-modal__info-card {
+  color: var(--vh-text);
+  background: var(--vh-surface-solid);
+}
+
+html[data-vh-theme="light"] .vh-artist-modal__info-card {
+  border-color: var(--vh-border);
+  background: rgba(83, 56, 34, .035);
+}
+
+html[data-vh-theme="light"] .vh-artist-modal__title-row h2,
+html[data-vh-theme="light"] .vh-photo-viewer__caption strong {
+  color: var(--vh-text-strong);
+}
+
+html[data-vh-theme="light"] .vh-artist-modal__about,
+html[data-vh-theme="light"] .vh-artist-modal__info-card p,
+html[data-vh-theme="light"] .vh-photo-viewer__caption span {
+  color: var(--vh-text-muted);
+}
+
+/* ===== REPERTOIRE ROOT ===== */
+html[data-vh-theme="light"] .vr-page {
+  --vh-bg: var(--vh-page);
+  --vh-bg-deep: var(--vh-page-alt);
+  --vh-text: var(--vh-text-strong);
+  --vh-muted: var(--vh-text-muted);
+  --vh-muted-soft: var(--vh-text-soft);
+  --vh-muted-hard: rgba(43, 33, 25, .80);
+  --vh-orange: var(--vh-accent);
+  --vh-orange-light: var(--vh-accent-light);
+  --vh-orange-soft: #d57a28;
+  --vh-error: #a83d2d;
+  --vh-border: rgba(87, 60, 38, .14);
+  --vh-border-accent: rgba(199, 101, 13, .30);
+  --vh-glass: rgba(255, 255, 255, .70);
+  --vh-shadow-card: var(--vh-shadow-md);
+  --vh-shadow-card-hover: var(--vh-shadow-lg);
+  --vh-shadow-panel: var(--vh-shadow-lg);
+  color: var(--vh-text-strong);
+  background: transparent;
+}
+
+html[data-vh-theme="light"] .vr-page::before {
+  opacity: .20;
+  background-image: radial-gradient(circle, rgba(83, 56, 34, .12) 1px, transparent 1.4px);
+}
+
+html[data-vh-theme="light"] .vr-page::after {
+  background:
+    linear-gradient(90deg, rgba(245, 240, 232, .50), transparent 30%, transparent 70%, rgba(245, 240, 232, .50)),
+    radial-gradient(circle at center, transparent 0%, rgba(126, 86, 54, .05) 100%);
+}
+
+html[data-vh-theme="light"] .vr-head__title,
+html[data-vh-theme="light"] .vr-head__title .vr-head__title-char {
+  color: var(--vh-text-strong);
+  -webkit-text-fill-color: currentColor;
+  background: none;
+  filter: none;
+}
+
+html[data-vh-theme="light"] .vr-head__badge {
+  color: var(--vh-text-soft);
+  -webkit-text-fill-color: currentColor;
+  background: none;
+}
+
+html[data-vh-theme="light"] .vr-head__badge span {
+  color: var(--vh-accent);
+  -webkit-text-fill-color: currentColor;
+  background: none;
+}
+
+html[data-vh-theme="light"] .vr-head__meta {
+  color: var(--vh-text-muted);
+  -webkit-text-fill-color: currentColor;
+  background: none;
+}
+
+html[data-vh-theme="light"] .vr-picker,
+html[data-vh-theme="light"] .vr-toolbar,
+html[data-vh-theme="light"] .vr-search-field,
+html[data-vh-theme="light"] .vr-state,
+html[data-vh-theme="light"] .vr-summary,
+html[data-vh-theme="light"] .vr-song,
+html[data-vh-theme="light"] .vr-guide__dialog {
+  border-color: var(--vh-border);
+  color: var(--vh-text);
+  background-color: rgba(255, 253, 249, .84);
+  box-shadow: var(--vh-shadow-sm);
+}
+
+html[data-vh-theme="light"] .vr-artist-select__button,
+html[data-vh-theme="light"] .vr-icon-btn,
+html[data-vh-theme="light"] .vr-favorites-toggle,
+html[data-vh-theme="light"] .vr-stop-toggle,
+html[data-vh-theme="light"] .vr-sort__button,
+html[data-vh-theme="light"] .vr-actions button,
+html[data-vh-theme="light"] .vr-actions a {
+  border-color: var(--vh-border);
+  color: var(--vh-text-muted);
+  background: rgba(255, 255, 255, .72);
+}
+
+html[data-vh-theme="light"] .vr-artist-select__menu,
+html[data-vh-theme="light"] .vr-filter__menu,
+html[data-vh-theme="light"] .vr-sort__menu {
+  border-color: var(--vh-border);
+  color: var(--vh-text);
+  background: rgba(255, 253, 249, .98);
+  box-shadow: var(--vh-shadow-md);
+}
+
+html[data-vh-theme="light"] .vr-artist-select__option,
+html[data-vh-theme="light"] .vr-filter__menu button,
+html[data-vh-theme="light"] .vr-sort__menu button {
+  color: var(--vh-text-muted);
+}
+
+html[data-vh-theme="light"] .vr-artist-select__option:hover,
+html[data-vh-theme="light"] .vr-filter__menu button:hover,
+html[data-vh-theme="light"] .vr-sort__menu button:hover,
+html[data-vh-theme="light"] .vr-artist-select__option.is-active {
+  color: var(--vh-text-strong);
+  background: var(--vh-accent-soft);
+}
+
+html[data-vh-theme="light"] .vr-search-field input {
+  color: var(--vh-text-strong);
+  caret-color: var(--vh-accent);
+}
+
+html[data-vh-theme="light"] .vr-search-field input::placeholder {
+  color: var(--vh-text-soft);
+}
+
+html[data-vh-theme="light"] .vr-state,
+html[data-vh-theme="light"] .vr-shown,
+html[data-vh-theme="light"] .vr-song p,
+html[data-vh-theme="light"] .vr-song small,
+html[data-vh-theme="light"] .vr-song span {
+  color: var(--vh-text-muted);
+}
+
+html[data-vh-theme="light"] .vr-song strong,
+html[data-vh-theme="light"] .vr-song h3 {
+  color: var(--vh-text-strong);
+}
+
+html[data-vh-theme="light"] .vr-guide__backdrop {
+  background: rgba(49, 35, 25, .52);
+}
+
+/* Inputs and selects shared by standalone pages. */
+html[data-vh-theme="light"] body.vh-subpage input,
+html[data-vh-theme="light"] body.vh-subpage select,
+html[data-vh-theme="light"] body.vh-subpage textarea {
+  border-color: var(--vh-border);
+  color: var(--vh-text-strong);
+  background: rgba(255, 255, 255, .78);
+}
+
+html[data-vh-theme="light"] body.vh-subpage input::placeholder,
+html[data-vh-theme="light"] body.vh-subpage textarea::placeholder {
+  color: var(--vh-text-soft);
+}
+
+@media (max-width: 720px) {
+  .vh-subpage-theme-toggle {
+    width: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0;
+  }
+
+  .vh-subpage-theme-toggle__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .vh-subpage-header__inner {
+    gap: 7px;
+  }
+
+  .vh-subpage-nav a {
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 430px) {
+  .vh-subpage-brand span {
+    display: none;
+  }
+
+  .vh-subpage-nav a {
+    min-height: 34px;
+    padding-inline: 7px;
+    font-size: 9px;
+  }
+}

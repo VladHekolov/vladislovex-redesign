@@ -1,0 +1,67 @@
+/* VLADISLOVEX shared visual tokens.
+   Pages should consume these variables instead of defining unrelated palettes. */
+:root {
+  color-scheme: dark;
+  --vh-page: #050505;
+  --vh-page-alt: #0b0907;
+  --vh-surface: rgba(16, 16, 16, .88);
+  --vh-surface-solid: #11100f;
+  --vh-surface-elevated: #171513;
+  --vh-surface-soft: rgba(255, 255, 255, .045);
+  --vh-text: #ffffff;
+  --vh-text-strong: #ffffff;
+  --vh-text-muted: rgba(255, 255, 255, .66);
+  --vh-text-soft: rgba(255, 255, 255, .44);
+  --vh-border: rgba(255, 255, 255, .10);
+  --vh-border-strong: rgba(255, 255, 255, .18);
+  --vh-accent: #f68a1f;
+  --vh-accent-light: #ffbd6d;
+  --vh-accent-soft: rgba(246, 138, 31, .12);
+  --vh-danger: #ee654c;
+  --vh-success: #2da36f;
+  --vh-shadow-sm: 0 8px 24px rgba(0, 0, 0, .20);
+  --vh-shadow-md: 0 18px 48px rgba(0, 0, 0, .32);
+  --vh-shadow-lg: 0 28px 80px rgba(0, 0, 0, .46);
+  --vh-radius-sm: 10px;
+  --vh-radius-md: 16px;
+  --vh-radius-lg: 24px;
+  --vh-radius-xl: 30px;
+  --vh-control-height: 44px;
+  --vh-transition: .2s ease;
+}
+
+html[data-vh-theme="light"] {
+  color-scheme: light;
+  --vh-page: #f5f0e8;
+  --vh-page-alt: #eee5d9;
+  --vh-surface: rgba(255, 255, 255, .90);
+  --vh-surface-solid: #fffdf9;
+  --vh-surface-elevated: #ffffff;
+  --vh-surface-soft: rgba(83, 56, 34, .045);
+  --vh-text: #2b2119;
+  --vh-text-strong: #1f1812;
+  --vh-text-muted: rgba(43, 33, 25, .68);
+  --vh-text-soft: rgba(43, 33, 25, .48);
+  --vh-border: rgba(87, 60, 38, .13);
+  --vh-border-strong: rgba(87, 60, 38, .22);
+  --vh-accent: #c7650d;
+  --vh-accent-light: #e18a36;
+  --vh-accent-soft: rgba(199, 101, 13, .10);
+  --vh-danger: #b94432;
+  --vh-success: #237d55;
+  --vh-shadow-sm: 0 8px 24px rgba(79, 48, 23, .08);
+  --vh-shadow-md: 0 18px 48px rgba(79, 48, 23, .12);
+  --vh-shadow-lg: 0 28px 80px rgba(79, 48, 23, .16);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--vh-accent) 58%, transparent);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #fff;
+  background: var(--vh-accent);
+}
