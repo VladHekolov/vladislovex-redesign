@@ -25,17 +25,21 @@ jobs:
           node --check assets/js/icons.js
           node --check assets/vendor/vh-icons.bundle.js
 
-      - name: Verify shared theme assets
+      - name: Verify shared design assets
         run: |
           test -f assets/css/design-tokens.css
+          test -f assets/css/typography.css
           test -f assets/css/themes.css
           test -f assets/css/icons.css
           grep -q 'data-vh-theme="dark"' artists/index.html
           grep -q 'data-vh-theme="dark"' repertoire/index.html
           grep -q '/assets/js/theme.js' artists/index.html
           grep -q '/assets/js/theme.js' repertoire/index.html
+          grep -q '/assets/css/typography.css' artists/index.html
+          grep -q '/assets/css/typography.css' repertoire/index.html
           grep -q '/assets/css/themes.css' artists/index.html
           grep -q '/assets/css/themes.css' repertoire/index.html
+          grep -q '/assets/css/typography.css' assets/js/config.js
 
       - name: Reject external icon CDN dependencies
         run: |
