@@ -1476,7 +1476,7 @@
 
     var advantagesHtml = data.advantages.map(function (item) {
       return (
-        '<div class="vh-offer-adv">' +
+        '<div class="vh-offer-adv' + (item.note ? ' has-note' : '') + '">' +
           '<h3 class="vh-offer-adv-title">' + escapeHtml(item.title) + '</h3>' +
           '<span class="vh-offer-adv-icon" aria-hidden="true"><i data-vh-icon="' + escapeHtml(item.icon) + '"></i></span>' +
           '<div class="vh-offer-adv-content">' +
@@ -1604,8 +1604,8 @@
             '<h2 class="vh-offer-section-title">Что получат гости</h2>' +
           '</div>' +
           '<div class="vh-offer-advantages">' + advantagesHtml + '</div>' +
-          '<div class="vh-offer-small-info">Дата закрепляется после подтверждения бронирования.</div>' +
         '</div>' +
+        '<div class="vh-offer-small-info">Дата закрепляется после подтверждения бронирования.</div>' +
 
       '</div>';
 
