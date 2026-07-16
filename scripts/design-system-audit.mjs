@@ -5,7 +5,8 @@ const root = process.cwd();
 const migratedFiles = [
   'assets/css/subpages.css',
   'assets/css/artist-modal.css',
-  'assets/css/repertoire-system.css'
+  'assets/css/repertoire-system.css',
+  'assets/css/artists-system.css'
 ];
 
 const requiredTokens = [
@@ -108,6 +109,14 @@ if (!repertoirePage.includes('/assets/css/repertoire-system.css')) {
 }
 if (!repertoirePage.includes('data-vh-repertoire-system')) {
   errors.push('repertoire/index.html: repertoire system stylesheet marker is missing.');
+}
+
+const artistsPage = read('artists/index.html');
+if (!artistsPage.includes('/assets/css/artists-system.css')) {
+  errors.push('artists/index.html: artists-system.css is not connected.');
+}
+if (!artistsPage.includes('data-vh-artists-system')) {
+  errors.push('artists/index.html: catalog system stylesheet marker is missing.');
 }
 
 const legacyFiles = [
