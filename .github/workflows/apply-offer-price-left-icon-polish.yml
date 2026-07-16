@@ -18,7 +18,9 @@ jobs:
         with:
           python-version: '3.x'
       - name: Patch offer PDF styles and markup
+        shell: bash
         run: |
+          set -euxo pipefail
           python - <<'PY'
           from pathlib import Path
 
@@ -81,14 +83,14 @@ jobs:
               css_path.write_text(css.rstrip() + block, encoding='utf-8')
 
           app = app_path.read_text(encoding='utf-8')
-          old = """    var equipmentTrialHtml = !data.selectedModel.equipmentPrice
-              ? '<div class=\"vh-offer-equipment-trial\">' +
-                  '<h3>Попробуйте выступление с оборудованием</h3>' +
-                  '<p>Возьму с собой колонку и микрофон.</p>' +
-                  '<p>Если не зайдет — вы ничего не платите.</p>' +
-                '</div>'
-              : '';"""
-          new = """    var equipmentTrialHtml = !data.selectedModel.equipmentPrice
+          if 'vh-offer-equipment-trial-copy' not in app:
+              start_marker = '    var equipmentTrialHtml = !data.selectedModel.equipmentPrice'
+              end_marker = '\n\n    pdfStage.innerHTML ='
+              start = app.find(start_marker)
+              end = app.find(end_marker, start)
+              if start < 0 or end < 0:
+                  raise SystemExit('Equipment trial block boundaries not found')
+              replacement = """    var equipmentTrialHtml = !data.selectedModel.equipmentPrice
               ? '<div class=\"vh-offer-equipment-trial\">' +
                   '<span class=\"vh-offer-equipment-trial-icon\" aria-hidden=\"true\"><i data-vh-icon=\"mic-2\"></i></span>' +
                   '<div class=\"vh-offer-equipment-trial-copy\">' +
@@ -98,10 +100,7 @@ jobs:
                   '</div>' +
                 '</div>'
               : '';"""
-          if old in app:
-              app_path.write_text(app.replace(old, new, 1), encoding='utf-8')
-          elif 'vh-offer-equipment-trial-copy' not in app:
-              raise SystemExit('Equipment trial markup not found')
+              app_path.write_text(app[:start] + replacement + app[end:], encoding='utf-8')
 
           index = index_path.read_text(encoding='utf-8')
           old_version = '/assets/css/offer-refresh.css?v=20260716-10'
@@ -116,4 +115,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/css/offer-refresh.css assets/js/app.js index.html
           git diff --cached --quiet || git commit -m "style: align offer prices and add equipment icon"
-          git push
+          git push origin HEAD:agent/offer-price-left-icon-polish
