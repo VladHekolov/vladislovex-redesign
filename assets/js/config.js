@@ -10,3 +10,13 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   useVocavaApi: true,
   formSubmitFallbackEnabled: true
 });
+
+/* Load the light-theme redesign after the main stylesheet so its scoped rules win safely. */
+(function loadLightThemeStyles() {
+  if (document.querySelector('link[data-vh-light-theme]')) return;
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/assets/css/light-theme.css?v=20260716-1';
+  link.setAttribute('data-vh-light-theme', '');
+  document.head.appendChild(link);
+})();
