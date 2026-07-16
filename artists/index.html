@@ -12,10 +12,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="/assets/js/theme.js?v=20260716-1"></script>
-  <link rel="stylesheet" href="/assets/css/design-tokens.css?v=20260716-1" data-vh-design-tokens>
+  <link rel="stylesheet" href="/assets/css/design-tokens.css?v=20260716-2" data-vh-design-tokens>
   <link rel="stylesheet" href="/assets/css/typography.css?v=20260716-1" data-vh-typography>
   <link rel="stylesheet" href="/assets/css/subpages.css?v=1">
   <link rel="stylesheet" href="/assets/css/artists.css?v=1">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260716-1" data-vh-components>
   <link rel="stylesheet" href="/assets/css/themes.css?v=20260716-1" data-vh-themes>
   <link rel="stylesheet" href="/assets/css/icons.css?v=20260716-2" data-vh-icons>
   <script>
@@ -55,16 +56,16 @@
         <div class="vh-artists-page__label"><span></span><p>Музыканты Vocava</p></div>
         <div class="vh-artists-page__title-row">
           <div>
-            <h1 class="vh-artists-page__title">Выберите <span>музыканта</span></h1>
-            <p class="vh-artists-page__subtitle">Выберите понравившихся артистов, добавьте их в избранное и отправьте мне список. Я проверю дату, согласую условия и забронирую для вас музыканта.</p>
+            <h1 class="vh-artists-page__title vh-title vh-title--page">Выберите <span>музыканта</span></h1>
+            <p class="vh-artists-page__subtitle vh-lead">Выберите понравившихся артистов, добавьте их в избранное и отправьте мне список. Я проверю дату, согласую условия и забронирую для вас музыканта.</p>
           </div>
-          <a href="https://t.me/vladislove_xv" class="vh-artists-page__main-btn" target="_blank" rel="noopener">Подобрать артиста</a>
+          <a href="https://t.me/vladislove_xv" class="vh-artists-page__main-btn vh-button vh-button--primary vh-button--lg" target="_blank" rel="noopener">Подобрать артиста</a>
         </div>
       </div>
 
       <div class="vh-artists-page__toolbar vh-artists-page__toolbar--cian">
         <div class="vh-mobile-filter" id="vhMobileFilter">
-          <button class="vh-mobile-filter__button" type="button" id="vhMobileFilterBtn" aria-expanded="false" aria-label="Фильтры">
+          <button class="vh-mobile-filter__button vh-icon-button" type="button" id="vhMobileFilterBtn" aria-expanded="false" aria-label="Фильтры">
             <span class="vh-mobile-filter__badge" id="vhMobileFilterCount" hidden>0</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M7 12h10"></path><path d="M10 17h4"></path></svg>
           </button>
@@ -77,7 +78,7 @@
           </div>
         </div>
 
-        <button class="vh-favorites-filter" type="button" id="vhFavoritesOnlyFilter" aria-pressed="false" aria-label="Показать избранных музыкантов" title="Избранные" hidden>
+        <button class="vh-favorites-filter vh-icon-button" type="button" id="vhFavoritesOnlyFilter" aria-pressed="false" aria-label="Показать избранных музыкантов" title="Избранные" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.4-9.5-9.1C.7 8.3 2.5 4.5 6.4 4.1c2.1-.2 4.1.9 5.1 2.6 1-1.7 3-2.8 5.1-2.6 3.9.4 5.7 4.2 3.9 7.8C19.2 16.6 12 21 12 21z"></path></svg>
         </button>
 
@@ -101,7 +102,7 @@
     <div class="vh-favorites-panel" id="vhFavoritesPanel">
       <div class="vh-favorites-panel__inner">
         <div class="vh-favorites-panel__info"><strong id="vhFavoritesCount">Вы выбрали 0 музыкантов</strong></div>
-        <div class="vh-favorites-panel__actions"><button type="button" id="vhFavoritesPdf">Скачать PDF</button><button type="button" id="vhFavoritesReset" class="vh-favorites-panel__reset">Сбросить</button></div>
+        <div class="vh-favorites-panel__actions"><button class="vh-button vh-button--primary" type="button" id="vhFavoritesPdf">Скачать PDF</button><button class="vh-favorites-panel__reset vh-button vh-button--secondary" type="button" id="vhFavoritesReset">Сбросить</button></div>
       </div>
     </div>
   </section>
@@ -114,7 +115,7 @@
       <div class="vh-artist-modal__content">
         <div class="vh-artist-modal__label" id="vhArtistModalType">Тип артиста</div>
         <div class="vh-artist-modal__age-pill" id="vhArtistModalAgeCard" hidden><span id="vhArtistModalAge"></span></div>
-        <div class="vh-artist-modal__title-row"><h2 id="vhArtistModalName">Имя артиста</h2><div class="vh-artist-modal__repertoire-inline" id="vhArtistModalRepertoireInline" hidden></div></div>
+        <div class="vh-artist-modal__title-row"><h2 class="vh-title vh-title--card" id="vhArtistModalName">Имя артиста</h2><div class="vh-artist-modal__repertoire-inline" id="vhArtistModalRepertoireInline" hidden></div></div>
         <p class="vh-artist-modal__about" id="vhArtistModalAbout"></p>
         <div class="vh-artist-modal__photos" id="vhArtistModalPhotos" aria-label="Фотографии музыканта"></div>
         <div class="vh-artist-modal__info-grid">
@@ -138,7 +139,7 @@
   <div class="vh-pdf-stage" id="vhPdfStage"></div>
   <footer class="vh-subpage-footer">© 2026 Владислав Хеколов · <a href="/">Вернуться на главную</a></footer>
 
-  <script src="/assets/js/config.js?v=3"></script>
+  <script src="/assets/js/config.js?v=4"></script>
   <script src="/assets/js/vocava-data-adapter.js?v=1"></script>
   <script src="/assets/vendor/html2canvas.min.js"></script>
   <script src="/assets/vendor/jspdf.umd.min.js"></script>

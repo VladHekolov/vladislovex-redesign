@@ -1,0 +1,518 @@
+/* VLADISLOVEX reusable component system.
+   Generic classes are the public API for new markup. The migration mappings at
+   the end keep existing pages visually consistent while local CSS is cleaned. */
+
+/* ===== Layout primitives ===== */
+.vh-container {
+  width: min(100%, var(--vh-container));
+  margin-inline: auto;
+  padding-inline: var(--vh-page-gutter);
+}
+
+.vh-container--wide { max-width: var(--vh-container-wide); }
+.vh-container--narrow { max-width: var(--vh-container-narrow); }
+
+.vh-section {
+  padding-block: var(--vh-section-space);
+  color: var(--vh-text);
+}
+
+/* ===== Typography components ===== */
+.vh-title {
+  min-width: 0;
+  margin: 0;
+  color: var(--vh-text-strong);
+  font-family: var(--vh-font-display);
+  font-weight: var(--vh-weight-heading);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.vh-title--display {
+  font-size: var(--vh-type-display);
+  line-height: var(--vh-leading-display);
+}
+
+.vh-title--page {
+  max-width: 18ch;
+  font-size: var(--vh-type-h1);
+  line-height: 1.04;
+}
+
+.vh-title--section {
+  max-width: var(--vh-heading-width);
+  font-size: var(--vh-type-h2);
+  line-height: var(--vh-leading-heading);
+}
+
+.vh-title--card {
+  font-size: var(--vh-type-h3);
+  line-height: 1.16;
+  letter-spacing: -.018em;
+}
+
+.vh-title > span,
+.vh-title > strong {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.vh-lead {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--vh-text-muted);
+  font-size: var(--vh-type-lead);
+  line-height: 1.55;
+  font-weight: var(--vh-weight-medium);
+  text-wrap: pretty;
+}
+
+.vh-body-text {
+  max-width: var(--vh-reading-width);
+  margin: 0;
+  color: var(--vh-text-muted);
+  font-size: var(--vh-type-body);
+  line-height: var(--vh-leading-body);
+  font-weight: var(--vh-weight-regular);
+  text-wrap: pretty;
+}
+
+.vh-label {
+  color: var(--vh-text-soft);
+  font-size: var(--vh-type-small);
+  line-height: 1.2;
+  font-weight: var(--vh-weight-label);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Existing headings consume the same component values. */
+:is(
+  .vh-video-section__title,
+  .vh-formats-title,
+  .vh-booking__title,
+  .vh-price-calc__title,
+  .vh-reviews-title,
+  .vh-faq__title,
+  .vh-contacts-section__title
+) {
+  max-width: var(--vh-heading-width);
+  margin-inline: auto;
+  color: var(--vh-text-strong);
+  font-family: var(--vh-font-display);
+  font-size: var(--vh-type-h2) !important;
+  line-height: var(--vh-leading-heading) !important;
+  font-weight: var(--vh-weight-heading) !important;
+  letter-spacing: -.025em !important;
+  text-wrap: balance;
+}
+
+:is(
+  .vh-video-section__title,
+  .vh-formats-title,
+  .vh-booking__title,
+  .vh-price-calc__title,
+  .vh-reviews-title,
+  .vh-faq__title,
+  .vh-contacts-section__title
+) > :is(span, strong) {
+  color: inherit;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+:is(.vh-artists-page__title, .vr-head__title) {
+  max-width: 18ch !important;
+  color: var(--vh-text-strong);
+  font-family: var(--vh-font-display);
+  font-size: var(--vh-type-h1) !important;
+  line-height: 1.04 !important;
+  font-weight: var(--vh-weight-heading) !important;
+  letter-spacing: -.03em !important;
+  text-wrap: balance !important;
+  overflow-wrap: break-word !important;
+}
+
+:is(.vh-artists-page__title, .vr-head__title) > :is(span, strong) {
+  color: inherit;
+  font: inherit !important;
+}
+
+:is(
+  .vh-video-section__subtitle,
+  .vh-video-section__description,
+  .vh-formats-description,
+  .vh-booking__description,
+  .vh-price-calc__description,
+  .vh-reviews-subtitle,
+  .vh-reviews-description,
+  .vh-faq__description,
+  .vh-contacts-section__description,
+  .vh-artists-page__subtitle,
+  .vr-head__meta
+) {
+  max-width: 62ch;
+  color: var(--vh-text-muted);
+  font-family: var(--vh-font-body);
+  font-size: var(--vh-type-lead) !important;
+  line-height: 1.55 !important;
+  font-weight: var(--vh-weight-medium);
+  text-wrap: pretty;
+}
+
+:is(
+  .vh-benefit-text h3,
+  .vh-format-title,
+  .vh-booking__steps h3,
+  .vh-booking__included h3,
+  .vh-price-calc h3,
+  .vh-faq__question span,
+  .vh-contact-card__content strong,
+  #artists .vh-artist-card h3,
+  .vh-artist-modal__title-row h2
+) {
+  font-family: var(--vh-font-display);
+  font-size: var(--vh-type-h3) !important;
+  line-height: 1.16 !important;
+  font-weight: var(--vh-weight-heading) !important;
+  letter-spacing: -.018em !important;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* ===== Buttons ===== */
+.vh-button {
+  min-height: var(--vh-control-height-md);
+  padding-inline: var(--vh-control-padding-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vh-space-3);
+  border: 1px solid transparent;
+  border-radius: var(--vh-radius-pill);
+  font-family: var(--vh-font-family);
+  font-size: var(--vh-control-font-size);
+  line-height: var(--vh-control-line-height);
+  font-weight: var(--vh-weight-button);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--vh-transition-fast),
+    border-color var(--vh-transition-fast),
+    background var(--vh-transition-fast),
+    box-shadow var(--vh-transition-base),
+    transform var(--vh-transition-base),
+    opacity var(--vh-transition-fast);
+}
+
+.vh-button--sm {
+  min-height: var(--vh-control-height-sm);
+  padding-inline: var(--vh-control-padding-sm);
+  font-size: 13px;
+}
+
+.vh-button--lg {
+  min-height: var(--vh-control-height-lg);
+  padding-inline: var(--vh-control-padding-lg);
+}
+
+.vh-button--primary {
+  color: #15110d;
+  border-color: color-mix(in srgb, var(--vh-accent-light) 72%, transparent);
+  background: linear-gradient(135deg, var(--vh-accent-light), var(--vh-accent));
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--vh-accent) 24%, transparent);
+}
+
+.vh-button--secondary {
+  color: var(--vh-text);
+  border-color: var(--vh-border-strong);
+  background: var(--vh-surface);
+  box-shadow: var(--vh-shadow-sm);
+}
+
+.vh-button--outline {
+  color: var(--vh-text);
+  border-color: var(--vh-border-accent);
+  background: transparent;
+}
+
+.vh-button--ghost {
+  color: var(--vh-text-muted);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.vh-button:hover:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(-2px);
+}
+
+.vh-button:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(0);
+}
+
+.vh-button:disabled,
+.vh-button[aria-disabled="true"],
+.vh-button.is-disabled {
+  opacity: .48;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.vh-button svg,
+.vh-button img {
+  width: var(--vh-icon-size-sm);
+  height: var(--vh-icon-size-sm);
+  flex: 0 0 auto;
+}
+
+/* Migration map: all primary text actions share one font, weight and geometry. */
+:is(
+  .vh-action-button,
+  .vh-artists-page__main-btn,
+  .vr-actions > button,
+  .vh-format-select,
+  .vh-booking__included > a,
+  .vh-price-calc__btn,
+  .vh-favorites-panel__actions button,
+  .vh-artist-card__choose,
+  .vh-artist-card__repertoire,
+  .vh-artist-card__select
+) {
+  box-sizing: border-box;
+  min-height: var(--vh-control-height-md);
+  padding-inline: var(--vh-control-padding-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vh-space-3);
+  border-radius: var(--vh-radius-pill);
+  font-family: var(--vh-font-family) !important;
+  font-size: var(--vh-control-font-size) !important;
+  line-height: var(--vh-control-line-height) !important;
+  font-weight: var(--vh-weight-button) !important;
+  letter-spacing: 0 !important;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+}
+
+:is(
+  .vh-hero__btn,
+  .vh-format-select,
+  .vh-booking__included > a,
+  .vh-price-calc__btn,
+  .vh-artists-page__main-btn,
+  .vr-actions > button
+) {
+  min-height: var(--vh-control-height-lg);
+  padding-inline: var(--vh-control-padding-lg);
+}
+
+:is(.vh-premium-header__cta, .vh-premium-header__outline) {
+  min-height: var(--vh-control-height-sm);
+  padding-inline: var(--vh-control-padding-sm);
+  font-size: 13px !important;
+}
+
+:is(
+  .vh-action-button,
+  .vh-artists-page__main-btn,
+  .vr-actions > button,
+  .vh-format-select,
+  .vh-booking__included > a,
+  .vh-price-calc__btn,
+  .vh-favorites-panel__actions button,
+  .vh-artist-card__choose,
+  .vh-artist-card__repertoire,
+  .vh-artist-card__select
+) > :is(span, strong, b) {
+  font-weight: inherit !important;
+}
+
+/* ===== Icon buttons ===== */
+.vh-icon-button,
+:is(
+  .vh-theme-toggle,
+  .vh-mobile-filter__button,
+  .vh-favorites-filter,
+  .vr-icon-btn,
+  .vr-favorites-toggle,
+  .vr-stop-toggle,
+  .vh-price-calc__circle-action
+) {
+  width: var(--vh-control-height-md);
+  min-width: var(--vh-control-height-md);
+  height: var(--vh-control-height-md);
+  min-height: var(--vh-control-height-md);
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--vh-radius-pill);
+  font-family: var(--vh-font-family);
+  line-height: 1;
+  cursor: pointer;
+}
+
+:is(
+  .vh-theme-toggle,
+  .vh-mobile-filter__button,
+  .vh-favorites-filter,
+  .vr-icon-btn,
+  .vr-favorites-toggle,
+  .vr-stop-toggle,
+  .vh-price-calc__circle-action
+) svg {
+  width: var(--vh-icon-size-md);
+  height: var(--vh-icon-size-md);
+}
+
+/* ===== Form controls ===== */
+.vh-field {
+  display: grid;
+  gap: var(--vh-space-2);
+}
+
+.vh-field__label,
+:is(.vh-price-calc__field > label, .vh-price-calc__label-row label, .vr-picker__label) {
+  color: var(--vh-text-muted);
+  font-family: var(--vh-font-family);
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: var(--vh-weight-label);
+  letter-spacing: .02em;
+}
+
+.vh-input,
+.vh-select,
+.vh-textarea,
+:is(
+  .vh-price-calc__field input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+  .vh-price-calc__field select,
+  .vr-search-field input,
+  .vr-artist-select__button
+) {
+  box-sizing: border-box;
+  min-height: var(--vh-control-height-md);
+  border-radius: var(--vh-radius-md);
+  font-family: var(--vh-font-family) !important;
+  font-size: var(--vh-control-font-size) !important;
+  line-height: 1.35 !important;
+  font-weight: var(--vh-weight-medium) !important;
+}
+
+.vh-input,
+.vh-select,
+.vh-textarea {
+  width: 100%;
+  padding-inline: var(--vh-control-padding-md);
+  border: 1px solid var(--vh-border);
+  color: var(--vh-text);
+  background: var(--vh-surface);
+  outline: none;
+  transition:
+    border-color var(--vh-transition-fast),
+    background var(--vh-transition-fast),
+    box-shadow var(--vh-transition-fast);
+}
+
+.vh-textarea {
+  min-height: 120px;
+  padding-block: var(--vh-space-4);
+  resize: vertical;
+}
+
+.vh-input:focus,
+.vh-select:focus,
+.vh-textarea:focus {
+  border-color: var(--vh-border-accent);
+  box-shadow: 0 0 0 4px var(--vh-accent-soft);
+}
+
+/* ===== Surfaces ===== */
+.vh-card {
+  min-width: 0;
+  border: 1px solid var(--vh-border);
+  border-radius: var(--vh-radius-lg);
+  color: var(--vh-text);
+  background: var(--vh-surface);
+  box-shadow: var(--vh-shadow-sm);
+}
+
+.vh-card--interactive {
+  transition:
+    border-color var(--vh-transition-fast),
+    box-shadow var(--vh-transition-base),
+    transform var(--vh-transition-base);
+}
+
+.vh-card--interactive:hover {
+  border-color: var(--vh-border-accent);
+  box-shadow: var(--vh-shadow-md);
+  transform: translateY(-3px);
+}
+
+:is(
+  .vh-benefit-card,
+  .vh-format-card,
+  .vh-booking__steps article,
+  .vh-booking__included,
+  .vh-price-calc__panel,
+  .vh-price-calc__result-card,
+  #artists .vh-artist-card,
+  .vh-artist-modal__dialog
+) {
+  font-family: var(--vh-font-family);
+}
+
+/* ===== Badges ===== */
+.vh-badge {
+  min-height: 28px;
+  padding-inline: var(--vh-space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--vh-border);
+  border-radius: var(--vh-radius-pill);
+  color: var(--vh-text-muted);
+  background: var(--vh-surface-soft);
+  font-family: var(--vh-font-family);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: var(--vh-weight-bold);
+  letter-spacing: .04em;
+}
+
+@media (max-width: 720px) {
+  .vh-title--page,
+  :is(.vh-artists-page__title, .vr-head__title) {
+    max-width: 100% !important;
+  }
+
+  :is(
+    .vh-action-button,
+    .vh-artists-page__main-btn,
+    .vr-actions > button,
+    .vh-format-select,
+    .vh-booking__included > a,
+    .vh-price-calc__btn
+  ) {
+    min-height: var(--vh-control-height-lg);
+    padding-inline: var(--vh-control-padding-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vh-button,
+  .vh-card--interactive {
+    transition: none;
+  }
+}

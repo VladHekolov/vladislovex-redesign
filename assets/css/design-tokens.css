@@ -1,7 +1,65 @@
-/* VLADISLOVEX shared visual tokens.
-   Pages should consume these variables instead of defining unrelated palettes. */
+/* VLADISLOVEX design tokens.
+   Every page and reusable component should consume these values instead of
+   introducing unrelated font weights, spacing, control sizes or palettes. */
 :root {
   color-scheme: dark;
+
+  /* Typography */
+  --vh-font-family: "Montserrat", Arial, sans-serif;
+  --vh-font-display: "Montserrat", Arial, sans-serif;
+  --vh-font-body: "Montserrat", Arial, sans-serif;
+  --vh-weight-regular: 400;
+  --vh-weight-medium: 500;
+  --vh-weight-semibold: 600;
+  --vh-weight-bold: 700;
+  --vh-weight-extra-bold: 800;
+  --vh-weight-heading: var(--vh-weight-extra-bold);
+  --vh-weight-button: var(--vh-weight-bold);
+  --vh-weight-label: var(--vh-weight-bold);
+  --vh-control-font-size: 14px;
+  --vh-control-line-height: 1;
+
+  /* Spacing scale */
+  --vh-space-1: 4px;
+  --vh-space-2: 8px;
+  --vh-space-3: 12px;
+  --vh-space-4: 16px;
+  --vh-space-5: 20px;
+  --vh-space-6: 24px;
+  --vh-space-7: 32px;
+  --vh-space-8: 40px;
+  --vh-space-9: 48px;
+  --vh-space-10: 64px;
+  --vh-space-11: 80px;
+
+  /* Layout */
+  --vh-container: 1240px;
+  --vh-container-wide: 1440px;
+  --vh-container-narrow: 920px;
+  --vh-page-gutter: clamp(16px, 3vw, 36px);
+  --vh-section-space: clamp(72px, 9vw, 132px);
+
+  /* Controls */
+  --vh-control-height-sm: 40px;
+  --vh-control-height-md: 48px;
+  --vh-control-height-lg: 54px;
+  --vh-control-height: var(--vh-control-height-md);
+  --vh-control-padding-sm: 14px;
+  --vh-control-padding-md: 20px;
+  --vh-control-padding-lg: 24px;
+  --vh-icon-size-sm: 18px;
+  --vh-icon-size-md: 22px;
+  --vh-icon-size-lg: 26px;
+
+  /* Shape */
+  --vh-radius-xs: 8px;
+  --vh-radius-sm: 10px;
+  --vh-radius-md: 16px;
+  --vh-radius-lg: 24px;
+  --vh-radius-xl: 30px;
+  --vh-radius-pill: 999px;
+
+  /* Dark palette */
   --vh-page: #050505;
   --vh-page-alt: #0b0907;
   --vh-surface: rgba(16, 16, 16, .88);
@@ -19,15 +77,23 @@
   --vh-accent-soft: rgba(246, 138, 31, .12);
   --vh-danger: #ee654c;
   --vh-success: #2da36f;
+
+  /* Effects */
   --vh-shadow-sm: 0 8px 24px rgba(0, 0, 0, .20);
   --vh-shadow-md: 0 18px 48px rgba(0, 0, 0, .32);
   --vh-shadow-lg: 0 28px 80px rgba(0, 0, 0, .46);
-  --vh-radius-sm: 10px;
-  --vh-radius-md: 16px;
-  --vh-radius-lg: 24px;
-  --vh-radius-xl: 30px;
-  --vh-control-height: 44px;
-  --vh-transition: .2s ease;
+  --vh-shadow-panel: var(--vh-shadow-md);
+  --vh-transition-fast: .16s ease;
+  --vh-transition-base: .24s ease;
+  --vh-transition-slow: .38s ease;
+  --vh-transition: var(--vh-transition-base);
+
+  /* Compatibility aliases used by existing pages during migration */
+  --vh-orange: var(--vh-accent);
+  --vh-orange-light: var(--vh-accent-light);
+  --vh-muted-hard: var(--vh-text-muted);
+  --vh-muted-soft: var(--vh-text-soft);
+  --vh-border-accent: color-mix(in srgb, var(--vh-accent) 34%, transparent);
 }
 
 html[data-vh-theme="light"] {
@@ -52,9 +118,19 @@ html[data-vh-theme="light"] {
   --vh-shadow-sm: 0 8px 24px rgba(79, 48, 23, .08);
   --vh-shadow-md: 0 18px 48px rgba(79, 48, 23, .12);
   --vh-shadow-lg: 0 28px 80px rgba(79, 48, 23, .16);
+  --vh-border-accent: color-mix(in srgb, var(--vh-accent) 30%, transparent);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--vh-font-family);
+}
 
 :focus-visible {
   outline: 3px solid color-mix(in srgb, var(--vh-accent) 58%, transparent);
@@ -64,4 +140,12 @@ html[data-vh-theme="light"] {
 ::selection {
   color: #fff;
   background: var(--vh-accent);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --vh-page-gutter: 16px;
+    --vh-section-space: clamp(56px, 16vw, 88px);
+    --vh-control-height-lg: 52px;
+  }
 }

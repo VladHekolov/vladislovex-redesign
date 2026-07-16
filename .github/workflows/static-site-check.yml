@@ -31,6 +31,7 @@ jobs:
         run: |
           test -f assets/css/design-tokens.css
           test -f assets/css/typography.css
+          test -f assets/css/components.css
           test -f assets/css/themes.css
           test -f assets/css/icons.css
           test -f assets/css/artist-modal.css
@@ -40,9 +41,25 @@ jobs:
           grep -q '/assets/js/theme.js' repertoire/index.html
           grep -q '/assets/css/typography.css' artists/index.html
           grep -q '/assets/css/typography.css' repertoire/index.html
+          grep -q '/assets/css/components.css' artists/index.html
+          grep -q '/assets/css/components.css' repertoire/index.html
           grep -q '/assets/css/themes.css' artists/index.html
           grep -q '/assets/css/themes.css' repertoire/index.html
           grep -q '/assets/css/typography.css' assets/js/config.js
+          grep -q '/assets/css/components.css' assets/js/config.js
+
+      - name: Verify design system contract
+        run: |
+          grep -q -- '--vh-weight-button' assets/css/design-tokens.css
+          grep -q -- '--vh-control-height-lg' assets/css/design-tokens.css
+          grep -q -- '--vh-page-gutter' assets/css/design-tokens.css
+          grep -q '^\.vh-button' assets/css/components.css
+          grep -q '^\.vh-title' assets/css/components.css
+          grep -q '^\.vh-card' assets/css/components.css
+          grep -q 'vh-title--page' artists/index.html
+          grep -q 'vh-title--page' repertoire/index.html
+          grep -q 'vh-button--primary' artists/index.html
+          grep -q 'vh-button--primary' repertoire/index.html
 
       - name: Verify repertoire artist popup
         run: |
