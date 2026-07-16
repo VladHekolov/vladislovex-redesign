@@ -61,13 +61,13 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     loadStylesheet('/assets/css/mobile-hotfix.css?v=20260716-1', 'data-vh-mobile-hotfix');
     loadStylesheet('/assets/css/mobile-tap-color.css?v=20260716-1', 'data-vh-mobile-tap-color');
     loadStylesheet('/assets/css/mobile-carousel-cleanup.css?v=20260716-1', 'data-vh-mobile-carousel-cleanup');
+    loadStylesheet('/assets/css/mobile-reviews-stable.css?v=20260716-1', 'data-vh-mobile-reviews-stable');
 
     loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
     loadScript('/assets/js/mobile-cleanup.js?v=20260716-2', 'data-vh-mobile-cleanup');
     loadScript('/assets/js/mobile-benefits-carousel.js?v=20260716-2', 'data-vh-mobile-benefits');
     loadScript('/assets/js/mobile-video-previews.js?v=20260716-2', 'data-vh-mobile-video-previews');
     loadScript('/assets/js/mobile-reviews-autoplay.js?v=20260716-3', 'data-vh-mobile-reviews-autoplay');
-    loadScript('/assets/js/mobile-review-ratio.js?v=20260716-1', 'data-vh-mobile-review-ratio');
     loadScript('/assets/js/mobile-faq-lite.js?v=20260716-1', 'data-vh-mobile-faq-lite');
   }
 
