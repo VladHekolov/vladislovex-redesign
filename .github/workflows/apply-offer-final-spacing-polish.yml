@@ -1,0 +1,23 @@
+name: Apply offer final spacing polish
+on:
+  push:
+    branches: [agent/offer-final-spacing-polish]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, '[offer final spacing applied]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/offer-final-spacing-polish
+          fetch-depth: 0
+      - run: python3 scripts/apply-offer-final-spacing-polish.py
+      - run: node --check assets/js/app.js
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/app.js assets/css/offer-refresh.css index.html
+          git commit -m "Polish offer spacing and footer note [offer final spacing applied]"
+          git push origin HEAD:agent/offer-final-spacing-polish
