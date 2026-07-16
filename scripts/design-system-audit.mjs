@@ -6,7 +6,8 @@ const migratedFiles = [
   'assets/css/subpages.css',
   'assets/css/artist-modal.css',
   'assets/css/repertoire-system.css',
-  'assets/css/artists-system.css'
+  'assets/css/artists-system.css',
+  'assets/css/home-system.css'
 ];
 
 const requiredTokens = [
@@ -117,6 +118,35 @@ if (!artistsPage.includes('/assets/css/artists-system.css')) {
 }
 if (!artistsPage.includes('data-vh-artists-system')) {
   errors.push('artists/index.html: catalog system stylesheet marker is missing.');
+}
+
+const homepageConfig = read('assets/js/config.js');
+if (!homepageConfig.includes('/assets/css/home-system.css')) {
+  errors.push('assets/js/config.js: home-system.css is not connected.');
+}
+if (!homepageConfig.includes('data-vh-home-system')) {
+  errors.push('assets/js/config.js: homepage system stylesheet marker is missing.');
+}
+if (!homepageConfig.includes('/assets/js/home-copy.js')) {
+  errors.push('assets/js/config.js: home-copy.js is not connected.');
+}
+if (!homepageConfig.includes('data-vh-home-copy')) {
+  errors.push('assets/js/config.js: homepage copy marker is missing.');
+}
+
+const homepageCopy = read('assets/js/home-copy.js');
+for (const selector of [
+  '.vh-video-section__subtitle',
+  '.vh-formats-description',
+  '.vh-booking__description',
+  '.vh-price-calc__description',
+  '.vh-reviews-subtitle',
+  '.vh-faq__description',
+  '.vh-contacts-section__description'
+]) {
+  if (!homepageCopy.includes(selector)) {
+    errors.push(`assets/js/home-copy.js: missing copy target ${selector}.`);
+  }
 }
 
 const legacyFiles = [
