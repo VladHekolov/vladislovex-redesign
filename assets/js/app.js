@@ -696,13 +696,11 @@
   var MAX_URL = 'https://max.ru/u/f9LHodD0cOLPxapfZcahRoy6woOQBErgRvugFSq8XUK2cZxjjnIt_r9ru7A';
 
   var PRICES = {
-    firstHour: 6000,
-    weekdayNextHour: 4000,
-    weekendNextHour: 5000,
-    minimumOut: 8000,
+    guitaristHourly: 5000,
+    guitaristMinimum: 8000,
     equipmentFixed: 4000,
-    cajonFirstHour: 4000,
-    cajonNextHour: 2000,
+    cajonHourly: 3000,
+    cajonMinimum: 5000,
     discountMinTotal: 16000,
     videoReviewDiscount: 1000,
     photoReviewDiscount: 1000
@@ -967,58 +965,6 @@
     calculate();
   }
 
-  function startDurationEdit() {
-    if (!durationText || !durationInput || durationText.querySelector('input')) return;
-
-    var input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'vh-price-calc__duration-input';
-    input.inputMode = 'decimal';
-    input.autocomplete = 'off';
-    input.value = durationInput.value === '0' ? '' : formatDurationNumber(Number(durationInput.value));
-    input.placeholder = '1,5';
-    input.setAttribute('aria-label', 'Продолжительность в часах');
-
-    durationText.innerHTML = '';
-    durationText.appendChild(input);
-
-    setTimeout(function () {
-      input.focus();
-      input.select();
-    }, 0);
-
-    var applied = false;
-
-    function finishEdit(value) {
-      if (applied) return;
-      applied = true;
-      setDurationValue(value);
-      durationText.textContent = getDurationLabel();
-      durationText.focus();
-    }
-
-    function applyValue() {
-      var value = input.value.trim() || durationInput.value;
-      finishEdit(value);
-    }
-
-    input.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        applyValue();
-      }
-
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        applied = true;
-        durationText.textContent = getDurationLabel();
-        durationText.focus();
-      }
-    });
-
-    input.addEventListener('blur', applyValue);
-  }
-
   function formatMoney(value) {
     var rounded = Math.round(value / 500) * 500;
     return String(rounded).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
@@ -1068,123 +1014,69 @@
 
   function updateDateStatus(dayInfo) {
     if (!dateStatus) return;
-
     dateStatus.classList.remove('is-good');
 
     if (!dateInput.value) {
-      dateStatus.textContent = 'С понедельника по четверг действует скидка до 4 000 ₽.';
+      dateStatus.textContent = 'Дата нужна для проверки занятости и не влияет на стоимость.';
       return;
     }
 
-    if (dayInfo.type === 'weekday') {
-      dateStatus.textContent =
-        'Дата подтверждена: ' +
-        dayInfo.formatted +
-        '. ' +
-        capitalizeFirst(dayInfo.weekday) +
-        ' — действует скидка до 4 000 ₽.';
-    } else {
-      dateStatus.textContent =
-        'Дата подтверждена: ' +
-        dayInfo.formatted +
-        '. ' +
-        capitalizeFirst(dayInfo.weekday) +
-        ' — выходной тариф.';
-    }
-
+    dateStatus.textContent =
+      'Дата подтверждена: ' +
+      dayInfo.formatted +
+      (dayInfo.weekday ? '. ' + capitalizeFirst(dayInfo.weekday) + '.' : '.');
     dateStatus.classList.add('is-good');
   }
 
-  function calculateWeekendArtistPrice(hours) {
-    if (hours <= 1) return PRICES.firstHour;
-    return PRICES.firstHour + ((hours - 1) * PRICES.weekendNextHour);
+  function calculateGuitaristPrice(hours) {
+    return Math.max(PRICES.guitaristMinimum, hours * PRICES.guitaristHourly);
   }
 
-  function calculateActualArtistPrice(hours, dayType) {
-    var nextHourPrice = dayType === 'weekday'
-      ? PRICES.weekdayNextHour
-      : PRICES.weekendNextHour;
-
-    if (hours <= 1) return PRICES.firstHour;
-    return PRICES.firstHour + ((hours - 1) * nextHourPrice);
+  function calculateCajonPrice(hours) {
+    return Math.max(PRICES.cajonMinimum, hours * PRICES.cajonHourly);
   }
 
-  function getNextHourPrice(format, dayType) {
-    var price = dayType === 'weekday'
-      ? PRICES.weekdayNextHour
-      : PRICES.weekendNextHour;
-
-    if (format === 'mini') price += PRICES.cajonNextHour;
+  function getNextHourPrice(format) {
+    var price = PRICES.guitaristHourly;
+    if (format === 'mini') price += PRICES.cajonHourly;
     return price;
   }
 
   function calculatePriceModel(durationValue, format, dayType, useClientDiscounts) {
     durationValue = normalizeDurationValue(durationValue);
     var hours = getRealHoursByValue(durationValue);
-
-    var weekendArtistPrice = calculateWeekendArtistPrice(hours);
-    var actualArtistPrice = calculateActualArtistPrice(hours, dayType);
-
-    var weekendArtistWithMinimum = Math.max(weekendArtistPrice, PRICES.minimumOut);
-    var actualArtistWithMinimum = Math.max(actualArtistPrice, PRICES.minimumOut);
-
-    var weekdayDiscount = dayType === 'weekday'
-      ? Math.max(0, weekendArtistWithMinimum - actualArtistWithMinimum)
-      : 0;
-
-    var equipmentPrice = 0;
-    var cajonPrice = 0;
-    var cajonRoadPrice = 0;
-
-    if (format === 'party' || format === 'mini') {
-      equipmentPrice = PRICES.equipmentFixed;
-    }
-
-    if (format === 'mini') {
-      if (hours <= 1) {
-        cajonPrice = PRICES.cajonFirstHour;
-      } else {
-        cajonPrice = PRICES.cajonFirstHour + ((hours - 1) * PRICES.cajonNextHour);
-      }
-
-      cajonRoadPrice = getCajonRoadPriceByCategory(roadInfo.category);
-    }
-
+    var guitaristPrice = calculateGuitaristPrice(hours);
+    var equipmentPrice = (format === 'party' || format === 'mini') ? PRICES.equipmentFixed : 0;
+    var cajonPrice = format === 'mini' ? calculateCajonPrice(hours) : 0;
+    var cajonRoadPrice = format === 'mini' ? getCajonRoadPriceByCategory(roadInfo.category) : 0;
     var roadPrice = roadInfo.price || 0;
-
-    var totalWithoutDiscounts = weekendArtistWithMinimum + equipmentPrice + cajonPrice + cajonRoadPrice + roadPrice;
-    var totalBeforeClientDiscount = actualArtistWithMinimum + equipmentPrice + cajonPrice + cajonRoadPrice + roadPrice;
-
+    var totalBeforeClientDiscount = guitaristPrice + equipmentPrice + cajonPrice + cajonRoadPrice + roadPrice;
     var discountsAvailable = totalBeforeClientDiscount >= PRICES.discountMinTotal;
     var clientDiscount = 0;
 
     if (useClientDiscounts && discountsAvailable && videoReviewInput && videoReviewInput.checked) {
       clientDiscount += PRICES.videoReviewDiscount;
     }
-
     if (useClientDiscounts && discountsAvailable && photoReviewInput && photoReviewInput.checked) {
       clientDiscount += PRICES.photoReviewDiscount;
     }
 
     var total = Math.max(0, totalBeforeClientDiscount - clientDiscount);
-    var totalDiscount = Math.max(0, totalWithoutDiscounts - total);
 
     return {
       durationValue: Number(durationValue),
       durationLabel: getDurationLabelByValue(durationValue),
       hours: hours,
-      weekendArtistWithMinimum: weekendArtistWithMinimum,
-      actualArtistPrice: actualArtistPrice,
-      actualArtistWithMinimum: actualArtistWithMinimum,
-      weekdayDiscount: weekdayDiscount,
+      guitaristPrice: guitaristPrice,
+      actualArtistWithMinimum: guitaristPrice,
       equipmentPrice: equipmentPrice,
       cajonPrice: cajonPrice,
       cajonRoadPrice: cajonRoadPrice,
       roadPrice: roadPrice,
-      totalWithoutDiscounts: totalWithoutDiscounts,
+      totalWithoutDiscounts: totalBeforeClientDiscount,
       totalBeforeClientDiscount: totalBeforeClientDiscount,
       clientDiscount: clientDiscount,
-      totalDiscount: totalDiscount,
+      totalDiscount: clientDiscount,
       total: total,
       discountsAvailable: discountsAvailable,
       amountLeft: Math.max(0, PRICES.discountMinTotal - totalBeforeClientDiscount)
@@ -1233,19 +1125,11 @@
   function getBreakdownItems(model) {
     var breakdown = [];
 
-    if (model.weekdayDiscount > 0) {
-      breakdown.push({
-        text: 'Выступление гитариста — ' + formatMoney(model.weekendArtistWithMinimum),
-        label: 'Выступление гитариста',
-        value: formatMoney(model.weekendArtistWithMinimum)
-      });
-    } else {
-      breakdown.push({
-        text: 'Выступление гитариста — ' + formatMoney(model.actualArtistWithMinimum),
-        label: 'Выступление гитариста',
-        value: formatMoney(model.actualArtistWithMinimum)
-      });
-    }
+    breakdown.push({
+      text: 'Выступление гитариста — ' + formatMoney(model.guitaristPrice),
+      label: 'Выступление гитариста',
+      value: formatMoney(model.guitaristPrice)
+    });
 
     if (model.equipmentPrice > 0) {
       breakdown.push({
@@ -1291,14 +1175,6 @@
       });
     }
 
-    if (model.weekdayDiscount > 0) {
-      breakdown.push({
-        text: 'Скидка с понедельника по четверг — −' + formatMoney(model.weekdayDiscount),
-        label: 'Скидка пн–чт',
-        value: '−' + formatMoney(model.weekdayDiscount),
-        isDiscount: true
-      });
-    }
 
     if (model.clientDiscount > 0) {
       breakdown.push({
@@ -1331,7 +1207,6 @@
     if (model.totalDiscount > 0) {
       var oldReasons = [];
 
-      if (model.weekdayDiscount > 0) oldReasons.push('пн–чт');
       if (model.clientDiscount > 0) oldReasons.push('отзыв');
 
       oldPriceEl.textContent = formatMoney(model.totalWithoutDiscounts);
@@ -1366,15 +1241,26 @@
 
   function getOfferDurationValues() {
     var selected = normalizeDurationValue(durationInput.value);
+    var isWholeHour = Math.abs(selected - Math.round(selected)) < 0.01 && selected >= 1;
+    var step = isWholeHour ? 1 : 0.5;
+    var minValue = 0.5;
+    var maxValue = 5;
 
-    if (selected <= 0) return [0, 0.5, 1];
-    if (selected >= 5) return [4, 4.5, 5];
+    if (selected <= minValue) return [0.5, 1, 1.5];
+    if (selected >= maxValue) return [3, 4, 5];
 
-    return [
-      normalizeDurationValue(selected - 0.5),
-      selected,
-      normalizeDurationValue(selected + 0.5)
-    ];
+    var values = [selected - step, selected, selected + step]
+      .map(normalizeDurationValue)
+      .filter(function (value) { return value >= minValue && value <= maxValue; });
+
+    while (values.length < 3 && values[0] > minValue) {
+      values.unshift(normalizeDurationValue(values[0] - step));
+    }
+    while (values.length < 3 && values[values.length - 1] < maxValue) {
+      values.push(normalizeDurationValue(values[values.length - 1] + step));
+    }
+
+    return values.slice(0, 3);
   }
 
   function buildOfferData() {
@@ -1384,7 +1270,7 @@
     var address = addressInput.value.trim();
     var durationValues = getOfferDurationValues();
     var selectedDurationValue = normalizeDurationValue(durationInput.value);
-    var nextHourPrice = getNextHourPrice(format, dayInfo.type);
+    var nextHourPrice = getNextHourPrice(format);
 
     var options = durationValues.map(function (value) {
       var model = calculatePriceModel(value, format, dayInfo.type, true);
@@ -1439,7 +1325,7 @@
     lines.push('• Дата: ' + data.date + (data.weekday ? ', ' + data.weekday : ''));
     lines.push('• Адрес: ' + data.address);
     lines.push('• Дорога: ' + data.road + (data.roadPrice ? ', ' + data.roadPrice : ''));
-    lines.push('• Каждый следующий час после первого: +' + data.nextHourText);
+    lines.push('• Почасовая ставка выбранного состава: ' + data.nextHourText + ' за час');
     lines.push('');
     lines.push('Варианты стоимости:');
 
@@ -1618,7 +1504,7 @@
           '<div>' +
             '<div class="vh-offer-options">' +
               priceOptionsHtml +
-              '<div class="vh-offer-next">Далее каждый час — <span>+' + escapeHtml(data.nextHourText) + '</span></div>' +
+              '<div class="vh-offer-next">Ставка состава — <span>' + escapeHtml(data.nextHourText) + '/час</span></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -2057,16 +1943,6 @@
     });
   }
 
-  if (durationText) {
-    durationText.addEventListener('click', startDurationEdit);
-
-    durationText.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        startDurationEdit();
-      }
-    });
-  }
 
   if (durationInput) {
     durationInput.addEventListener('input', function () {
