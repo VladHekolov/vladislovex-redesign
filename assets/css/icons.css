@@ -1,0 +1,127 @@
+/* Standardized Lucide interface icons. Brand logos remain original images. */
+.vh-lucide-icon {
+  display: block;
+  flex: 0 0 auto;
+  color: currentColor;
+  fill: none;
+  stroke: currentColor;
+  vector-effect: non-scaling-stroke;
+}
+
+.vh-premium-inline-icon,
+svg.vh-premium-inline-icon {
+  width: 19px;
+  height: 19px;
+  color: var(--vh-accent-light, #ffbd6d);
+}
+
+svg.vh-premium-social__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--vh-accent-light, #ffbd6d);
+}
+
+svg.vh-premium-btn-icon {
+  width: 19px;
+  height: 19px;
+  color: currentColor;
+}
+
+.vh-theme-toggle svg.vh-lucide-icon {
+  width: 19px;
+  height: 19px;
+}
+
+.vh-hero__btn-icon svg,
+.vh-hero__download-icon svg {
+  width: 21px;
+  height: 21px;
+  color: currentColor;
+}
+
+.vh-benefit-icon svg {
+  width: 34px;
+  height: 34px;
+  color: #ffad5b;
+  filter: drop-shadow(0 0 12px rgba(246, 138, 31, .24));
+}
+
+.vh-video-section__icon-img,
+.vh-formats-icon,
+.vh-booking__icon,
+.vh-price-calc__icon,
+.vh-reviews-top-icon,
+.vh-faq__icon,
+.vh-contacts-section__icon {
+  width: 28px;
+  height: 28px;
+  color: #f68a1f;
+  filter: drop-shadow(0 0 10px rgba(246, 138, 31, .25));
+}
+
+.vh-video-card__play svg {
+  width: 31px;
+  height: 31px;
+  color: #fff;
+  fill: currentColor;
+  stroke-width: 1.7;
+  transform: translateX(2px);
+}
+
+.vh-video-modal__close svg,
+.vh-reviews-lb-close svg {
+  width: 22px;
+  height: 22px;
+  color: currentColor;
+}
+
+.vh-contact-card__icon svg {
+  width: 28px;
+  height: 28px;
+  color: #ffad5b;
+}
+
+.vh-contact-form__icon svg {
+  width: 28px;
+  height: 28px;
+  color: #ffad5b;
+}
+
+.vh-contact-submit__icon svg,
+.vh-contact-form__quick-phone svg {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+html[data-vh-theme="light"] .vh-benefit-icon svg,
+html[data-vh-theme="light"] .vh-contact-card__icon svg,
+html[data-vh-theme="light"] .vh-contact-form__icon svg,
+html[data-vh-theme="light"] .vh-video-section__icon-img,
+html[data-vh-theme="light"] .vh-formats-icon,
+html[data-vh-theme="light"] .vh-booking__icon,
+html[data-vh-theme="light"] .vh-price-calc__icon,
+html[data-vh-theme="light"] .vh-reviews-top-icon,
+html[data-vh-theme="light"] .vh-faq__icon,
+html[data-vh-theme="light"] .vh-contacts-section__icon {
+  color: #c7650d;
+  filter: drop-shadow(0 4px 10px rgba(171, 88, 18, .15));
+}
+
+@media (max-width: 860px) {
+  .vh-benefit-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .vh-video-section__icon-img,
+  .vh-formats-icon,
+  .vh-booking__icon,
+  .vh-price-calc__icon,
+  .vh-reviews-top-icon,
+  .vh-faq__icon,
+  .vh-contacts-section__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
