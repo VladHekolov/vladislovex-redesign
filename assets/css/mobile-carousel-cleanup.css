@@ -1,0 +1,264 @@
+/* Final mobile carousel geometry and low-paint visual mode. */
+
+@media (max-width: 860px) {
+  body#top {
+    --vh-carousel-edge: 14px;
+    --vh-carousel-gap: 12px;
+  }
+
+  /* Keep all page headings in the normal content grid. */
+  body#top :is(
+    .vh-video-section__header,
+    .vh-formats-header,
+    .vh-reviews-header
+  ) {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
+    padding-inline: var(--vh-carousel-edge) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Carousels own the full viewport width. Parent sections must not clip them. */
+  body#top :is(
+    .vh-video-section,
+    .vh-video-section__container,
+    .vh-formats-section,
+    .vh-reviews-section,
+    .vh-reviews-inner
+  ) {
+    overflow: visible !important;
+  }
+
+  body#top :is(
+    .vh-video-section,
+    .vh-formats-section,
+    .vh-reviews-section
+  ) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body#top .vh-video-section__container,
+  body#top .vh-reviews-inner {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-inline: 0 !important;
+  }
+
+  body#top :is(
+    .vh-video-grid,
+    .vh-formats-container,
+    .vh-reviews-3d--lite
+  ) {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 8px var(--vh-carousel-edge) 18px !important;
+    gap: var(--vh-carousel-gap) !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-padding-inline: var(--vh-carousel-edge) !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    clip-path: none !important;
+    scrollbar-width: none;
+  }
+
+  body#top :is(
+    .vh-video-grid,
+    .vh-formats-container,
+    .vh-reviews-3d--lite
+  )::-webkit-scrollbar {
+    display: none;
+  }
+
+  body#top :is(
+    .vh-video-grid,
+    .vh-formats-container,
+    .vh-reviews-3d--lite
+  )::before,
+  body#top :is(
+    .vh-video-grid,
+    .vh-formats-container,
+    .vh-reviews-3d--lite
+  )::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Video: compact cards, no inner clipping frame. */
+  body#top .vh-video-grid {
+    display: flex !important;
+  }
+
+  body#top .vh-video-card {
+    flex: 0 0 min(74vw, 292px) !important;
+    width: min(74vw, 292px) !important;
+    max-width: 292px !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always;
+    contain: none !important;
+  }
+
+  body#top .vh-video-card:first-child,
+  body#top .vh-video-card:last-child {
+    margin-inline: 0 !important;
+  }
+
+  body#top #video :is(.vh-mobile-carousel-dots, .vh-video-section__hint) {
+    padding-inline: var(--vh-carousel-edge) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Formats: same full-width swipe area as video, without a boxed inner grid. */
+  body#top .vh-formats-container {
+    display: flex !important;
+    grid-template-columns: none !important;
+    align-items: stretch !important;
+  }
+
+  body#top .vh-format-card {
+    flex: 0 0 min(82vw, 326px) !important;
+    width: min(82vw, 326px) !important;
+    max-width: 326px !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always;
+    contain: none !important;
+  }
+
+  body#top #formats > .vh-mobile-carousel-dots {
+    padding-inline: var(--vh-carousel-edge) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Reviews: safe resting gap, real image proportions and no artificial 3:4 crop. */
+  body#top .vh-reviews-mobile-track {
+    align-items: flex-start !important;
+    gap: var(--vh-carousel-gap) !important;
+  }
+
+  body#top .vh-reviews-mobile-track .vh-reviews-3d__item {
+    flex: 0 0 min(84vw, 336px) !important;
+    width: min(84vw, 336px) !important;
+    max-width: 336px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: var(--vh-review-ratio, 3 / 4) !important;
+    align-self: flex-start !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always;
+    contain: none !important;
+  }
+
+  body#top .vh-reviews-mobile-track .vh-reviews-3d__item img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+  }
+
+  body#top :is(
+    .vh-reviews-lite-dots,
+    .vh-reviews-stats,
+    .vh-reviews-avito-cta
+  ) {
+    margin-left: var(--vh-carousel-edge) !important;
+    margin-right: var(--vh-carousel-edge) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Lightweight mobile palette: flat dark sections instead of stacked orange blur layers. */
+  body#top :is(
+    .vh-video-section,
+    .vh-formats-section,
+    .vh-price-calc,
+    .vh-reviews-section,
+    .vh-faq,
+    .vh-contacts-section
+  ) {
+    background: #050505 !important;
+  }
+
+  body#top :is(
+    .vh-video-section__bg,
+    .vh-reviews-bg,
+    .vh-reviews-overlay
+  ) {
+    display: none !important;
+  }
+
+  body#top :is(
+    .vh-price-calc__panel,
+    .vh-price-calc__result-card,
+    .vh-reviews-stat,
+    .vh-faq__item,
+    .vh-faq__card,
+    .vh-contact-card
+  ) {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .22) !important;
+  }
+
+  body#top :is(
+    .vh-price-calc__panel,
+    .vh-price-calc__result-card,
+    .vh-faq__item,
+    .vh-faq__card,
+    .vh-contact-card
+  )::before,
+  body#top :is(
+    .vh-price-calc__panel,
+    .vh-price-calc__result-card,
+    .vh-faq__item,
+    .vh-faq__card,
+    .vh-contact-card
+  )::after {
+    animation: none !important;
+  }
+
+  /* Stop decorative motion that keeps repainting while the user scrolls. */
+  body#top .vh-hero-offer,
+  body#top .vh-hero-offer__line,
+  body#top .vh-hero-offer__line strong,
+  body#top .vh-mini-video__wave,
+  body#top .vh-mini-video__ring,
+  body#top .vh-social-popup__pulse {
+    animation: none !important;
+  }
+
+  body#top .vh-hero-offer.is-changing {
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  body#top {
+    --vh-carousel-edge: 12px;
+  }
+
+  body#top .vh-video-card {
+    flex-basis: min(73vw, 280px) !important;
+    width: min(73vw, 280px) !important;
+  }
+
+  body#top .vh-format-card {
+    flex-basis: min(81vw, 312px) !important;
+    width: min(81vw, 312px) !important;
+  }
+
+  body#top .vh-reviews-mobile-track .vh-reviews-3d__item {
+    flex-basis: min(84vw, 324px) !important;
+    width: min(84vw, 324px) !important;
+  }
+}
