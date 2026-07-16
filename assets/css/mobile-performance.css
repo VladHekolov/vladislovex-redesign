@@ -290,3 +290,30 @@
     width: min(74vw, 270px) !important;
   }
 }
+
+
+/* CURRENT BENEFIT LOOP GEOMETRY */
+@media (max-width: 860px) {
+  body#top .vh-benefits-rail--lite {
+    --vh-benefit-card-width: min(72vw, 280px);
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    touch-action: pan-x pan-y !important;
+  }
+  body#top .vh-benefits-rail--lite::before,
+  body#top .vh-benefits-rail--lite::after {
+    display: none !important;
+    content: none !important;
+  }
+  body#top .vh-benefits-track--lite .vh-benefit-card {
+    flex: 0 0 var(--vh-benefit-card-width) !important;
+    width: var(--vh-benefit-card-width) !important;
+  }
+  body#top .vh-benefits-track--lite::after {
+    content: "";
+    flex: 0 0 max(0px, calc(100vw - var(--vh-benefit-card-width) - var(--vh-home-gutter) - var(--vh-home-gutter)));
+  }
+}
+@media (max-width: 390px) {
+  body#top .vh-benefits-rail--lite { --vh-benefit-card-width: min(74vw, 270px); }
+}

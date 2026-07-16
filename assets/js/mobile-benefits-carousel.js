@@ -142,12 +142,25 @@
     }
 
     function goNext() {
-      scrollPhysical(currentPhysical + 1, true);
+    var lastOriginal = cloneCount + originalCount - 1;
+    if (currentPhysical === lastOriginal) {
+      scrollPhysical(0, false);
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { scrollPhysical(cloneCount, true); });
+      });
       clearTimeout(settleTimer);
-      settleTimer = setTimeout(settle, 560);
+      settleTimer = setTimeout(function () {
+        currentPhysical = cloneCount;
+        updateState(0);
+      }, 560);
+      return;
     }
+    scrollPhysical(currentPhysical + 1, true);
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, 560);
+  }
 
-    function schedule(delay) {
+  function schedule(delay) {
       clearTimeout(timer);
       if (reduceMotion || !visible || document.hidden || touching) return;
       timer = setTimeout(function () {

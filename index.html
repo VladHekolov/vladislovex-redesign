@@ -11,7 +11,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20260716-2">
+<link rel="stylesheet" href="/assets/css/design-tokens.css?v=20260716-2" data-vh-design-tokens>
+<link rel="stylesheet" href="/assets/css/typography.css?v=20260716-1" data-vh-typography>
+<link rel="stylesheet" href="/assets/css/components.css?v=20260716-1" data-vh-components>
+<link rel="stylesheet" href="/assets/css/themes.css?v=20260716-1" data-vh-themes>
+<link rel="stylesheet" href="/assets/css/icons.css?v=20260716-2" data-vh-icons>
+<link rel="stylesheet" href="/assets/css/home-system.css?v=20260716-1" data-vh-home-system>
+<link rel="stylesheet" href="/assets/css/visual-fixes.css?v=20260716-3" data-vh-visual-fixes>
+<link rel="stylesheet" href="/assets/css/mobile-layout.css?v=20260716-2" data-vh-mobile-layout>
+<link rel="stylesheet" href="/assets/css/mobile-components.css?v=20260716-2" data-vh-mobile-components>
+<link rel="stylesheet" href="/assets/css/mobile-performance.css?v=20260716-2" data-vh-mobile-performance>
+<link rel="stylesheet" href="/assets/css/mobile-tap-color.css?v=20260716-1" data-vh-mobile-tap-color>
+<link rel="stylesheet" href="/assets/css/mobile-carousel-cleanup.css?v=20260716-1" data-vh-mobile-carousel-cleanup>
+<link rel="stylesheet" href="/assets/css/mobile-reviews-stable.css?v=20260716-2" data-vh-mobile-reviews-stable>
   <!-- Yandex.Metrika counter: подключён один раз -->
   <script>
     (function(m,e,t,r,i,k,a){
@@ -65,14 +78,7 @@
       </nav>
 
       <div class="vh-premium-header__actions">
-
-        <button type="button" class="vh-theme-toggle" data-vh-theme-toggle aria-label="Включить светлую тему" aria-pressed="false">
-          <svg class="vh-theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.6 8.6 0 0 1 8.6 3.8 8.7 8.7 0 1 0 20.2 15.4Z"></path></svg>
-          <svg class="vh-theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.6"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg>
-          <span class="vh-sr-only" data-vh-theme-label>Светлая тема</span>
-        </button>
-
-        <a href="tel:+79998003191" class="vh-premium-header__phone">
+<a href="tel:+79998003191" class="vh-premium-header__phone">
           <img
             src="https://storage.yandexcloud.net/vocava/%D0%98%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD.png"
             alt=""
@@ -187,13 +193,7 @@
       </div>
 
       <div class="vh-premium-mobile-dropdown__buttons">
-        <button type="button" class="vh-theme-toggle vh-theme-toggle--mobile" data-vh-theme-toggle aria-label="Включить светлую тему" aria-pressed="false">
-          <svg class="vh-theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.6 8.6 0 0 1 8.6 3.8 8.7 8.7 0 1 0 20.2 15.4Z"></path></svg>
-          <svg class="vh-theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.6"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg>
-          <span data-vh-theme-label>Светлая тема</span>
-        </button>
-
-        <a href="#" class="vh-premium-header__cta vh-action-button" data-vh-open-contact>
+<a href="#" class="vh-premium-header__cta vh-action-button" data-vh-open-contact>
           <img
             src="https://storage.yandexcloud.net/vocava/%D0%98%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8/%D0%9A%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C.png"
             alt=""
@@ -705,48 +705,6 @@
     <button type="button" tabindex="-1"></button>
   </div>
 </section>
-
-
-<section class="vh-booking" id="booking">
-  <div class="vh-booking__inner">
-    <div class="vh-booking__head">
-      <div class="vh-booking__icon-row">
-        <span></span>
-        <img
-          src="https://storage.yandexcloud.net/vocava/%D0%98%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8/mice.png"
-          alt="Микрофон"
-          class="vh-booking__icon"
-          loading="lazy"
-          decoding="async"
-        >
-        <span></span>
-      </div>
-
-      <h2 class="vh-booking__title">
-        <span>КАК ПРОХОДИТ</span>
-        <strong>БРОНИРОВАНИЕ</strong>
-      </h2>
-
-      <p class="vh-booking__description">
-        <b>Четыре понятных шага</b> от первого сообщения<br>
-        до готового выступления на вашем празднике
-      </p>
-    </div>
-    <div class="vh-booking__steps">
-      <article><b>01</b><h3>Вы присылаете детали</h3><p>Дата, адрес, количество гостей и желаемый формат.</p></article>
-      <article><b>02</b><h3>Я подтверждаю условия</h3><p>Проверяю свободное время, дорогу и называю точную стоимость.</p></article>
-      <article><b>03</b><h3>Готовим программу</h3><p>Согласуем тайминг, любимые песни, стоп-лист и взаимодействие с ведущим.</p></article>
-      <article><b>04</b><h3>Приезжаю заранее</h3><p>Настраиваю звук и провожу выступление по согласованному сценарию.</p></article>
-    </div>
-    <div class="vh-booking__included">
-      <div><h3>Что я привожу</h3><p>Гитару, микрофон, колонку для выбранного формата, стойки, кабели и распечатанное меню песен.</p></div>
-      <div><h3>Что нужно от площадки</h3><p>Небольшое место для выступления, доступ к розетке и защита оборудования от дождя при мероприятии на улице.</p></div>
-      <a href="#vhPriceCalc" class="vh-action-button">Рассчитать стоимость</a>
-    </div>
-  </div>
-</section>
-
-
 <section class="vh-price-calc" id="vhPriceCalc">
   <div class="vh-price-calc__wrap">
 
@@ -1574,7 +1532,6 @@
         </div>
         <div>
           <strong>Информация</strong>
-          <a href="#booking">Как проходит заказ</a>
           <a href="#faq">Вопросы и ответы</a>
           <a href="#contacts">Контакты</a>
           <a href="/artists/">Выбрать музыканта</a>

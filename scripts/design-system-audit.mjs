@@ -120,18 +120,20 @@ if (!artistsPage.includes('data-vh-artists-system')) {
   errors.push('artists/index.html: catalog system stylesheet marker is missing.');
 }
 
+const homepagePage = read('index.html');
+for (const requirement of [
+  ['/assets/css/home-system.css', 'home-system.css is not connected in index.html.'],
+  ['data-vh-home-system', 'homepage system stylesheet marker is missing in index.html.'],
+  ['/assets/css/visual-fixes.css', 'visual-fixes.css is not connected in index.html.'],
+  ['data-vh-visual-fixes', 'visual fixes stylesheet marker is missing in index.html.'],
+  ['/assets/css/mobile-reviews-stable.css', 'stable mobile reviews stylesheet is not connected in index.html.']
+]) {
+  if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
+}
+
 const homepageConfig = read('assets/js/config.js');
-if (!homepageConfig.includes('/assets/css/home-system.css')) {
-  errors.push('assets/js/config.js: home-system.css is not connected.');
-}
-if (!homepageConfig.includes('data-vh-home-system')) {
-  errors.push('assets/js/config.js: homepage system stylesheet marker is missing.');
-}
-if (!homepageConfig.includes('/assets/css/visual-fixes.css')) {
-  errors.push('assets/js/config.js: visual-fixes.css is not connected.');
-}
-if (!homepageConfig.includes('data-vh-visual-fixes')) {
-  errors.push('assets/js/config.js: visual fixes stylesheet marker is missing.');
+if (homepageConfig.includes('loadStylesheet')) {
+  errors.push('assets/js/config.js: CSS must not be injected after first paint.');
 }
 if (!homepageConfig.includes('/assets/js/home-copy.js')) {
   errors.push('assets/js/config.js: home-copy.js is not connected.');
@@ -158,7 +160,6 @@ const homepageCopy = read('assets/js/home-copy.js');
 for (const selector of [
   '.vh-video-section__subtitle',
   '.vh-formats-description',
-  '.vh-booking__description',
   '.vh-price-calc__description',
   '.vh-reviews-subtitle',
   '.vh-faq__description',

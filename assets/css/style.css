@@ -1053,7 +1053,7 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0 !important; pointer-eve
 .vh-hero__title strong {
   display: block;
   color: #ffffff;
-  font-size: clamp(72px, 7.1vw, 132px);
+  font-size: clamp(54px, 4.2vw, 76px);
   font-weight: 800;
   text-shadow:
     0 10px 40px rgba(0, 0, 0, 0.42),
@@ -1735,7 +1735,7 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0 !important; pointer-eve
 
   .vh-hero__title span,
   .vh-hero__title strong {
-    font-size: clamp(46px, 13vw, 68px);
+    font-size: clamp(39px, 10.8vw, 48px);
   }
 
   .vh-hero__text {
@@ -1882,7 +1882,7 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0 !important; pointer-eve
 
   .vh-hero__title span,
   .vh-hero__title strong {
-    font-size: 46px;
+    font-size: clamp(39px, 10.8vw, 44px);
   }
 
   .vh-hero-offer {
