@@ -29,7 +29,7 @@ const forbiddenRules = [
   },
   {
     pattern: /font\s*:\s*([^;}\n]+)/gi,
-    validate: (value) => value.trim() !== 'inherit' && !value.trim().startsWith('var('),
+    validate: (value) => !/^inherit(?:\s*!important)?$/i.test(value.trim()) && !value.trim().startsWith('var('),
     message: 'Avoid local font shorthand; consume typography tokens or shared components.'
   },
   {
