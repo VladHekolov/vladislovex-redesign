@@ -779,7 +779,7 @@
       icon: 'video',
       title: 'Весь праздник — в формате 360 градусов',
       text: 'Круговая съёмка и профессиональный звук сохранят выступление и эмоции гостей с любого ракурса.',
-      note: 'Доступно для мероприятий после 30 июля 2026 года.'
+      note: 'После 30 июля 2026'
     },
     {
       icon: 'shield-check',
@@ -1477,9 +1477,9 @@
     var advantagesHtml = data.advantages.map(function (item) {
       return (
         '<div class="vh-offer-adv">' +
+          '<h3 class="vh-offer-adv-title">' + escapeHtml(item.title) + '</h3>' +
           '<span class="vh-offer-adv-icon" aria-hidden="true"><i data-vh-icon="' + escapeHtml(item.icon) + '"></i></span>' +
           '<div class="vh-offer-adv-content">' +
-            '<h3 class="vh-offer-adv-title">' + escapeHtml(item.title) + '</h3>' +
             '<p class="vh-offer-adv-text">' + escapeHtml(item.text) + '</p>' +
             (item.note ? '<span class="vh-offer-adv-note">' + escapeHtml(item.note) + '</span>' : '') +
           '</div>' +
@@ -1532,7 +1532,6 @@
 
     var possibleAdditionsHtml = possibleAdditions.length
       ? '<div class="vh-offer-additions">' +
-          '<div class="vh-offer-additions-title">Возможные дополнения</div>' +
           possibleAdditions.map(function (item) {
             return (
               '<div class="vh-offer-cost-row vh-offer-cost-row--optional">' +
@@ -1614,7 +1613,7 @@
 
     var offerPage = document.getElementById('vhOfferPage');
     var advantageTitles = Array.prototype.slice.call(offerPage.querySelectorAll('.vh-offer-adv-title'));
-    var advantageTitleSize = 12;
+    var advantageTitleSize = 14;
 
     while (advantageTitleSize > 8) {
       offerPage.style.setProperty('--vh-offer-adv-title-size', advantageTitleSize + 'px');

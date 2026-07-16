@@ -474,3 +474,72 @@
   font-size: 7.3px !important;
 }
 
+/* Offer card layout polish */
+.vh-offer-adv {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) !important;
+  grid-template-areas:
+    "title title"
+    "icon content" !important;
+  column-gap: 11px !important;
+  row-gap: 8px !important;
+  align-items: start !important;
+  min-height: 116px !important;
+  padding: 14px 15px !important;
+}
+
+.vh-offer-adv-title {
+  grid-area: title;
+  width: 100%;
+  margin: 0 !important;
+  font-size: var(--vh-offer-adv-title-size, 11px) !important;
+  line-height: 1.18 !important;
+  white-space: nowrap;
+}
+
+.vh-offer-adv-icon {
+  grid-area: icon;
+  align-self: start;
+  width: 32px;
+  height: 32px;
+  margin-top: 1px;
+  border-radius: 9px;
+}
+
+.vh-offer-adv-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.vh-offer-adv-content {
+  grid-area: content;
+  min-width: 0;
+}
+
+.vh-offer-adv-text {
+  margin: 0 !important;
+  font-size: 10.4px !important;
+  line-height: 1.43 !important;
+}
+
+.vh-offer-adv-note {
+  margin-top: 7px !important;
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+}
+
+.vh-offer-additions-title {
+  display: none !important;
+}
+
+.vh-offer-cost-row--optional > b {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+}
+
+.vh-offer-optional-status {
+  flex: 0 0 auto;
+}
+
