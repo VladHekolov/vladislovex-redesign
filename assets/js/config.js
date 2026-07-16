@@ -51,6 +51,7 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   var isHomepage = document.body && document.body.id === 'top';
   if (isHomepage) {
     loadStylesheet('/assets/css/home-system.css?v=20260716-1', 'data-vh-home-system');
+    loadStylesheet('/assets/css/visual-fixes.css?v=20260716-1', 'data-vh-visual-fixes');
     loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
   }
 
