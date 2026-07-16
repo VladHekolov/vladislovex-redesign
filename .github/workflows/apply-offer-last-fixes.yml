@@ -1,0 +1,23 @@
+name: Apply offer last fixes
+on:
+  push:
+    branches: [agent/offer-final-polish]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, '[offer last applied]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/offer-final-polish
+          fetch-depth: 0
+      - run: python3 scripts/offer-last-fixes.py
+      - run: node --check assets/js/app.js
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/app.js
+          git commit -m "Apply final offer fixes [offer last applied]"
+          git push origin HEAD:agent/offer-final-polish

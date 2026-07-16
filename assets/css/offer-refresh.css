@@ -19,3 +19,120 @@
 .vh-offer-adv{min-height:0!important;padding:13px 14px!important;font-size:12px!important;line-height:1.45!important;font-weight:500!important;letter-spacing:.01em!important}
 .vh-offer-adv-number{font-weight:700!important;letter-spacing:.08em!important}
 .vh-offer-small-info{margin-top:18px!important;padding-top:14px!important;border-top:1px solid rgba(255,255,255,.1);font-size:11px!important;line-height:1.45!important;letter-spacing:.02em!important}
+
+
+/* Final offer polish */
+.vh-offer-title {
+  max-width: 430px;
+  margin: 0 !important;
+  font-size: 50px !important;
+  line-height: 1.02 !important;
+  font-weight: 800 !important;
+  letter-spacing: .035em !important;
+  text-transform: uppercase;
+}
+
+.vh-offer-name {
+  font-weight: 700 !important;
+  letter-spacing: .025em !important;
+}
+
+.vh-offer-role {
+  margin-top: 6px !important;
+  font-weight: 500 !important;
+  letter-spacing: .035em !important;
+}
+
+.vh-offer-total-price {
+  letter-spacing: .018em !important;
+}
+
+.vh-offer-next {
+  white-space: nowrap;
+  font-size: 11px !important;
+  letter-spacing: .01em !important;
+}
+
+.vh-offer-event-grid {
+  align-items: stretch;
+}
+
+.vh-offer-event-grid > .vh-offer-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.vh-offer-detail,
+.vh-offer-cost-row {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start !important;
+  min-height: 42px;
+  padding: 10px 0 10px 14px !important;
+  border-bottom: 1px dashed rgba(38, 38, 38, .16);
+}
+
+.vh-offer-detail::before,
+.vh-offer-cost-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  border-left: 2px dotted rgba(246, 138, 31, .5);
+}
+
+.vh-offer-detail-label,
+.vh-offer-cost-row > span {
+  align-self: start !important;
+  color: #9b6a3a !important;
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase;
+}
+
+.vh-offer-detail-value,
+.vh-offer-cost-row > b {
+  align-self: start !important;
+  margin: 0 !important;
+  color: #27231f !important;
+  font-size: 11px !important;
+  line-height: 1.42 !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+}
+
+.vh-offer-value-card {
+  margin-top: 18px !important;
+  padding: 20px 22px !important;
+}
+
+.vh-offer-value-copy {
+  max-width: 100% !important;
+  margin-bottom: 14px !important;
+}
+
+.vh-offer-value-copy .vh-offer-section-title {
+  margin-bottom: 0 !important;
+  font-size: 18px !important;
+}
+
+.vh-offer-advantages {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px 12px !important;
+}
+
+.vh-offer-adv {
+  padding: 9px 11px !important;
+  font-size: 10.5px !important;
+  line-height: 1.35 !important;
+}
+
+.vh-offer-small-info {
+  margin-top: 12px !important;
+  padding-top: 10px !important;
+}

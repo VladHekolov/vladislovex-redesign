@@ -1289,7 +1289,7 @@
 
     return {
       event: capitalizeFirst(LABELS.event[eventType]),
-      formatTitle: LABELS.format[format],
+      formatTitle: capitalizeFirst(LABELS.formatDescription[format].replace(/^\d+\.\s*/, '')),
       formatShort: LABELS.formatDescription[format],
       date: dayInfo.formatted,
       weekday: dayInfo.weekday ? capitalizeFirst(dayInfo.weekday) : '',
@@ -1312,8 +1312,8 @@
     var data = buildOfferData();
     var lines = [];
 
-    lines.push('КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ');
-    lines.push('Гитарист-вокалист на мероприятие');
+    lines.push('ВЫСТУПЛЕНИЕ МУЗЫКАНТА');
+    lines.push('Гитарист-вокалист');
     lines.push('');
     lines.push('Владислав Хеколов');
     lines.push('Телефон: +7 999 800 31-91');
@@ -1325,7 +1325,7 @@
     lines.push('• Дата: ' + data.date + (data.weekday ? ', ' + data.weekday : ''));
     lines.push('• Адрес: ' + data.address);
     lines.push('• Дорога: ' + data.road + (data.roadPrice ? ', ' + data.roadPrice : ''));
-    lines.push('• Почасовая ставка выбранного состава: ' + data.nextHourText + ' за час');
+    lines.push('• Стоимость продления: ' + data.nextHourText + ' в час');
     lines.push('');
     lines.push('Варианты стоимости:');
 
@@ -1478,14 +1478,14 @@
 
         '<div class="vh-offer-header">' +
           '<div>' +
-            '<div class="vh-offer-kicker">Коммерческое предложение</div><h1 class="vh-offer-title">Выступление<br>гитариста-вокалиста</h1>' +
+            '<h1 class="vh-offer-title">Выступление музыканта</h1>' +
             '<div class="vh-offer-title-line"></div>' +
-            '<div class="vh-offer-subtitle">Живая музыка для вашего события</div>' +
+            '' +
           '</div>' +
 
           '<div class="vh-offer-person">' +
             '<div class="vh-offer-name">Владислав Хеколов</div>' +
-            '<div class="vh-offer-role">Гитарист · вокалист · ведущий музыкальной части</div>' +
+            '<div class="vh-offer-role">Гитарист-вокалист</div>' +
             '<div class="vh-offer-contacts">' +
               '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Телефон</span><span>+7 999 800 31-91</span></div>' +
               '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Telegram</span><span>@vladislove_xv</span></div>' +
@@ -1504,7 +1504,7 @@
           '<div>' +
             '<div class="vh-offer-options">' +
               priceOptionsHtml +
-              '<div class="vh-offer-next">Стоимость дополнительного часа — <span>' + escapeHtml(data.nextHourText) + '</span></div>' +
+              '<div class="vh-offer-next">Стоимость продления — <span>' + escapeHtml(data.nextHourText) + '/час</span></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -1524,7 +1524,6 @@
           '<div class="vh-offer-value-copy">' +
             '<div class="vh-offer-value-kicker">Что получат гости</div>' +
             '<h2 class="vh-offer-section-title">Живая музыка, которая объединяет людей</h2>' +
-            '<p>Формат адаптируется под настроение события — от камерного поздравления до энергичной вечеринки с кахоном.</p>' +
           '</div>' +
           '<div class="vh-offer-advantages">' + advantagesHtml + '</div>' +
           '<div class="vh-offer-small-info">Дата закрепляется после подтверждения бронирования.</div>' +
@@ -1596,7 +1595,7 @@
       var pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
 
       pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
-      pdf.save('kommercheskoe-predlozhenie-vladislav-hekolov.pdf');
+      pdf.save('vystuplenie-muzykanta-vladislav-hekolov.pdf');
 
       setActionStatus('PDF скачивается.');
     }).catch(function () {
