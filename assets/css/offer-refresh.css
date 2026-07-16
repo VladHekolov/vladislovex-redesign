@@ -373,3 +373,104 @@
   font-weight: 700;
   letter-spacing: .015em;
 }
+
+/* Offer copy and typography polish */
+.vh-offer-subtitle {
+  max-width: 430px;
+  margin-top: 9px !important;
+  color: rgba(39, 35, 31, .7) !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+  letter-spacing: .015em !important;
+}
+
+.vh-offer-card--cost {
+  --vh-offer-cost-edge-gap: 16px;
+  padding-bottom: var(--vh-offer-cost-edge-gap) !important;
+}
+
+.vh-offer-cost-footer {
+  margin-top: auto;
+}
+
+.vh-offer-cost-footer:empty {
+  display: none;
+}
+
+.vh-offer-additions {
+  margin-top: 0 !important;
+}
+
+.vh-offer-cost-row--optional {
+  opacity: 1 !important;
+}
+
+.vh-offer-cost-row--optional > span,
+.vh-offer-cost-row--optional .vh-offer-optional-price {
+  color: rgba(75, 62, 51, .5) !important;
+}
+
+.vh-offer-optional-status {
+  border-color: rgba(177, 55, 55, .34) !important;
+  background: rgba(177, 55, 55, .075) !important;
+  color: rgba(145, 43, 43, .86) !important;
+}
+
+.vh-offer-equipment-trial {
+  display: block !important;
+  margin-top: var(--vh-offer-cost-edge-gap) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+}
+
+.vh-offer-equipment-trial h3 {
+  margin: 0 0 5px !important;
+  font-size: 11px !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.008em !important;
+  white-space: nowrap;
+}
+
+.vh-offer-equipment-trial p {
+  margin: 0 !important;
+  font-size: 9px !important;
+  line-height: 1.38 !important;
+}
+
+.vh-offer-equipment-trial p + p {
+  margin-top: 2px !important;
+}
+
+.vh-offer-value-copy {
+  margin-bottom: 10px !important;
+}
+
+.vh-offer-value-copy .vh-offer-section-title {
+  font-size: 18px !important;
+}
+
+.vh-offer-adv {
+  min-height: 0 !important;
+  padding: 11px 12px !important;
+}
+
+.vh-offer-adv-title {
+  margin-bottom: 5px !important;
+  font-size: var(--vh-offer-adv-title-size, 10px) !important;
+  line-height: 1.18 !important;
+  white-space: nowrap;
+}
+
+.vh-offer-adv-text {
+  font-size: 9px !important;
+  line-height: 1.42 !important;
+}
+
+.vh-offer-adv-note {
+  margin-top: 6px !important;
+  font-size: 7.3px !important;
+}
+

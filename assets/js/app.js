@@ -1510,6 +1510,26 @@
       });
     }
 
+    if (data.selectedModel.discountsAvailable) {
+      var hasVideoReviewDiscount = !!(videoReviewInput && videoReviewInput.checked);
+      var hasTextReviewDiscount = !!(photoReviewInput && photoReviewInput.checked);
+
+      if (!hasVideoReviewDiscount || !hasTextReviewDiscount) {
+        var reviewDiscountLabel = 'Скидка за отзыв';
+
+        if (hasVideoReviewDiscount && !hasTextReviewDiscount) {
+          reviewDiscountLabel = 'Скидка за текстовый отзыв';
+        } else if (!hasVideoReviewDiscount && hasTextReviewDiscount) {
+          reviewDiscountLabel = 'Скидка за видеоотзыв';
+        }
+
+        possibleAdditions.push({
+          label: reviewDiscountLabel,
+          value: '−' + formatMoney(PRICES.videoReviewDiscount)
+        });
+      }
+    }
+
     var possibleAdditionsHtml = possibleAdditions.length
       ? '<div class="vh-offer-additions">' +
           '<div class="vh-offer-additions-title">Возможные дополнения</div>' +
@@ -1527,11 +1547,9 @@
 
     var equipmentTrialHtml = !data.selectedModel.equipmentPrice
       ? '<div class="vh-offer-equipment-trial">' +
-          '<span class="vh-offer-equipment-trial-icon" aria-hidden="true"><i data-vh-icon="mic-2"></i></span>' +
-          '<div>' +
-            '<h3>Попробуйте выступление с оборудованием без риска</h3>' +
-            '<p>Добавим колонку и микрофон. Не понравится формат — за оборудование не платите.</p>' +
-          '</div>' +
+          '<h3>Попробуйте выступление с оборудованием</h3>' +
+          '<p>Возьму с собой колонку и микрофон.</p>' +
+          '<p>Если не зайдет — вы ничего не платите.</p>' +
         '</div>'
       : '';
 
@@ -1542,7 +1560,7 @@
           '<div>' +
             '<h1 class="vh-offer-title">Выступление музыканта</h1>' +
             '<div class="vh-offer-title-line"></div>' +
-            '' +
+            '<div class="vh-offer-subtitle">Живая музыка, которая объединяет гостей.</div>' +
           '</div>' +
 
           '<div class="vh-offer-person">' +
@@ -1578,15 +1596,13 @@
           '<div class="vh-offer-card vh-offer-card--cost">' +
             '<h2 class="vh-offer-section-title">Как считаем стоимость</h2>' +
             breakdownHtml +
-            possibleAdditionsHtml +
-            equipmentTrialHtml +
+            '<div class="vh-offer-cost-footer">' + possibleAdditionsHtml + equipmentTrialHtml + '</div>' +
           '</div>' +
         '</div>' +
 
         '<div class="vh-offer-value-card">' +
           '<div class="vh-offer-value-copy">' +
-            '<div class="vh-offer-value-kicker">Что получат гости</div>' +
-            '<h2 class="vh-offer-section-title">Живая музыка, которая объединяет людей</h2>' +
+            '<h2 class="vh-offer-section-title">Что получат гости</h2>' +
           '</div>' +
           '<div class="vh-offer-advantages">' + advantagesHtml + '</div>' +
           '<div class="vh-offer-small-info">Дата закрепляется после подтверждения бронирования.</div>' +
@@ -1596,7 +1612,22 @@
 
     if (typeof window.VHRefreshIcons === 'function') window.VHRefreshIcons();
 
-    return document.getElementById('vhOfferPage');
+    var offerPage = document.getElementById('vhOfferPage');
+    var advantageTitles = Array.prototype.slice.call(offerPage.querySelectorAll('.vh-offer-adv-title'));
+    var advantageTitleSize = 12;
+
+    while (advantageTitleSize > 8) {
+      offerPage.style.setProperty('--vh-offer-adv-title-size', advantageTitleSize + 'px');
+
+      var allTitlesFit = advantageTitles.every(function (title) {
+        return title.scrollWidth <= title.clientWidth + 0.5;
+      });
+
+      if (allTitlesFit) break;
+      advantageTitleSize -= 1;
+    }
+
+    return offerPage;
   }
 
 
