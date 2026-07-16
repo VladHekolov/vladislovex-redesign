@@ -4,7 +4,8 @@ import path from 'node:path';
 const root = process.cwd();
 const migratedFiles = [
   'assets/css/subpages.css',
-  'assets/css/artist-modal.css'
+  'assets/css/artist-modal.css',
+  'assets/css/repertoire-system.css'
 ];
 
 const requiredTokens = [
@@ -20,12 +21,13 @@ const requiredTokens = [
 
 const forbiddenRules = [
   {
-    pattern: /font-family\s*:/gi,
+    pattern: /font-family\s*:\s*([^;}\n]+)/gi,
+    validate: (value) => !value.trim().startsWith('var('),
     message: 'Use --vh-font-family instead of declaring a local font family.'
   },
   {
     pattern: /font\s*:\s*([^;}\n]+)/gi,
-    validate: (value) => value.trim() !== 'inherit',
+    validate: (value) => value.trim() !== 'inherit' && !value.trim().startsWith('var('),
     message: 'Avoid local font shorthand; consume typography tokens or shared components.'
   },
   {
@@ -98,6 +100,14 @@ for (const page of pages) {
   if (!source.includes('vh-button')) {
     errors.push(`${page}: primary actions are not connected to the shared button component.`);
   }
+}
+
+const repertoirePage = read('repertoire/index.html');
+if (!repertoirePage.includes('/assets/css/repertoire-system.css')) {
+  errors.push('repertoire/index.html: repertoire-system.css is not connected.');
+}
+if (!repertoirePage.includes('data-vh-repertoire-system')) {
+  errors.push('repertoire/index.html: repertoire system stylesheet marker is missing.');
 }
 
 const legacyFiles = [
