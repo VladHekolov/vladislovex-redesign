@@ -1,4 +1,6 @@
-/* Standardized Lucide interface icons. Brand logos remain original images. */
+/* Local standardized interface icons.
+   The SVG bundle is shipped with the site; official brand marks remain separate assets. */
+.vh-icon,
 .vh-lucide-icon {
   display: block;
   flex: 0 0 auto;
@@ -6,8 +8,10 @@
   fill: none;
   stroke: currentColor;
   vector-effect: non-scaling-stroke;
+  pointer-events: none;
 }
 
+/* ===== MAIN PAGE ===== */
 .vh-premium-inline-icon,
 svg.vh-premium-inline-icon {
   width: 19px;
@@ -27,6 +31,7 @@ svg.vh-premium-btn-icon {
   color: currentColor;
 }
 
+.vh-theme-toggle svg.vh-icon,
 .vh-theme-toggle svg.vh-lucide-icon {
   width: 19px;
   height: 19px;
@@ -75,12 +80,7 @@ svg.vh-premium-btn-icon {
   color: currentColor;
 }
 
-.vh-contact-card__icon svg {
-  width: 28px;
-  height: 28px;
-  color: #ffad5b;
-}
-
+.vh-contact-card__icon svg,
 .vh-contact-form__icon svg {
   width: 28px;
   height: 28px;
@@ -94,6 +94,59 @@ svg.vh-premium-btn-icon {
   color: currentColor;
 }
 
+/* ===== ARTISTS + REPERTOIRE ===== */
+.vh-subpage .vr-icon-btn > svg,
+.vh-subpage .vr-favorites-toggle > svg,
+.vh-subpage .vr-stop-toggle > svg,
+.vh-subpage .vh-mobile-filter__button > svg,
+.vh-subpage .vh-favorites-filter > svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.vh-subpage .vr-sort__icon > svg,
+.vh-subpage .vh-sort-dd__icon > svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.vh-subpage .vr-search-field > svg {
+  width: 19px;
+  height: 19px;
+  color: rgba(255,255,255,.58);
+}
+
+.vh-subpage #vrArtistDropdownButton > svg {
+  width: 18px;
+  height: 18px;
+  transition: transform .18s ease;
+}
+
+.vh-subpage #vrArtistDropdownButton[aria-expanded="true"] > svg {
+  transform: rotate(180deg);
+}
+
+.vh-artist-modal__close svg,
+.vh-photo-viewer__close svg,
+.vr-guide__close svg {
+  width: 22px;
+  height: 22px;
+}
+
+.vh-photo-viewer__arrow svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Shared active states. */
+.vr-favorites-toggle.is-active svg,
+.vh-favorites-filter[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+/* ===== LIGHT THEME ===== */
 html[data-vh-theme="light"] .vh-benefit-icon svg,
 html[data-vh-theme="light"] .vh-contact-card__icon svg,
 html[data-vh-theme="light"] .vh-contact-form__icon svg,
@@ -106,6 +159,10 @@ html[data-vh-theme="light"] .vh-faq__icon,
 html[data-vh-theme="light"] .vh-contacts-section__icon {
   color: #c7650d;
   filter: drop-shadow(0 4px 10px rgba(171, 88, 18, .15));
+}
+
+html[data-vh-theme="light"] .vh-subpage .vr-search-field > svg {
+  color: rgba(35,29,24,.55);
 }
 
 @media (max-width: 860px) {
@@ -123,5 +180,10 @@ html[data-vh-theme="light"] .vh-contacts-section__icon {
   .vh-contacts-section__icon {
     width: 24px;
     height: 24px;
+  }
+
+  .vh-photo-viewer__arrow svg {
+    width: 22px;
+    height: 22px;
   }
 }

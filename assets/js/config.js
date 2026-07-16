@@ -21,32 +21,32 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     document.head.appendChild(link);
   }
 
+  function loadScript(src, marker, onload) {
+    var existing = document.querySelector('script[' + marker + ']');
+    if (existing) {
+      if (typeof onload === 'function') {
+        if (existing.dataset.loaded === 'true') onload();
+        else existing.addEventListener('load', onload, { once: true });
+      }
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.src = src;
+    script.setAttribute(marker, '');
+    script.addEventListener('load', function () {
+      script.dataset.loaded = 'true';
+      if (typeof onload === 'function') onload();
+    }, { once: true });
+    document.head.appendChild(script);
+  }
+
   loadStylesheet('/assets/css/light-theme.css?v=20260716-1', 'data-vh-light-theme');
-  loadStylesheet('/assets/css/icons.css?v=20260716-1', 'data-vh-icons');
+  loadStylesheet('/assets/css/icons.css?v=20260716-2', 'data-vh-icons');
 
-  if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    loadIconRuntime();
-    return;
-  }
-
-  var primary = document.createElement('script');
-  primary.src = 'https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js';
-  primary.crossOrigin = 'anonymous';
-  primary.onload = loadIconRuntime;
-  primary.onerror = function () {
-    var fallback = document.createElement('script');
-    fallback.src = 'https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js';
-    fallback.crossOrigin = 'anonymous';
-    fallback.onload = loadIconRuntime;
-    document.head.appendChild(fallback);
-  };
-  document.head.appendChild(primary);
-
-  function loadIconRuntime() {
-    if (document.querySelector('script[data-vh-icons-runtime]')) return;
-    var runtime = document.createElement('script');
-    runtime.src = '/assets/js/icons.js?v=20260716-1';
-    runtime.setAttribute('data-vh-icons-runtime', '');
-    document.head.appendChild(runtime);
-  }
+  /* Same delivery principle as VOCAVA: selected icons are bundled with the site. */
+  loadScript('/assets/vendor/vh-icons.bundle.js?v=20260716-1', 'data-vh-icon-bundle', function () {
+    if (!window.VHIcons) return;
+    loadScript('/assets/js/icons.js?v=20260716-2', 'data-vh-icons-runtime');
+  });
 })();

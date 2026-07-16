@@ -1,9 +1,10 @@
-/* Standardized interface icons for the personal site.
-   Brand marks (logo, Telegram, MAX, Avito) intentionally remain images. */
+/* Standardized local interface icons for the personal site.
+   The selected SVG glyphs are shipped with the site, just as lucide-react icons
+   are bundled into VOCAVA. Brand marks remain controlled separately. */
 (function initVladislovexIcons() {
   'use strict';
 
-  if (!window.lucide || typeof window.lucide.createIcons !== 'function') return;
+  if (!window.VHIcons || typeof window.VHIcons.create !== 'function') return;
 
   var fileIconMap = [
     { match: 'телефон', icon: 'phone' },
@@ -17,20 +18,49 @@
     { match: 'mice', icon: 'mic-2' }
   ];
 
+  var svgSelectorMap = [
+    { selector: '.vh-theme-toggle__moon', icon: 'moon' },
+    { selector: '.vh-theme-toggle__sun', icon: 'sun' },
+    { selector: '.vh-video-modal__close svg', icon: 'x' },
+    { selector: '.vh-reviews-lb-close svg', icon: 'x' },
+    { selector: '#vrArtistDropdownButton > svg', icon: 'chevron-down' },
+    { selector: '#vrFilterButton > svg', icon: 'list-filter' },
+    { selector: '#vrFavoritesToggle > svg', icon: 'heart' },
+    { selector: '#vrStopToggle > svg', icon: 'ban' },
+    { selector: '#vrSortButton > svg', icon: 'arrow-down-up' },
+    { selector: '.vr-search-field > svg', icon: 'search' },
+    { selector: '#vhMobileFilterBtn > svg', icon: 'list-filter' },
+    { selector: '#vhFavoritesOnlyFilter > svg', icon: 'heart' },
+    { selector: '.vh-sort-dd__icon > svg', icon: 'arrow-down-up' }
+  ];
+
+  var textButtonMap = [
+    { selector: '.vh-artist-modal__close', icon: 'x' },
+    { selector: '.vh-photo-viewer__close', icon: 'x' },
+    { selector: '.vh-photo-viewer__arrow--prev', icon: 'chevron-left' },
+    { selector: '.vh-photo-viewer__arrow--next', icon: 'chevron-right' },
+    { selector: '.vr-guide__close', icon: 'x' }
+  ];
+
   function decodedFilename(source) {
     var value = String(source || '').split('?')[0].split('#')[0].split('/').pop() || '';
     try { value = decodeURIComponent(value); } catch (error) {}
     return value.toLowerCase().replace(/\.(png|jpe?g|webp|svg)$/i, '').replace(/\s+/g, ' ').trim();
   }
 
+  function classNameOf(element) {
+    if (!element) return '';
+    if (typeof element.className === 'string') return element.className;
+    return element.getAttribute('class') || '';
+  }
+
   function iconForImage(image) {
     if (!image || image.dataset.vhKeepImage === 'true') return '';
     var filename = decodedFilename(image.currentSrc || image.src || image.getAttribute('src'));
 
-    /* Preserve external brand identities and the personal logo. */
+    /* Official brand identities and the personal logo remain brand assets. */
     if (/телеграм|telegram|max|авито|avito|лого|logo/.test(filename)) return '';
 
-    /* Play buttons use the compact play glyph, not the section video glyph. */
     if (image.closest('.vh-video-card__play')) return 'play';
 
     for (var index = 0; index < fileIconMap.length; index += 1) {
@@ -39,81 +69,99 @@
     return '';
   }
 
-  function copyPresentationAttributes(source, target) {
-    if (source.className) target.className = source.className + ' vh-lucide-icon';
-    else target.className = 'vh-lucide-icon';
-
-    var alt = source.getAttribute('alt');
-    if (alt) {
-      target.setAttribute('role', 'img');
-      target.setAttribute('aria-label', alt);
-    } else {
-      target.setAttribute('aria-hidden', 'true');
-    }
-
-    target.dataset.vhIconProcessed = 'true';
-    if (source.getAttribute('title')) target.setAttribute('title', source.getAttribute('title'));
+  function presentationOptions(source) {
+    var className = (classNameOf(source) + ' vh-lucide-icon').trim();
+    var alt = source.getAttribute('alt') || source.getAttribute('aria-label') || '';
+    var title = source.getAttribute('title') || alt || '';
+    return {
+      className: className,
+      title: title || undefined,
+      attrs: {
+        'data-vh-icon-processed': 'true'
+      }
+    };
   }
 
-  function replaceImage(image) {
-    if (image.dataset.vhIconProcessed === 'true') return false;
-    image.dataset.vhIconProcessed = 'true';
-    var iconName = iconForImage(image);
-    if (!iconName) return false;
+  function replaceElement(source, iconName) {
+    if (!source || source.dataset.vhIconProcessed === 'true' || source.hasAttribute('data-vh-icon-name')) return false;
+    if (!window.VHIcons.has(iconName)) return false;
 
-    var placeholder = document.createElement('i');
-    placeholder.setAttribute('data-lucide', iconName);
-    copyPresentationAttributes(image, placeholder);
-    image.replaceWith(placeholder);
+    var icon = window.VHIcons.create(iconName, presentationOptions(source));
+    if (!icon) return false;
+
+    if (!source.getAttribute('alt') && !source.getAttribute('aria-label')) {
+      icon.setAttribute('aria-hidden', 'true');
+      icon.removeAttribute('role');
+      icon.removeAttribute('aria-label');
+    }
+
+    source.dataset.vhIconProcessed = 'true';
+    source.replaceWith(icon);
     return true;
   }
 
-  function replaceExistingSvg(selector, iconName) {
-    var replaced = false;
-    document.querySelectorAll(selector).forEach(function (source) {
-      if (source.dataset.vhIconProcessed === 'true' || source.classList.contains('vh-lucide-icon')) return;
-      var placeholder = document.createElement('i');
-      placeholder.setAttribute('data-lucide', iconName);
-      placeholder.className = (source.getAttribute('class') || '') + ' vh-lucide-icon';
-      placeholder.setAttribute('aria-hidden', 'true');
-      placeholder.dataset.vhIconProcessed = 'true';
-      source.replaceWith(placeholder);
-      replaced = true;
+  function replaceImage(image) {
+    if (!image || image.dataset.vhIconProcessed === 'true') return false;
+    var iconName = iconForImage(image);
+    if (!iconName) {
+      image.dataset.vhIconProcessed = 'true';
+      return false;
+    }
+    return replaceElement(image, iconName);
+  }
+
+  function replacePlaceholders(scope) {
+    var changed = false;
+    scope.querySelectorAll('[data-vh-icon], i[data-lucide]').forEach(function (placeholder) {
+      var iconName = placeholder.getAttribute('data-vh-icon') || placeholder.getAttribute('data-lucide') || '';
+      if (replaceElement(placeholder, iconName)) changed = true;
     });
-    return replaced;
+    return changed;
+  }
+
+  function replaceMappedSvg(scope) {
+    var changed = false;
+    svgSelectorMap.forEach(function (entry) {
+      scope.querySelectorAll(entry.selector).forEach(function (source) {
+        if (replaceElement(source, entry.icon)) changed = true;
+      });
+    });
+    return changed;
+  }
+
+  function decorateTextButtons(scope) {
+    var changed = false;
+    textButtonMap.forEach(function (entry) {
+      scope.querySelectorAll(entry.selector).forEach(function (button) {
+        if (button.dataset.vhIconButtonReady === 'true') return;
+        button.dataset.vhIconButtonReady = 'true';
+        var icon = window.VHIcons.create(entry.icon, {
+          className: 'vh-lucide-icon',
+          attrs: { 'data-vh-icon-processed': 'true' }
+        });
+        if (!icon) return;
+        button.textContent = '';
+        button.appendChild(icon);
+        changed = true;
+      });
+    });
+    return changed;
   }
 
   function render(root) {
     var scope = root && root.querySelectorAll ? root : document;
     var changed = false;
 
+    if (replacePlaceholders(scope)) changed = true;
+
     scope.querySelectorAll('img').forEach(function (image) {
       if (replaceImage(image)) changed = true;
     });
 
-    if (scope === document) {
-      if (replaceExistingSvg('.vh-theme-toggle__moon', 'moon')) changed = true;
-      if (replaceExistingSvg('.vh-theme-toggle__sun', 'sun')) changed = true;
-      if (replaceExistingSvg('.vh-video-modal__close svg', 'x')) changed = true;
-      if (replaceExistingSvg('.vh-reviews-lb-close svg', 'x')) changed = true;
-    }
+    if (replaceMappedSvg(scope)) changed = true;
+    if (decorateTextButtons(scope)) changed = true;
 
-    if (!changed && !scope.querySelector('i[data-lucide]')) return;
-
-    window.lucide.createIcons({
-      attrs: {
-        'stroke-width': 2,
-        'stroke-linecap': 'round',
-        'stroke-linejoin': 'round'
-      }
-    });
-
-    /* Prevent repeated processing when dynamic blocks are added later. */
-    document.querySelectorAll('svg[data-lucide]').forEach(function (svg) {
-      svg.removeAttribute('data-lucide');
-      svg.classList.add('vh-lucide-icon');
-      svg.dataset.vhIconProcessed = 'true';
-    });
+    if (changed) document.documentElement.classList.add('vh-icons-ready');
   }
 
   render(document);
@@ -122,7 +170,7 @@
   var observer = new MutationObserver(function (mutations) {
     var hasNewElements = mutations.some(function (mutation) {
       return Array.prototype.some.call(mutation.addedNodes || [], function (node) {
-        return node && node.nodeType === 1;
+        return node && node.nodeType === 1 && !node.hasAttribute('data-vh-icon-name');
       });
     });
     if (!hasNewElements || scheduled) return;
@@ -134,5 +182,9 @@
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+
+  window.VHIcon = function (name, options) {
+    return window.VHIcons.create(name, options || {});
+  };
   window.VHRefreshIcons = function () { render(document); };
 })();
