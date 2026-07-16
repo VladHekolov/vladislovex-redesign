@@ -26,7 +26,7 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Remove obsolete layers and patch current source
+      - name: Apply cleanup
         if: steps.guard.outputs.run == 'true'
         run: |
           python3 - <<'PY'
@@ -35,10 +35,11 @@ jobs:
 
           root = Path('.')
 
+          # Load active CSS before first paint instead of injecting it from config.js.
           index_path = root / 'index.html'
           html = index_path.read_text(encoding='utf-8')
-          old_style = '  <link rel="stylesheet" href="/assets/css/style.css">'
-          static_styles = '''  <link rel="stylesheet" href="/assets/css/style.css?v=20260716-2">
+          old_link = '  <link rel="stylesheet" href="/assets/css/style.css">'
+          new_links = '''  <link rel="stylesheet" href="/assets/css/style.css?v=20260716-2">
           <link rel="stylesheet" href="/assets/css/design-tokens.css?v=20260716-2" data-vh-design-tokens>
           <link rel="stylesheet" href="/assets/css/typography.css?v=20260716-1" data-vh-typography>
           <link rel="stylesheet" href="/assets/css/components.css?v=20260716-1" data-vh-components>
@@ -52,9 +53,9 @@ jobs:
           <link rel="stylesheet" href="/assets/css/mobile-tap-color.css?v=20260716-1" data-vh-mobile-tap-color>
           <link rel="stylesheet" href="/assets/css/mobile-carousel-cleanup.css?v=20260716-1" data-vh-mobile-carousel-cleanup>
           <link rel="stylesheet" href="/assets/css/mobile-reviews-stable.css?v=20260716-2" data-vh-mobile-reviews-stable>'''
-          if old_style not in html:
-              raise SystemExit('Base stylesheet link not found')
-          html = html.replace(old_style, static_styles, 1)
+          if old_link in html:
+              html = html.replace(old_link, new_links, 1)
+
           html = re.sub(
               r'\n\s*<button[^>]*class="[^"]*vh-theme-toggle[^"]*"[^>]*data-vh-theme-toggle[^>]*>.*?</button>\s*',
               '\n', html, flags=re.S
@@ -66,8 +67,8 @@ jobs:
           html = html.replace('          <a href="#booking">Как проходит заказ</a>\n', '')
           index_path.write_text(html, encoding='utf-8')
 
-          config_path = root / 'assets/js/config.js'
-          config_path.write_text('''/* Public runtime configuration. Never place database passwords or private API keys here. */
+          # Config now loads only JavaScript. CSS is synchronous in index.html.
+          (root / 'assets/js/config.js').write_text('''/* Public runtime configuration. Never place database passwords or private API keys here. */
           try { localStorage.removeItem('vh-color-theme'); } catch (error) {}
           document.documentElement.setAttribute('data-vh-theme', 'dark');
           document.documentElement.style.colorScheme = 'dark';
@@ -94,7 +95,6 @@ jobs:
                 }
                 return;
               }
-
               var script = document.createElement('script');
               script.src = src;
               script.setAttribute(marker, '');
@@ -105,8 +105,7 @@ jobs:
               document.head.appendChild(script);
             }
 
-            var isHomepage = document.body && document.body.id === 'top';
-            if (isHomepage) {
+            if (document.body && document.body.id === 'top') {
               loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
               loadScript('/assets/js/mobile-cleanup.js?v=20260716-2', 'data-vh-mobile-cleanup');
               loadScript('/assets/js/mobile-benefits-carousel.js?v=20260716-3', 'data-vh-mobile-benefits');
@@ -116,21 +115,16 @@ jobs:
             }
 
             loadScript('/assets/vendor/vh-icons.bundle.js?v=20260716-1', 'data-vh-icon-bundle', function () {
-              if (!window.VHIcons) return;
-              loadScript('/assets/js/icons.js?v=20260716-2', 'data-vh-icons-runtime');
+              if (window.VHIcons) loadScript('/assets/js/icons.js?v=20260716-2', 'data-vh-icons-runtime');
             });
           })();
           ''', encoding='utf-8')
 
+          # Remove obsolete Hero values from the source stylesheet itself.
           style_path = root / 'assets/css/style.css'
           style = style_path.read_text(encoding='utf-8')
-          for old, new in {
-              'font-size: clamp(72px, 7.1vw, 132px);': 'font-size: clamp(54px, 4.2vw, 76px);',
-              'font-size: clamp(46px, 13vw, 68px);': 'font-size: clamp(39px, 10.8vw, 48px);',
-          }.items():
-              if old not in style:
-                  raise SystemExit(f'Expected legacy rule not found: {old}')
-              style = style.replace(old, new, 1)
+          style = style.replace('font-size: clamp(72px, 7.1vw, 132px);', 'font-size: clamp(54px, 4.2vw, 76px);')
+          style = style.replace('font-size: clamp(46px, 13vw, 68px);', 'font-size: clamp(39px, 10.8vw, 48px);')
           style = re.sub(
               r'(@media \(max-width: 390px\) \{.*?\.vh-hero__title span,\s*\.vh-hero__title strong \{\s*)font-size: 46px;',
               r'\1font-size: clamp(39px, 10.8vw, 44px);',
@@ -138,42 +132,24 @@ jobs:
           )
           style_path.write_text(style, encoding='utf-8')
 
+          # Prevent benefits from covering the Hero buttons.
           layout_path = root / 'assets/css/mobile-layout.css'
           layout = layout_path.read_text(encoding='utf-8')
-          layout = layout.replace('padding-bottom: 218px !important;', 'padding-bottom: 264px !important;', 1)
-          layout = layout.replace('bottom: 16px !important;', 'bottom: 12px !important;', 1)
+          layout = layout.replace('padding-bottom: 218px !important;', 'padding-bottom: 264px !important;')
+          layout = layout.replace('bottom: 16px !important;', 'bottom: 12px !important;')
           layout_path.write_text(layout, encoding='utf-8')
 
-          components_path = root / 'assets/css/mobile-components.css'
-          components_path.write_text('''/* Current mobile component corrections. */
-
-          body#top .vh-video-card__progress {
-            opacity: 0 !important;
-            transition: opacity .2s ease;
-          }
-
-          body#top .vh-video-card.is-previewing .vh-video-card__progress {
-            opacity: 1 !important;
-          }
-
-          body#top .vh-video-card.is-previewing .vh-video-card__progress span {
-            animation-duration: 10s !important;
-          }
-
-          body#top .vh-video-card__preview {
-            opacity: 1 !important;
-            background: #151515;
-          }
-
-          body#top .vh-video-card {
-            -webkit-touch-callout: none;
-          }
-
+          # Keep only current component overrides.
+          (root / 'assets/css/mobile-components.css').write_text('''/* Current mobile component corrections. */
+          body#top .vh-video-card__progress { opacity: 0 !important; transition: opacity .2s ease; }
+          body#top .vh-video-card.is-previewing .vh-video-card__progress { opacity: 1 !important; }
+          body#top .vh-video-card.is-previewing .vh-video-card__progress span { animation-duration: 10s !important; }
+          body#top .vh-video-card__preview { opacity: 1 !important; background: #151515; }
+          body#top .vh-video-card { -webkit-touch-callout: none; }
           body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:last-child {
             font-size: .82rem !important;
             line-height: 1.4 !important;
           }
-
           @media (max-width: 760px) {
             body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:last-child {
               font-size: .76rem !important;
@@ -181,73 +157,50 @@ jobs:
           }
           ''', encoding='utf-8')
 
+          # Final benefit geometry: no masks and enough end space for the clone to align left.
           performance_path = root / 'assets/css/mobile-performance.css'
           performance = performance_path.read_text(encoding='utf-8')
-          performance = performance.replace(
-              'body#top .vh-benefits-rail--lite {\n    width: 100%;',
-              'body#top .vh-benefits-rail--lite {\n    --vh-benefit-card-width: min(72vw, 280px);\n    width: 100%;',
-              1
-          )
-          performance = performance.replace(
-              'touch-action: pan-x;\n  }',
-              'touch-action: pan-x pan-y;\n    mask-image: none !important;\n    -webkit-mask-image: none !important;\n  }',
-              1
-          )
-          performance = performance.replace(
-              'body#top .vh-benefits-track--lite {\n    width: max-content !important;',
-              '''body#top .vh-benefits-rail--lite::before,
-          body#top .vh-benefits-rail--lite::after {
-            display: none !important;
-            content: none !important;
-          }
+          final_marker = '/* CURRENT BENEFIT LOOP GEOMETRY */'
+          if final_marker not in performance:
+              performance += '''
 
-          body#top .vh-benefits-track--lite {
-            width: max-content !important;''',
-              1
-          )
-          performance = performance.replace(
-              'flex: 0 0 min(72vw, 280px) !important;\n    width: min(72vw, 280px) !important;',
-              'flex: 0 0 var(--vh-benefit-card-width) !important;\n    width: var(--vh-benefit-card-width) !important;',
-              1
-          )
-          marker = '  body#top .vh-benefits-track--lite .vh-benefit-card:hover,'
-          spacer = '''  body#top .vh-benefits-track--lite::after {
-            content: "";
-            flex: 0 0 max(0px, calc(100vw - var(--vh-benefit-card-width) - var(--vh-home-gutter) - var(--vh-home-gutter)));
-          }
-
-          '''
-          if marker not in performance:
-              raise SystemExit('Benefits hover marker not found')
-          performance = performance.replace(marker, spacer + marker, 1)
-          performance = re.sub(
-              r'@media \(max-width: 390px\) \{\s*body#top \.vh-video-card \{(.*?)\}\s*body#top \.vh-benefits-track--lite \.vh-benefit-card \{\s*flex-basis: min\(74vw, 270px\) !important;\s*width: min\(74vw, 270px\) !important;\s*\}',
-              r'''@media (max-width: 390px) {
-            body#top .vh-video-card {\1}
-
+          /* CURRENT BENEFIT LOOP GEOMETRY */
+          @media (max-width: 860px) {
             body#top .vh-benefits-rail--lite {
-              --vh-benefit-card-width: min(74vw, 270px);
-            }''',
-              performance, count=1, flags=re.S
-          )
+              --vh-benefit-card-width: min(72vw, 280px);
+              mask-image: none !important;
+              -webkit-mask-image: none !important;
+              touch-action: pan-x pan-y !important;
+            }
+            body#top .vh-benefits-rail--lite::before,
+            body#top .vh-benefits-rail--lite::after {
+              display: none !important;
+              content: none !important;
+            }
+            body#top .vh-benefits-track--lite .vh-benefit-card {
+              flex: 0 0 var(--vh-benefit-card-width) !important;
+              width: var(--vh-benefit-card-width) !important;
+            }
+            body#top .vh-benefits-track--lite::after {
+              content: "";
+              flex: 0 0 max(0px, calc(100vw - var(--vh-benefit-card-width) - var(--vh-home-gutter) - var(--vh-home-gutter)));
+            }
+          }
+          @media (max-width: 390px) {
+            body#top .vh-benefits-rail--lite { --vh-benefit-card-width: min(74vw, 270px); }
+          }
+          '''
           performance_path.write_text(performance, encoding='utf-8')
 
+          # Smooth 4 -> 1 benefits transition using the identical before-clone.
           benefits_path = root / 'assets/js/mobile-benefits-carousel.js'
           benefits = benefits_path.read_text(encoding='utf-8')
-          old_go_next = '''    function goNext() {
-              scrollPhysical(currentPhysical + 1, true);
-              clearTimeout(settleTimer);
-              settleTimer = setTimeout(settle, 560);
-            }'''
           new_go_next = '''    function goNext() {
               var lastOriginal = cloneCount + originalCount - 1;
-
               if (currentPhysical === lastOriginal) {
                 scrollPhysical(0, false);
                 requestAnimationFrame(function () {
-                  requestAnimationFrame(function () {
-                    scrollPhysical(cloneCount, true);
-                  });
+                  requestAnimationFrame(function () { scrollPhysical(cloneCount, true); });
                 });
                 clearTimeout(settleTimer);
                 settleTimer = setTimeout(function () {
@@ -256,34 +209,38 @@ jobs:
                 }, 560);
                 return;
               }
-
               scrollPhysical(currentPhysical + 1, true);
               clearTimeout(settleTimer);
               settleTimer = setTimeout(settle, 560);
-            }'''
-          if old_go_next not in benefits:
-              raise SystemExit('Benefits goNext function not found')
-          benefits = benefits.replace(old_go_next, new_go_next, 1)
+            }
+
+            function schedule'''
+          benefits = re.sub(
+              r'    function goNext\(\) \{.*?\n    \}\n\n    function schedule',
+              new_go_next,
+              benefits,
+              count=1,
+              flags=re.S
+          )
           benefits_path.write_text(benefits, encoding='utf-8')
 
-          reviews_css_path = root / 'assets/css/mobile-reviews-stable.css'
-          reviews_css = reviews_css_path.read_text(encoding='utf-8')
-          reviews_css = reviews_css.replace(
-              'transition: width .2s ease, background-color .2s ease !important;',
-              'transition: none !important;',
-              1
-          )
-          reviews_css = reviews_css.replace('touch-action: manipulation;', 'touch-action: pan-x pan-y pinch-zoom !important;', 1)
-          reviews_css_path.write_text(reviews_css, encoding='utf-8')
+          # Carousel indicators switch immediately; only cards animate.
+          reviews_path = root / 'assets/css/mobile-reviews-stable.css'
+          reviews = reviews_path.read_text(encoding='utf-8')
+          reviews = reviews.replace('transition: width .2s ease, background-color .2s ease !important;', 'transition: none !important;')
+          reviews = reviews.replace('touch-action: manipulation;', 'touch-action: pan-x pan-y pinch-zoom !important;')
+          reviews_path.write_text(reviews, encoding='utf-8')
 
           for obsolete in (
               'assets/css/mobile-hotfix.css',
               'assets/js/mobile-review-ratio.js',
               'assets/css/light-theme.css',
+              '.cleanup-trigger',
+              '.cleanup-trigger-2',
+              'CLEANUP_NOTE.md',
           ):
               path = root / obsolete
-              if path.exists():
-                  path.unlink()
+              if path.exists(): path.unlink()
           PY
 
       - name: Validate modified source
