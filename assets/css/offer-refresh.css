@@ -610,3 +610,50 @@
   text-align: right !important;
 }
 
+/* Offer right alignment and final polish v2 */
+.vh-offer-adv.has-note .vh-offer-adv-note {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  left: auto;
+  margin: 0 !important;
+  transform: none;
+  white-space: nowrap;
+}
+
+.vh-offer-option {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.vh-offer-option > div:last-child {
+  font-size: 18px !important;
+  line-height: 1.08 !important;
+  font-weight: 800 !important;
+}
+
+.vh-offer-small-info {
+  font-size: 8px !important;
+}
+
+.vh-offer-card--cost .vh-offer-cost-row > b {
+  justify-self: end !important;
+  text-align: right !important;
+}
+
+.vh-offer-card--cost .vh-offer-cost-row--optional > b {
+  justify-self: end !important;
+}
+
+.vh-offer-adv.has-note {
+  padding-bottom: 12px !important;
+}
+
+.vh-offer-adv-title {
+  font-weight: 700 !important;
+}
+
+.vh-offer-equipment-trial p {
+  font-size: 10.4px !important;
+  line-height: 1.43 !important;
+}

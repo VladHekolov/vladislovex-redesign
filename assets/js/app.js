@@ -1613,7 +1613,7 @@
 
     var offerPage = document.getElementById('vhOfferPage');
     var advantageTitles = Array.prototype.slice.call(offerPage.querySelectorAll('.vh-offer-adv-title'));
-    var advantageTitleSize = 14;
+    var advantageTitleSize = 15;
 
     while (advantageTitleSize > 8) {
       offerPage.style.setProperty('--vh-offer-adv-title-size', advantageTitleSize + 'px');
