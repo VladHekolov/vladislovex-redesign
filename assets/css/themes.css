@@ -317,7 +317,7 @@ html[data-vh-theme="light"] .vr-toolbar,
 html[data-vh-theme="light"] .vr-search-field,
 html[data-vh-theme="light"] .vr-state,
 html[data-vh-theme="light"] .vr-summary,
-html[data-vh-theme="light"] [class*="vr-song"],
+html[data-vh-theme="light"] .vr-song,
 html[data-vh-theme="light"] .vr-guide__dialog {
   border-color: var(--vh-border);
   color: var(--vh-text);
@@ -371,14 +371,14 @@ html[data-vh-theme="light"] .vr-search-field input::placeholder {
 
 html[data-vh-theme="light"] .vr-state,
 html[data-vh-theme="light"] .vr-shown,
-html[data-vh-theme="light"] [class*="vr-song"] p,
-html[data-vh-theme="light"] [class*="vr-song"] small,
-html[data-vh-theme="light"] [class*="vr-song"] span {
+html[data-vh-theme="light"] .vr-song p,
+html[data-vh-theme="light"] .vr-song small,
+html[data-vh-theme="light"] .vr-song span {
   color: var(--vh-text-muted);
 }
 
-html[data-vh-theme="light"] [class*="vr-song"] strong,
-html[data-vh-theme="light"] [class*="vr-song"] h3 {
+html[data-vh-theme="light"] .vr-song strong,
+html[data-vh-theme="light"] .vr-song h3 {
   color: var(--vh-text-strong);
 }
 
