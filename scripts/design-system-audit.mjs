@@ -127,11 +127,31 @@ if (!homepageConfig.includes('/assets/css/home-system.css')) {
 if (!homepageConfig.includes('data-vh-home-system')) {
   errors.push('assets/js/config.js: homepage system stylesheet marker is missing.');
 }
+if (!homepageConfig.includes('/assets/css/visual-fixes.css')) {
+  errors.push('assets/js/config.js: visual-fixes.css is not connected.');
+}
+if (!homepageConfig.includes('data-vh-visual-fixes')) {
+  errors.push('assets/js/config.js: visual fixes stylesheet marker is missing.');
+}
 if (!homepageConfig.includes('/assets/js/home-copy.js')) {
   errors.push('assets/js/config.js: home-copy.js is not connected.');
 }
 if (!homepageConfig.includes('data-vh-home-copy')) {
   errors.push('assets/js/config.js: homepage copy marker is missing.');
+}
+
+const visualFixes = read('assets/css/visual-fixes.css');
+for (const requiredRule of [
+  '.vh-hero__title > :is(span, strong)',
+  '--vh-home-content-width',
+  '.vh-video-grid',
+  '.vh-formats-container',
+  '.vh-format-title',
+  'font-family: var(--vh-font-family)'
+]) {
+  if (!visualFixes.includes(requiredRule)) {
+    errors.push(`assets/css/visual-fixes.css: missing required visual correction ${requiredRule}.`);
+  }
 }
 
 const homepageCopy = read('assets/js/home-copy.js');
