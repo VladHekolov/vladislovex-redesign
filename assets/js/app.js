@@ -765,10 +765,27 @@
   };
 
   var ADVANTAGES = [
-    'Живое исполнение: гитара и вокал без ощущения фоновой музыки',
-    'Репертуар 240+ песен: можно выбрать заранее или ориентироваться по гостям на месте',
-    'Интерактив с гостями: подпевание, живое караоке и песни по настроению вечера',
-    'Можно выступить со своим оборудованием: колонка, микрофон и всё необходимое для звука'
+    {
+      icon: 'file-text',
+      title: 'Музыкальное меню в руках гостей',
+      text: '240+ песен в настоящем физическом журнале — гости сами выбирают, что прозвучит на празднике.'
+    },
+    {
+      icon: 'users-round',
+      title: 'Каждый будет вовлечён в праздник',
+      text: 'Живое общение, совместное пение и музыкальные интерактивы — без тамады, конкурсов и неловких пауз.'
+    },
+    {
+      icon: 'video',
+      title: 'Весь праздник — в формате 360 градусов',
+      text: 'Круговая съёмка и профессиональный звук сохранят выступление и эмоции гостей с любого ракурса.',
+      note: 'Доступно для мероприятий после 30 июля 2026 года.'
+    },
+    {
+      icon: 'shield-check',
+      title: 'Отвечаю за результат деньгами и временем',
+      text: 'Если не понравится выступление — верну деньги. Моя ошибка — компенсация деньгами или временем.'
+    }
   ];
 
   var MOSCOW_CENTER = [55.755864, 37.617698];
@@ -1343,7 +1360,9 @@
     lines.push('Преимущества:');
 
     data.advantages.forEach(function (item) {
-      lines.push('• ' + item);
+      lines.push(
+        '• ' + item.title + ': ' + item.text + (item.note ? ' ' + item.note : '')
+      );
     });
 
     lines.push('');
@@ -1455,11 +1474,15 @@
       );
     }).join('');
 
-    var advantagesHtml = data.advantages.map(function (item, index) {
+    var advantagesHtml = data.advantages.map(function (item) {
       return (
         '<div class="vh-offer-adv">' +
-          '<span class="vh-offer-adv-number">0' + (index + 1) + '</span>' +
-          escapeHtml(item) +
+          '<span class="vh-offer-adv-icon" aria-hidden="true"><i data-vh-icon="' + escapeHtml(item.icon) + '"></i></span>' +
+          '<div class="vh-offer-adv-content">' +
+            '<h3 class="vh-offer-adv-title">' + escapeHtml(item.title) + '</h3>' +
+            '<p class="vh-offer-adv-text">' + escapeHtml(item.text) + '</p>' +
+            (item.note ? '<span class="vh-offer-adv-note">' + escapeHtml(item.note) + '</span>' : '') +
+          '</div>' +
         '</div>'
       );
     }).join('');
@@ -1474,16 +1497,40 @@
     }).join('');
 
     var possibleAdditions = [];
-    if (!data.selectedModel.equipmentPrice) possibleAdditions.push('Оборудование');
-    if (!data.selectedModel.cajonPrice) possibleAdditions.push('Кахонист');
+    if (!data.selectedModel.equipmentPrice) {
+      possibleAdditions.push({
+        label: 'Оборудование',
+        value: '+' + formatMoney(PRICES.equipmentFixed)
+      });
+    }
+    if (!data.selectedModel.cajonPrice) {
+      possibleAdditions.push({
+        label: 'Кахонист',
+        value: '+' + formatMoney(calculateCajonPrice(data.selectedModel.hours))
+      });
+    }
 
     var possibleAdditionsHtml = possibleAdditions.length
       ? '<div class="vh-offer-additions">' +
           '<div class="vh-offer-additions-title">Возможные дополнения</div>' +
-          '<div class="vh-offer-additions-list">' +
-            possibleAdditions.map(function (item) {
-              return '<span class="vh-offer-addition">' + escapeHtml(item) + '</span>';
-            }).join('') +
+          possibleAdditions.map(function (item) {
+            return (
+              '<div class="vh-offer-cost-row vh-offer-cost-row--optional">' +
+                '<span>' + escapeHtml(item.label) + '</span>' +
+                '<b><span class="vh-offer-optional-price">' + escapeHtml(item.value) + '</span>' +
+                '<small class="vh-offer-optional-status">Не включено</small></b>' +
+              '</div>'
+            );
+          }).join('') +
+        '</div>'
+      : '';
+
+    var equipmentTrialHtml = !data.selectedModel.equipmentPrice
+      ? '<div class="vh-offer-equipment-trial">' +
+          '<span class="vh-offer-equipment-trial-icon" aria-hidden="true"><i data-vh-icon="mic-2"></i></span>' +
+          '<div>' +
+            '<h3>Попробуйте выступление с оборудованием без риска</h3>' +
+            '<p>Добавим колонку и микрофон. Не понравится формат — за оборудование не платите.</p>' +
           '</div>' +
         '</div>'
       : '';
@@ -1504,7 +1551,6 @@
             '<div class="vh-offer-contacts">' +
               '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Телефон</span><span>+7 999 800 31-91</span></div>' +
               '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Telegram</span><span>@vladislove_xv</span></div>' +
-              '<div class="vh-offer-contact-row"><span class="vh-offer-contact-label">Город</span><span>Москва и МО</span></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -1529,10 +1575,11 @@
             '<h2 class="vh-offer-section-title">Детали мероприятия</h2>' +
             detailsHtml +
           '</div>' +
-          '<div class="vh-offer-card">' +
+          '<div class="vh-offer-card vh-offer-card--cost">' +
             '<h2 class="vh-offer-section-title">Как считаем стоимость</h2>' +
             breakdownHtml +
             possibleAdditionsHtml +
+            equipmentTrialHtml +
           '</div>' +
         '</div>' +
 
@@ -1546,6 +1593,8 @@
         '</div>' +
 
       '</div>';
+
+    if (typeof window.VHRefreshIcons === 'function') window.VHRefreshIcons();
 
     return document.getElementById('vhOfferPage');
   }
@@ -1597,14 +1646,23 @@
     loadPdfLibraries().then(function () {
       var page = renderOfferTemplate();
       setActionStatus('Готовлю PDF...');
+
+      return new Promise(function (resolve) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            resolve(page);
+          });
+        });
+      });
+    }).then(function (page) {
       return window.html2canvas(page, {
-      scale: 2,
-      useCORS: true,
-      allowTaint: false,
-      backgroundColor: '#fbf7f1',
-      logging: false,
-      width: 794,
-      height: 1123
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: '#fbf7f1',
+        logging: false,
+        width: 794,
+        height: 1123
       });
     }).then(function (canvas) {
       var imgData = canvas.toDataURL('image/jpeg', 0.96);
