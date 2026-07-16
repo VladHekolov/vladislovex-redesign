@@ -12,11 +12,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="/assets/js/theme.js?v=20260716-1"></script>
-  <link rel="stylesheet" href="/assets/css/design-tokens.css?v=20260716-1" data-vh-design-tokens>
+  <link rel="stylesheet" href="/assets/css/design-tokens.css?v=20260716-2" data-vh-design-tokens>
   <link rel="stylesheet" href="/assets/css/typography.css?v=20260716-1" data-vh-typography>
   <link rel="stylesheet" href="/assets/css/subpages.css?v=1">
   <link rel="stylesheet" href="/assets/css/repertoire.css?v=1">
   <link rel="stylesheet" href="/assets/css/artist-modal.css?v=20260716-1">
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260716-1" data-vh-components>
   <link rel="stylesheet" href="/assets/css/themes.css?v=20260716-1" data-vh-themes>
   <link rel="stylesheet" href="/assets/css/icons.css?v=20260716-2" data-vh-icons>
   <script>
@@ -52,9 +53,9 @@
     <div class="vr-page__inner">
       <header class="vr-head">
         <div class="vr-head__content">
-          <p class="vr-head__badge"><span>VOCAVA</span> / ЖИВОЙ РЕПЕРТУАР</p>
-          <h1 class="vr-head__title" id="vrArtistName"></h1>
-          <span class="vr-head__meta" id="vrArtistMeta">Загрузка репертуара...</span>
+          <p class="vr-head__badge vh-label"><span>VOCAVA</span> / ЖИВОЙ РЕПЕРТУАР</p>
+          <h1 class="vr-head__title vh-title vh-title--page" id="vrArtistName"></h1>
+          <span class="vr-head__meta vh-lead" id="vrArtistMeta">Загрузка репертуара...</span>
         </div>
       </header>
 
@@ -73,7 +74,7 @@
       <div class="vr-toolbar-sentinel" id="vrToolbarSentinel" aria-hidden="true"></div>
       <div class="vr-toolbar" id="vrToolbar">
         <div class="vr-filter" id="vrFilter">
-          <button class="vr-icon-btn" id="vrFilterButton" type="button" aria-label="Фильтр" aria-expanded="false">
+          <button class="vr-icon-btn vh-icon-button" id="vrFilterButton" type="button" aria-label="Фильтр" aria-expanded="false">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18"></path><path d="M7 12h10"></path><path d="M10 19h4"></path></svg>
             <span class="vr-filter__badge" id="vrFilterBadge" hidden>0</span>
           </button>
@@ -83,18 +84,18 @@
           </div>
         </div>
 
-        <button class="vr-favorites-toggle" id="vrFavoritesToggle" type="button" aria-label="Избранные песни" hidden>
+        <button class="vr-favorites-toggle vh-icon-button" id="vrFavoritesToggle" type="button" aria-label="Избранные песни" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"></path></svg>
         </button>
 
-        <button class="vr-stop-toggle" id="vrStopToggle" type="button" aria-label="Стоп-лист" hidden>
+        <button class="vr-stop-toggle vh-icon-button" id="vrStopToggle" type="button" aria-label="Стоп-лист" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 8l8 8"></path></svg>
         </button>
 
         <div class="vr-sort" id="vrSort">
           <div class="vr-sort__button">
             <button class="vr-sort__text" id="vrSortText" type="button" aria-label="Сменить направление сортировки">По названию ↑</button>
-            <button class="vr-icon-btn vr-sort__icon" id="vrSortButton" type="button" aria-label="Сортировка" aria-expanded="false">
+            <button class="vr-icon-btn vr-sort__icon vh-icon-button" id="vrSortButton" type="button" aria-label="Сортировка" aria-expanded="false">
               <svg viewBox="0 0 24 24"><path d="M8 7h12"></path><path d="M8 12h9"></path><path d="M8 17h6"></path><path d="M4 7v10"></path><path d="m2 15 2 2 2-2"></path></svg>
             </button>
           </div>
@@ -111,8 +112,8 @@
           <input id="vrSearch" type="search" placeholder="Название песни, исполнитель, жанр">
         </label>
         <div class="vr-actions">
-          <button id="vrPdf" type="button">Скачать PDF</button>
-          <button class="vr-artist-card-link" id="vrArtistCard" type="button" data-vh-artist-modal-trigger aria-haspopup="dialog">Карточка артиста</button>
+          <button class="vh-button vh-button--primary vh-button--lg" id="vrPdf" type="button">Скачать PDF</button>
+          <button class="vr-artist-card-link vh-button vh-button--secondary vh-button--lg" id="vrArtistCard" type="button" data-vh-artist-modal-trigger aria-haspopup="dialog">Карточка артиста</button>
         </div>
       </div>
 
@@ -144,7 +145,7 @@
       </div>
       <div class="vh-artist-modal__content">
         <div class="vh-artist-modal__label" id="vhRepertoireArtistType">VOCAVA</div>
-        <div class="vh-artist-modal__title-row"><h2 id="vhRepertoireArtistName">Карточка артиста</h2></div>
+        <div class="vh-artist-modal__title-row"><h2 class="vh-title vh-title--card" id="vhRepertoireArtistName">Карточка артиста</h2></div>
         <div class="vh-artist-modal__age-pill" id="vhRepertoireArtistAgeCard" hidden><span id="vhRepertoireArtistAge"></span></div>
         <p class="vh-artist-modal__about" id="vhRepertoireArtistAbout">Собираю информацию, фотографии и видео.</p>
         <div class="vh-artist-modal__photos" id="vhRepertoireArtistPhotos"></div>
@@ -162,7 +163,7 @@
   </div>
 
   <footer class="vh-subpage-footer">© 2026 Владислав Хеколов · <a href="/">Вернуться на главную</a></footer>
-  <script src="/assets/js/config.js?v=3"></script>
+  <script src="/assets/js/config.js?v=4"></script>
   <script src="/assets/js/vocava-data-adapter.js?v=1"></script>
   <script src="/assets/js/artist-modal.js?v=20260716-1" defer></script>
   <script src="/assets/js/repertoire.js?v=2" defer></script>
