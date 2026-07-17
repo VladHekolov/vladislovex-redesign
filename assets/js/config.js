@@ -44,6 +44,7 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     loadScript('/assets/js/mobile-reviews-autoplay.js?v=20260716-3', 'data-vh-mobile-reviews-autoplay');
     loadScript('/assets/js/mobile-faq-lite.js?v=20260716-1', 'data-vh-mobile-faq-lite');
     loadScript('/assets/js/mobile-offer-fixes.js?v=20260717-3', 'data-vh-mobile-offer-fixes');
+    loadScript('/assets/js/offer-pdf-layer-fix.js?v=20260717-1', 'data-vh-offer-pdf-layer-fix');
   }
 
   loadScript('/assets/vendor/vh-icons.bundle.js?v=20260716-1', 'data-vh-icon-bundle', function () {
