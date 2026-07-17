@@ -223,20 +223,6 @@ body #vhPdfStage .vh-offer-equipment-trial-icon {
   align-self: start !important;
 }
 
-body #vhPdfStage .vh-offer-equipment-trial-icon > * {
-  display: none !important;
-}
-
-body #vhPdfStage .vh-offer-equipment-trial-icon::before {
-  content: "";
-  display: block;
-  width: 16px;
-  height: 16px;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H2v6h4l5 4V5Z'/%3E%3Cpath d='M15.54 8.46a5 5 0 0 1 0 7.07'/%3E%3Cpath d='M19.07 4.93a10 10 0 0 1 0 14.14'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H2v6h4l5 4V5Z'/%3E%3Cpath d='M15.54 8.46a5 5 0 0 1 0 7.07'/%3E%3Cpath d='M19.07 4.93a10 10 0 0 1 0 14.14'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
-}
-
 body #vhPdfStage .vh-offer-equipment-trial-copy p:first-of-type {
   grid-area: description-one !important;
 }
