@@ -2,13 +2,10 @@ name: Apply equipment offer layout
 on:
   push:
     branches: [agent/equipment-offer-layout]
-  pull_request:
-    branches: [main]
 permissions:
   contents: write
 jobs:
   apply:
-    if: github.event_name == 'push' || github.head_ref == 'agent/equipment-offer-layout'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -106,8 +103,9 @@ jobs:
           index_path.write_text(index, encoding='utf-8')
           PY
           node --check assets/js/app.js
+          rm -f .github/workflows/apply-equipment-offer-layout.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/js/app.js assets/css/offer-refresh.css index.html
+          git add assets/js/app.js assets/css/offer-refresh.css index.html .github/workflows/apply-equipment-offer-layout.yml
           git diff --cached --quiet || git commit -m "style: mirror offer layout for equipment trial"
           git push
