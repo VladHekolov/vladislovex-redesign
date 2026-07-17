@@ -5,36 +5,86 @@
   letter-spacing: .01em;
 }
 
+/* Header: two stable columns, with the title and personal contacts kept inside A4. */
+.vh-offer-header {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 250px !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+.vh-offer-header > div:first-child {
+  min-width: 0;
+}
+
 .vh-offer-title {
-  max-width: 100% !important;
+  max-width: 410px !important;
   margin: 0 !important;
   font-size: 42px !important;
-  line-height: 1.04 !important;
+  line-height: .98 !important;
   font-weight: 900 !important;
   letter-spacing: .03em !important;
   text-transform: uppercase;
-  white-space: nowrap;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
 }
 
-.vh-offer-subtitle {
-  max-width: 430px;
-  margin-top: 9px !important;
-  color: rgba(39, 35, 31, .7) !important;
-  font-size: 12px !important;
-  line-height: 1.35 !important;
-  font-weight: 600 !important;
-  letter-spacing: .015em !important;
+.vh-offer-person {
+  display: block !important;
+  width: 250px;
+  min-width: 0;
+  justify-self: end;
+  text-align: left !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .vh-offer-name {
+  font-size: 24px !important;
+  line-height: 1.08 !important;
   font-weight: 700 !important;
   letter-spacing: .025em !important;
 }
 
 .vh-offer-role {
   margin-top: 6px !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
   font-weight: 500 !important;
   letter-spacing: .035em !important;
+}
+
+.vh-offer-contacts {
+  display: grid !important;
+  gap: 8px !important;
+  margin-top: 18px !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.vh-offer-contact-row {
+  display: grid !important;
+  grid-template-columns: 64px minmax(0, 1fr) !important;
+  gap: 8px !important;
+  align-items: center !important;
+  white-space: nowrap;
+}
+
+.vh-offer-contact-label {
+  min-width: 0 !important;
+  color: #d88713 !important;
+  font-weight: 800 !important;
+}
+
+.vh-offer-subtitle {
+  max-width: 410px;
+  margin-top: 9px !important;
+  color: rgba(39, 35, 31, .7) !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+  letter-spacing: .015em !important;
 }
 
 .vh-offer-total-price {
