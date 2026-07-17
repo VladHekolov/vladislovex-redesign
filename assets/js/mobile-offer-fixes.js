@@ -5,12 +5,22 @@
   var isMobile = window.matchMedia && window.matchMedia('(max-width: 860px)').matches;
   if (!isMobile) return;
 
+  var viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport) {
+    viewport.setAttribute(
+      'content',
+      'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover'
+    );
+  }
+
   var style = document.createElement('style');
   style.setAttribute('data-vh-mobile-input-nozoom', '');
   style.textContent = [
     '@media (max-width: 860px) {',
     '  input, select, textarea, [contenteditable="true"] {',
     '    font-size: 16px !important;',
+    '    text-size-adjust: 100% !important;',
+    '    -webkit-text-size-adjust: 100% !important;',
     '  }',
     '}'
   ].join('\n');
@@ -18,31 +28,14 @@
 
   var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  var pendingPdfWindow = null;
-  var patchedConstructor = null;
+  var patchedPdfConstructor = null;
+  var patchedHtml2Canvas = null;
 
-  function prepareIOSWindow() {
-    if (!isIOS || (pendingPdfWindow && !pendingPdfWindow.closed)) return;
-
-    try {
-      pendingPdfWindow = window.open('', '_blank');
-      if (pendingPdfWindow) {
-        pendingPdfWindow.document.title = 'Готовим PDF';
-        pendingPdfWindow.document.body.innerHTML =
-          '<p style="font:16px -apple-system,BlinkMacSystemFont,sans-serif;padding:24px">Готовим коммерческое предложение…</p>';
-      }
-    } catch (error) {
-      pendingPdfWindow = null;
-    }
-  }
-
-  function downloadBlob(blob, filename) {
+  function openPdfBlob(blob, filename) {
     var objectUrl = URL.createObjectURL(blob);
 
-    if (isIOS && pendingPdfWindow && !pendingPdfWindow.closed) {
-      pendingPdfWindow.location.href = objectUrl;
-      pendingPdfWindow = null;
-      window.setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 120000);
+    if (isIOS) {
+      window.location.assign(objectUrl);
       return;
     }
 
@@ -58,22 +51,43 @@
 
   function patchJsPdf() {
     var JsPdf = window.jspdf && window.jspdf.jsPDF;
-    if (!JsPdf || patchedConstructor === JsPdf || !JsPdf.prototype) return false;
+    if (!JsPdf || patchedPdfConstructor === JsPdf || !JsPdf.prototype) return false;
 
-    patchedConstructor = JsPdf;
+    patchedPdfConstructor = JsPdf;
     JsPdf.prototype.save = function (filename) {
-      downloadBlob(this.output('blob'), filename);
+      openPdfBlob(this.output('blob'), filename);
       return this;
     };
     return true;
+  }
+
+  function patchCanvasRenderer() {
+    var original = window.html2canvas;
+    if (!original || patchedHtml2Canvas === original) return false;
+
+    patchedHtml2Canvas = original;
+    window.html2canvas = function (element, options) {
+      var mobileOptions = Object.assign({}, options || {}, {
+        scale: Math.min(Number(options && options.scale) || 1, 1.25),
+        logging: false
+      });
+      return original(element, mobileOptions);
+    };
+    return true;
+  }
+
+  function patchPdfLibraries() {
+    patchCanvasRenderer();
+    patchJsPdf();
   }
 
   var observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
       Array.prototype.forEach.call(mutation.addedNodes || [], function (node) {
         if (!node || node.tagName !== 'SCRIPT') return;
-        if ((node.src || '').indexOf('jspdf') === -1) return;
-        node.addEventListener('load', patchJsPdf, { once: true });
+        var src = node.src || '';
+        if (src.indexOf('html2canvas') === -1 && src.indexOf('jspdf') === -1) return;
+        node.addEventListener('load', patchPdfLibraries, { once: true });
       });
     });
   });
@@ -82,9 +96,8 @@
   document.addEventListener('click', function (event) {
     var button = event.target.closest && event.target.closest('#vhCalcPdfDownload');
     if (!button || button.classList.contains('is-disabled')) return;
-    prepareIOSWindow();
-    patchJsPdf();
+    patchPdfLibraries();
   }, true);
 
-  patchJsPdf();
+  patchPdfLibraries();
 })();
