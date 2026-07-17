@@ -187,3 +187,61 @@ html[data-vh-theme="light"] .vh-subpage .vr-search-field > svg {
     height: 22px;
   }
 }
+
+/* PDF equipment trial: same hierarchy as offer cards. */
+body #vhPdfStage .vh-offer-equipment-trial {
+  display: grid !important;
+  grid-template-columns: 32px minmax(0, 1fr) !important;
+  grid-template-areas:
+    "title title"
+    "speaker description-one"
+    "speaker description-two" !important;
+  column-gap: 11px !important;
+  row-gap: 2px !important;
+  align-items: start !important;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-copy {
+  display: contents !important;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-copy h3 {
+  grid-area: title !important;
+  width: 100% !important;
+  margin: 0 0 6px !important;
+  color: #27231f !important;
+  font-size: var(--vh-offer-adv-title-size, 11px) !important;
+  line-height: 1.18 !important;
+  font-weight: 700 !important;
+  letter-spacing: -.01em !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-icon {
+  grid-area: speaker !important;
+  align-self: start !important;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-icon > * {
+  display: none !important;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-icon::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H2v6h4l5 4V5Z'/%3E%3Cpath d='M15.54 8.46a5 5 0 0 1 0 7.07'/%3E%3Cpath d='M19.07 4.93a10 10 0 0 1 0 14.14'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H2v6h4l5 4V5Z'/%3E%3Cpath d='M15.54 8.46a5 5 0 0 1 0 7.07'/%3E%3Cpath d='M19.07 4.93a10 10 0 0 1 0 14.14'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-copy p:first-of-type {
+  grid-area: description-one !important;
+}
+
+body #vhPdfStage .vh-offer-equipment-trial-copy p:last-of-type {
+  grid-area: description-two !important;
+  margin-top: 0 !important;
+}
