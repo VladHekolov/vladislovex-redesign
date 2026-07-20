@@ -23,15 +23,19 @@ jobs:
           node --check assets/js/theme.js
           node --check assets/js/config.js
           node --check assets/js/app.js
+          node --check assets/js/route-distance-openrouteservice.js
           node --check assets/js/icons.js
           node --check assets/js/artist-modal.js
           node --check assets/js/repertoire.js
           node --check assets/vendor/vh-icons.bundle.js
           node --check scripts/design-system-audit.mjs
           node --check scripts/calculator-pricing-test.mjs
+          node --check scripts/route-distance-openrouteservice-test.mjs
 
       - name: Verify calculator pricing
-        run: node scripts/calculator-pricing-test.mjs
+        run: |
+          node scripts/calculator-pricing-test.mjs
+          node scripts/route-distance-openrouteservice-test.mjs
 
       - name: Verify shared design assets
         run: |
