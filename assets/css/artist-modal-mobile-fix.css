@@ -27,7 +27,7 @@
   .vh-artist-modal__title-row h2 {
     width: 100%;
     max-width: none;
-    font-size: 34px !important;
+    font-size: 37px !important;
     line-height: 1 !important;
     letter-spacing: -.03em !important;
     text-wrap: wrap !important;
@@ -68,6 +68,6 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: 31px !important;
+    font-size: 33px !important;
   }
 }
