@@ -55,9 +55,9 @@
 
 .vh-artist-modal__main {
   min-width: 0;
-  min-height: 560px;
+  min-height: 580px;
   display: grid;
-  grid-template-columns: minmax(250px, 360px) minmax(0, 1fr);
+  grid-template-columns: minmax(270px, 390px) minmax(0, 1fr);
   align-items: stretch;
 }
 
@@ -109,7 +109,7 @@
   max-width: none;
   height: 100%;
   min-width: 0;
-  min-height: 560px;
+  min-height: 580px;
   margin: 0;
   display: grid;
   place-items: center;
@@ -187,7 +187,9 @@
 }
 
 .vh-artist-modal__age-pill[hidden],
+.vh-artist-modal__short[hidden],
 .vh-artist-modal__info-card[hidden],
+.vh-artist-modal__about-section[hidden],
 .vh-artist-modal__photos:not(.is-visible) {
   display: none !important;
 }
@@ -204,24 +206,27 @@
   overflow-wrap: anywhere;
 }
 
-.vh-artist-modal__about {
-  max-width: var(--vh-reading-width);
-  margin: 0 0 var(--vh-space-5);
+.vh-artist-modal__short {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 var(--vh-space-4);
   color: var(--vh-text-muted);
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
 
 .vh-artist-modal__info-grid {
+  width: 100%;
   margin: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--vh-space-3);
 }
 
-.vh-artist-modal__info-card,
-.vh-artist-modal__repertoire-card {
+.vh-artist-modal__info-card {
+  width: 100%;
   min-width: 0;
+  margin: 0;
   padding: var(--vh-space-4);
   display: block;
   border: 1px solid var(--vh-border);
@@ -235,6 +240,22 @@
 }
 
 .vh-artist-modal__info-card p {
+  margin: 0;
+  color: var(--vh-text-muted);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.vh-artist-modal__about-section {
+  width: 100%;
+  margin: 0;
+  padding: var(--vh-space-5);
+  border-top: 1px solid var(--vh-border);
+}
+
+.vh-artist-modal__about {
+  width: 100%;
+  max-width: none;
   margin: 0;
   color: var(--vh-text-muted);
   white-space: pre-line;
@@ -316,7 +337,7 @@
 
   .vh-artist-modal__main {
     min-height: 0;
-    grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
+    grid-template-columns: minmax(236px, 38%) minmax(0, 1fr);
   }
 
   .vh-artist-modal__media {
@@ -352,8 +373,8 @@
   }
 
   .vh-artist-modal__main {
-    grid-template-columns: minmax(104px, 34%) minmax(0, 1fr);
-    column-gap: 14px;
+    grid-template-columns: minmax(116px, 38%) minmax(0, 1fr);
+    column-gap: var(--vh-space-3);
     align-items: start;
     padding: var(--vh-space-4);
   }
@@ -412,30 +433,31 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: clamp(21px, 6.4vw, 29px);
+    font-size: clamp(20px, 5.9vw, 27px);
     line-height: 1.04;
     letter-spacing: -.025em;
   }
 
-  .vh-artist-modal__about {
-    max-width: none;
-    margin-bottom: var(--vh-space-3);
-    font-size: 12px;
-    line-height: 1.48;
+  .vh-artist-modal__short {
+    width: 100%;
+    margin: 0 0 var(--vh-space-3);
+    font-size: 11px;
+    line-height: 1.45;
   }
 
   .vh-artist-modal__info-grid {
+    width: 100%;
     margin: 0;
     gap: var(--vh-space-3);
   }
 
-  .vh-artist-modal__info-card,
-  .vh-artist-modal__repertoire-card {
-    padding: 0;
-    display: block;
-    border: 0;
-    border-radius: var(--vh-radius-xs);
-    background: transparent;
+  .vh-artist-modal__info-card {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid var(--vh-border);
+    border-radius: var(--vh-radius-sm);
+    background: var(--vh-surface-soft);
   }
 
   .vh-artist-modal__info-card > span {
@@ -445,8 +467,18 @@
   }
 
   .vh-artist-modal__info-card p {
-    font-size: 11px;
-    line-height: 1.45;
+    font-size: 10.5px;
+    line-height: 1.42;
+  }
+
+  .vh-artist-modal__about-section {
+    padding: 0 var(--vh-space-4) var(--vh-space-4);
+    border-top: 0;
+  }
+
+  .vh-artist-modal__about {
+    font-size: 13px;
+    line-height: 1.55;
   }
 
   .vh-artist-modal__photos {
@@ -464,7 +496,7 @@
 
 @media (max-width: 380px) {
   .vh-artist-modal__main {
-    grid-template-columns: minmax(96px, 35%) minmax(0, 1fr);
+    grid-template-columns: minmax(108px, 38%) minmax(0, 1fr);
     column-gap: 10px;
     padding: var(--vh-space-3);
   }
@@ -474,19 +506,21 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: clamp(20px, 6.7vw, 25px);
+    font-size: clamp(19px, 6vw, 24px);
   }
 
-  .vh-artist-modal__about {
-    font-size: 11.5px;
+  .vh-artist-modal__short {
+    font-size: 10.5px;
   }
 
   .vh-artist-modal__info-card p {
-    font-size: 10.5px;
-    line-height: 1.42;
+    font-size: 10px;
+    line-height: 1.4;
   }
 
+  .vh-artist-modal__about-section,
   .vh-artist-modal__photos {
-    padding: 0 var(--vh-space-3) var(--vh-space-4);
+    padding-right: var(--vh-space-3);
+    padding-left: var(--vh-space-3);
   }
 }
