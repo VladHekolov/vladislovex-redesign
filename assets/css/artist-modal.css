@@ -374,7 +374,7 @@
 
   .vh-artist-modal__main {
     grid-template-columns: minmax(150px, 47%) minmax(0, 1fr);
-    column-gap: 8px;
+    column-gap: 12px;
     align-items: start;
     padding: 12px;
   }
@@ -442,7 +442,7 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: clamp(20px, 5.9vw, 27px);
+    font-size: clamp(24px, 6.8vw, 31px);
     line-height: 1.04;
     letter-spacing: -.025em;
     overflow-wrap: normal;
@@ -515,7 +515,7 @@
 @media (max-width: 380px) {
   .vh-artist-modal__main {
     grid-template-columns: minmax(128px, 44%) minmax(0, 1fr);
-    column-gap: 8px;
+    column-gap: 10px;
     padding: 10px;
   }
 
@@ -529,7 +529,7 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: clamp(19px, 6vw, 24px);
+    font-size: clamp(22px, 6.5vw, 28px);
   }
 
   .vh-artist-modal__short {
