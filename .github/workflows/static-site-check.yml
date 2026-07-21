@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
 
@@ -25,6 +25,7 @@ jobs:
           node --check assets/js/app.js
           node --check assets/js/route-distance-openrouteservice.js
           node --check assets/js/icons.js
+          node --check assets/js/artist-card-view.js
           node --check assets/js/artist-modal.js
           node --check assets/js/repertoire.js
           node --check assets/vendor/vh-icons.bundle.js
@@ -45,6 +46,7 @@ jobs:
           test -f assets/css/themes.css
           test -f assets/css/icons.css
           test -f assets/css/artist-modal.css
+          test -f assets/js/artist-card-view.js
           test -f scripts/design-system-audit.mjs
           grep -q 'data-vh-theme="dark"' artists/index.html
           grep -q 'data-vh-theme="dark"' repertoire/index.html
@@ -78,12 +80,19 @@ jobs:
       - name: Audit local CSS overrides
         run: node scripts/design-system-audit.mjs
 
-      - name: Verify repertoire artist popup
+      - name: Verify one shared artist card component
         run: |
           grep -q 'data-vh-artist-modal-trigger' repertoire/index.html
-          grep -q 'id="vhRepertoireArtistModal"' repertoire/index.html
+          grep -q 'data-vh-artist-card-mount' artists/index.html
+          grep -q 'data-vh-artist-card-mount' repertoire/index.html
+          grep -q '/assets/css/artist-modal.css' artists/index.html
           grep -q '/assets/css/artist-modal.css' repertoire/index.html
-          grep -q '/assets/js/artist-modal.js' repertoire/index.html
+          grep -q '/assets/js/artist-card-view.js' artists/index.html
+          grep -q '/assets/js/artist-card-view.js' repertoire/index.html
+          grep -q 'id="vhArtistModal"' assets/js/artist-card-view.js
+          ! grep -q 'id="vhArtistModal"' artists/index.html
+          ! grep -q 'id="vhRepertoireArtistModal"' repertoire/index.html
+          ! test -f assets/css/artist-modal-mobile.css
           ! grep -q 'id="vrArtistCard" href="/artists/' repertoire/index.html
 
       - name: Reject external icon CDN dependencies

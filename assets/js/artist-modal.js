@@ -2,25 +2,25 @@
   'use strict';
 
   var trigger = document.querySelector('[data-vh-artist-modal-trigger]');
-  var modal = document.getElementById('vhRepertoireArtistModal');
+  var modal = document.getElementById('vhArtistModal');
   if (!trigger || !modal) return;
 
   var root = document.getElementById('vr');
   var artistSelect = document.getElementById('vrArtistSelect');
   var closeButton = modal.querySelector('[data-vh-artist-modal-close]');
-  var media = document.getElementById('vhRepertoireArtistMedia');
-  var type = document.getElementById('vhRepertoireArtistType');
-  var name = document.getElementById('vhRepertoireArtistName');
-  var age = document.getElementById('vhRepertoireArtistAge');
-  var ageCard = document.getElementById('vhRepertoireArtistAgeCard');
-  var about = document.getElementById('vhRepertoireArtistAbout');
-  var photos = document.getElementById('vhRepertoireArtistPhotos');
-  var repertoire = document.getElementById('vhRepertoireArtistRepertoire');
-  var repertoireCard = document.getElementById('vhRepertoireArtistRepertoireCard');
-  var repertoireDescription = document.getElementById('vhRepertoireArtistRepertoireDescription');
-  var repertoireDescriptionCard = document.getElementById('vhRepertoireArtistRepertoireDescriptionCard');
-  var preview = document.getElementById('vhRepertoireArtistPhotoPreview');
-  var previewImage = document.getElementById('vhRepertoireArtistPhotoPreviewImage');
+  var media = document.getElementById('vhArtistModalMedia');
+  var type = document.getElementById('vhArtistModalType');
+  var name = document.getElementById('vhArtistModalName');
+  var age = document.getElementById('vhArtistModalAge');
+  var ageCard = document.getElementById('vhArtistModalAgeCard');
+  var about = document.getElementById('vhArtistModalAbout');
+  var photos = document.getElementById('vhArtistModalPhotos');
+  var repertoire = document.getElementById('vhArtistModalRepertoire');
+  var repertoireCard = document.getElementById('vhArtistModalRepertoireCard');
+  var repertoireDescription = document.getElementById('vhArtistModalRepertoireDescription');
+  var repertoireDescriptionCard = document.getElementById('vhArtistModalRepertoireDescriptionCard');
+  var preview = document.getElementById('vhArtistPhotoPreview');
+  var previewImage = document.getElementById('vhArtistPhotoPreviewImage');
   var previewClose = preview ? preview.querySelector('[data-vh-artist-photo-close]') : null;
 
   var lastFocused = null;
@@ -41,10 +41,12 @@
     try { fromUrl = new URLSearchParams(window.location.search).get('artist') || ''; }
     catch (error) {}
 
+    var selectedOption = document.querySelector('#vrArtistDropdownMenu [aria-selected="true"]');
+
     return text(fromUrl) ||
       text(root && root.getAttribute('data-artist-id')) ||
       text(artistSelect && artistSelect.value) ||
-      text(document.querySelector('#vrArtistDropdownMenu [aria-selected="true"]') && document.querySelector('#vrArtistDropdownMenu [aria-selected="true"]').getAttribute('data-artist-id'));
+      text(selectedOption && selectedOption.getAttribute('data-artist-id'));
   }
 
   function normalizeId(value) {
@@ -175,6 +177,7 @@
       video.loop = true;
       video.playsInline = true;
       video.preload = 'metadata';
+      video.setAttribute('playsinline', '');
       media.appendChild(video);
       window.setTimeout(function () { video.play().catch(function () {}); }, 60);
       return;
@@ -249,7 +252,7 @@
     var category = text(artist.category || artist.role || artist.type || 'Музыкант VOCAVA');
     var artistName = text(artist.name || artist.title || 'Музыкант');
     var artistAge = formatAge(artist.age || artist.years);
-    var aboutText = text(artist.about || artist.description || artist.bio || artist.short_text || artist.shortText);
+    var aboutText = text(artist.short_text || artist.shortText || artist.about || artist.description || artist.bio);
     var repertoireText = text(artist.repertoire || artist.repertoireSummary || artist.repertoire_summary);
     var repertoireDescriptionText = text(artist.repertoire_description || artist.repertoireDescription || artist.repertoire_desc || artist.repertoireDesc);
 
