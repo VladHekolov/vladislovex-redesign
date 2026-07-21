@@ -373,7 +373,7 @@
   }
 
   .vh-artist-modal__main {
-    grid-template-columns: minmax(116px, 38%) minmax(0, 1fr);
+    grid-template-columns: minmax(135px, 42%) minmax(0, 1fr);
     column-gap: var(--vh-space-3);
     align-items: start;
     padding: var(--vh-space-4);
