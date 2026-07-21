@@ -8,6 +8,23 @@
     return String(value == null ? '' : value).trim();
   }
 
+  function descriptionText(value) {
+    var raw = text(value);
+    if (!raw || raw.indexOf('<') === -1) return raw;
+
+    var normalized = raw
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/p\s*>/gi, '\n')
+      .replace(/<\/li\s*>/gi, '\n');
+    var box = document.createElement('div');
+    box.innerHTML = normalized;
+
+    return text(box.textContent || box.innerText || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/[ \t]+\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n');
+  }
+
   function render() {
     var mount = document.querySelector('[data-vh-artist-card-mount]');
     if (!mount || document.getElementById('vhArtistModal')) return;
@@ -99,18 +116,18 @@
 
   function setBlock(element, value) {
     if (!element) return;
-    var finalValue = text(value);
+    var finalValue = descriptionText(value);
     element.textContent = finalValue;
     element.hidden = !finalValue;
   }
 
   function applyDescriptions(artist) {
     if (!artist) return;
-    var shortText = text(
+    var shortText = descriptionText(
       artist.short_text || artist.shortText || artist.short_description || artist.shortDescription || artist.description
     );
-    var about = text(artist.about || artist.bio || artist.full_description || artist.fullDescription);
-    var repertoireDescription = text(
+    var about = descriptionText(artist.about || artist.bio || artist.full_description || artist.fullDescription);
+    var repertoireDescription = descriptionText(
       artist.repertoire_description || artist.repertoireDescription || artist.repertoire_desc || artist.repertoireDesc
     );
 
