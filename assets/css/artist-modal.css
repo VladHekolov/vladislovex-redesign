@@ -374,9 +374,9 @@
 
   .vh-artist-modal__main {
     grid-template-columns: minmax(150px, 47%) minmax(0, 1fr);
-    column-gap: var(--vh-space-3);
+    column-gap: 8px;
     align-items: start;
-    padding: var(--vh-space-4);
+    padding: 12px;
   }
 
   .vh-artist-modal__media {
@@ -409,19 +409,19 @@
 
   .vh-artist-modal__label,
   .vh-artist-modal__age-pill {
-    max-width: calc(100% - 38px);
+    max-width: calc(100% - 30px);
   }
 
   .vh-artist-modal__title-row {
-    padding-right: 38px;
+    padding-right: 30px;
   }
 
   .vh-artist-modal__close {
-    top: 10px;
-    right: 10px;
-    width: var(--vh-control-height-sm);
-    height: var(--vh-control-height-sm);
-    font-size: 25px;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 22px;
   }
 
   .vh-artist-modal__label {
@@ -445,13 +445,19 @@
     font-size: clamp(20px, 5.9vw, 27px);
     line-height: 1.04;
     letter-spacing: -.025em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
   }
 
   .vh-artist-modal__short {
     width: 100%;
     margin: 0 0 var(--vh-space-3);
-    font-size: 11px;
-    line-height: 1.45;
+    font-size: 13px;
+    line-height: 1.55;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .vh-artist-modal__info-grid {
@@ -463,7 +469,7 @@
   .vh-artist-modal__info-card {
     width: 100%;
     margin: 0;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid var(--vh-border);
     border-radius: var(--vh-radius-sm);
     background: var(--vh-surface-soft);
@@ -478,6 +484,9 @@
   .vh-artist-modal__info-card p {
     font-size: 10.5px;
     line-height: 1.42;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .vh-artist-modal__about-section {
@@ -506,17 +515,17 @@
 @media (max-width: 380px) {
   .vh-artist-modal__main {
     grid-template-columns: minmax(128px, 44%) minmax(0, 1fr);
-    column-gap: 10px;
-    padding: var(--vh-space-3);
+    column-gap: 8px;
+    padding: 10px;
   }
 
   .vh-artist-modal__label,
   .vh-artist-modal__age-pill {
-    max-width: calc(100% - 34px);
+    max-width: calc(100% - 28px);
   }
 
   .vh-artist-modal__title-row {
-    padding-right: 34px;
+    padding-right: 28px;
   }
 
   .vh-artist-modal__title-row h2 {
@@ -524,7 +533,7 @@
   }
 
   .vh-artist-modal__short {
-    font-size: 10.5px;
+    font-size: 13px;
   }
 
   .vh-artist-modal__info-card p {
