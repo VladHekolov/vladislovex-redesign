@@ -373,7 +373,7 @@
   }
 
   .vh-artist-modal__main {
-    grid-template-columns: minmax(135px, 42%) minmax(0, 1fr);
+    grid-template-columns: minmax(150px, 47%) minmax(0, 1fr);
     column-gap: var(--vh-space-3);
     align-items: start;
     padding: var(--vh-space-4);
@@ -402,9 +402,18 @@
 
   .vh-artist-modal__content {
     min-width: 0;
-    padding: 2px 38px 0 0;
+    padding: 2px 0 0;
     display: block;
     overflow: visible;
+  }
+
+  .vh-artist-modal__label,
+  .vh-artist-modal__age-pill {
+    max-width: calc(100% - 38px);
+  }
+
+  .vh-artist-modal__title-row {
+    padding-right: 38px;
   }
 
   .vh-artist-modal__close {
@@ -496,12 +505,17 @@
 
 @media (max-width: 380px) {
   .vh-artist-modal__main {
-    grid-template-columns: minmax(108px, 38%) minmax(0, 1fr);
+    grid-template-columns: minmax(128px, 44%) minmax(0, 1fr);
     column-gap: 10px;
     padding: var(--vh-space-3);
   }
 
-  .vh-artist-modal__content {
+  .vh-artist-modal__label,
+  .vh-artist-modal__age-pill {
+    max-width: calc(100% - 34px);
+  }
+
+  .vh-artist-modal__title-row {
     padding-right: 34px;
   }
 
