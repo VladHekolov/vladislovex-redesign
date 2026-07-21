@@ -78,12 +78,18 @@ jobs:
       - name: Audit local CSS overrides
         run: node scripts/design-system-audit.mjs
 
-      - name: Verify repertoire artist popup
+      - name: Verify shared artist card
         run: |
           grep -q 'data-vh-artist-modal-trigger' repertoire/index.html
-          grep -q 'id="vhRepertoireArtistModal"' repertoire/index.html
+          grep -q '/assets/css/artist-modal.css' artists/index.html
           grep -q '/assets/css/artist-modal.css' repertoire/index.html
+          grep -q '/assets/js/artist-modal.js' artists/index.html
           grep -q '/assets/js/artist-modal.js' repertoire/index.html
+          grep -q 'id="vhArtistCardModal"' assets/js/artist-modal.js
+          grep -q "CARD_PARAM = 'card'" assets/js/artist-modal.js
+          ! grep -q 'id="vhArtistModal"' artists/index.html
+          ! grep -q 'id="vhRepertoireArtistModal"' repertoire/index.html
+          ! test -f assets/css/artist-modal-mobile.css
           ! grep -q 'id="vrArtistCard" href="/artists/' repertoire/index.html
 
       - name: Reject external icon CDN dependencies

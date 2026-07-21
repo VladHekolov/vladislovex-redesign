@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/assets/css/themes.css?v=20260716-1" data-vh-themes>
   <link rel="stylesheet" href="/assets/css/icons.css?v=20260716-2" data-vh-icons>
   <link rel="stylesheet" href="/assets/css/artists-system.css?v=20260716-1" data-vh-artists-system>
+  <link rel="stylesheet" href="/assets/css/artist-modal.css?v=20260721-2">
   <script>
     (function(m,e,t,r,i,k,a){
       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -108,25 +109,6 @@
     </div>
   </section>
 
-  <div class="vh-artist-modal" id="vhArtistModal" aria-hidden="true">
-    <div class="vh-artist-modal__overlay" data-modal-close></div>
-    <div class="vh-artist-modal__dialog" role="dialog" aria-modal="true">
-      <button class="vh-artist-modal__close" type="button" data-modal-close aria-label="Закрыть">×</button>
-      <div class="vh-artist-modal__media" id="vhArtistModalMedia"></div>
-      <div class="vh-artist-modal__content">
-        <div class="vh-artist-modal__label" id="vhArtistModalType">Тип артиста</div>
-        <div class="vh-artist-modal__age-pill" id="vhArtistModalAgeCard" hidden><span id="vhArtistModalAge"></span></div>
-        <div class="vh-artist-modal__title-row"><h2 class="vh-title vh-title--card" id="vhArtistModalName">Имя артиста</h2><div class="vh-artist-modal__repertoire-inline" id="vhArtistModalRepertoireInline" hidden></div></div>
-        <p class="vh-artist-modal__about" id="vhArtistModalAbout"></p>
-        <div class="vh-artist-modal__photos" id="vhArtistModalPhotos" aria-label="Фотографии музыканта"></div>
-        <div class="vh-artist-modal__info-grid">
-          <div class="vh-artist-modal__info-card vh-artist-modal__repertoire-card" id="vhArtistModalRepertoireCard"><span>Репертуар</span><p id="vhArtistModalRepertoire"></p></div>
-          <div class="vh-artist-modal__info-card" id="vhArtistModalRepertoireDescriptionCard"><span>Описание репертуара</span><p id="vhArtistModalRepertoireDescription"></p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="vh-photo-viewer" id="vhPhotoViewer" aria-hidden="true">
     <div class="vh-photo-viewer__overlay" data-photo-close></div>
     <button class="vh-photo-viewer__close" type="button" data-photo-close aria-label="Закрыть">×</button>
@@ -144,6 +126,7 @@
   <script src="/assets/js/vocava-data-adapter.js?v=1"></script>
   <script src="/assets/vendor/html2canvas.min.js"></script>
   <script src="/assets/vendor/jspdf.umd.min.js"></script>
+  <script src="/assets/js/artist-modal.js?v=20260721-2" defer></script>
   <script src="/assets/js/artists.js?v=1" defer></script>
 </body>
 </html>
