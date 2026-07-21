@@ -1,4 +1,4 @@
-/* Mobile artist card corrections: one layout for catalog and repertoire. */
+/* Mobile artist card corrections: keep media prominent while giving text the full remaining width. */
 @media (max-width: 640px) {
   .vh-artist-modal__main {
     grid-template-columns: minmax(145px, 44%) minmax(0, 1fr);
@@ -18,37 +18,6 @@
 
   .vh-artist-modal__content {
     padding: 2px 0 0;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-content: start;
-    row-gap: 10px;
-    overflow: visible;
-  }
-
-  .vh-artist-modal__label,
-  .vh-artist-modal__age-pill,
-  .vh-artist-modal__title-row,
-  .vh-artist-modal__short,
-  .vh-artist-modal__info-grid {
-    margin: 0;
-  }
-
-  .vh-artist-modal__label,
-  .vh-artist-modal__age-pill {
-    width: 100%;
-    max-width: calc(100% - 42px);
-    display: block;
-    padding: 0;
-    clear: both;
-  }
-
-  .vh-artist-modal__label {
-    line-height: 1.25;
-  }
-
-  .vh-artist-modal__age-pill {
-    font-size: 13px;
-    line-height: 1.3;
   }
 
   .vh-artist-modal__title-row {
@@ -58,9 +27,9 @@
   .vh-artist-modal__title-row h2 {
     width: 100%;
     max-width: none;
-    font-size: 40px !important;
-    line-height: .98 !important;
-    letter-spacing: -.035em !important;
+    font-size: 37px !important;
+    line-height: 1 !important;
+    letter-spacing: -.03em !important;
     text-wrap: wrap !important;
     overflow-wrap: normal !important;
     word-break: normal !important;
@@ -98,11 +67,7 @@
     padding: 10px;
   }
 
-  .vh-artist-modal__content {
-    row-gap: 9px;
-  }
-
   .vh-artist-modal__title-row h2 {
-    font-size: 36px !important;
+    font-size: 33px !important;
   }
 }
