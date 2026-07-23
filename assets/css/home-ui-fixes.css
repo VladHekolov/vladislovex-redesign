@@ -1,0 +1,86 @@
+/* Homepage UI fixes — 2026-07-23. */
+
+/* Keep contact arrows clean and point them diagonally up-right. */
+.vh-contact-card__arrow {
+  position: relative !important;
+  width: 24px !important;
+  height: 24px !important;
+  flex: 0 0 24px !important;
+  color: currentColor !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: rotate(-45deg) !important;
+  transform-origin: 50% 50% !important;
+}
+
+.vh-contact-card__arrow::before,
+.vh-contact-card__arrow::after {
+  content: "" !important;
+  position: absolute !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.vh-contact-card__arrow::before {
+  left: 3px !important;
+  top: 11px !important;
+  width: 16px !important;
+  height: 2px !important;
+  background: currentColor !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.vh-contact-card__arrow::after {
+  right: 3px !important;
+  top: 7px !important;
+  width: 9px !important;
+  height: 9px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-top: 2px solid currentColor !important;
+  border-right: 2px solid currentColor !important;
+  border-radius: 0 !important;
+  transform: rotate(45deg) !important;
+}
+
+/* The calculator description keeps a static gray gradient without shimmer. */
+.vh-price-calc__description {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: linear-gradient(
+    105deg,
+    rgba(177, 184, 197, .72) 0%,
+    rgba(226, 230, 237, .88) 34%,
+    rgba(145, 153, 168, .68) 58%,
+    rgba(210, 216, 226, .84) 100%
+  ) !important;
+  background-size: 100% 100% !important;
+  background-position: 50% 50% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.vh-price-calc__description b {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+html[data-vh-theme="light"] .vh-price-calc__description {
+  background: linear-gradient(
+    105deg,
+    rgba(80, 76, 72, .82) 0%,
+    rgba(42, 39, 36, .92) 36%,
+    rgba(104, 98, 92, .78) 64%,
+    rgba(56, 52, 48, .88) 100%
+  ) !important;
+  background-size: 100% 100% !important;
+  background-position: 50% 50% !important;
+  animation: none !important;
+}
