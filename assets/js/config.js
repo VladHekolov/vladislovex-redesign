@@ -71,7 +71,7 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   }
 
   if (document.body && document.body.id === 'top') {
-    loadStyle('/assets/css/home-ui-fixes.css?v=20260723-1', 'data-vh-home-ui-fixes');
+    loadStyle('/assets/css/home-ui-fixes.css?v=20260724-2', 'data-vh-home-ui-fixes');
     loadScript('/assets/js/home-ui-fixes.js?v=20260723-1', 'data-vh-home-ui-fixes');
     loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
     loadScript('/assets/js/mobile-cleanup.js?v=20260716-2', 'data-vh-mobile-cleanup');
