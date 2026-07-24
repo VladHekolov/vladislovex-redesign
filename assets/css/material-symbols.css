@@ -5,9 +5,15 @@
   height: 1em;
   flex: 0 0 auto;
   overflow: visible;
-  fill: currentColor;
   color: inherit;
   pointer-events: none;
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+.vh-material-symbol use {
+  fill: currentColor !important;
+  stroke: none !important;
 }
 
 /* Contact cards use the real Material arrow instead of a CSS-drawn glyph. */
