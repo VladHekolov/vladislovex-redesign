@@ -1,22 +1,10 @@
-/* Standardized local interface icons for the personal site.
-   The selected SVG glyphs are shipped with the site, just as lucide-react icons
-   are bundled into VOCAVA. Brand marks remain controlled separately. */
+/* Interface icon runtime for the personal site.
+   Original image assets from Yandex Cloud are preserved as-is.
+   The local SVG bundle is used only for controls that were already SVG/text. */
 (function initVladislovexIcons() {
   'use strict';
 
   if (!window.VHIcons || typeof window.VHIcons.create !== 'function') return;
-
-  var fileIconMap = [
-    { match: 'телефон', icon: 'phone' },
-    { match: 'календар', icon: 'calendar-check' },
-    { match: 'загрузка', icon: 'download' },
-    { match: 'гости', icon: 'users-round' },
-    { match: 'щит', icon: 'shield-check' },
-    { match: 'месяц', icon: 'clock-3' },
-    { match: 'время-деньги', icon: 'circle-dollar-sign' },
-    { match: 'видео желт', icon: 'video' },
-    { match: 'mice', icon: 'mic-2' }
-  ];
 
   var svgSelectorMap = [
     { selector: '.vh-theme-toggle__moon', icon: 'moon' },
@@ -42,31 +30,10 @@
     { selector: '.vr-guide__close', icon: 'x' }
   ];
 
-  function decodedFilename(source) {
-    var value = String(source || '').split('?')[0].split('#')[0].split('/').pop() || '';
-    try { value = decodeURIComponent(value); } catch (error) {}
-    return value.toLowerCase().replace(/\.(png|jpe?g|webp|svg)$/i, '').replace(/\s+/g, ' ').trim();
-  }
-
   function classNameOf(element) {
     if (!element) return '';
     if (typeof element.className === 'string') return element.className;
     return element.getAttribute('class') || '';
-  }
-
-  function iconForImage(image) {
-    if (!image || image.dataset.vhKeepImage === 'true') return '';
-    var filename = decodedFilename(image.currentSrc || image.src || image.getAttribute('src'));
-
-    /* Official brand identities and the personal logo remain brand assets. */
-    if (/телеграм|telegram|max|авито|avito|лого|logo/.test(filename)) return '';
-
-    if (image.closest('.vh-video-card__play')) return 'play';
-
-    for (var index = 0; index < fileIconMap.length; index += 1) {
-      if (filename.indexOf(fileIconMap[index].match) !== -1) return fileIconMap[index].icon;
-    }
-    return '';
   }
 
   function presentationOptions(source) {
@@ -98,16 +65,6 @@
     source.dataset.vhIconProcessed = 'true';
     source.replaceWith(icon);
     return true;
-  }
-
-  function replaceImage(image) {
-    if (!image || image.dataset.vhIconProcessed === 'true') return false;
-    var iconName = iconForImage(image);
-    if (!iconName) {
-      image.dataset.vhIconProcessed = 'true';
-      return false;
-    }
-    return replaceElement(image, iconName);
   }
 
   function replacePlaceholders(scope) {
@@ -152,12 +109,8 @@
     var scope = root && root.querySelectorAll ? root : document;
     var changed = false;
 
+    /* Do not replace IMG elements: these are the original Yandex Cloud icons. */
     if (replacePlaceholders(scope)) changed = true;
-
-    scope.querySelectorAll('img').forEach(function (image) {
-      if (replaceImage(image)) changed = true;
-    });
-
     if (replaceMappedSvg(scope)) changed = true;
     if (decorateTextButtons(scope)) changed = true;
 
