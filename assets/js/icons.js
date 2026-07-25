@@ -1,93 +1,45 @@
-/* Local Material Symbols for the personal site.
-   Generic interface glyphs come from Google's official Material Symbols set.
-   Brand marks (Telegram, MAX, Avito and personal logos) remain untouched. */
+/* Standardized local interface icons for the personal site.
+   The selected SVG glyphs are shipped with the site, just as lucide-react icons
+   are bundled into VOCAVA. Brand marks remain controlled separately. */
 (function initVladislovexIcons() {
   'use strict';
 
-  var SVG_NS = 'http://www.w3.org/2000/svg';
-  var XLINK_NS = 'http://www.w3.org/1999/xlink';
-  var SPRITE_URL = '/assets/icons/material-symbols.svg?v=20260724-1';
-
-  var aliases = {
-    phone: 'call',
-    call: 'call',
-    'calendar-check': 'calendar-month',
-    calendar_month: 'calendar-month',
-    download: 'download',
-    'users-round': 'groups',
-    groups: 'groups',
-    'shield-check': 'verified-user',
-    shield: 'verified-user',
-    'clock-3': 'schedule',
-    schedule: 'schedule',
-    'circle-dollar-sign': 'paid',
-    paid: 'paid',
-    video: 'video-library',
-    'video-library': 'video-library',
-    'mic-2': 'mic',
-    mic: 'mic',
-    play: 'play-arrow',
-    'play-arrow': 'play-arrow',
-    moon: 'dark-mode',
-    'dark-mode': 'dark-mode',
-    sun: 'light-mode',
-    'light-mode': 'light-mode',
-    x: 'close',
-    close: 'close',
-    'chevron-down': 'expand-more',
-    'expand-more': 'expand-more',
-    'list-filter': 'filter-list',
-    'filter-list': 'filter-list',
-    heart: 'favorite',
-    favorite: 'favorite',
-    ban: 'block',
-    block: 'block',
-    'arrow-down-up': 'swap-vert',
-    'swap-vert': 'swap-vert',
-    search: 'search',
-    'chevron-left': 'chevron-left',
-    'chevron-right': 'chevron-right',
-    'arrow-outward': 'arrow-outward'
-  };
+  if (!window.VHIcons || typeof window.VHIcons.create !== 'function') return;
 
   var fileIconMap = [
-    { match: 'телефон', icon: 'call' },
-    { match: 'календар', icon: 'calendar-month' },
+    { match: 'телефон', icon: 'phone' },
+    { match: 'календар', icon: 'calendar-check' },
     { match: 'загрузка', icon: 'download' },
-    { match: 'гости', icon: 'groups' },
-    { match: 'щит', icon: 'verified-user' },
-    { match: 'месяц', icon: 'schedule' },
-    { match: 'время-деньги', icon: 'paid' },
-    { match: 'видео желт', icon: 'video-library' },
-    { match: 'mice', icon: 'mic' }
+    { match: 'гости', icon: 'users-round' },
+    { match: 'щит', icon: 'shield-check' },
+    { match: 'месяц', icon: 'clock-3' },
+    { match: 'время-деньги', icon: 'circle-dollar-sign' },
+    { match: 'видео желт', icon: 'video' },
+    { match: 'mice', icon: 'mic-2' }
   ];
 
   var svgSelectorMap = [
-    { selector: '.vh-theme-toggle__moon', icon: 'dark-mode' },
-    { selector: '.vh-theme-toggle__sun', icon: 'light-mode' },
-    { selector: '.vh-video-modal__close svg', icon: 'close' },
-    { selector: '.vh-reviews-lb-close svg', icon: 'close' },
-    { selector: '#vrArtistDropdownButton > svg', icon: 'expand-more' },
-    { selector: '#vrFilterButton > svg', icon: 'filter-list' },
-    { selector: '#vrFavoritesToggle > svg', icon: 'favorite' },
-    { selector: '#vrStopToggle > svg', icon: 'block' },
-    { selector: '#vrSortButton > svg', icon: 'swap-vert' },
+    { selector: '.vh-theme-toggle__moon', icon: 'moon' },
+    { selector: '.vh-theme-toggle__sun', icon: 'sun' },
+    { selector: '.vh-video-modal__close svg', icon: 'x' },
+    { selector: '.vh-reviews-lb-close svg', icon: 'x' },
+    { selector: '#vrArtistDropdownButton > svg', icon: 'chevron-down' },
+    { selector: '#vrFilterButton > svg', icon: 'list-filter' },
+    { selector: '#vrFavoritesToggle > svg', icon: 'heart' },
+    { selector: '#vrStopToggle > svg', icon: 'ban' },
+    { selector: '#vrSortButton > svg', icon: 'arrow-down-up' },
     { selector: '.vr-search-field > svg', icon: 'search' },
-    { selector: '#vhMobileFilterBtn > svg', icon: 'filter-list' },
-    { selector: '#vhFavoritesOnlyFilter > svg', icon: 'favorite' },
-    { selector: '.vh-sort-dd__icon > svg', icon: 'swap-vert' }
-  ];
-
-  var elementSelectorMap = [
-    { selector: '.vh-contact-card__arrow', icon: 'arrow-outward' }
+    { selector: '#vhMobileFilterBtn > svg', icon: 'list-filter' },
+    { selector: '#vhFavoritesOnlyFilter > svg', icon: 'heart' },
+    { selector: '.vh-sort-dd__icon > svg', icon: 'arrow-down-up' }
   ];
 
   var textButtonMap = [
-    { selector: '.vh-artist-modal__close', icon: 'close' },
-    { selector: '.vh-photo-viewer__close', icon: 'close' },
+    { selector: '.vh-artist-modal__close', icon: 'x' },
+    { selector: '.vh-photo-viewer__close', icon: 'x' },
     { selector: '.vh-photo-viewer__arrow--prev', icon: 'chevron-left' },
     { selector: '.vh-photo-viewer__arrow--next', icon: 'chevron-right' },
-    { selector: '.vr-guide__close', icon: 'close' }
+    { selector: '.vr-guide__close', icon: 'x' }
   ];
 
   function decodedFilename(source) {
@@ -102,125 +54,97 @@
     return element.getAttribute('class') || '';
   }
 
-  function normalizeIconName(name) {
-    var key = String(name || '').trim();
-    return aliases[key] || key.replace(/_/g, '-');
-  }
-
-  function createIcon(name, options) {
-    var iconName = normalizeIconName(name);
-    if (!iconName) return null;
-
-    options = options || {};
-
-    var svg = document.createElementNS(SVG_NS, 'svg');
-    var use = document.createElementNS(SVG_NS, 'use');
-    var href = SPRITE_URL + '#' + iconName;
-
-    svg.setAttribute('viewBox', '0 -960 960 960');
-    svg.setAttribute('fill', 'currentColor');
-    svg.setAttribute('focusable', 'false');
-    svg.setAttribute('data-vh-material-symbol', iconName);
-    svg.setAttribute('class', ((options.className || '') + ' vh-material-symbol').trim());
-
-    use.setAttribute('href', href);
-    use.setAttributeNS(XLINK_NS, 'xlink:href', href);
-    svg.appendChild(use);
-
-    if (options.title) {
-      var title = document.createElementNS(SVG_NS, 'title');
-      title.textContent = options.title;
-      svg.insertBefore(title, use);
-      svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-label', options.title);
-    } else {
-      svg.setAttribute('aria-hidden', 'true');
-    }
-
-    return svg;
-  }
-
   function iconForImage(image) {
     if (!image || image.dataset.vhKeepImage === 'true') return '';
     var filename = decodedFilename(image.currentSrc || image.src || image.getAttribute('src'));
 
+    /* Official brand identities and the personal logo remain brand assets. */
     if (/телеграм|telegram|max|авито|avito|лого|logo/.test(filename)) return '';
-    if (image.closest('.vh-video-card__play')) return 'play-arrow';
+
+    if (image.closest('.vh-video-card__play')) return 'play';
 
     for (var index = 0; index < fileIconMap.length; index += 1) {
       if (filename.indexOf(fileIconMap[index].match) !== -1) return fileIconMap[index].icon;
     }
-
     return '';
   }
 
-  function replaceElement(source, iconName) {
-    if (!source || source.hasAttribute('data-vh-material-symbol')) return false;
-
+  function presentationOptions(source) {
+    var className = (classNameOf(source) + ' vh-lucide-icon').trim();
     var alt = source.getAttribute('alt') || source.getAttribute('aria-label') || '';
-    var icon = createIcon(iconName, {
-      className: classNameOf(source),
-      title: alt || source.getAttribute('title') || ''
-    });
+    var title = source.getAttribute('title') || alt || '';
+    return {
+      className: className,
+      title: title || undefined,
+      attrs: {
+        'data-vh-icon-processed': 'true'
+      }
+    };
+  }
 
+  function replaceElement(source, iconName) {
+    if (!source || source.dataset.vhIconProcessed === 'true' || source.hasAttribute('data-vh-icon-name')) return false;
+    if (!window.VHIcons.has(iconName)) return false;
+
+    var icon = window.VHIcons.create(iconName, presentationOptions(source));
     if (!icon) return false;
 
+    if (!source.getAttribute('alt') && !source.getAttribute('aria-label')) {
+      icon.setAttribute('aria-hidden', 'true');
+      icon.removeAttribute('role');
+      icon.removeAttribute('aria-label');
+    }
+
+    source.dataset.vhIconProcessed = 'true';
     source.replaceWith(icon);
     return true;
   }
 
   function replaceImage(image) {
-    if (!image || image.dataset.vhIconChecked === 'true') return false;
+    if (!image || image.dataset.vhIconProcessed === 'true') return false;
     var iconName = iconForImage(image);
-
     if (!iconName) {
-      image.dataset.vhIconChecked = 'true';
+      image.dataset.vhIconProcessed = 'true';
       return false;
     }
-
     return replaceElement(image, iconName);
   }
 
   function replacePlaceholders(scope) {
     var changed = false;
-
     scope.querySelectorAll('[data-vh-icon], i[data-lucide]').forEach(function (placeholder) {
       var iconName = placeholder.getAttribute('data-vh-icon') || placeholder.getAttribute('data-lucide') || '';
       if (replaceElement(placeholder, iconName)) changed = true;
     });
-
     return changed;
   }
 
-  function replaceSelectorMap(scope, map) {
+  function replaceMappedSvg(scope) {
     var changed = false;
-
-    map.forEach(function (entry) {
+    svgSelectorMap.forEach(function (entry) {
       scope.querySelectorAll(entry.selector).forEach(function (source) {
         if (replaceElement(source, entry.icon)) changed = true;
       });
     });
-
     return changed;
   }
 
   function decorateTextButtons(scope) {
     var changed = false;
-
     textButtonMap.forEach(function (entry) {
       scope.querySelectorAll(entry.selector).forEach(function (button) {
         if (button.dataset.vhIconButtonReady === 'true') return;
-
-        var icon = createIcon(entry.icon);
-        if (!icon) return;
-
         button.dataset.vhIconButtonReady = 'true';
+        var icon = window.VHIcons.create(entry.icon, {
+          className: 'vh-lucide-icon',
+          attrs: { 'data-vh-icon-processed': 'true' }
+        });
+        if (!icon) return;
         button.textContent = '';
         button.appendChild(icon);
         changed = true;
       });
     });
-
     return changed;
   }
 
@@ -234,8 +158,7 @@
       if (replaceImage(image)) changed = true;
     });
 
-    if (replaceSelectorMap(scope, svgSelectorMap)) changed = true;
-    if (replaceSelectorMap(scope, elementSelectorMap)) changed = true;
+    if (replaceMappedSvg(scope)) changed = true;
     if (decorateTextButtons(scope)) changed = true;
 
     if (changed) document.documentElement.classList.add('vh-icons-ready');
@@ -247,12 +170,10 @@
   var observer = new MutationObserver(function (mutations) {
     var hasNewElements = mutations.some(function (mutation) {
       return Array.prototype.some.call(mutation.addedNodes || [], function (node) {
-        return node && node.nodeType === 1 && !node.hasAttribute('data-vh-material-symbol');
+        return node && node.nodeType === 1 && !node.hasAttribute('data-vh-icon-name');
       });
     });
-
     if (!hasNewElements || scheduled) return;
-
     scheduled = true;
     requestAnimationFrame(function () {
       scheduled = false;
@@ -260,10 +181,10 @@
     });
   });
 
-  if (document.body) observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, { childList: true, subtree: true });
 
   window.VHIcon = function (name, options) {
-    return createIcon(name, options || {});
+    return window.VHIcons.create(name, options || {});
   };
   window.VHRefreshIcons = function () { render(document); };
 })();
