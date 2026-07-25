@@ -83,6 +83,6 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   }
 
   loadScript('/assets/vendor/vh-icons.bundle.js?v=20260716-1', 'data-vh-icon-bundle', function () {
-    if (window.VHIcons) loadScript('/assets/js/icons.js?v=20260716-2', 'data-vh-icons-runtime');
+    if (window.VHIcons) loadScript('/assets/js/icons.js?v=20260724-5', 'data-vh-icons-runtime');
   });
 })();
