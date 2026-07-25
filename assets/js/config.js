@@ -38,7 +38,7 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
 (function loadOpenRouteServiceAdapter() {
   var routeConfig = window.VLADISLOVEX_CONFIG && window.VLADISLOVEX_CONFIG.openRouteServiceRoute;
   if (!routeConfig || !routeConfig.enabled) return;
-  document.write('<script src="/assets/js/route-distance-openrouteservice.js?v=20260720-2"><\/script>');
+  document.write('<script src="/assets/js/route-distance-openrouteservice.js?v=20260720-2"></script>');
 })();
 
 (function loadVisualScripts() {
@@ -70,10 +70,8 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     document.head.appendChild(script);
   }
 
-  loadStyle('/assets/css/material-symbols.css?v=20260724-2', 'data-vh-material-symbols');
-
   if (document.body && document.body.id === 'top') {
-    loadStyle('/assets/css/home-ui-fixes.css?v=20260724-3', 'data-vh-home-ui-fixes');
+    loadStyle('/assets/css/home-ui-fixes.css?v=20260724-2', 'data-vh-home-ui-fixes');
     loadScript('/assets/js/home-ui-fixes.js?v=20260723-1', 'data-vh-home-ui-fixes');
     loadScript('/assets/js/home-copy.js?v=20260716-1', 'data-vh-home-copy');
     loadScript('/assets/js/mobile-cleanup.js?v=20260716-2', 'data-vh-mobile-cleanup');
@@ -84,5 +82,7 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     loadScript('/assets/js/mobile-offer-fixes.js?v=20260717-3', 'data-vh-mobile-offer-fixes');
   }
 
-  loadScript('/assets/js/icons.js?v=20260724-1', 'data-vh-icons-runtime');
+  loadScript('/assets/vendor/vh-icons.bundle.js?v=20260716-1', 'data-vh-icon-bundle', function () {
+    if (window.VHIcons) loadScript('/assets/js/icons.js?v=20260716-2', 'data-vh-icons-runtime');
+  });
 })();
