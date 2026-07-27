@@ -188,6 +188,9 @@
     var emailPayload = buildEmailPayload();
     send(emailPayload)
       .then(function () {
+        if (typeof window.ym === 'function') {
+          window.ym(110736648, 'reachGoal', 'lead_form_success');
+        }
         resetVisualState();
         setStatus('Готово! Заявка отправлена. Я скоро свяжусь с вами.', 'is-success');
         closeModalAfterSuccess();
