@@ -10,6 +10,9 @@
 
   if (!form || !status || !submit) return;
 
+  var subtitle = form.querySelector('.vh-contact-form__top p');
+  if (subtitle) subtitle.textContent = 'Заполните форму — заявка придёт мне в Telegram.';
+
   function clean(value) {
     return String(value || '').trim();
   }
