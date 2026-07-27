@@ -5,7 +5,7 @@ document.documentElement.setAttribute('data-vh-theme', 'dark');
 document.documentElement.style.colorScheme = 'dark';
 
 window.VLADISLOVEX_CONFIG = Object.freeze({
-  apiBaseUrl: 'https://vladhekolov-vocava-platform-0623.twc1.net',
+  apiBaseUrl: 'https://api.vocava.ru',
   artistSlug: 'vladislav-hekolov',
   leadEndpoint: '/api/public/leads',
   artistsEndpoint: '/api/public/artists',
