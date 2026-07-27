@@ -13,6 +13,11 @@
   var subtitle = form.querySelector('.vh-contact-form__top p');
   if (subtitle) subtitle.textContent = 'Заполните форму — заявка придёт мне в Telegram.';
 
+  var submitText = submit.querySelector('.vh-contact-submit__text');
+  var submitIcon = submit.querySelector('.vh-contact-submit__icon');
+  if (submitText) submitText.textContent = 'Отправить заявку';
+  if (submitIcon) submitIcon.style.display = 'none';
+
   function clean(value) {
     return String(value || '').trim();
   }
