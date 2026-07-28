@@ -96,31 +96,6 @@
   --vh-border-accent: color-mix(in srgb, var(--vh-accent) 34%, transparent);
 }
 
-html[data-vh-theme="light"] {
-  color-scheme: light;
-  --vh-page: #f5f0e8;
-  --vh-page-alt: #eee5d9;
-  --vh-surface: rgba(255, 255, 255, .90);
-  --vh-surface-solid: #fffdf9;
-  --vh-surface-elevated: #ffffff;
-  --vh-surface-soft: rgba(83, 56, 34, .045);
-  --vh-text: #2b2119;
-  --vh-text-strong: #1f1812;
-  --vh-text-muted: rgba(43, 33, 25, .68);
-  --vh-text-soft: rgba(43, 33, 25, .48);
-  --vh-border: rgba(87, 60, 38, .13);
-  --vh-border-strong: rgba(87, 60, 38, .22);
-  --vh-accent: #c7650d;
-  --vh-accent-light: #e18a36;
-  --vh-accent-soft: rgba(199, 101, 13, .10);
-  --vh-danger: #b94432;
-  --vh-success: #237d55;
-  --vh-shadow-sm: 0 8px 24px rgba(79, 48, 23, .08);
-  --vh-shadow-md: 0 18px 48px rgba(79, 48, 23, .12);
-  --vh-shadow-lg: 0 28px 80px rgba(79, 48, 23, .16);
-  --vh-border-accent: color-mix(in srgb, var(--vh-accent) 30%, transparent);
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 
 html,
