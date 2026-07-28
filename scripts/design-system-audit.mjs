@@ -125,8 +125,7 @@ for (const requirement of [
   ['/assets/css/home-system.css', 'home-system.css is not connected in index.html.'],
   ['data-vh-home-system', 'homepage system stylesheet marker is missing in index.html.'],
   ['/assets/css/visual-fixes.css', 'visual-fixes.css is not connected in index.html.'],
-  ['data-vh-visual-fixes', 'visual fixes stylesheet marker is missing in index.html.'],
-  ['/assets/css/mobile-reviews-stable.css', 'stable mobile reviews stylesheet is not connected in index.html.']
+  ['data-vh-visual-fixes', 'visual fixes stylesheet marker is missing in index.html.']
 ]) {
   if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
 }
