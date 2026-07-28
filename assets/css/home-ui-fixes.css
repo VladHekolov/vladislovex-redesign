@@ -1,64 +1,48 @@
-/* Homepage UI fixes — 2026-07-24. */
+/* Homepage UI fixes — 2026-07-28. */
 
-/* Draw one clean north-east arrow. The shaft and head are positioned separately,
-   so inherited transforms cannot turn the head into a square corner. */
+/* Keep only the underline in the desktop navigation: remove the extra dot. */
+.vh-premium-header__nav a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Use the supplied arrow_forward.svg on every contact action card. */
 .vh-contact-card__arrow {
   position: relative !important;
   display: block !important;
-  width: 24px !important;
-  height: 24px !important;
-  flex: 0 0 24px !important;
+  width: 28px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
   color: currentColor !important;
-  background: transparent !important;
+  background-color: transparent !important;
+  background-image: url("https://storage.yandexcloud.net/vocava/%D0%98%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8/arrow_forward.svg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  filter: none !important;
+  filter: brightness(0) invert(1) !important;
+  opacity: .72 !important;
   transform: none !important;
   overflow: visible !important;
 }
 
 .vh-contact-card__arrow::before,
 .vh-contact-card__arrow::after {
-  content: "" !important;
-  position: absolute !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  box-shadow: none !important;
-  filter: none !important;
-}
-
-.vh-contact-card__arrow::before {
-  right: 3px !important;
-  top: 4px !important;
-  left: auto !important;
-  width: 19px !important;
-  height: 2px !important;
-  background: currentColor !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  transform: rotate(-45deg) !important;
-  transform-origin: right center !important;
-}
-
-.vh-contact-card__arrow::after {
-  right: 3px !important;
-  top: 3px !important;
-  left: auto !important;
-  width: 10px !important;
-  height: 10px !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-top: 2px solid currentColor !important;
-  border-right: 2px solid currentColor !important;
-  border-radius: 0 !important;
-  transform: none !important;
+  content: none !important;
+  display: none !important;
 }
 
 /* Give the hero buttons a little more air above the benefits on desktop. */
 @media (min-width: 1025px) {
   .vh-hero-benefits {
     bottom: 10px !important;
+  }
+
+  /* Lower the review cards slightly so they do not crowd the description. */
+  .vh-reviews-header {
+    margin-bottom: 118px !important;
   }
 }
 
