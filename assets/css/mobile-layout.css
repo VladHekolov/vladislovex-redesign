@@ -88,11 +88,6 @@ body#top .vh-hero-offer__line {
     padding-right: var(--vh-home-gutter) !important;
   }
 
-  body#top .vh-video-card {
-    flex-basis: 90vw !important;
-    max-width: 360px !important;
-  }
-
   body#top .vh-hero {
     padding-bottom: 264px !important;
   }
@@ -171,10 +166,6 @@ body#top .vh-hero-offer__line {
     .vh-contacts-section__title
   ) {
     font-size: clamp(2.25rem, 10.5vw, 2.65rem) !important;
-  }
-
-  body#top .vh-video-card {
-    flex-basis: 92vw !important;
   }
 
   body#top .vh-benefit-card {

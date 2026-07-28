@@ -79,46 +79,6 @@
     margin-bottom: 18px !important;
   }
 
-  /* Compact video cards with an obvious next-card preview. */
-  body#top .vh-video-section,
-  body#top .vh-video-section__container {
-    overflow: visible !important;
-  }
-
-  body#top .vh-video-section__container {
-    padding-left: var(--vh-home-gutter) !important;
-    padding-right: 0 !important;
-  }
-
-  body#top .vh-video-section__header {
-    width: auto !important;
-    margin-left: 0 !important;
-    margin-right: var(--vh-home-gutter) !important;
-  }
-
-  body#top .vh-video-grid {
-    width: calc(100vw - var(--vh-home-gutter)) !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 2px var(--vh-home-gutter) 18px 0 !important;
-    gap: 12px !important;
-    overflow-x: auto !important;
-    overflow-y: visible !important;
-    scroll-padding-left: 0;
-    scroll-padding-right: var(--vh-home-gutter);
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-inline: contain;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  body#top .vh-video-card {
-    flex: 0 0 min(78vw, 320px) !important;
-    width: min(78vw, 320px) !important;
-    max-width: 320px !important;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-  }
-
   body#top .vh-video-card:hover,
   body#top .vh-video-card:active {
     transform: none !important;
@@ -126,12 +86,6 @@
 
   body#top .vh-video-card__preview {
     will-change: auto !important;
-  }
-
-  body#top #video .vh-mobile-carousel-dots {
-    display: flex !important;
-    justify-content: flex-start !important;
-    margin: 12px 0 0 !important;
   }
 
   body#top .vh-video-section__hint {
@@ -185,74 +139,6 @@
     transform: none !important;
   }
 
-  body#top .vh-benefits-lite-dots,
-  body#top .vh-reviews-lite-dots {
-    display: flex;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 8px;
-  }
-
-  body#top :is(.vh-benefits-lite-dots, .vh-reviews-lite-dots) button {
-    width: 7px;
-    height: 7px;
-    padding: 0;
-    border: 0;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .24);
-  }
-
-  body#top :is(.vh-benefits-lite-dots, .vh-reviews-lite-dots) button.is-active {
-    width: 22px;
-    background: var(--vh-accent);
-  }
-
-  /* Native mobile reviews slider: one compositor scroll every few seconds. */
-  body#top .vh-reviews-3d--lite {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    padding: 8px var(--vh-home-gutter) 18px !important;
-    perspective: none !important;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--vh-home-gutter);
-    overscroll-behavior-inline: contain;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
-  }
-
-  body#top .vh-reviews-mobile-track {
-    position: static !important;
-    width: max-content !important;
-    height: auto !important;
-    display: flex !important;
-    align-items: stretch !important;
-    gap: 14px !important;
-    transform: none !important;
-    transform-style: flat !important;
-  }
-
-  body#top .vh-reviews-mobile-track .vh-reviews-3d__item {
-    position: relative !important;
-    inset: auto !important;
-    flex: 0 0 min(76vw, 310px) !important;
-    width: min(76vw, 310px) !important;
-    height: auto !important;
-    aspect-ratio: 3 / 4 !important;
-    opacity: 1 !important;
-    transform: none !important;
-    scroll-snap-align: center;
-    border-radius: var(--vh-radius-lg) !important;
-  }
-
-  body#top .vh-reviews-mobile-track .vh-reviews-3d__item img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-  }
-
   /* Slider-only duration control. */
   body#top #vhCalcDurationText {
     pointer-events: none !important;
@@ -280,11 +166,6 @@
 }
 
 @media (max-width: 390px) {
-  body#top .vh-video-card {
-    flex-basis: min(77vw, 300px) !important;
-    width: min(77vw, 300px) !important;
-  }
-
   body#top .vh-benefits-track--lite .vh-benefit-card {
     flex-basis: min(74vw, 270px) !important;
     width: min(74vw, 270px) !important;
@@ -319,30 +200,6 @@
 }
 
 
-/* Current mobile benefit typography */
-@media (max-width: 860px) {
-  body#top .vh-benefits-track--lite .vh-benefit-card {
-    min-height: 176px !important;
-    padding-bottom: 16px !important;
-  }
-
-  body#top .vh-benefits-track--lite .vh-benefit-text p {
-    font-size: clamp(12.6px, 3.45vw, 14px) !important;
-    line-height: 1.42 !important;
-    max-width: 100% !important;
-    text-wrap: pretty;
-  }
-}
-
-@media (max-width: 390px) {
-  body#top .vh-benefits-track--lite .vh-benefit-card {
-    min-height: 174px !important;
-  }
-
-  body#top .vh-benefits-track--lite .vh-benefit-text p {
-    font-size: 12.8px !important;
-  }
-}
 
 
 /* Current mobile benefit typography */
