@@ -113,8 +113,8 @@
   }
 
   body#top #video :is(.vh-mobile-carousel-dots, .vh-video-section__hint) {
-    padding-inline: var(--vh-carousel-edge) !important;
-    box-sizing: border-box !important;
+    padding-inline: var(--vh-carousel-edge);
+    box-sizing: border-box;
   }
 
   /* Formats: same full-width swipe area as video, without a boxed inner grid. */
@@ -134,8 +134,8 @@
   }
 
   body#top #formats > .vh-mobile-carousel-dots {
-    padding-inline: var(--vh-carousel-edge) !important;
-    box-sizing: border-box !important;
+    padding-inline: var(--vh-carousel-edge);
+    box-sizing: border-box;
   }
 
   body#top :is(
@@ -143,9 +143,9 @@
     .vh-reviews-stats,
     .vh-reviews-avito-cta
   ) {
-    margin-left: var(--vh-carousel-edge) !important;
-    margin-right: var(--vh-carousel-edge) !important;
-    box-sizing: border-box !important;
+    margin-left: var(--vh-carousel-edge);
+    margin-right: var(--vh-carousel-edge);
+    box-sizing: border-box;
   }
 
   body#top .vh-reviews-stats {
@@ -330,17 +330,17 @@
     .vh-benefits-lite-dots,
     .vh-reviews-lite-dots
   ) {
-    position: static !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    width: 100% !important;
-    min-height: 24px !important;
-    margin: 10px 0 18px !important;
-    padding: 0 var(--vh-carousel-edge) !important;
-    box-sizing: border-box !important;
-    transform: none !important;
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 24px;
+    margin: 10px 0 18px;
+    padding: 0 var(--vh-carousel-edge);
+    box-sizing: border-box;
+    transform: none;
   }
 
   body#top :is(
@@ -348,19 +348,19 @@
     .vh-benefits-lite-dots,
     .vh-reviews-lite-dots
   ) button {
-    flex: 0 0 auto !important;
-    width: 8px !important;
-    height: 8px !important;
-    min-width: 8px !important;
-    min-height: 8px !important;
-    padding: 0 !important;
-    border: 0 !important;
-    border-radius: 999px !important;
-    background: rgba(255, 255, 255, .25) !important;
-    box-shadow: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .25);
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
   body#top :is(
@@ -368,19 +368,19 @@
     .vh-benefits-lite-dots,
     .vh-reviews-lite-dots
   ) button.is-active {
-    width: 26px !important;
-    background: var(--vh-accent) !important;
+    width: 26px;
+    background: var(--vh-accent);
   }
 
   body#top .vh-reviews-lite-dots {
-    margin-top: 8px !important;
-    margin-bottom: 24px !important;
+    margin-top: 8px;
+    margin-bottom: 24px;
   }
 
   body#top .vh-reviews-stats {
-    position: relative !important;
-    z-index: 1 !important;
-    margin-top: 0 !important;
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
   }
 }
 
