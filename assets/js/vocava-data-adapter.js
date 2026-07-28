@@ -1,7 +1,6 @@
 /*
  * VLADISLOVEX public data adapter.
  * Primary source: VOCAVA public API backed by PostgreSQL.
- * Fallback source: the legacy Google Apps Script / JSON feeds already configured in the page.
  */
 (function () {
   'use strict';
@@ -13,7 +12,6 @@
   var cacheTtlMs = Math.max(0, Number(config.publicDataCacheTtlMs || 30000));
   var requestTimeoutMs = Math.max(1000, Number(config.publicDataRequestTimeoutMs || 5500));
   var nativeFetch = window.fetch ? window.fetch.bind(window) : null;
-  var nativeAppendChild = Node.prototype.appendChild;
 
   function joinUrl(base, path) {
     if (/^https?:\/\//i.test(path)) return path;
@@ -206,24 +204,10 @@
     });
   }
 
-  function fetchFirst(urls) {
-    var index = 0;
-    function next(lastError) {
-      if (index >= urls.length) return Promise.reject(lastError || new Error('VOCAVA API unavailable'));
-      var url = urls[index++];
-      return fetchJson(url).catch(next);
-    }
-    return next();
-  }
-
   function loadArtistsFromApi() {
     var cached = readCache('artists', '', false);
     if (cached) return Promise.resolve(cached);
-    var urls = [
-      joinUrl(apiBaseUrl, artistsEndpoint),
-      joinUrl(apiBaseUrl, '/api/public/musicians')
-    ];
-    return fetchFirst(urls).then(function (payload) {
+    return fetchJson(joinUrl(apiBaseUrl, artistsEndpoint)).then(function (payload) {
       var normalized = normalizeArtistsPayload(payload);
       writeCache('artists', '', normalized);
       return normalized;
@@ -236,18 +220,13 @@
 
   function repertoireUrls(artistId) {
     var encoded = encodeURIComponent(String(artistId || '').trim());
-    var templated = repertoireEndpointTemplate.replace('{artistId}', encoded);
-    return [
-      joinUrl(apiBaseUrl, templated),
-      joinUrl(apiBaseUrl, '/api/public/repertoire?artist_id=' + encoded),
-      joinUrl(apiBaseUrl, '/api/public/repertoire/' + encoded)
-    ];
+    return joinUrl(apiBaseUrl, repertoireEndpointTemplate.replace('{artistId}', encoded));
   }
 
   function loadRepertoireFromApi(artistId) {
     var cached = readCache('repertoire', artistId, false);
     if (cached) return Promise.resolve(cached);
-    return fetchFirst(repertoireUrls(artistId)).then(function (payload) {
+    return fetchJson(repertoireUrls(artistId)).then(function (payload) {
       var normalized = normalizeRepertoirePayload(payload, artistId);
       writeCache('repertoire', artistId, normalized);
       return normalized;
@@ -257,60 +236,6 @@
       throw error;
     });
   }
-
-  function jsonResponse(value) {
-    return new Response(JSON.stringify(value), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Cache-Control': 'no-store'
-      }
-    });
-  }
-
-  if (nativeFetch) {
-    window.fetch = function (input, init) {
-      var url = typeof input === 'string' ? input : (input && input.url) || '';
-      var cleanUrl = String(url).split('?')[0].replace(/\/$/, '');
-      var primaryArtistsUrl = joinUrl(apiBaseUrl, artistsEndpoint).split('?')[0].replace(/\/$/, '');
-      if (cleanUrl === primaryArtistsUrl) {
-        return loadArtistsFromApi().then(jsonResponse);
-      }
-      return nativeFetch(input, init);
-    };
-  }
-
-  Node.prototype.appendChild = function (node) {
-    var parent = this;
-    if (!node || node.tagName !== 'SCRIPT' || !node.src) {
-      return nativeAppendChild.call(parent, node);
-    }
-
-    var callbackName = '';
-    var action = '';
-    var artistId = '';
-    try {
-      var src = new URL(node.src, document.baseURI);
-      callbackName = src.searchParams.get('callback') || '';
-      action = src.searchParams.get('action') || '';
-      artistId = src.searchParams.get('artist_id') || src.searchParams.get('artistId') || '';
-    } catch (error) {
-      return nativeAppendChild.call(parent, node);
-    }
-
-    if (!callbackName || (action !== 'publicList' && action !== 'publicRepertoire')) {
-      return nativeAppendChild.call(parent, node);
-    }
-
-    var loader = action === 'publicList' ? loadArtistsFromApi() : loadRepertoireFromApi(artistId);
-    loader.then(function (payload) {
-      if (typeof window[callbackName] === 'function') window[callbackName](payload);
-    }).catch(function () {
-      nativeAppendChild.call(parent, node);
-    });
-
-    return node;
-  };
 
   window.VocavaPublicData = Object.freeze({
     loadArtists: loadArtistsFromApi,

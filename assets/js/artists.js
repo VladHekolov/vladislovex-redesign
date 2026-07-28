@@ -2,8 +2,6 @@
   var root = document.getElementById('artists');
   if (!root) return;
 
-  var apiUrl = (root.getAttribute('data-api-url') || '').trim().replace(/\/dev(\?|$)/, '/exec$1');
-  var jsonUrl = (root.getAttribute('data-json-url') || '').trim();
   var repertoireBaseUrl = (root.getAttribute('data-repertoire-url') || 'https://vladislovex.ru/repertoire').trim();
 
   var grid = document.getElementById('vhArtistsGrid') || root.querySelector('.vh-artists-page__grid');
@@ -60,6 +58,7 @@
   var currentPhotoIndex = 0;
   var openLayers = 0;
   var pendingOpenArtistId = '';
+  var isPdfGenerating = false;
 
   var ROLE_ORDER = ['guitar-vocal', 'piano-vocal', 'vocalist', 'guitarist', 'cajon'];
   var ROLE_LABELS = {
@@ -476,37 +475,6 @@
     if (n1 === 1) return 'музыкант';
     if (n1 >= 2 && n1 <= 4) return 'музыканта';
     return 'музыкантов';
-  }
-
-  function jsonp(action) {
-    return new Promise(function (resolve, reject) {
-      var callback = 'vhArtistsCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-      var script = document.createElement('script');
-      var timeout = setTimeout(function () {
-        cleanup();
-        reject(new Error('таймаут загрузки'));
-      }, 15000);
-
-      function cleanup() {
-        clearTimeout(timeout);
-        delete window[callback];
-        if (script.parentNode) script.parentNode.removeChild(script);
-      }
-
-      window[callback] = function (data) {
-        cleanup();
-        resolve(data);
-      };
-
-      script.onerror = function () {
-        cleanup();
-        reject(new Error('Apps Script недоступен'));
-      };
-
-      var sep = apiUrl.indexOf('?') === -1 ? '?' : '&';
-      script.src = apiUrl + sep + 'action=' + encodeURIComponent(action) + '&callback=' + encodeURIComponent(callback) + '&_=' + Date.now();
-      document.head.appendChild(script);
-    });
   }
 
   function getSavedFavorites() {
@@ -1510,6 +1478,8 @@
   }
 
   async function generatePdfReport() {
+    if (isPdfGenerating) return;
+
     var artists = getFavoriteArtists();
 
     if (!artists.length) {
@@ -1520,6 +1490,13 @@
     if (!window.html2canvas || !window.jspdf || !window.jspdf.jsPDF) {
       alert('PDF-модуль ещё загружается. Попробуйте через пару секунд.');
       return;
+    }
+
+    isPdfGenerating = true;
+    var originalPdfText = favoritesPdf ? favoritesPdf.textContent : '';
+    if (favoritesPdf) {
+      favoritesPdf.disabled = true;
+      favoritesPdf.textContent = 'Формирую PDF...';
     }
 
     var stage = document.getElementById('vhPdfStage');
@@ -1867,6 +1844,12 @@
       console.error('Vocava PDF error:', error);
       stage.innerHTML = '';
       alert('Не удалось сформировать PDF. Попробуйте ещё раз.');
+    } finally {
+      isPdfGenerating = false;
+      if (favoritesPdf) {
+        favoritesPdf.disabled = false;
+        favoritesPdf.textContent = originalPdfText || 'Скачать PDF';
+      }
     }
   }
 
@@ -2170,34 +2153,14 @@
     try {
       showState('Загрузка музыкантов...', false);
 
-      var rows = null;
-
-      if (jsonUrl && !/PASTE_JSON_URL/i.test(jsonUrl)) {
-        try {
-          var url = jsonUrl + (jsonUrl.indexOf('?') === -1 ? '?' : '&') + '_=' + Date.now();
-          var res = await fetch(url, { method: 'GET', cache: 'no-store' });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          var json = await res.json();
-          if (!json || !json.ok || !Array.isArray(json.rows)) throw new Error('Некорректный JSON');
-          rows = json.rows;
-        } catch (jsonError) {
-          console.warn('JSON-база не загрузилась, пробую Apps Script:', jsonError);
-        }
+      if (!window.VocavaPublicData || typeof window.VocavaPublicData.loadArtists !== 'function') {
+        throw new Error('Модуль данных VOCAVA не загрузился. Обновите страницу.');
       }
 
-      if (!rows) {
-        if (!apiUrl || /PASTE_APPS_SCRIPT/i.test(apiUrl)) {
-          throw new Error('Вставьте Web App URL или JSON URL в секцию artists.');
-        }
+      var data = await window.VocavaPublicData.loadArtists();
+      if (!data || !data.ok) throw new Error((data && data.error) || 'ошибка ответа');
 
-        var data = await jsonp('publicList');
-
-        if (!data || !data.ok) {
-          throw new Error((data && data.error) || 'ошибка ответа');
-        }
-
-        rows = data.rows || [];
-      }
+      var rows = data.rows || [];
 
       allArtists = dedupeArtists((rows || [])
         .map(cleanArtist)

@@ -1,5 +1,4 @@
-/* Concise homepage copy.
-   Keeps layout text in one place while the legacy HTML is gradually simplified. */
+/* Concise homepage copy kept in one place. */
 (function applyHomepageCopy() {
   'use strict';
 
