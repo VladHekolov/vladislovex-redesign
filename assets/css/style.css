@@ -8849,32 +8849,6 @@ body,
 }
 
 @media (max-width: 860px) {
-  /* More portrait-shaped, slightly smaller video cards. A third of the next card remains visible. */
-  .vh-video-section__container {
-    padding-left: 14px !important;
-    padding-right: 0 !important;
-    overflow: visible !important;
-  }
-
-  .vh-video-grid {
-    gap: 12px !important;
-    padding: 8px 14px 14px 0 !important;
-    scroll-padding: 0 14px 0 0 !important;
-  }
-
-  .vh-video-card {
-    flex: 0 0 68vw !important;
-    width: 68vw !important;
-    max-width: 286px !important;
-    transform: none !important;
-  }
-
-  .vh-video-card:hover,
-  .vh-video-card.is-previewing,
-  .vh-video-card:focus-visible {
-    transform: none !important;
-  }
-
   .vh-video-card__media {
     aspect-ratio: 9 / 15.4 !important;
   }
@@ -8888,29 +8862,6 @@ body,
     transform: scale(1.025) !important;
   }
 
-  /* No artificial blank tail after the last format card. */
-  .vh-formats-section {
-    overflow: visible !important;
-  }
-
-  .vh-formats-container {
-    gap: 12px !important;
-    padding: 8px 14px 14px 0 !important;
-    scroll-padding: 0 14px 0 0 !important;
-  }
-
-  .vh-format-card {
-    flex: 0 0 74vw !important;
-    width: 74vw !important;
-    max-width: 310px !important;
-  }
-
-  .vh-video-grid::after,
-  .vh-formats-container::after {
-    content: none !important;
-    display: none !important;
-  }
-
   .vh-global-background__note {
     opacity: .026;
   }
@@ -8921,20 +8872,6 @@ body,
   .vh-global-background__note--four { right: 2%; top: 66%; }
   .vh-global-background__note--five { left: -2%; top: 80%; }
   .vh-global-background__note--six { right: 3%; top: 92%; }
-}
-
-@media (max-width: 390px) {
-  .vh-video-card {
-    flex-basis: 70vw !important;
-    width: 70vw !important;
-    max-width: 272px !important;
-  }
-
-  .vh-format-card {
-    flex-basis: 76vw !important;
-    width: 76vw !important;
-    max-width: 296px !important;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9329,15 +9266,11 @@ html[data-vh-theme="light"] .vh-contact-form {
 
 /* Mobile: preserve functions, remove continuous decorative animation and heavy filters. */
 @media (max-width: 860px) {
-  .vh-global-background__note:nth-of-type(even) { display: none !important; }
-
   .vh-premium-header__bar,
   .vh-premium-mobile-dropdown,
   .vh-social-popup__bubble,
   .vh-contact-card,
-  .vh-booking__steps article,
-  .vh-price-calc__panel,
-  .vh-price-calc__result-card {
+  .vh-booking__steps article {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
@@ -9352,15 +9285,9 @@ html[data-vh-theme="light"] .vh-contact-form {
   .vh-reviews-title,
   .vh-faq__title,
   .vh-contacts-section__title,
-  .vh-hero__glow,
-  .vh-mini-video__wave,
-  .vh-mini-video__ring,
-  .vh-social-popup__pulse {
+  .vh-hero__glow {
     animation: none !important;
   }
-
-  .vh-social-popup__pulse { display: none !important; }
-  .vh-mini-video__wave, .vh-mini-video__ring { display: none !important; }
 
   .vh-action-button,
   .vh-contact-card,
@@ -9375,19 +9302,6 @@ html[data-vh-theme="light"] .vh-contact-form {
   .vh-contact-card:focus-visible {
     transform: none !important;
   }
-
-  .vh-price-calc__range-scale--six {
-    height: 34px;
-    font-size: 10px !important;
-  }
-
-  .vh-price-calc__range-scale--six span:first-child { max-width: 58px; white-space: normal; line-height: 1.15; }
-  .vh-price-calc__range-scale--six span:last-child { max-width: 48px; white-space: normal; line-height: 1.15; }
-}
-
-@media (max-width: 390px) {
-  .vh-price-calc__range-shell { --vh-range-thumb-half: 11px; }
-  .vh-price-calc__range-scale--six { font-size: 9px !important; }
 }
 
 /* Keep the photographic hero intentionally dark and high-contrast in both themes. */

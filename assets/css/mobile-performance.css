@@ -177,6 +177,13 @@
     transform: translateX(2px);
   }
 
+  body#top .vh-price-calc__range-scale--six {
+    height: 34px;
+    font-size: 10px !important;
+  }
+
+  body#top .vh-price-calc__range-scale--six span:first-child { max-width: 58px; white-space: normal; line-height: 1.15; }
+  body#top .vh-price-calc__range-scale--six span:last-child { max-width: 48px; white-space: normal; line-height: 1.15; }
 }
 
 @media (max-width: 390px) {
@@ -190,4 +197,7 @@
   body#top .vh-benefits-track--lite .vh-benefit-text p {
     font-size: 12.8px !important;
   }
+
+  body#top .vh-price-calc__range-shell { --vh-range-thumb-half: 11px; }
+  body#top .vh-price-calc__range-scale--six { font-size: 9px !important; }
 }
