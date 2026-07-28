@@ -209,28 +209,26 @@
     });
   }
 
-  function loadingStatePhrases() {
-    return [
-      'Собираю музыкальное меню',
-      'Ищу песни для вашего праздника',
-      'Открываю интерактивный репертуар',
-      'Подбираю музыку под настроение',
-      'Готовлю список любимых треков',
-      'Настраиваю поиск по песням',
-      'Проверяю исполнителей и названия',
-      'Собираю репертуар мечты',
-      'Скоро здесь появятся песни',
-      'Музыка уже близко',
-      'Навожу порядок в песнях',
-      'Готовлю удобный список',
-      'Подгружаю песни для выбора',
-      'Почти готово, осталось чуть-чуть',
-      'Собираю атмосферу вечера'
-    ];
-  }
+  var loadingStatePhrases = [
+    'Собираю музыкальное меню',
+    'Ищу песни для вашего праздника',
+    'Открываю интерактивный репертуар',
+    'Подбираю музыку под настроение',
+    'Готовлю список любимых треков',
+    'Настраиваю поиск по песням',
+    'Проверяю исполнителей и названия',
+    'Собираю репертуар мечты',
+    'Скоро здесь появятся песни',
+    'Музыка уже близко',
+    'Навожу порядок в песнях',
+    'Готовлю удобный список',
+    'Подгружаю песни для выбора',
+    'Почти готово, осталось чуть-чуть',
+    'Собираю атмосферу вечера'
+  ];
 
   function nextLoadingStatePhrase() {
-    var phrases = loadingStatePhrases();
+    var phrases = loadingStatePhrases;
     if (!phrases.length) return 'Загрузка репертуара...';
     if (phrases.length === 1) return phrases[0];
     var next = statePhraseIndex;
@@ -743,16 +741,10 @@
     sortButton.setAttribute('aria-expanded', sortWrap.classList.contains('is-open') ? 'true' : 'false');
 
     var likedCount = songsByChoice('like').length;
-    if (!likedCount && favoritesOnly) {
-      favoritesOnly = false;
-    }
     favoritesToggle.hidden = !likedCount;
     favoritesToggle.classList.toggle('is-active', favoritesOnly);
 
     var stopCount = songsByChoice('stop').length;
-    if (!stopCount && stopOnly) {
-      stopOnly = false;
-    }
     stopToggle.hidden = !stopCount;
     stopToggle.classList.toggle('is-active', stopOnly);
   }
@@ -791,10 +783,6 @@
 
   function updateSummary(visibleCount) {
     shownCount.innerHTML = '<b>' + (visibleCount == null ? data.songs.length : visibleCount) + '</b> показано';
-  }
-
-  function applySearch() {
-    renderSongs();
   }
 
   function songsByChoice(choice) {
@@ -842,9 +830,8 @@
     }, 680);
   }
 
-  function shouldRenderAfterChoice(previousChoice, nextChoice) {
-    if (favoritesOnly || stopOnly) return true;
-    return false;
+  function shouldRenderAfterChoice() {
+    return favoritesOnly || stopOnly;
   }
 
 
@@ -1663,7 +1650,7 @@
     saveStoredChoices();
     hapticFeedback(choice);
 
-    if (shouldRenderAfterChoice(currentChoice, choice)) {
+    if (shouldRenderAfterChoice()) {
       renderSongs();
       return;
     }
@@ -1686,7 +1673,7 @@
     });
   });
 
-  search.addEventListener('input', applySearch);
+  search.addEventListener('input', renderSongs);
   infoButton.addEventListener('click', openGuide);
   guide.addEventListener('click', function (event) {
     if (event.target.closest('[data-guide-close]')) closeGuide();
