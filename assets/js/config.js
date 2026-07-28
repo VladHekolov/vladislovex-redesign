@@ -7,50 +7,84 @@ document.documentElement.style.colorScheme = 'dark';
 (function applyBrandAssets() {
   'use strict';
 
-  var logoUrl = '/assets/images/logo-vlad.svg?v=20260728-1';
-  var faviconUrl = '/assets/images/favicon.svg?v=20260728-1';
+  var logoUrl = '/assets/images/logo-vlad.svg?v=20260728-2';
+  var faviconUrl = '/favicon.svg?v=20260728-2';
+  var brandSelectors = [
+    '.vh-premium-logo__image',
+    '.vh-site-footer__brand img',
+    '.vh-subpage-brand img'
+  ].join(',');
 
-  function ensureLink(rel, href, attrs) {
-    var selector = 'link[rel="' + rel + '"]';
-    var link = document.head.querySelector(selector);
-    if (!link) {
-      link = document.createElement('link');
-      link.rel = rel;
-      document.head.appendChild(link);
-    }
-    link.href = href;
-    Object.keys(attrs || {}).forEach(function (name) {
-      link.setAttribute(name, attrs[name]);
+  function setFavicon() {
+    document.head.querySelectorAll('link[rel~="icon"]').forEach(function (link) {
+      link.remove();
     });
+
+    var icon = document.createElement('link');
+    icon.rel = 'icon';
+    icon.type = 'image/svg+xml';
+    icon.sizes = 'any';
+    icon.href = faviconUrl;
+    document.head.appendChild(icon);
+
+    var shortcut = document.createElement('link');
+    shortcut.rel = 'shortcut icon';
+    shortcut.type = 'image/svg+xml';
+    shortcut.href = faviconUrl;
+    document.head.appendChild(shortcut);
+
+    var mask = document.head.querySelector('link[rel="mask-icon"]');
+    if (!mask) {
+      mask = document.createElement('link');
+      mask.rel = 'mask-icon';
+      document.head.appendChild(mask);
+    }
+    mask.href = logoUrl;
+    mask.setAttribute('color', '#f68a1f');
   }
 
-  ensureLink('icon', faviconUrl, { type: 'image/svg+xml', sizes: 'any' });
-  ensureLink('shortcut icon', faviconUrl, { type: 'image/svg+xml' });
-  ensureLink('mask-icon', logoUrl, { color: '#f68a1f' });
-
   function isLegacyLogo(src) {
-    var normalized = String(src || '').toLowerCase();
-    return normalized.indexOf('%d0%bb%d0%be%d0%b3%d0%be.png') !== -1 ||
-      normalized.indexOf('/лого.png') !== -1;
+    var raw = String(src || '');
+    var normalized = raw.toLowerCase();
+    var decoded = normalized;
+
+    try {
+      decoded = decodeURIComponent(raw).toLowerCase();
+    } catch (error) {}
+
+    return decoded.indexOf('/лого.png') !== -1 ||
+      normalized.indexOf('%d0%9b%d0%be%d0%b3%d0%be.png') !== -1 ||
+      normalized.indexOf('%d0%bb%d0%be%d0%b3%d0%be.png') !== -1;
+  }
+
+  function useNewLogo(image) {
+    if (!image) return;
+    image.setAttribute('src', logoUrl);
+    image.removeAttribute('srcset');
   }
 
   function replaceBrandLogos(scope) {
-    (scope || document).querySelectorAll('img').forEach(function (image) {
-      if (!isLegacyLogo(image.getAttribute('src'))) return;
-      image.src = logoUrl;
-      image.removeAttribute('srcset');
+    var root = scope || document;
+
+    root.querySelectorAll(brandSelectors).forEach(useNewLogo);
+
+    root.querySelectorAll('img').forEach(function (image) {
+      if (isLegacyLogo(image.getAttribute('src'))) useNewLogo(image);
     });
   }
 
+  setFavicon();
+  replaceBrandLogos(document);
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      setFavicon();
       replaceBrandLogos(document);
     }, { once: true });
-  } else {
-    replaceBrandLogos(document);
   }
 
   window.addEventListener('pageshow', function () {
+    setFavicon();
     replaceBrandLogos(document);
   });
 })();
