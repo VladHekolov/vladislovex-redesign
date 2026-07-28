@@ -5,7 +5,6 @@
   if (!root || root.dataset.vrReady === '1') return false;
   root.dataset.vrReady = '1';
 
-  var apiUrl = (root.getAttribute('data-api-url') || '').trim().replace(/\/dev(\?|$)/, '/exec$1');
   var artistId = (root.getAttribute('data-artist-id') || '').trim() || new URLSearchParams(location.search).get('artist') || '';
   var artistNamePreset = (root.getAttribute('data-artist-name') || new URLSearchParams(location.search).get('artist_name') || '').trim();
   var artistName = document.getElementById('vrArtistName');
@@ -207,42 +206,6 @@
   function esc(value) {
     return String(value || '').replace(/[&<>"']/g, function (char) {
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char];
-    });
-  }
-
-  function jsonp(action, params) {
-    params = params || {};
-    return new Promise(function (resolve, reject) {
-      var callback = 'vrCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-      var script = document.createElement('script');
-      var timeout = setTimeout(function () {
-        cleanup();
-        reject(new Error('таймаут загрузки'));
-      }, 15000);
-
-      function cleanup() {
-        clearTimeout(timeout);
-        delete window[callback];
-        if (script.parentNode) script.parentNode.removeChild(script);
-      }
-
-      window[callback] = function (response) {
-        cleanup();
-        resolve(response);
-      };
-
-      script.onerror = function () {
-        cleanup();
-        reject(new Error('Apps Script недоступен'));
-      };
-
-      var query = new URLSearchParams(Object.assign({}, params, {
-        action: action,
-        callback: callback,
-        _: Date.now()
-      }));
-      script.src = apiUrl + (apiUrl.indexOf('?') === -1 ? '?' : '&') + query.toString();
-      document.head.appendChild(script);
     });
   }
 
@@ -1621,7 +1584,7 @@
 
     var listResponse = null;
     try {
-      listResponse = await jsonp('publicList');
+      listResponse = await window.VocavaPublicData.loadArtists();
     } catch (error) {
       if (required) throw error;
       return false;
@@ -1657,8 +1620,8 @@
   }
 
   async function load() {
-    if (!apiUrl || /PASTE_APPS_SCRIPT/i.test(apiUrl)) {
-      setState('Вставьте Web App URL в data-api-url.', true);
+    if (!window.VocavaPublicData || typeof window.VocavaPublicData.loadArtists !== 'function' || typeof window.VocavaPublicData.loadRepertoire !== 'function') {
+      setState('Модуль данных VOCAVA не загрузился. Обновите страницу.', true);
       return;
     }
     try {
@@ -1672,7 +1635,7 @@
       }
 
       setState('Загрузка репертуара...', false, true);
-      var response = await jsonp('publicRepertoire', { artist_id: artistId });
+      var response = await window.VocavaPublicData.loadRepertoire(artistId);
       if (!response || !response.ok) throw new Error((response && response.error) || 'ошибка ответа');
       data = response.data || { artist: {}, songs: [] };
       choices = loadStoredChoices();
