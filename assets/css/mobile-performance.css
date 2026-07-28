@@ -177,17 +177,6 @@
     transform: translateX(2px);
   }
 
-  /* Local icon bundle arrow, never an emoji glyph. */
-  body#top .vh-contact-card__arrow::before,
-  body#top .vh-contact-card__arrow::after {
-    display: none !important;
-  }
-
-  body#top .vh-contact-card__arrow .vh-icon {
-    width: 20px !important;
-    height: 20px !important;
-    stroke-width: 2 !important;
-  }
 }
 
 @media (max-width: 390px) {
