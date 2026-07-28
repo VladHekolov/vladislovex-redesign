@@ -12,11 +12,11 @@
     .vh-formats-header,
     .vh-reviews-header
   ) {
-    width: 100% !important;
-    max-width: none !important;
-    margin-inline: 0 !important;
-    padding-inline: var(--vh-carousel-edge) !important;
-    box-sizing: border-box !important;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: var(--vh-carousel-edge);
+    box-sizing: border-box;
   }
 
   /* Carousels own the full viewport width. Parent sections must not clip them. */
@@ -27,7 +27,7 @@
     .vh-reviews-section,
     .vh-reviews-inner
   ) {
-    overflow: visible !important;
+    overflow: visible;
   }
 
   body#top :is(
@@ -35,17 +35,17 @@
     .vh-formats-section,
     .vh-reviews-section
   ) {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   body#top .vh-video-section__container,
   body#top .vh-reviews-inner {
-    width: 100% !important;
-    max-width: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-inline: 0 !important;
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin-inline: 0;
   }
 
   body#top :is(
@@ -53,21 +53,21 @@
     .vh-formats-container,
     .vh-reviews-3d--lite
   ) {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 8px var(--vh-carousel-edge) 18px !important;
-    gap: var(--vh-carousel-gap) !important;
-    box-sizing: border-box !important;
-    overflow-x: auto !important;
-    overflow-y: visible !important;
-    scroll-padding-inline: var(--vh-carousel-edge) !important;
-    scroll-snap-type: x mandatory !important;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 8px var(--vh-carousel-edge) 18px;
+    gap: var(--vh-carousel-gap);
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-padding-inline: var(--vh-carousel-edge);
+    scroll-snap-type: x mandatory;
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
-    -webkit-mask-image: none !important;
-    mask-image: none !important;
-    clip-path: none !important;
+    -webkit-mask-image: none;
+    mask-image: none;
+    clip-path: none;
     scrollbar-width: none;
   }
 
@@ -89,8 +89,8 @@
     .vh-formats-container,
     .vh-reviews-3d--lite
   )::after {
-    display: none !important;
-    content: none !important;
+    display: none;
+    content: none;
   }
 
   /* Video: compact cards, no inner clipping frame. */
@@ -149,8 +149,8 @@
   }
 
   body#top .vh-reviews-stats {
-    width: auto !important;
-    min-width: 0 !important;
+    width: auto;
+    min-width: 0;
   }
 
   /* Lightweight mobile palette: flat dark sections instead of stacked orange blur layers. */
@@ -162,7 +162,7 @@
     .vh-faq,
     .vh-contacts-section
   ) {
-    background: #050505 !important;
+    background: #050505;
   }
 
   body#top :is(
@@ -170,7 +170,7 @@
     .vh-reviews-bg,
     .vh-reviews-overlay
   ) {
-    display: none !important;
+    display: none;
   }
 
   body#top :is(
@@ -181,9 +181,9 @@
     .vh-faq__card,
     .vh-contact-card
   ) {
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, .22) !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .22);
   }
 
   body#top :is(
@@ -200,7 +200,7 @@
     .vh-faq__card,
     .vh-contact-card
   )::after {
-    animation: none !important;
+    animation: none;
   }
 
   /* Stop decorative motion that keeps repainting while the user scrolls. */
@@ -210,12 +210,12 @@
   body#top .vh-mini-video__wave,
   body#top .vh-mini-video__ring,
   body#top .vh-social-popup__pulse {
-    animation: none !important;
+    animation: none;
   }
 
   body#top .vh-hero-offer.is-changing {
-    filter: none !important;
-    transform: none !important;
+    filter: none;
+    transform: none;
   }
 }
 

@@ -1,16 +1,16 @@
 /* Commercial-offer PDF layout — consolidated, single-source styles. */
 
 .vh-offer-page {
-  font-family: "Montserrat", Arial, sans-serif !important;
+  font-family: "Montserrat", Arial, sans-serif;
   letter-spacing: .01em;
 }
 
 /* Header: two stable columns, with the title and personal contacts kept inside A4. */
 .vh-offer-header {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 250px !important;
-  gap: 24px !important;
-  align-items: start !important;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 24px;
+  align-items: start;
 }
 
 .vh-offer-header > div:first-child {
@@ -18,77 +18,77 @@
 }
 
 .vh-offer-title {
-  max-width: 410px !important;
-  margin: 0 !important;
-  font-size: 42px !important;
-  line-height: .98 !important;
-  font-weight: 900 !important;
-  letter-spacing: .03em !important;
+  max-width: 410px;
+  margin: 0;
+  font-size: 42px;
+  line-height: .98;
+  font-weight: 900;
+  letter-spacing: .03em;
   text-transform: uppercase;
-  white-space: normal !important;
-  overflow-wrap: normal !important;
-  word-break: normal !important;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .vh-offer-person {
-  display: block !important;
+  display: block;
   width: 250px;
   min-width: 0;
   justify-self: end;
-  text-align: left !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+  text-align: left;
+  visibility: visible;
+  opacity: 1;
 }
 
 .vh-offer-name {
-  font-size: 24px !important;
-  line-height: 1.08 !important;
-  font-weight: 700 !important;
-  letter-spacing: .025em !important;
+  font-size: 24px;
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: .025em;
 }
 
 .vh-offer-role {
-  margin-top: 6px !important;
-  font-size: 14px !important;
-  line-height: 1.25 !important;
-  font-weight: 500 !important;
-  letter-spacing: .035em !important;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: .035em;
 }
 
 .vh-offer-contacts {
-  display: grid !important;
-  gap: 8px !important;
-  margin-top: 18px !important;
-  font-size: 12px !important;
-  line-height: 1.25 !important;
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.25;
 }
 
 .vh-offer-contact-row {
-  display: grid !important;
-  grid-template-columns: 64px minmax(0, 1fr) !important;
-  gap: 8px !important;
-  align-items: center !important;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
   white-space: nowrap;
 }
 
 .vh-offer-contact-label {
-  min-width: 0 !important;
-  color: #d88713 !important;
-  font-weight: 800 !important;
+  min-width: 0;
+  color: #d88713;
+  font-weight: 800;
 }
 
 .vh-offer-subtitle {
   max-width: 410px;
-  margin-top: 9px !important;
-  color: rgba(39, 35, 31, .7) !important;
-  font-size: 12px !important;
-  line-height: 1.35 !important;
-  font-weight: 600 !important;
-  letter-spacing: .015em !important;
+  margin-top: 9px;
+  color: rgba(39, 35, 31, .7);
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: .015em;
 }
 
 .vh-offer-total-price {
-  letter-spacing: .018em !important;
+  letter-spacing: .018em;
 }
 
 .vh-offer-options {
@@ -96,34 +96,34 @@
 }
 
 .vh-offer-option {
-  padding-top: 12px !important;
-  padding-bottom: 12px !important;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .vh-offer-option > div:last-child {
   position: relative;
   top: 2px;
-  font-size: 18px !important;
-  line-height: 1.08 !important;
-  font-weight: 800 !important;
-  letter-spacing: .01em !important;
+  font-size: 18px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: .01em;
 }
 
 .vh-offer-next {
-  width: 100% !important;
-  margin-top: 12px !important;
-  justify-self: stretch !important;
+  width: 100%;
+  margin-top: 12px;
+  justify-self: stretch;
   color: #181818;
-  font-size: 11px !important;
-  line-height: 1.45 !important;
-  font-weight: 500 !important;
-  letter-spacing: .01em !important;
-  text-align: right !important;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: .01em;
+  text-align: right;
   white-space: nowrap;
 }
 
 .vh-offer-next span {
-  font-weight: 700 !important;
+  font-weight: 700;
 }
 
 /* Two equal-height cards; content inside each card remains in normal flow. */
@@ -142,19 +142,19 @@
 }
 
 .vh-offer-card {
-  padding: 24px !important;
+  padding: 24px;
 }
 
 .vh-offer-card--cost {
   min-height: 100%;
-  padding-bottom: 16px !important;
+  padding-bottom: 16px;
 }
 
 .vh-offer-section-title {
-  margin-bottom: 18px !important;
-  font-weight: 650 !important;
-  line-height: 1.2 !important;
-  letter-spacing: .025em !important;
+  margin-bottom: 18px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: .025em;
 }
 
 .vh-offer-detail,
