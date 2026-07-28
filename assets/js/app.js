@@ -1096,12 +1096,199 @@
     }
   });
 
+  var mobilePreviewsReady = false;
+
+  function setupMobilePreviews() {
+    if (mobilePreviewsReady) return;
+
+    var grid = document.querySelector('.vh-video-grid');
+    var mobileCards = Array.from(cards);
+    if (!grid || !mobileCards.length) return;
+
+    mobilePreviewsReady = true;
+    var previewStartMobile = 0.25;
+    var previewLengthMobile = 10;
+    var activeCard = null;
+    var activeTimer = null;
+    var prepared = new WeakSet();
+    var painting = new WeakSet();
+
+    function resetProgress(card) {
+      var progress = card.querySelector('.vh-video-card__progress span');
+      if (!progress) return;
+      progress.style.animation = 'none';
+      progress.offsetHeight;
+      progress.style.animation = '';
+    }
+
+    function stopPreview(card) {
+      if (!card) return;
+      var preview = card.querySelector('.vh-video-card__preview');
+      card.classList.remove('is-previewing');
+      resetProgress(card);
+      if (preview) {
+        preview.pause();
+        try { preview.currentTime = previewStartMobile; } catch (e) {}
+      }
+      if (activeCard === card) activeCard = null;
+      clearTimeout(activeTimer);
+      activeTimer = null;
+    }
+
+    function stopOtherPreviews(except) {
+      mobileCards.forEach(function (card) {
+        if (card !== except && card.classList.contains('is-previewing')) stopPreview(card);
+      });
+    }
+
+    function paintFrame(preview, card) {
+      if (painting.has(preview) || card.classList.contains('is-previewing')) return;
+      painting.add(preview);
+      try { preview.currentTime = previewStartMobile; } catch (e) {}
+      var playPromise;
+      try {
+        playPromise = preview.play();
+      } catch (e) {
+        painting.delete(preview);
+        return;
+      }
+      if (!playPromise || typeof playPromise.then !== 'function') return;
+      playPromise.then(function () {
+        requestAnimationFrame(function () {
+          setTimeout(function () {
+            preview.pause();
+            painting.delete(preview);
+          }, 90);
+        });
+      }).catch(function () { painting.delete(preview); });
+    }
+
+    function prepareCard(card) {
+      if (!card || prepared.has(card)) return;
+      prepared.add(card);
+      var preview = card.querySelector('.vh-video-card__preview');
+      var time = card.querySelector('.vh-video-card__time');
+      if (!preview) return;
+
+      preview.muted = true;
+      preview.playsInline = true;
+      preview.setAttribute('playsinline', '');
+      preview.setAttribute('webkit-playsinline', '');
+      preview.preload = 'metadata';
+      function ready() {
+        if (time) time.textContent = formatDuration(preview.duration);
+        paintFrame(preview, card);
+      }
+      if (preview.readyState >= 1) ready();
+      else preview.addEventListener('loadedmetadata', ready, { once: true });
+      preview.addEventListener('error', function () {
+        if (time) time.textContent = 'Открыть';
+      }, { once: true });
+      try { preview.load(); } catch (e) {}
+    }
+
+    function startPreview(card) {
+      var preview = card.querySelector('.vh-video-card__preview');
+      if (!preview) return;
+      prepareCard(card);
+      stopOtherPreviews(card);
+      clearTimeout(activeTimer);
+      activeCard = card;
+      card.classList.add('is-previewing');
+      resetProgress(card);
+      try { preview.currentTime = previewStartMobile; } catch (e) {}
+      preview.play().catch(function () {});
+      activeTimer = setTimeout(function () { stopPreview(card); }, previewLengthMobile * 1000);
+    }
+
+    function updateCurrentCard() {
+      var closest = 0;
+      var distance = Infinity;
+      mobileCards.forEach(function (card, index) {
+        var next = Math.abs(card.offsetLeft - grid.scrollLeft);
+        if (next < distance) {
+          distance = next;
+          closest = index;
+        }
+      });
+      document.querySelectorAll('#video .vh-mobile-carousel-dots button').forEach(function (dot, index) {
+        dot.classList.toggle('is-active', index === closest);
+      });
+      prepareCard(mobileCards[closest]);
+    }
+
+    var scrollTimer = null;
+    grid.addEventListener('scroll', function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(updateCurrentCard, 100);
+    }, { passive: true });
+
+    mobileCards.forEach(function (card) {
+      var holdTimer = null;
+      var startX = 0;
+      var startY = 0;
+      var longPressed = false;
+      var suppressClick = false;
+      function cancelHold() {
+        clearTimeout(holdTimer);
+        holdTimer = null;
+      }
+      card.addEventListener('pointerdown', function (event) {
+        if (event.pointerType === 'mouse') return;
+        startX = event.clientX;
+        startY = event.clientY;
+        longPressed = false;
+        cancelHold();
+        holdTimer = setTimeout(function () {
+          longPressed = true;
+          suppressClick = true;
+          startPreview(card);
+          setTimeout(function () { suppressClick = false; }, 900);
+        }, 420);
+      });
+      card.addEventListener('pointermove', function (event) {
+        if (Math.abs(event.clientX - startX) > 10 || Math.abs(event.clientY - startY) > 10) cancelHold();
+      });
+      card.addEventListener('pointerup', cancelHold);
+      card.addEventListener('pointercancel', cancelHold);
+      card.addEventListener('contextmenu', function (event) {
+        if (longPressed) event.preventDefault();
+      });
+      card.addEventListener('click', function (event) {
+        if (!suppressClick) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        suppressClick = false;
+      }, true);
+      var preview = card.querySelector('.vh-video-card__preview');
+      if (preview) preview.addEventListener('timeupdate', function () {
+        if (card === activeCard && preview.currentTime >= previewStartMobile + previewLengthMobile) stopPreview(card);
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      var cardObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && entry.intersectionRatio >= .35) prepareCard(entry.target);
+        });
+      }, { threshold: [.35, .65] });
+      mobileCards.forEach(function (card) { cardObserver.observe(card); });
+      new IntersectionObserver(function (entries) {
+        if (entries[0] && !entries[0].isIntersecting && activeCard) stopPreview(activeCard);
+      }, { threshold: 0 }).observe(videoSection);
+    } else prepareCard(mobileCards[0]);
+
+    var hint = document.querySelector('.vh-video-hint__mobile');
+    if (hint) hint.textContent = 'Листайте карточки · удерживайте для превью · нажмите, чтобы открыть';
+    updateCurrentCard();
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden && activeCard) stopPreview(activeCard);
+    });
+  }
+
   function activatePreviews() {
     if (window.innerWidth <= 860) {
-      cards.forEach(function (card) {
-        var time = card.querySelector('.vh-video-card__time');
-        if (time) time.textContent = 'Смотреть';
-      });
+      setupMobilePreviews();
       return;
     }
 
