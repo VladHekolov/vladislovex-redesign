@@ -2520,6 +2520,10 @@
 
   var items = Array.from(faq.querySelectorAll('.vh-faq__item'));
 
+  function isMobileFaq() {
+    return window.innerWidth <= 860;
+  }
+
   function setOpen(item, open) {
     var button = item.querySelector('.vh-faq__question');
     var answer = item.querySelector('.vh-faq__answer');
@@ -2527,6 +2531,14 @@
 
     item.classList.toggle('is-open', open);
     button.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+    if (isMobileFaq()) {
+      answer.hidden = !open;
+      answer.style.setProperty('max-height', 'none', 'important');
+      return;
+    }
+
+    answer.hidden = false;
     answer.style.maxHeight = open ? answer.scrollHeight + 'px' : '0px';
   }
 
@@ -2549,7 +2561,7 @@
 
   window.addEventListener('resize', function () {
     items.forEach(function (item) {
-      if (item.classList.contains('is-open')) setOpen(item, true);
+      setOpen(item, item.classList.contains('is-open'));
     });
   });
 })();
@@ -2581,6 +2593,14 @@
   var activeSuggestRequest = 0;
   var selectedSuggestion = null;
   var suppressSuggestionsUntil = 0;
+
+  var subtitle = form.querySelector('.vh-contact-form__top p');
+  var submitText = submit.querySelector('.vh-contact-submit__text');
+  var submitIcon = submit.querySelector('.vh-contact-submit__icon');
+
+  if (subtitle) subtitle.textContent = 'Заполните форму — заявка придёт мне в Telegram.';
+  if (submitText) submitText.textContent = 'Отправить заявку';
+  if (submitIcon) submitIcon.style.display = 'none';
 
   function openModal(event) {
     if (event) {
@@ -2929,14 +2949,26 @@
     return data;
   }
 
+  function fetchWithTimeout(url, options, timeoutMs) {
+    if (typeof AbortController !== 'function') return fetch(url, options);
+
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, timeoutMs);
+    var requestOptions = Object.assign({}, options, { signal: controller.signal });
+
+    return fetch(url, requestOptions).finally(function () {
+      clearTimeout(timer);
+    });
+  }
+
   function submitByAjax(payload) {
-    return fetch(ENDPOINT, {
+    return fetchWithTimeout(ENDPOINT, {
       method: 'POST',
       headers: {
         'Accept': 'application/json'
       },
       body: payloadToFormData(payload)
-    }).then(function (response) {
+    }, 10000).then(function (response) {
       if (!response.ok) {
         throw new Error('ajax_failed');
       }
@@ -2981,15 +3013,15 @@
     var path = SITE_CONFIG.leadEndpoint || '/api/public/leads';
     if (!base) return Promise.reject(new Error('vocava_api_not_configured'));
 
-    return fetch(base + path, {
+    return fetchWithTimeout(base + path, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(buildVocavaLead(payload))
-    }).then(function (response) {
-      if (!response.ok) throw new Error('vocava_api_failed');
+    }, Number(SITE_CONFIG.leadRequestTimeoutMs || 10000)).then(function (response) {
+      if (!response.ok) throw new Error('vocava_api_failed_' + response.status);
       return response.json();
     });
   }
@@ -3002,6 +3034,15 @@
       });
     }
     return submitByAjax(payload);
+  }
+
+  function resetFormVisualState() {
+    form.reset();
+    updateDateVisual();
+    selectedSuggestion = null;
+    activeSuggestRequest++;
+    clearTimeout(suggestTimer);
+    clearSuggestions();
   }
 
   document.addEventListener('click', function (event) {
@@ -3141,9 +3182,11 @@
 
     sendLead(payload)
       .then(function () {
-        form.reset();
-        updateDateVisual();
-        clearSuggestions();
+        if (typeof window.ym === 'function') {
+          window.ym(110736648, 'reachGoal', 'lead_form_success');
+        }
+
+        resetFormVisualState();
 
         setStatus('Готово! Заявка отправлена. Я скоро свяжусь с вами.', 'is-success');
 
@@ -3152,8 +3195,9 @@
           setStatus('', '');
         }, 2200);
       })
-      .catch(function () {
-        setStatus('Не получилось отправить заявку. Попробуйте написать в Telegram или позвонить по номеру выше.', 'is-error');
+      .catch(function (error) {
+        console.error('Contact form submission failed:', error);
+        setStatus('Не получилось отправить заявку. Попробуйте ещё раз или напишите в Telegram.', 'is-error');
       })
       .finally(function () {
         submit.disabled = false;
