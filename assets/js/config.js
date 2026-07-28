@@ -4,6 +4,57 @@ try { localStorage.removeItem('vh-color-theme'); } catch (error) {}
 document.documentElement.setAttribute('data-vh-theme', 'dark');
 document.documentElement.style.colorScheme = 'dark';
 
+(function applyBrandAssets() {
+  'use strict';
+
+  var logoUrl = '/assets/images/logo-vlad.svg?v=20260728-1';
+  var faviconUrl = '/assets/images/favicon.svg?v=20260728-1';
+
+  function ensureLink(rel, href, attrs) {
+    var selector = 'link[rel="' + rel + '"]';
+    var link = document.head.querySelector(selector);
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = rel;
+      document.head.appendChild(link);
+    }
+    link.href = href;
+    Object.keys(attrs || {}).forEach(function (name) {
+      link.setAttribute(name, attrs[name]);
+    });
+  }
+
+  ensureLink('icon', faviconUrl, { type: 'image/svg+xml', sizes: 'any' });
+  ensureLink('shortcut icon', faviconUrl, { type: 'image/svg+xml' });
+  ensureLink('mask-icon', logoUrl, { color: '#f68a1f' });
+
+  function isLegacyLogo(src) {
+    var normalized = String(src || '').toLowerCase();
+    return normalized.indexOf('%d0%bb%d0%be%d0%b3%d0%be.png') !== -1 ||
+      normalized.indexOf('/лого.png') !== -1;
+  }
+
+  function replaceBrandLogos(scope) {
+    (scope || document).querySelectorAll('img').forEach(function (image) {
+      if (!isLegacyLogo(image.getAttribute('src'))) return;
+      image.src = logoUrl;
+      image.removeAttribute('srcset');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      replaceBrandLogos(document);
+    }, { once: true });
+  } else {
+    replaceBrandLogos(document);
+  }
+
+  window.addEventListener('pageshow', function () {
+    replaceBrandLogos(document);
+  });
+})();
+
 window.VLADISLOVEX_CONFIG = Object.freeze({
   apiBaseUrl: 'https://api.vocava.ru',
   artistSlug: 'vladislav-hekolov',
