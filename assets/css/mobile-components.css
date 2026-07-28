@@ -64,13 +64,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     -webkit-text-size-adjust: 100% !important;
   }
 
-  .vh-benefits,
-  .vh-benefits-section,
-  .vh-benefits-carousel,
-  [data-vh-benefits] {
-    margin-top: 24px !important;
-  }
-
   .vh-mobile-pdf-ready {
     position: fixed;
     inset: 0;

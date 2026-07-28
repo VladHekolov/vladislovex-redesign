@@ -8531,43 +8531,11 @@ body,
     bottom: max(18px, env(safe-area-inset-bottom, 0px)) !important;
   }
 
-  /* Video becomes an obvious compact carousel with the next card peeking in. */
-  .vh-video-section__container {
-    padding-left: 14px !important;
-    padding-right: 0 !important;
-  }
-
-  .vh-video-section__header {
-    margin-right: 14px !important;
-  }
-
-  .vh-video-grid {
-    display: flex !important;
-    gap: 12px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    padding: 2px 22vw 12px 0 !important;
-    scroll-padding-left: 0;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-
-  .vh-video-grid::-webkit-scrollbar {
-    display: none;
-  }
-
   .vh-video-card {
-    flex: 0 0 78vw !important;
-    width: 78vw !important;
-    max-width: 326px !important;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     border-radius: 24px !important;
   }
 
   .vh-video-card__media {
-    aspect-ratio: 3 / 4 !important;
     border-radius: 23px !important;
   }
 
@@ -8606,38 +8574,8 @@ body,
     display: none !important;
   }
 
-  /* Formats use the same carousel language and are much shorter vertically. */
-  .vh-formats-section {
-    padding-left: 14px !important;
-    padding-right: 0 !important;
-  }
-
-  .vh-formats-header {
-    margin-right: 14px !important;
-  }
-
-  .vh-formats-container {
-    display: flex !important;
-    gap: 12px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    padding: 2px 22vw 14px 0 !important;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-
-  .vh-formats-container::-webkit-scrollbar {
-    display: none;
-  }
-
   .vh-format-card {
-    flex: 0 0 80vw !important;
-    width: 80vw !important;
-    max-width: 334px !important;
     min-height: 454px !important;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     border-radius: 23px !important;
   }
 
@@ -8697,11 +8635,6 @@ body,
     line-height: 1.15 !important;
   }
 
-  .vh-mobile-carousel-dots {
-    display: flex !important;
-    margin-right: 14px;
-  }
-
   /* Keep the floating controls visible, but hide them while any overlay is open. */
   body.vh-overlay-open .vh-social-popup,
   body.vh-overlay-open .vh-mini-video {
@@ -8712,14 +8645,7 @@ body,
 }
 
 @media (max-width: 390px) {
-  .vh-video-card {
-    flex-basis: 80vw !important;
-    width: 80vw !important;
-  }
-
   .vh-format-card {
-    flex-basis: 82vw !important;
-    width: 82vw !important;
     min-height: 438px !important;
   }
 
