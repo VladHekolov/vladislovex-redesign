@@ -2718,6 +2718,10 @@
 
   if (dateInput) {
     dateInput.min = new Date().toISOString().slice(0, 10);
+    dateInput.autocomplete = 'off';
+    dateInput.addEventListener('click', function (event) {
+      event.stopImmediatePropagation();
+    }, true);
     dateInput.addEventListener('input', function () { if (dateField) dateField.classList.add('is-touched'); });
     dateInput.addEventListener('change', function () { if (dateField) dateField.classList.add('is-touched'); });
     dateInput.addEventListener('click', function (event) {
@@ -3796,6 +3800,10 @@
 
   if (dateWrap && dateInput) {
     dateInput.min = new Date().toISOString().slice(0, 10);
+    dateInput.autocomplete = 'off';
+    dateInput.addEventListener('click', function (event) {
+      event.stopImmediatePropagation();
+    }, true);
     dateWrap.addEventListener('click', function () {
       openDatePicker();
     });

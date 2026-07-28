@@ -279,3 +279,57 @@ body#top :is(
     line-height: 1.65 !important;
   }
 }
+
+/* Consolidated homepage interface refinements. */
+.vh-premium-header__nav a::before {
+  content: none !important;
+  display: none !important;
+}
+
+body#top .vh-contact-card__arrow {
+  display: grid !important;
+  width: 28px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
+  place-items: center;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: .72 !important;
+}
+
+body#top .vh-contact-card__arrow::before,
+body#top .vh-contact-card__arrow::after {
+  content: none !important;
+  display: none !important;
+}
+
+body#top .vh-contact-card__arrow .vh-icon {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 2 !important;
+}
+
+@media (min-width: 1025px) {
+  .vh-hero-benefits { bottom: 10px !important; }
+  .vh-reviews-header { margin-bottom: 118px !important; }
+}
+
+.vh-price-calc__description {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: linear-gradient(105deg, rgba(177, 184, 197, .72) 0%, rgba(226, 230, 237, .88) 34%, rgba(145, 153, 168, .68) 58%, rgba(210, 216, 226, .84) 100%) !important;
+  background-size: 100% 100% !important;
+  background-position: 50% 50% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.vh-price-calc__description b {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
