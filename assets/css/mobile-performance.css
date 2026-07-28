@@ -105,7 +105,11 @@
 
   /* Lightweight benefits carousel. */
   body#top .vh-benefits-rail--lite {
+    --vh-benefit-card-width: min(72vw, 280px);
     width: 100%;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     overflow-x: auto !important;
     overflow-y: visible !important;
     padding: 6px var(--vh-home-gutter) 12px !important;
@@ -113,7 +117,15 @@
     scroll-padding-inline: var(--vh-home-gutter);
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+  body#top .vh-benefits-rail--lite::before,
+  body#top .vh-benefits-rail--lite::after {
+    display: none !important;
+    content: none !important;
   }
 
   body#top .vh-benefits-track--lite {
@@ -124,10 +136,11 @@
   }
 
   body#top .vh-benefits-track--lite .vh-benefit-card {
-    flex: 0 0 min(72vw, 280px) !important;
-    width: min(72vw, 280px) !important;
+    flex: 0 0 var(--vh-benefit-card-width) !important;
+    width: var(--vh-benefit-card-width) !important;
     max-width: 280px !important;
-    min-height: 158px !important;
+    min-height: 176px !important;
+    padding-bottom: 16px !important;
     scroll-snap-align: start;
     transform: none !important;
     transition: border-color .2s ease, background .2s ease !important;
@@ -137,6 +150,18 @@
   body#top .vh-benefits-track--lite .vh-benefit-card:active,
   body#top .vh-benefits-track--lite .vh-benefit-card.is-active {
     transform: none !important;
+  }
+
+  body#top .vh-benefits-track--lite::after {
+    content: "";
+    flex: 0 0 max(0px, calc(100vw - var(--vh-benefit-card-width) - var(--vh-home-gutter) - var(--vh-home-gutter)));
+  }
+
+  body#top .vh-benefits-track--lite .vh-benefit-text p {
+    font-size: clamp(12.6px, 3.45vw, 14px) !important;
+    line-height: 1.42 !important;
+    max-width: 100% !important;
+    text-wrap: pretty;
   }
 
   /* Slider-only duration control. */
@@ -166,61 +191,9 @@
 }
 
 @media (max-width: 390px) {
-  body#top .vh-benefits-track--lite .vh-benefit-card {
-    flex-basis: min(74vw, 270px) !important;
-    width: min(74vw, 270px) !important;
-  }
-}
-
-
-/* CURRENT BENEFIT LOOP GEOMETRY */
-@media (max-width: 860px) {
   body#top .vh-benefits-rail--lite {
-    --vh-benefit-card-width: min(72vw, 280px);
-    min-width: 0 !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    mask-image: none !important;
-    -webkit-mask-image: none !important;
-    touch-action: pan-x pan-y !important;
+    --vh-benefit-card-width: min(74vw, 270px);
   }
-  body#top .vh-benefits-rail--lite::before,
-  body#top .vh-benefits-rail--lite::after {
-    display: none !important;
-    content: none !important;
-  }
-  body#top .vh-benefits-track--lite .vh-benefit-card {
-    flex: 0 0 var(--vh-benefit-card-width) !important;
-    width: var(--vh-benefit-card-width) !important;
-  }
-  body#top .vh-benefits-track--lite::after {
-    content: "";
-    flex: 0 0 max(0px, calc(100vw - var(--vh-benefit-card-width) - var(--vh-home-gutter) - var(--vh-home-gutter)));
-  }
-}
-@media (max-width: 390px) {
-  body#top .vh-benefits-rail--lite { --vh-benefit-card-width: min(74vw, 270px); }
-}
-
-
-
-
-/* Current mobile benefit typography */
-@media (max-width: 860px) {
-  body#top .vh-benefits-track--lite .vh-benefit-card {
-    min-height: 176px !important;
-    padding-bottom: 16px !important;
-  }
-
-  body#top .vh-benefits-track--lite .vh-benefit-text p {
-    font-size: clamp(12.6px, 3.45vw, 14px) !important;
-    line-height: 1.42 !important;
-    max-width: 100% !important;
-    text-wrap: pretty;
-  }
-}
-
-@media (max-width: 390px) {
   body#top .vh-benefits-track--lite .vh-benefit-card {
     min-height: 174px !important;
   }

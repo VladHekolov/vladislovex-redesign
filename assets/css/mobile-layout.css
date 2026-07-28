@@ -75,15 +75,7 @@ body#top .vh-hero-offer__line {
     bottom: 12px !important;
   }
 
-  body#top .vh-benefits-rail {
-    padding-top: 4px !important;
-    padding-bottom: 6px !important;
-  }
-
   body#top .vh-benefit-card {
-    flex-basis: 58vw !important;
-    max-width: 228px !important;
-    min-height: 150px !important;
     padding: 34px 12px 13px !important;
     grid-template-columns: 40px 1fr !important;
     column-gap: 11px !important;
@@ -147,8 +139,4 @@ body#top .vh-hero-offer__line {
     font-size: clamp(2.25rem, 10.5vw, 2.65rem) !important;
   }
 
-  body#top .vh-benefit-card {
-    flex-basis: 60vw !important;
-    max-width: 220px !important;
-  }
 }
