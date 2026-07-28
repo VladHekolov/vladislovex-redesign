@@ -14,7 +14,9 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
   body,
   body#top {
     width: 100%;
+    min-width: 0;
     max-width: 100%;
+    box-sizing: border-box;
     overflow-x: hidden !important;
     overscroll-behavior-x: none;
   }
@@ -34,7 +36,8 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     .vh-formats-section,
     .vh-reviews-section,
     .vh-faq,
-    .vh-contacts-section
+    .vh-contacts-section,
+    .vh-site-footer
   ) {
     max-width: 100% !important;
   }
