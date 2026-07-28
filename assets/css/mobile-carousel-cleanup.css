@@ -148,6 +148,11 @@
     box-sizing: border-box !important;
   }
 
+  body#top .vh-reviews-stats {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
   /* Lightweight mobile palette: flat dark sections instead of stacked orange blur layers. */
   body#top :is(
     .vh-video-section,
