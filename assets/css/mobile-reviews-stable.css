@@ -2,7 +2,11 @@
 
 @media (max-width: 860px) {
   body#top .vh-reviews-section,
-  body#top .vh-reviews-inner {
+  body#top .vh-reviews-inner,
+  body#top .vh-reviews-3d--lite {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     overflow: visible !important;
   }
 
@@ -21,6 +25,7 @@
     touch-action: pan-x pan-y pinch-zoom !important;
     perspective: none !important;
     cursor: grab;
+    contain: layout paint;
   }
 
   body#top .vh-reviews-3d--lite:active {

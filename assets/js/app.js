@@ -2869,6 +2869,8 @@
 (function () {
   'use strict';
 
+  if (window.innerWidth <= 860) return;
+
   var wrap = document.getElementById('vh-reviews-wrap');
   var scene = document.getElementById('vh-reviews-carousel');
 

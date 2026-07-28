@@ -177,6 +177,9 @@
 @media (max-width: 860px) {
   body#top .vh-benefits-rail--lite {
     --vh-benefit-card-width: min(72vw, 280px);
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
     touch-action: pan-x pan-y !important;
