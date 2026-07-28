@@ -206,10 +206,6 @@ body#top :is(
 }
 
 @media (max-width: 760px) {
-  body#top {
-    --vh-home-gutter: 16px;
-  }
-
   body#top .vh-hero__title {
     max-width: 100% !important;
     gap: 5px !important;
@@ -218,37 +214,6 @@ body#top :is(
   body#top .vh-hero__title > :is(span, strong) {
     font-size: clamp(2.45rem, 10.8vw, 3rem) !important;
     line-height: 1.01 !important;
-  }
-
-  /* Preserve the horizontal video carousel while keeping the first card aligned. */
-  body#top .vh-video-section__container {
-    max-width: none;
-    padding-left: var(--vh-home-gutter);
-    padding-right: 0;
-  }
-
-  body#top .vh-video-section__header {
-    margin-right: var(--vh-home-gutter);
-  }
-
-  body#top .vh-video-grid {
-    max-width: none;
-    margin-inline: 0;
-    padding-right: var(--vh-home-gutter);
-  }
-
-  body#top :is(
-    .vh-video-section__title,
-    .vh-formats-title,
-    .vh-booking__title,
-    .vh-price-calc__title,
-    .vh-reviews-title,
-    .vh-faq__title,
-    .vh-contacts-section__title
-  ) {
-    max-width: 12ch;
-    font-size: clamp(2.05rem, 9.2vw, 2.6rem) !important;
-    line-height: 1.04 !important;
   }
 
   body#top :is(
