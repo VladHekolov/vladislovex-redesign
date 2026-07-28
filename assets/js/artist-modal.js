@@ -168,7 +168,7 @@
     media.innerHTML = '';
     var videoUrl = text(artist.video_url || artist.videoUrl || artist.video);
 
-    if (videoUrl && (/storage\.yandexcloud\.net|\.(mp4|webm|mov)($|\?)/i.test(videoUrl))) {
+    if (videoUrl && (/(storage\.yandexcloud\.net|api\.vocava\.ru)|\.(mp4|webm|mov)($|\?)/i.test(videoUrl))) {
       var video = document.createElement('video');
       video.src = videoUrl;
       video.controls = true;
