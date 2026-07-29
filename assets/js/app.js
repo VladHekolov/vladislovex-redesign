@@ -1605,15 +1605,6 @@
     return getDurationLabelByValue(durationInput.value);
   }
 
-  function setDurationValue(value) {
-    if (!durationInput) return;
-
-    var normalized = normalizeDurationValue(value);
-    durationInput.value = normalized;
-
-    calculate();
-  }
-
   function formatMoney(value) {
     var rounded = Math.round(value / 500) * 500;
     return String(rounded).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';

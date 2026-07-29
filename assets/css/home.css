@@ -200,18 +200,6 @@
 }
 
 /* ===== Booking ===== */
-.vh-booking__steps article,
-.vh-booking__included {
-  border-color: var(--vh-border);
-  border-radius: var(--vh-radius-lg);
-  background: var(--vh-surface);
-  box-shadow: var(--vh-shadow-sm);
-}
-
-.vh-booking__steps article > b {
-  color: var(--vh-accent-light);
-  font-weight: var(--vh-weight-heading);
-}
 
 /* ===== Calculator controls ===== */
 .vh-price-calc__panel,

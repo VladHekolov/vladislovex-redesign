@@ -949,35 +949,6 @@
     updateFavoritesUi();
   }
 
-  function setupHorizontalSwipe(element, onSwipeLeft, onSwipeRight) {
-    if (!element) return;
-
-    var startX = 0;
-    var startY = 0;
-    var started = false;
-
-    element.addEventListener('touchstart', function (event) {
-      if (!event.touches || event.touches.length !== 1) return;
-      started = true;
-      startX = event.touches[0].clientX;
-      startY = event.touches[0].clientY;
-    }, { passive: true });
-
-    element.addEventListener('touchend', function (event) {
-      if (!started || !event.changedTouches || !event.changedTouches.length) return;
-      started = false;
-
-      var dx = event.changedTouches[0].clientX - startX;
-      var dy = event.changedTouches[0].clientY - startY;
-
-      if (Math.abs(dx) < 42 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
-
-      if (dx < 0) onSwipeLeft();
-      else onSwipeRight();
-    }, { passive: true });
-  }
-
-
   function setupPhotoViewerSwipe(element) {
     if (!element) return;
 

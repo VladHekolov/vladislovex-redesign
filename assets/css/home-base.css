@@ -3116,7 +3116,7 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 }
 
 /* ===== SOURCE STYLE BLOCK 6 ===== */
-.vh-booking,.vh-booking *{box-sizing:border-box}.vh-booking{padding:104px 20px;background:linear-gradient(180deg,#111,#050505);color:#fff;font-family:"Montserrat",Arial,sans-serif}.vh-booking__head{text-align:center;max-width:850px;margin:0 auto 44px}.vh-booking__head h2{margin:0 0 18px;font:700 clamp(48px,6vw,82px)/.95 "Bebas Neue",sans-serif}.vh-booking__head h2 strong{color:#f4a259}.vh-booking__head p{margin:0;color:rgba(255,255,255,.68);font-size:18px}.vh-booking__steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.vh-booking__steps article{padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:radial-gradient(circle at 15% 0,rgba(246,138,31,.1),transparent 42%),rgba(255,255,255,.035)}.vh-booking__steps b{display:block;margin-bottom:18px;color:#f4a259;font-size:13px;letter-spacing:.12em}.vh-booking__steps h3{margin:0 0 10px;font-size:18px}.vh-booking__steps p{margin:0;color:rgba(255,255,255,.62);font-size:14px;line-height:1.55}.vh-booking__included{display:grid;grid-template-columns:1fr 1fr auto;gap:22px;align-items:center;margin-top:22px;padding:24px;border:1px solid rgba(246,138,31,.24);border-radius:24px;background:rgba(246,138,31,.055)}.vh-booking__included h3{margin:0 0 7px;font-size:16px}.vh-booking__included p{margin:0;color:rgba(255,255,255,.62);font-size:13px;line-height:1.5}.vh-booking__included a{min-height:52px;padding:0 22px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;background:linear-gradient(135deg,#ffbd6d,#f68a1f);font-weight:800;white-space:nowrap}@media(max-width:900px){.vh-booking__steps{grid-template-columns:1fr 1fr}.vh-booking__included{grid-template-columns:1fr}}@media(max-width:560px){.vh-booking{padding:72px 12px}.vh-booking__steps{grid-template-columns:1fr}.vh-booking__head p{font-size:15px}}
+.vh-booking,.vh-booking *{box-sizing:border-box}.vh-booking{padding:104px 20px;background:linear-gradient(180deg,#111,#050505);color:#fff;font-family:"Montserrat",Arial,sans-serif}.vh-booking__head{text-align:center;max-width:850px;margin:0 auto 44px}.vh-booking__head h2{margin:0 0 18px;font:700 clamp(48px,6vw,82px)/.95 "Bebas Neue",sans-serif}.vh-booking__head h2 strong{color:#f4a259}.vh-booking__head p{margin:0;color:rgba(255,255,255,.68);font-size:18px}@media(max-width:900px){}@media(max-width:560px){.vh-booking{padding:72px 12px}.vh-booking__head p{font-size:15px}}
 
 /* ===== SOURCE STYLE BLOCK 7 ===== */
 .vh-price-calc,
@@ -7209,95 +7209,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   margin: 0 auto;
 }
 
-.vh-booking__steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.vh-booking__steps article {
-  position: relative;
-  min-height: 220px;
-  padding: 28px 24px 25px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 14% 0%, rgba(246,138,31,.13), transparent 42%),
-    rgba(10,10,10,.76);
-  box-shadow: 0 18px 50px rgba(0,0,0,.28), inset 0 0 22px rgba(255,255,255,.025);
-}
-
-.vh-booking__steps article::after {
-  content: "";
-  position: absolute;
-  right: -28px;
-  bottom: -36px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 1px solid rgba(246,138,31,.16);
-  box-shadow: 0 0 34px rgba(246,138,31,.06);
-}
-
-.vh-booking__steps b {
-  display: block;
-  margin-bottom: 26px;
-  color: #f4a259;
-  font-size: 12px;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: .20em;
-}
-
-.vh-booking__steps h3 {
-  margin: 0 0 12px;
-  color: #fff;
-  font-size: 19px;
-  line-height: 1.25;
-  font-weight: 850;
-}
-
-.vh-booking__steps p {
-  margin: 0;
-  color: rgba(255,255,255,.64);
-  font-size: 14px;
-  line-height: 1.58;
-  font-weight: 500;
-}
-
-.vh-booking__included {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 22px;
-  align-items: center;
-  margin-top: 22px;
-  padding: 26px;
-  border: 1px solid rgba(246,138,31,.26);
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 12% 0%, rgba(246,138,31,.11), transparent 38%),
-    rgba(255,255,255,.035);
-  box-shadow: 0 18px 48px rgba(0,0,0,.24);
-}
-
-.vh-booking__included h3 { margin: 0 0 8px; color: #fff; font-size: 17px; line-height: 1.25; font-weight: 850; }
-.vh-booking__included p { margin: 0; color: rgba(255,255,255,.62); font-size: 13px; line-height: 1.52; }
-.vh-booking__included a {
-  min-height: 54px;
-  padding: 0 23px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-decoration: none;
-  background: linear-gradient(135deg,#ffbd6d,#f68a1f);
-  box-shadow: 0 16px 36px rgba(246,138,31,.26);
-  font-weight: 850;
-  white-space: nowrap;
-}
-
 /* Visible contacts section. */
 .vh-contacts-section,
 .vh-contacts-section * { box-sizing: border-box; }
@@ -7463,8 +7374,8 @@ button.vh-contact-card { width: 100%; }
   .vh-faq,
   .vh-contacts-section { padding: 82px 18px; }
 
-  .vh-booking__steps { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .vh-booking__included { grid-template-columns: 1fr; }
+
+
 }
 
 @media (max-width: 860px) {
@@ -7563,9 +7474,9 @@ button.vh-contact-card { width: 100%; }
   .vh-faq__description,
   .vh-contacts-section__description { font-size: 15px; }
 
-  .vh-booking__steps { grid-template-columns: 1fr; }
-  .vh-booking__steps article { min-height: auto; padding: 24px 20px; }
-  .vh-booking__included { padding: 22px 20px; }
+
+
+
 
   .vh-contact-card,
   .vh-contact-card:link,

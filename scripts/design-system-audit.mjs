@@ -133,11 +133,13 @@ const homepageConfig = read('assets/js/config.js');
 if (homepageConfig.includes('loadStylesheet')) {
   errors.push('assets/js/config.js: CSS must not be injected after first paint.');
 }
-if (!homepageConfig.includes('/assets/js/home-copy.js')) {
-  errors.push('assets/js/config.js: home-copy.js is not connected.');
+if (!homepagePage.includes('/assets/js/route-distance-openrouteservice.js')) {
+  errors.push('index.html: route-distance adapter is not connected.');
 }
-if (!homepageConfig.includes('data-vh-home-copy')) {
-  errors.push('assets/js/config.js: homepage copy marker is missing.');
+for (const page of pages) {
+  if (read(page).includes('/assets/js/route-distance-openrouteservice.js')) {
+    errors.push(`${page}: homepage route-distance adapter must not be loaded on subpages.`);
+  }
 }
 
 const visualFixes = read('assets/css/home.css');
@@ -151,20 +153,6 @@ for (const requiredRule of [
 ]) {
   if (!visualFixes.includes(requiredRule)) {
     errors.push(`assets/css/home.css: missing required visual correction ${requiredRule}.`);
-  }
-}
-
-const homepageCopy = read('assets/js/home-copy.js');
-for (const selector of [
-  '.vh-video-section__subtitle',
-  '.vh-formats-description',
-  '.vh-price-calc__description',
-  '.vh-reviews-subtitle',
-  '.vh-faq__description',
-  '.vh-contacts-section__description'
-]) {
-  if (!homepageCopy.includes(selector)) {
-    errors.push(`assets/js/home-copy.js: missing copy target ${selector}.`);
   }
 }
 
