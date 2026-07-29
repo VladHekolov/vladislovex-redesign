@@ -3,17 +3,15 @@
   --vh-font-display: "Montserrat", Arial, sans-serif;
   --vh-font-body: "Montserrat", Arial, sans-serif;
   --vh-type-display: clamp(3rem, 7vw, 6.5rem);
-  --vh-type-h1: clamp(2.6rem, 5vw, 4.9rem);
-  --vh-type-h2: clamp(2.8rem, 4.1vw, 4rem);
+  --vh-type-title: clamp(2.8rem, 4.1vw, 4rem);
   --vh-type-h3: clamp(1.2rem, 2vw, 1.75rem);
   --vh-type-lead: clamp(1rem, 1.45vw, 1.25rem);
   --vh-type-body: clamp(.94rem, 1vw, 1.05rem);
   --vh-type-small: clamp(.78rem, .85vw, .9rem);
   --vh-leading-display: .98;
-  --vh-leading-h1: 1.04;
-  --vh-leading-h2: 1.02;
+  --vh-leading-title: 1.02;
   --vh-leading-h3: 1.16;
-  --vh-leading-heading: var(--vh-leading-h2);
+  --vh-leading-heading: var(--vh-leading-title);
   --vh-leading-body: 1.58;
   --vh-reading-width: 68ch;
   --vh-heading-width: 18ch;
@@ -48,14 +46,14 @@ html :is(body#top, body.vh-subpage) .vh-title--display {
 
 html :is(body#top, body.vh-subpage) .vh-title--page {
   max-width: var(--vh-heading-width);
-  font-size: var(--vh-type-h1);
-  line-height: var(--vh-leading-h1);
+  font-size: var(--vh-type-title);
+  line-height: var(--vh-leading-title);
 }
 
 html :is(body#top, body.vh-subpage) .vh-title--section {
-  max-width: 14ch;
-  font-size: var(--vh-type-h2);
-  line-height: var(--vh-leading-h2);
+  max-width: var(--vh-heading-width);
+  font-size: var(--vh-type-title);
+  line-height: var(--vh-leading-title);
 }
 
 html :is(body#top, body.vh-subpage) .vh-title--card {
@@ -197,8 +195,7 @@ html body :is(
 @media (max-width: 720px) {
   :root {
     --vh-type-display: clamp(2.7rem, 13vw, 4.4rem);
-    --vh-type-h1: clamp(2.25rem, 10vw, 3.5rem);
-    --vh-type-h2: clamp(2.35rem, 10vw, 3.25rem);
+    --vh-type-title: clamp(2.35rem, 10vw, 3.25rem);
     --vh-type-h3: clamp(1.08rem, 5vw, 1.42rem);
     --vh-type-lead: clamp(.95rem, 4vw, 1.08rem);
     --vh-type-body: clamp(.9rem, 3.8vw, 1rem);
