@@ -40,11 +40,6 @@
 .vh-artists-page__title {
   max-width: 18ch;
   color: var(--vh-text-strong);
-  font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h1);
-  line-height: 1.04;
-  font-weight: var(--vh-weight-heading);
-  letter-spacing: -.03em;
 }
 
 .vh-artists-page__title span {
@@ -362,11 +357,6 @@
 
 #artists .vh-artist-card h3 {
   color: var(--vh-text-strong);
-  font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h3);
-  line-height: 1.16;
-  font-weight: var(--vh-weight-heading);
-  letter-spacing: -.018em;
 }
 
 #artists .vh-artist-card h3::after {

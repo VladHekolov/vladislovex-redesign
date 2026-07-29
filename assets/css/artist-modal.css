@@ -442,9 +442,6 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: clamp(27px, 7.5vw, 35px);
-    line-height: 1.04;
-    letter-spacing: -.025em;
     overflow-wrap: normal;
     word-break: normal;
     hyphens: none;
@@ -528,10 +525,6 @@
     padding-right: 4px;
   }
 
-  .vh-artist-modal__title-row h2 {
-    font-size: clamp(25px, 7vw, 32px);
-  }
-
   .vh-artist-modal__short {
     font-size: 13px;
   }
@@ -576,9 +569,6 @@
   .vh-artist-modal__title-row h2 {
     width: 100%;
     max-width: none;
-    font-size: 37px;
-    line-height: 1;
-    letter-spacing: -.03em;
     text-wrap: wrap;
     overflow-wrap: normal;
     word-break: normal;
@@ -616,7 +606,4 @@
     padding: 10px;
   }
 
-  .vh-artist-modal__title-row h2 {
-    font-size: 33px;
-  }
 }

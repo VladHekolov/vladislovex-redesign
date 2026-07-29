@@ -27,15 +27,7 @@
 ) {
   max-width: 16ch;
   margin-inline: auto;
-  color: var(--vh-text-strong);
-  font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h2);
-  line-height: var(--vh-leading-heading);
-  font-weight: var(--vh-weight-heading);
-  letter-spacing: -.025em;
   text-align: center;
-  text-wrap: balance;
-  overflow-wrap: break-word;
 }
 
 :is(
@@ -48,9 +40,6 @@
   .vh-contacts-section__title
 ) > :is(span, strong) {
   display: block;
-  color: inherit;
-  font: inherit;
-  letter-spacing: inherit;
 }
 
 :is(
@@ -120,10 +109,6 @@
 .vh-faq__card h3,
 .vh-contact-card__content strong {
   color: var(--vh-text-strong);
-  font-family: var(--vh-font-display);
-  font-weight: var(--vh-weight-heading);
-  text-wrap: balance;
-  overflow-wrap: break-word;
 }
 
 .vh-benefit-text p,
@@ -144,10 +129,6 @@
 .vh-benefit-card {
   border-color: var(--vh-border);
   border-radius: var(--vh-radius-xl);
-}
-
-.vh-benefit-text h3 {
-  line-height: 1.15;
 }
 
 .vh-benefit-text p {
@@ -387,19 +368,10 @@ body#top {
 body#top .vh-hero__title {
   max-width: 14ch;
   gap: 8px;
-  font-family: var(--vh-font-display);
-  line-height: 1;
-  letter-spacing: -.035em;
 }
 
 body#top .vh-hero__title > :is(span, strong) {
   max-width: 100%;
-  color: inherit;
-  font-family: var(--vh-font-display);
-  font-size: clamp(3.4rem, 4.2vw, 4.75rem);
-  line-height: 1;
-  font-weight: var(--vh-weight-extra-bold);
-  letter-spacing: -.035em;
   overflow-wrap: normal;
   word-break: normal;
 }
@@ -462,29 +434,7 @@ body#top :is(
 ) {
   max-width: 14ch;
   margin-inline: 0;
-  color: var(--vh-text-strong);
-  font-family: var(--vh-font-display);
-  font-size: clamp(2.8rem, 4.1vw, 4rem);
-  line-height: 1.02;
-  font-weight: var(--vh-weight-heading);
-  letter-spacing: -.035em;
   text-align: left;
-}
-
-body#top :is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) > :is(span, strong) {
-  font-family: var(--vh-font-display);
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: inherit;
-  letter-spacing: inherit;
 }
 
 body#top :is(
@@ -526,12 +476,7 @@ body#top :is(
 body#top .vh-format-title {
   max-width: 100%;
   margin: 0 0 10px;
-  font-size: clamp(2rem, 2.35vw, 2.7rem);
-  line-height: 1.06;
-  font-weight: var(--vh-weight-extra-bold);
-  letter-spacing: -.03em;
   white-space: normal;
-  text-wrap: balance;
 }
 
 body#top .vh-format-subtitle {
@@ -569,28 +514,10 @@ body#top .vh-faq__answer p {
   font-weight: var(--vh-weight-regular);
 }
 
-body#top :is(
-  .vh-benefit-text h3,
-  .vh-booking__steps h3,
-  .vh-booking__included h3,
-  .vh-price-calc__included h3,
-  .vh-faq__card h3,
-  .vh-contact-card__content strong
-) {
-  font-family: var(--vh-font-display);
-  font-size: clamp(1.08rem, 1.45vw, 1.38rem);
-  line-height: 1.22;
-}
-
 @media (max-width: 760px) {
   body#top .vh-hero__title {
     max-width: 100%;
     gap: 5px;
-  }
-
-  body#top .vh-hero__title > :is(span, strong) {
-    font-size: clamp(2.45rem, 10.8vw, 3rem);
-    line-height: 1.01;
   }
 
   body#top :is(
@@ -604,10 +531,6 @@ body#top :is(
   ) {
     max-width: 100%;
     font-size: clamp(.96rem, 4vw, 1.04rem);
-  }
-
-  body#top .vh-format-title {
-    font-size: clamp(1.9rem, 8vw, 2.35rem);
   }
 
   body#top .vh-faq__question {
@@ -685,18 +608,6 @@ body#top .vh-booking {
   display: none;
 }
 
-body#top :is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) {
-  font-size: clamp(3.15rem, 4.65vw, 4.7rem);
-  line-height: 1;
-}
-
 body#top .vh-hero-offer__line {
   font-size: clamp(1.25rem, 1.55vw, 1.75rem);
   line-height: 1.34;
@@ -716,8 +627,6 @@ body#top .vh-hero-offer__line {
     .vh-contacts-section__title
   ) {
     max-width: 12ch;
-    font-size: clamp(2.35rem, 10.8vw, 3rem);
-    line-height: 1.01;
   }
 
   body#top .vh-hero-offer__line {
@@ -775,11 +684,6 @@ body#top .vh-hero-offer__line {
     height: 21px;
   }
 
-  body#top .vh-benefit-text h3 {
-    font-size: 14.2px;
-    line-height: 1.12;
-  }
-
   body#top .vh-benefit-text p {
     font-size: 10.1px;
     line-height: 1.42;
@@ -802,17 +706,6 @@ body#top .vh-hero-offer__line {
 @media (max-width: 390px) {
   body#top {
     --vh-home-gutter: 10px;
-  }
-
-  body#top :is(
-    .vh-video-section__title,
-    .vh-formats-title,
-    .vh-price-calc__title,
-    .vh-reviews-title,
-    .vh-faq__title,
-    .vh-contacts-section__title
-  ) {
-    font-size: clamp(2.25rem, 10.5vw, 2.65rem);
   }
 
 }

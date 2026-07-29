@@ -16,11 +16,6 @@
 
 .vr-head__title {
   max-width: 18ch;
-  font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h1);
-  line-height: 1.04;
-  font-weight: var(--vh-weight-heading);
-  letter-spacing: -.03em;
 }
 
 .vr-head__meta {
@@ -450,10 +445,6 @@ html[data-vh-theme="light"] .vr-picker select option {
 
 /* ===== Responsive controls ===== */
 @media (max-width: 720px) {
-  .vr-head__title {
-    max-width: 100%;
-  }
-
   .vr-actions {
     grid-template-columns: 1fr;
   }

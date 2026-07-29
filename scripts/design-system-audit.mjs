@@ -83,9 +83,16 @@ for (const token of requiredTokens) {
 }
 
 const componentsSource = read('assets/css/shared-ui.css');
-for (const selector of ['.vh-button', '.vh-title', '.vh-card', '.vh-input']) {
+for (const selector of ['.vh-button', '.vh-card', '.vh-input']) {
   if (!componentsSource.includes(selector)) {
     errors.push(`assets/css/shared-ui.css: missing shared component ${selector}.`);
+  }
+}
+
+const typographySource = read('assets/css/typography.css');
+for (const selector of ['.vh-title', '.vh-title--display', '.vh-title--page', '.vh-title--section', '.vh-title--card']) {
+  if (!typographySource.includes(selector)) {
+    errors.push(`assets/css/typography.css: missing shared typography component ${selector}.`);
   }
 }
 
@@ -94,6 +101,9 @@ for (const page of pages) {
   const source = read(page);
   if (!source.includes('/assets/css/shared-ui.css')) {
     errors.push(`${page}: shared-ui.css is not connected.`);
+  }
+  if (!source.includes('/assets/css/typography.css')) {
+    errors.push(`${page}: typography.css is not connected.`);
   }
   if (!source.includes('vh-title')) {
     errors.push(`${page}: page title is not connected to the shared title component.`);
@@ -124,7 +134,8 @@ for (const requirement of [
   ['/assets/css/home.css', 'home.css is not connected in index.html.'],
   ['data-vh-home', 'homepage stylesheet marker is missing in index.html.'],
   ['/assets/css/design-system.css', 'design-system.css is not connected in index.html.'],
-  ['/assets/css/shared-ui.css', 'shared-ui.css is not connected in index.html.']
+  ['/assets/css/shared-ui.css', 'shared-ui.css is not connected in index.html.'],
+  ['/assets/css/typography.css', 'typography.css is not connected in index.html.']
 ]) {
   if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
 }

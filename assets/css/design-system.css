@@ -155,29 +155,12 @@ textarea {
   overflow-wrap: break-word;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  margin-block-start: 0;
-  font-family: var(--vh-font-display);
-  text-wrap: balance;
-}
-
 p,
 li {
   text-wrap: pretty;
 }
 
-/* ===== MAIN PAGE HEADINGS ===== */
-.vh-hero__title {
-  max-width: 13ch;
-  font-size: var(--vh-type-display);
-  line-height: var(--vh-leading-display);
-  letter-spacing: -.035em;
-  text-wrap: balance;
-}
-
+/* ===== MAIN PAGE TYPOGRAPHY ===== */
 .vh-hero__title > span,
 .vh-hero__title > strong {
   max-width: 100%;
@@ -188,23 +171,6 @@ li {
   font-size: var(--vh-type-lead);
   line-height: 1.45;
   text-wrap: pretty;
-}
-
-:is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) {
-  max-width: var(--vh-heading-width);
-  margin-inline: auto;
-  font-size: var(--vh-type-h2);
-  line-height: var(--vh-leading-heading);
-  letter-spacing: -.025em;
-  text-wrap: balance;
 }
 
 :is(
@@ -235,18 +201,6 @@ li {
   display: none;
 }
 
-.vh-benefit-text h3,
-.vh-format-title,
-.vh-booking-card h3,
-.vh-price-calc h3,
-.vh-faq__question span,
-.vh-contact-card__content strong {
-  font-size: var(--vh-type-h3);
-  line-height: 1.18;
-  letter-spacing: -.018em;
-  text-wrap: balance;
-}
-
 .vh-benefit-text p,
 .vh-video-card__content p,
 .vh-format-list,
@@ -271,14 +225,6 @@ li {
 }
 
 /* ===== CATALOG ===== */
-.vh-artists-page__title {
-  max-width: 15ch;
-  font-size: var(--vh-type-h1);
-  line-height: 1;
-  letter-spacing: -.035em;
-  text-wrap: balance;
-}
-
 .vh-artists-page__subtitle {
   max-width: 62ch;
   font-size: var(--vh-type-lead);
@@ -289,16 +235,6 @@ li {
 .vh-artists-page__title-row > div {
   min-width: 0;
   flex: 1 1 auto;
-}
-
-#artists .vh-artist-card h2,
-#artists .vh-artist-card h3,
-.vh-artist-modal__title-row h2 {
-  font-size: var(--vh-type-h3);
-  line-height: 1.15;
-  letter-spacing: -.02em;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
 }
 
 #artists .vh-artist-card p,
@@ -312,17 +248,6 @@ li {
 /* ===== REPERTOIRE ===== */
 .vr-head__content {
   min-width: 0;
-}
-
-.vr-head__title {
-  max-width: 18ch;
-  min-height: 0;
-  font-size: var(--vh-type-h1);
-  line-height: 1.04;
-  letter-spacing: -.03em;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
-  word-break: normal;
 }
 
 .vr-head__title .vr-head__title-word {
@@ -341,14 +266,6 @@ li {
   min-width: 0;
 }
 
-.vr-song__title h3 {
-  font-size: clamp(1rem, 1.3vw, 1.18rem);
-  line-height: 1.25;
-  letter-spacing: -.012em;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
-}
-
 .vr-song__title p,
 .vr-state,
 .vr-picker,
@@ -359,12 +276,6 @@ li {
 
 /* ===== MOBILE STABILITY ===== */
 @media (max-width: 720px) {
-  .vh-hero__title,
-  .vh-artists-page__title,
-  .vr-head__title {
-    max-width: 100%;
-  }
-
   .vh-artists-page__title-row {
     align-items: stretch;
   }
@@ -380,13 +291,5 @@ li {
   button,
   a {
     overflow-wrap: normal;
-  }
-}
-
-@media (max-width: 390px) {
-  .vh-hero__title,
-  .vh-artists-page__title,
-  .vr-head__title {
-    letter-spacing: -.025em;
   }
 }
