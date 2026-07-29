@@ -6,8 +6,7 @@ const migratedFiles = [
   'assets/css/subpages.css',
   'assets/css/artist-modal.css',
   'assets/css/repertoire-system.css',
-  'assets/css/artists-system.css',
-  'assets/css/home-system.css'
+  'assets/css/artists-system.css'
 ];
 
 const requiredTokens = [
@@ -44,7 +43,7 @@ const forbiddenRules = [
   },
   {
     pattern: /--vh-(?:page|page-alt|surface|text|accent|danger|success|weight|radius|control-height)\s*:/gi,
-    message: 'Global design tokens may only be declared in design-tokens.css.'
+    message: 'Global design tokens may only be declared in design-system.css.'
   }
 ];
 
@@ -76,25 +75,25 @@ for (const relativePath of migratedFiles) {
   }
 }
 
-const tokensSource = read('assets/css/design-tokens.css');
+const tokensSource = read('assets/css/design-system.css');
 for (const token of requiredTokens) {
   if (!tokensSource.includes(token)) {
-    errors.push(`assets/css/design-tokens.css: missing required token ${token}.`);
+    errors.push(`assets/css/design-system.css: missing required token ${token}.`);
   }
 }
 
-const componentsSource = read('assets/css/components.css');
+const componentsSource = read('assets/css/shared-ui.css');
 for (const selector of ['.vh-button', '.vh-title', '.vh-card', '.vh-input']) {
   if (!componentsSource.includes(selector)) {
-    errors.push(`assets/css/components.css: missing shared component ${selector}.`);
+    errors.push(`assets/css/shared-ui.css: missing shared component ${selector}.`);
   }
 }
 
 const pages = ['artists/index.html', 'repertoire/index.html'];
 for (const page of pages) {
   const source = read(page);
-  if (!source.includes('/assets/css/components.css')) {
-    errors.push(`${page}: shared components.css is not connected.`);
+  if (!source.includes('/assets/css/shared-ui.css')) {
+    errors.push(`${page}: shared-ui.css is not connected.`);
   }
   if (!source.includes('vh-title')) {
     errors.push(`${page}: page title is not connected to the shared title component.`);
@@ -122,10 +121,10 @@ if (!artistsPage.includes('data-vh-artists-system')) {
 
 const homepagePage = read('index.html');
 for (const requirement of [
-  ['/assets/css/home-system.css', 'home-system.css is not connected in index.html.'],
-  ['data-vh-home-system', 'homepage system stylesheet marker is missing in index.html.'],
-  ['/assets/css/visual-fixes.css', 'visual-fixes.css is not connected in index.html.'],
-  ['data-vh-visual-fixes', 'visual fixes stylesheet marker is missing in index.html.']
+  ['/assets/css/home.css', 'home.css is not connected in index.html.'],
+  ['data-vh-home', 'homepage stylesheet marker is missing in index.html.'],
+  ['/assets/css/design-system.css', 'design-system.css is not connected in index.html.'],
+  ['/assets/css/shared-ui.css', 'shared-ui.css is not connected in index.html.']
 ]) {
   if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
 }
@@ -141,7 +140,7 @@ if (!homepageConfig.includes('data-vh-home-copy')) {
   errors.push('assets/js/config.js: homepage copy marker is missing.');
 }
 
-const visualFixes = read('assets/css/visual-fixes.css');
+const visualFixes = read('assets/css/home.css');
 for (const requiredRule of [
   '.vh-hero__title > :is(span, strong)',
   '--vh-home-content-width',
@@ -151,7 +150,7 @@ for (const requiredRule of [
   'font-family: var(--vh-font-family)'
 ]) {
   if (!visualFixes.includes(requiredRule)) {
-    errors.push(`assets/css/visual-fixes.css: missing required visual correction ${requiredRule}.`);
+    errors.push(`assets/css/home.css: missing required visual correction ${requiredRule}.`);
   }
 }
 
@@ -170,10 +169,10 @@ for (const selector of [
 }
 
 const legacyFiles = [
-  'assets/css/style.css',
+  'assets/css/home-base.css',
   'assets/css/repertoire.css',
   'assets/css/artists.css',
-  'assets/css/themes.css'
+  'assets/css/shared-ui.css'
 ];
 
 const legacyStats = legacyFiles.map((relativePath) => {

@@ -4,11 +4,11 @@ The public site uses one shared visual system across the main page, `/artists/` 
 
 ## Source files
 
-- `assets/css/design-tokens.css` — colors, font weights, spacing, heights, radii, shadows and transitions.
-- `assets/css/typography.css` — responsive type scale and reading widths.
-- `assets/css/components.css` — reusable titles, buttons, fields, cards, badges and layout primitives.
-- `assets/css/themes.css` — page-level dark and light theme adaptations.
-- `assets/css/icons.css` — icon sizing and behavior.
+- `assets/css/design-system.css` — tokens, responsive type scale and reading widths.
+- `assets/css/shared-ui.css` — reusable components, theme adaptations and icon behavior.
+- `assets/css/home-base.css` — legacy homepage foundation.
+- `assets/css/home.css` — homepage layout, responsive behavior and visual refinements.
+- `assets/css/subpages.css`, `artists*.css` and `repertoire*.css` — subpage-specific layout and interactions.
 
 Page-specific files should primarily control layout, media and unique interactions. They should not introduce arbitrary button weights, control heights or heading scales.
 
