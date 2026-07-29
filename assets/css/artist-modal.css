@@ -450,8 +450,6 @@
   .vh-artist-modal__short {
     width: 100%;
     margin: 0 0 var(--vh-space-3);
-    font-size: 13px;
-    line-height: 1.55;
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
@@ -479,8 +477,6 @@
   }
 
   .vh-artist-modal__info-card p {
-    font-size: 10.5px;
-    line-height: 1.42;
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
@@ -489,11 +485,6 @@
   .vh-artist-modal__about-section {
     padding: 0 var(--vh-space-4) var(--vh-space-4);
     border-top: 0;
-  }
-
-  .vh-artist-modal__about {
-    font-size: 13px;
-    line-height: 1.55;
   }
 
   .vh-artist-modal__photos {
@@ -523,15 +514,6 @@
 
   .vh-artist-modal__title-row {
     padding-right: 4px;
-  }
-
-  .vh-artist-modal__short {
-    font-size: 13px;
-  }
-
-  .vh-artist-modal__info-card p {
-    font-size: 10px;
-    line-height: 1.4;
   }
 
   .vh-artist-modal__about-section,
@@ -578,8 +560,6 @@
   .vh-artist-modal__short {
     margin-right: 0;
     padding-right: 0;
-    font-size: 13px;
-    line-height: 1.55;
     white-space: normal;
     text-wrap: wrap;
     overflow-wrap: normal;

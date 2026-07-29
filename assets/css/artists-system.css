@@ -341,9 +341,6 @@
 
 #artists .vh-artist-card__type {
   color: var(--vh-accent-light);
-  font-family: var(--vh-font-family);
-  font-size: var(--vh-type-small);
-  font-weight: var(--vh-weight-label);
 }
 
 #artists .vh-artist-card h3 {
@@ -357,10 +354,6 @@
 
 #artists .vh-artist-card__text {
   color: var(--vh-text-muted);
-  font-family: var(--vh-font-body);
-  font-size: var(--vh-type-body);
-  line-height: var(--vh-leading-body);
-  font-weight: var(--vh-weight-regular);
 }
 
 #artists .vh-artist-card__actions {

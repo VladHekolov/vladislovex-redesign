@@ -105,6 +105,66 @@ html :is(body#top, body.vh-subpage) .vh-label {
   text-transform: uppercase;
 }
 
+html :is(body#top, body.vh-subpage) .vh-text--small,
+html body :is(.vr-song__title p, .vh-artist-modal__info-card p) {
+  margin: 0;
+  color: var(--vh-text-muted);
+  font-family: var(--vh-font-body);
+  font-size: var(--vh-type-small);
+  line-height: 1.45;
+  font-weight: var(--vh-weight-regular);
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+html body :is(
+  .vh-video-card__content p,
+  .vh-format-list,
+  .vh-format-list li,
+  .vh-booking-card p,
+  .vh-booking__steps p,
+  .vh-booking__included p,
+  .vh-price-calc__note,
+  .vh-faq__answer p,
+  .vh-faq__card p,
+  .vh-contact-card__content > span,
+  #artists .vh-artist-card__text,
+  .vh-artist-modal__short,
+  .vh-artist-modal__about
+) {
+  max-width: var(--vh-reading-width);
+  color: var(--vh-text-muted);
+  font-family: var(--vh-font-body);
+  font-size: var(--vh-type-body);
+  line-height: var(--vh-leading-body);
+  font-weight: var(--vh-weight-regular);
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+html body .vh-benefit-text p {
+  color: var(--vh-text-muted);
+  font-family: var(--vh-font-body);
+  font-size: var(--vh-type-small);
+  line-height: 1.45;
+  font-weight: var(--vh-weight-regular);
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+html body :is(
+  #artists .vh-artist-card__type,
+  .vh-benefit-number,
+  .vh-format-number
+) {
+  font-family: var(--vh-font-body);
+  font-size: var(--vh-type-small);
+  line-height: 1.2;
+  font-weight: var(--vh-weight-label);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
 html :is(body#top, body.vh-subpage) .vh-title + .vh-lead {
   margin-top: var(--vh-title-gap);
 }

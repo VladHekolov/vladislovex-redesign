@@ -112,9 +112,6 @@
 .vh-faq__card p,
 .vh-contact-card__content > span {
   color: var(--vh-text-muted);
-  font-family: var(--vh-font-body);
-  font-weight: var(--vh-weight-regular);
-  text-wrap: pretty;
   overflow-wrap: break-word;
 }
 
@@ -124,26 +121,15 @@
   border-radius: var(--vh-radius-xl);
 }
 
-.vh-benefit-text p {
-  line-height: 1.52;
-}
-
 /* ===== Video and formats ===== */
 .vh-video-card__content strong,
-.vh-format-subtitle,
-.vh-format-list,
-.vh-video-card__content p {
+.vh-format-subtitle {
   font-family: var(--vh-font-family);
 }
 
 .vh-video-card__content strong {
   font-weight: var(--vh-weight-heading);
   overflow-wrap: break-word;
-}
-
-.vh-video-card__content p,
-.vh-format-list {
-  font-weight: var(--vh-weight-regular);
 }
 
 .vh-format-card {
@@ -251,7 +237,6 @@
 
 .vh-faq__answer p {
   max-width: 72ch;
-  line-height: 1.62;
 }
 
 /* ===== Contacts ===== */
@@ -473,12 +458,6 @@ body#top .vh-format-subtitle {
   font-weight: var(--vh-weight-semibold);
 }
 
-body#top .vh-format-list li {
-  font-size: clamp(.94rem, 1vw, 1rem);
-  line-height: 1.45;
-  font-weight: var(--vh-weight-medium);
-}
-
 /* ===== Calm FAQ hierarchy ===== */
 body#top .vh-faq__question {
   min-height: 0;
@@ -497,9 +476,6 @@ body#top .vh-faq__question span {
 
 body#top .vh-faq__answer p {
   max-width: 68ch;
-  font-size: clamp(.94rem, 1vw, 1rem);
-  line-height: 1.68;
-  font-weight: var(--vh-weight-regular);
 }
 
 @media (max-width: 760px) {
@@ -527,8 +503,6 @@ body#top .vh-faq__answer p {
 
   body#top .vh-faq__answer p {
     padding-inline: var(--vh-space-4);
-    font-size: .94rem;
-    line-height: 1.65;
   }
 }
 
@@ -669,11 +643,6 @@ body#top .vh-hero-offer__line {
   body#top .vh-benefit-icon :is(img, svg) {
     width: 21px;
     height: 21px;
-  }
-
-  body#top .vh-benefit-text p {
-    font-size: 10.1px;
-    line-height: 1.42;
   }
 
   body#top .vh-price-calc__wrap {
@@ -1000,10 +969,7 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
   }
 
   body#top .vh-benefits-track--lite .vh-benefit-text p {
-    font-size: clamp(12.6px, 3.45vw, 14px);
-    line-height: 1.42;
     max-width: 100%;
-    text-wrap: pretty;
   }
 
   /* Slider-only duration control. */
@@ -1034,10 +1000,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
   }
   body#top .vh-benefits-track--lite .vh-benefit-card {
     min-height: 174px;
-  }
-
-  body#top .vh-benefits-track--lite .vh-benefit-text p {
-    font-size: 12.8px;
   }
 
   body#top .vh-price-calc__range-shell { --vh-range-thumb-half: 11px; }

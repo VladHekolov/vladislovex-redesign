@@ -98,6 +98,7 @@ for (const selector of [
   '.vh-title--card',
   '.vh-lead',
   '.vh-body-text',
+  '.vh-text--small',
   '.vh-label'
 ]) {
   if (!typographySource.includes(selector)) {
