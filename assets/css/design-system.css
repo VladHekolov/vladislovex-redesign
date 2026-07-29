@@ -7,8 +7,6 @@
 
   /* Typography */
   --vh-font-family: "Montserrat", Arial, sans-serif;
-  --vh-font-display: "Montserrat", Arial, sans-serif;
-  --vh-font-body: "Montserrat", Arial, sans-serif;
   --vh-weight-regular: 400;
   --vh-weight-medium: 500;
   --vh-weight-semibold: 600;
@@ -132,25 +130,7 @@ textarea {
   }
 }
 
-/* Source: typography.css */
-/* Unified typography for the main page, /artists/ and /repertoire/. */
-
-:root {
-  --vh-font-display: "Montserrat", Arial, sans-serif;
-  --vh-font-body: "Montserrat", Arial, sans-serif;
-  --vh-type-display: clamp(3rem, 7vw, 6.5rem);
-  --vh-type-h1: clamp(2.6rem, 5vw, 4.9rem);
-  --vh-type-h2: clamp(2rem, 4vw, 3.7rem);
-  --vh-type-h3: clamp(1.2rem, 2vw, 1.75rem);
-  --vh-type-lead: clamp(1rem, 1.45vw, 1.25rem);
-  --vh-type-body: clamp(.94rem, 1vw, 1.05rem);
-  --vh-type-small: clamp(.78rem, .85vw, .9rem);
-  --vh-leading-display: .98;
-  --vh-leading-heading: 1.08;
-  --vh-leading-body: 1.58;
-  --vh-reading-width: 68ch;
-  --vh-heading-width: 18ch;
-}
+/* Typography tokens and heading components live in typography.css. */
 
 body {
   font-family: var(--vh-font-body);
@@ -379,15 +359,6 @@ li {
 
 /* ===== MOBILE STABILITY ===== */
 @media (max-width: 720px) {
-  :root {
-    --vh-type-display: clamp(2.7rem, 13vw, 4.4rem);
-    --vh-type-h1: clamp(2.25rem, 10vw, 3.5rem);
-    --vh-type-h2: clamp(1.85rem, 8vw, 2.8rem);
-    --vh-type-h3: clamp(1.08rem, 5vw, 1.42rem);
-    --vh-type-lead: clamp(.95rem, 4vw, 1.08rem);
-    --vh-type-body: clamp(.9rem, 3.8vw, 1rem);
-  }
-
   .vh-hero__title,
   .vh-artists-page__title,
   .vr-head__title {
