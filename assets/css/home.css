@@ -692,10 +692,7 @@ body#top .vh-contact-card__arrow .vh-icon {
 /* Final mobile layout layer. */
 
 [data-vh-theme-toggle],
-[data-vh-subpage-theme-toggle] {
-  display: none;
-}
-
+[data-vh-subpage-theme-toggle],
 body#top .vh-booking {
   display: none;
 }
@@ -1419,10 +1416,7 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     .vh-faq__item,
     .vh-faq__card,
     .vh-contact-card
-  )::after {
-    animation: none;
-  }
-
+  )::after,
   /* Stop decorative motion that keeps repainting while the user scrolls. */
   body#top .vh-hero-offer,
   body#top .vh-hero-offer__line,
@@ -1835,10 +1829,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
   flex-direction: column;
   margin: 0;
   padding: 0;
-}
-
-.vh-offer-additions-title {
-  display: none;
 }
 
 .vh-offer-cost-row--optional {

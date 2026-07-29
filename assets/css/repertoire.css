@@ -376,11 +376,6 @@ body {
   }
 }
 
-@keyframes vrHeadSmallShine {
-  0%, 100% { background-position: 100% 50%; }
-  50% { background-position: 0% 50%; }
-}
-
 @keyframes vrHeadSilverFlow {
   0%, 100% { background-position: 86% 50%; }
   50% { background-position: 14% 50%; }
@@ -1420,7 +1415,6 @@ body {
   pointer-events: none;
 }
 
-
 .vr-guide[hidden] {
   display: none;
 }
@@ -1833,7 +1827,6 @@ body {
     box-shadow var(--vh-transition-card);
 }
 
-
 .vr-song::before,
 .vr-song::after {
   content: "";
@@ -1898,7 +1891,6 @@ body {
   position: relative;
   z-index: 1;
 }
-
 
 .vr-song:hover {
   transform: translateY(-4px);
@@ -2029,7 +2021,6 @@ body {
   opacity: 0.42;
 }
 
-
 .vr-song.is-choice-like .vr-song__choice--like::before,
 .vr-song.is-choice-stop .vr-song__choice--stop::before,
 .vr-song.is-choice-ok .vr-song__choice::before {
@@ -2091,7 +2082,6 @@ body {
   }
 }
 
-
 .vr-song h3 {
   margin: 0 0 5px;
   color: var(--vh-text);
@@ -2138,7 +2128,6 @@ body {
     padding: 44px 16px 96px;
   }
 }
-
 
 @media (max-width: 360px) {
   .vr-actions {
@@ -2337,7 +2326,6 @@ body {
   }
 }
 
-
 @media (prefers-reduced-motion: reduce) {
   .vr-head::before,
   .vr-head::after,
@@ -2372,7 +2360,6 @@ body {
   }
 }
 
-
 @media (max-width: 390px) {
   .vr-head__title {
     font-size: 38px;
@@ -2384,7 +2371,6 @@ body {
     letter-spacing: 0.09em;
   }
 }
-
 
 /* Mobile viewport/horizontal overflow hardening */
 .vr-page,

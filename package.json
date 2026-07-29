@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build": "sh scripts/build-static.sh"
+    "build": "sh scripts/build-static.sh",
+    "audit:css": "node scripts/css-duplicate-audit.mjs assets/css/home-base.css assets/css/artists.css assets/css/repertoire.css assets/css/home.css",
+    "audit:design": "node scripts/design-system-audit.mjs"
   },
   "devDependencies": {}
 }
