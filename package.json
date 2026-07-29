@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "sh scripts/build-static.sh"
+  },
+  "devDependencies": {}
+}
