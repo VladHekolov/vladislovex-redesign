@@ -1,12 +1,12 @@
 /* Current mobile component corrections. */
-body#top .vh-video-card__progress { opacity: 0 !important; transition: opacity .2s ease; }
-body#top .vh-video-card.is-previewing .vh-video-card__progress { opacity: 1 !important; }
-body#top .vh-video-card.is-previewing .vh-video-card__progress span { animation-duration: 10s !important; }
-body#top .vh-video-card__preview { opacity: 1 !important; background: #151515; }
+body#top .vh-video-card__progress { opacity: 0; transition: opacity .2s ease; }
+body#top .vh-video-card.is-previewing .vh-video-card__progress { opacity: 1; }
+body#top .vh-video-card.is-previewing .vh-video-card__progress span { animation-duration: 10s; }
+body#top .vh-video-card__preview { opacity: 1; background: #151515; }
 body#top .vh-video-card { -webkit-touch-callout: none; }
 body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:last-child {
-  font-size: .82rem !important;
-  line-height: 1.4 !important;
+  font-size: .82rem;
+  line-height: 1.4;
 }
 
 @media (max-width: 860px) {
@@ -17,7 +17,7 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     min-width: 0;
     max-width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden !important;
+    overflow-x: hidden;
     overscroll-behavior-x: none;
   }
 
@@ -39,7 +39,7 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     .vh-contacts-section,
     .vh-site-footer
   ) {
-    max-width: 100% !important;
+    max-width: 100%;
   }
 
   body#top :is(
@@ -49,22 +49,22 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     .vh-hero__photo,
     .vh-hero__overlay
   ) {
-    width: 100% !important;
+    width: 100%;
   }
 
   body#top .vh-premium-header {
-    left: 0 !important;
-    right: 0 !important;
-    width: auto !important;
+    left: 0;
+    right: 0;
+    width: auto;
   }
 
   input,
   select,
   textarea,
   [contenteditable="true"] {
-    font-size: 16px !important;
-    text-size-adjust: 100% !important;
-    -webkit-text-size-adjust: 100% !important;
+    font-size: 16px;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   .vh-mobile-pdf-ready {
@@ -135,6 +135,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
 
 @media (max-width: 760px) {
   body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:last-child {
-    font-size: .76rem !important;
+    font-size: .76rem;
   }
 }

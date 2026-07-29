@@ -28,10 +28,10 @@
   margin-inline: auto;
   color: var(--vh-text-strong);
   font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h2) !important;
-  line-height: var(--vh-leading-heading) !important;
-  font-weight: var(--vh-weight-heading) !important;
-  letter-spacing: -.025em !important;
+  font-size: var(--vh-type-h2);
+  line-height: var(--vh-leading-heading);
+  font-weight: var(--vh-weight-heading);
+  letter-spacing: -.025em;
   text-align: center;
   text-wrap: balance;
   overflow-wrap: break-word;
@@ -48,8 +48,8 @@
 ) > :is(span, strong) {
   display: block;
   color: inherit;
-  font: inherit !important;
-  letter-spacing: inherit !important;
+  font: inherit;
+  letter-spacing: inherit;
 }
 
 :is(
@@ -77,9 +77,9 @@
   margin-inline: auto;
   color: var(--vh-text-muted);
   font-family: var(--vh-font-body);
-  font-size: var(--vh-type-lead) !important;
-  line-height: 1.55 !important;
-  font-weight: var(--vh-weight-medium) !important;
+  font-size: var(--vh-type-lead);
+  line-height: 1.55;
+  font-weight: var(--vh-weight-medium);
   text-align: center;
   text-wrap: pretty;
   overflow-wrap: break-word;
@@ -120,7 +120,7 @@
 .vh-contact-card__content strong {
   color: var(--vh-text-strong);
   font-family: var(--vh-font-display);
-  font-weight: var(--vh-weight-heading) !important;
+  font-weight: var(--vh-weight-heading);
   text-wrap: balance;
   overflow-wrap: break-word;
 }
@@ -134,7 +134,7 @@
 .vh-contact-card__content > span {
   color: var(--vh-text-muted);
   font-family: var(--vh-font-body);
-  font-weight: var(--vh-weight-regular) !important;
+  font-weight: var(--vh-weight-regular);
   text-wrap: pretty;
   overflow-wrap: break-word;
 }
@@ -146,7 +146,7 @@
 }
 
 .vh-benefit-text h3 {
-  line-height: 1.15 !important;
+  line-height: 1.15;
 }
 
 .vh-benefit-text p {
@@ -188,14 +188,14 @@
 .vh-faq__cta,
 .vh-faq__phone,
 .vh-contact-submit {
-  min-height: var(--vh-control-height-lg) !important;
-  padding-inline: var(--vh-control-padding-lg) !important;
-  border-radius: var(--vh-radius-pill) !important;
-  font-family: var(--vh-font-family) !important;
-  font-size: var(--vh-control-font-size) !important;
-  line-height: var(--vh-control-line-height) !important;
-  font-weight: var(--vh-weight-button) !important;
-  letter-spacing: 0 !important;
+  min-height: var(--vh-control-height-lg);
+  padding-inline: var(--vh-control-padding-lg);
+  border-radius: var(--vh-radius-pill);
+  font-family: var(--vh-font-family);
+  font-size: var(--vh-control-font-size);
+  line-height: var(--vh-control-line-height);
+  font-weight: var(--vh-weight-button);
+  letter-spacing: 0;
 }
 
 /* ===== Booking ===== */
@@ -226,7 +226,7 @@
 .vh-contact-field > span {
   color: var(--vh-text-muted);
   font-family: var(--vh-font-family);
-  font-weight: var(--vh-weight-label) !important;
+  font-weight: var(--vh-weight-label);
 }
 
 .vh-price-calc :is(input, select, textarea),
@@ -252,7 +252,7 @@
 }
 
 .vh-price-calc__circle-action {
-  border-radius: var(--vh-radius-pill) !important;
+  border-radius: var(--vh-radius-pill);
 }
 
 /* ===== Reviews ===== */
@@ -282,7 +282,7 @@
 }
 
 .vh-faq__question span {
-  font: inherit !important;
+  font: inherit;
   overflow-wrap: break-word;
 }
 

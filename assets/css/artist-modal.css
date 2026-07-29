@@ -191,7 +191,7 @@
 .vh-artist-modal__info-card[hidden],
 .vh-artist-modal__about-section[hidden],
 .vh-artist-modal__photos:not(.is-visible) {
-  display: none !important;
+  display: none;
 }
 
 .vh-artist-modal__title-row {
@@ -576,13 +576,13 @@
   .vh-artist-modal__title-row h2 {
     width: 100%;
     max-width: none;
-    font-size: 37px !important;
-    line-height: 1 !important;
-    letter-spacing: -.03em !important;
-    text-wrap: wrap !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    hyphens: none !important;
+    font-size: 37px;
+    line-height: 1;
+    letter-spacing: -.03em;
+    text-wrap: wrap;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
   }
 
   .vh-artist-modal__short {
@@ -617,6 +617,6 @@
   }
 
   .vh-artist-modal__title-row h2 {
-    font-size: 33px !important;
+    font-size: 33px;
   }
 }

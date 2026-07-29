@@ -190,44 +190,44 @@ html[data-vh-theme="light"] .vh-subpage .vr-search-field > svg {
 
 /* PDF equipment trial: same hierarchy as offer cards. */
 body #vhPdfStage .vh-offer-equipment-trial {
-  display: grid !important;
-  grid-template-columns: 32px minmax(0, 1fr) !important;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
   grid-template-areas:
     "title title"
     "speaker description-one"
-    "speaker description-two" !important;
-  column-gap: 11px !important;
-  row-gap: 2px !important;
-  align-items: start !important;
+    "speaker description-two";
+  column-gap: 11px;
+  row-gap: 2px;
+  align-items: start;
 }
 
 body #vhPdfStage .vh-offer-equipment-trial-copy {
-  display: contents !important;
+  display: contents;
 }
 
 body #vhPdfStage .vh-offer-equipment-trial-copy h3 {
-  grid-area: title !important;
-  width: 100% !important;
-  margin: 0 0 6px !important;
-  color: #27231f !important;
-  font-size: var(--vh-offer-adv-title-size, 11px) !important;
-  line-height: 1.18 !important;
-  font-weight: 700 !important;
-  letter-spacing: -.01em !important;
-  text-align: left !important;
-  white-space: nowrap !important;
+  grid-area: title;
+  width: 100%;
+  margin: 0 0 6px;
+  color: #27231f;
+  font-size: var(--vh-offer-adv-title-size, 11px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  text-align: left;
+  white-space: nowrap;
 }
 
 body #vhPdfStage .vh-offer-equipment-trial-icon {
-  grid-area: speaker !important;
-  align-self: start !important;
+  grid-area: speaker;
+  align-self: start;
 }
 
 body #vhPdfStage .vh-offer-equipment-trial-copy p:first-of-type {
-  grid-area: description-one !important;
+  grid-area: description-one;
 }
 
 body #vhPdfStage .vh-offer-equipment-trial-copy p:last-of-type {
-  grid-area: description-two !important;
-  margin-top: 0 !important;
+  grid-area: description-two;
+  margin-top: 0;
 }

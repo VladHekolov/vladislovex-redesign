@@ -278,23 +278,23 @@ body#top .vh-contact-card__arrow .vh-icon {
 }
 
 @media (min-width: 1025px) {
-  .vh-hero-benefits { bottom: 10px !important; }
-  .vh-reviews-header { margin-bottom: 118px !important; }
+  .vh-hero-benefits { bottom: 10px; }
+  .vh-reviews-header { margin-bottom: 118px; }
 }
 
 .vh-price-calc__description {
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  background: linear-gradient(105deg, rgba(177, 184, 197, .72) 0%, rgba(226, 230, 237, .88) 34%, rgba(145, 153, 168, .68) 58%, rgba(210, 216, 226, .84) 100%) !important;
-  background-size: 100% 100% !important;
-  background-position: 50% 50% !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  animation: none !important;
-  transition: none !important;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(105deg, rgba(177, 184, 197, .72) 0%, rgba(226, 230, 237, .88) 34%, rgba(145, 153, 168, .68) 58%, rgba(210, 216, 226, .84) 100%);
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: none;
+  transition: none;
 }
 
 .vh-price-calc__description b {
-  color: inherit !important;
-  -webkit-text-fill-color: inherit !important;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
 }

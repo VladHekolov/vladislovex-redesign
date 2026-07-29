@@ -102,10 +102,10 @@
   margin-inline: auto;
   color: var(--vh-text-strong);
   font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h2) !important;
-  line-height: var(--vh-leading-heading) !important;
-  font-weight: var(--vh-weight-heading) !important;
-  letter-spacing: -.025em !important;
+  font-size: var(--vh-type-h2);
+  line-height: var(--vh-leading-heading);
+  font-weight: var(--vh-weight-heading);
+  letter-spacing: -.025em;
   text-wrap: balance;
 }
 
@@ -119,25 +119,25 @@
   .vh-contacts-section__title
 ) > :is(span, strong) {
   color: inherit;
-  font: inherit !important;
-  letter-spacing: inherit !important;
+  font: inherit;
+  letter-spacing: inherit;
 }
 
 :is(.vh-artists-page__title, .vr-head__title) {
-  max-width: 18ch !important;
+  max-width: 18ch;
   color: var(--vh-text-strong);
   font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h1) !important;
-  line-height: 1.04 !important;
-  font-weight: var(--vh-weight-heading) !important;
-  letter-spacing: -.03em !important;
-  text-wrap: balance !important;
-  overflow-wrap: break-word !important;
+  font-size: var(--vh-type-h1);
+  line-height: 1.04;
+  font-weight: var(--vh-weight-heading);
+  letter-spacing: -.03em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 :is(.vh-artists-page__title, .vr-head__title) > :is(span, strong) {
   color: inherit;
-  font: inherit !important;
+  font: inherit;
 }
 
 :is(
@@ -156,8 +156,8 @@
   max-width: 62ch;
   color: var(--vh-text-muted);
   font-family: var(--vh-font-body);
-  font-size: var(--vh-type-lead) !important;
-  line-height: 1.55 !important;
+  font-size: var(--vh-type-lead);
+  line-height: 1.55;
   font-weight: var(--vh-weight-medium);
   text-wrap: pretty;
 }
@@ -174,10 +174,10 @@
   .vh-artist-modal__title-row h2
 ) {
   font-family: var(--vh-font-display);
-  font-size: var(--vh-type-h3) !important;
-  line-height: 1.16 !important;
-  font-weight: var(--vh-weight-heading) !important;
-  letter-spacing: -.018em !important;
+  font-size: var(--vh-type-h3);
+  line-height: 1.16;
+  font-weight: var(--vh-weight-heading);
+  letter-spacing: -.018em;
   text-wrap: balance;
   overflow-wrap: break-word;
 }
@@ -293,11 +293,11 @@
   justify-content: center;
   gap: var(--vh-space-3);
   border-radius: var(--vh-radius-pill);
-  font-family: var(--vh-font-family) !important;
-  font-size: var(--vh-control-font-size) !important;
-  line-height: var(--vh-control-line-height) !important;
-  font-weight: var(--vh-weight-button) !important;
-  letter-spacing: 0 !important;
+  font-family: var(--vh-font-family);
+  font-size: var(--vh-control-font-size);
+  line-height: var(--vh-control-line-height);
+  font-weight: var(--vh-weight-button);
+  letter-spacing: 0;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -320,7 +320,7 @@
 :is(.vh-premium-header__cta, .vh-premium-header__outline) {
   min-height: var(--vh-control-height-sm);
   padding-inline: var(--vh-control-padding-sm);
-  font-size: 13px !important;
+  font-size: 13px;
 }
 
 :is(
@@ -335,7 +335,7 @@
   .vh-artist-card__repertoire,
   .vh-artist-card__select
 ) > :is(span, strong, b) {
-  font-weight: inherit !important;
+  font-weight: inherit;
 }
 
 /* ===== Icon buttons ===== */
@@ -403,10 +403,10 @@
   box-sizing: border-box;
   min-height: var(--vh-control-height-md);
   border-radius: var(--vh-radius-md);
-  font-family: var(--vh-font-family) !important;
-  font-size: var(--vh-control-font-size) !important;
-  line-height: 1.35 !important;
-  font-weight: var(--vh-weight-medium) !important;
+  font-family: var(--vh-font-family);
+  font-size: var(--vh-control-font-size);
+  line-height: 1.35;
+  font-weight: var(--vh-weight-medium);
 }
 
 .vh-input,
@@ -494,7 +494,7 @@
 @media (max-width: 720px) {
   .vh-title--page,
   :is(.vh-artists-page__title, .vr-head__title) {
-    max-width: 100% !important;
+    max-width: 100%;
   }
 
   :is(

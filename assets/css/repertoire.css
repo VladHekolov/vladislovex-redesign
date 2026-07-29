@@ -1496,7 +1496,7 @@ body {
   -webkit-backdrop-filter: blur(14px);
   font: 400 22px/1 Arial, sans-serif;
   cursor: pointer;
-  outline: 0 !important;
+  outline: 0;
   -webkit-tap-highlight-color: transparent;
   transition:
     color var(--vh-transition-fast),
@@ -1508,7 +1508,7 @@ body {
 .vr-guide__close:focus,
 .vr-guide__close:focus-visible,
 .vr-guide__close:active {
-  outline: 0 !important;
+  outline: 0;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.36);
 }
 
@@ -2408,9 +2408,9 @@ body {
 
 .vr-head__badge::before,
 .vr-head__badge::after {
-  content: none !important;
-  display: none !important;
-  animation: none !important;
+  content: none;
+  display: none;
+  animation: none;
 }
 
 .vr-head__title {

@@ -12,9 +12,9 @@
   body#top .vh-premium-header__cta:active,
   body#top .vh-premium-header__cta:focus,
   body#top .vh-premium-header__cta span {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    -webkit-tap-highlight-color: transparent !important;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body#top .vh-hero__btn--outline,
@@ -29,8 +29,8 @@
   body#top .vh-premium-header__outline:active,
   body#top .vh-premium-header__outline:focus,
   body#top .vh-premium-header__outline span {
-    color: #f4a259 !important;
-    -webkit-text-fill-color: #f4a259 !important;
-    -webkit-tap-highlight-color: transparent !important;
+    color: #f4a259;
+    -webkit-text-fill-color: #f4a259;
+    -webkit-tap-highlight-color: transparent;
   }
 }
