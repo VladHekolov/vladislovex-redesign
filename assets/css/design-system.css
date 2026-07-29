@@ -132,14 +132,6 @@ textarea {
 
 /* Typography tokens and heading components live in typography.css. */
 
-body {
-  font-family: var(--vh-font-body);
-  font-size: var(--vh-type-body);
-  line-height: var(--vh-leading-body);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
 h1,
 h2,
 h3,
@@ -181,22 +173,6 @@ li {
   .vh-reviews-description,
   .vh-faq__description,
   .vh-contacts-section__description
-) {
-  max-width: 62ch;
-  margin-inline: auto;
-  font-size: var(--vh-type-lead);
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-
-:is(
-  .vh-video-section__description,
-  .vh-formats-description,
-  .vh-booking__description,
-  .vh-price-calc__description,
-  .vh-reviews-description,
-  .vh-faq__description,
-  .vh-contacts-section__description
 ) br {
   display: none;
 }
@@ -225,13 +201,6 @@ li {
 }
 
 /* ===== CATALOG ===== */
-.vh-artists-page__subtitle {
-  max-width: 62ch;
-  font-size: var(--vh-type-lead);
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-
 .vh-artists-page__title-row > div {
   min-width: 0;
   flex: 1 1 auto;
@@ -253,13 +222,6 @@ li {
 .vr-head__title .vr-head__title-word {
   max-width: 100%;
   white-space: normal;
-}
-
-.vr-head__meta {
-  max-width: 62ch;
-  font-size: var(--vh-type-lead);
-  line-height: 1.5;
-  text-wrap: pretty;
 }
 
 .vr-song__title {

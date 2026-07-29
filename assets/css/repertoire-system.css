@@ -18,15 +18,6 @@
   max-width: 18ch;
 }
 
-.vr-head__meta {
-  max-width: 62ch;
-  color: var(--vh-text-muted);
-  font-family: var(--vh-font-body);
-  font-size: var(--vh-type-lead);
-  line-height: 1.55;
-  font-weight: var(--vh-weight-medium);
-}
-
 /* ===== Shared text labels ===== */
 .vr-picker__label,
 .vr-picker label,

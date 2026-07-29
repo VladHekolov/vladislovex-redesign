@@ -65,14 +65,7 @@
 ) {
   max-width: 58ch;
   margin-inline: auto;
-  color: var(--vh-text-muted);
-  font-family: var(--vh-font-body);
-  font-size: var(--vh-type-lead);
-  line-height: 1.55;
-  font-weight: var(--vh-weight-medium);
   text-align: center;
-  text-wrap: pretty;
-  overflow-wrap: break-word;
 }
 
 :is(
@@ -448,11 +441,6 @@ body#top :is(
 ) {
   max-width: 56ch;
   margin-inline: 0;
-  color: var(--vh-text-muted);
-  font-family: var(--vh-font-body);
-  font-size: clamp(1rem, 1.15vw, 1.12rem);
-  line-height: 1.58;
-  font-weight: var(--vh-weight-regular);
   text-align: left;
 }
 
@@ -530,7 +518,6 @@ body#top .vh-faq__answer p {
     .vh-contacts-section__description
   ) {
     max-width: 100%;
-    font-size: clamp(.96rem, 4vw, 1.04rem);
   }
 
   body#top .vh-faq__question {

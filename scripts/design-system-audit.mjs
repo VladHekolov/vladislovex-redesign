@@ -90,7 +90,16 @@ for (const selector of ['.vh-button', '.vh-card', '.vh-input']) {
 }
 
 const typographySource = read('assets/css/typography.css');
-for (const selector of ['.vh-title', '.vh-title--display', '.vh-title--page', '.vh-title--section', '.vh-title--card']) {
+for (const selector of [
+  '.vh-title',
+  '.vh-title--display',
+  '.vh-title--page',
+  '.vh-title--section',
+  '.vh-title--card',
+  '.vh-lead',
+  '.vh-body-text',
+  '.vh-label'
+]) {
   if (!typographySource.includes(selector)) {
     errors.push(`assets/css/typography.css: missing shared typography component ${selector}.`);
   }

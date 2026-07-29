@@ -18,58 +18,6 @@
   color: var(--vh-text);
 }
 
-/* ===== Typography components ===== */
-.vh-lead {
-  max-width: 62ch;
-  margin: 0;
-  color: var(--vh-text-muted);
-  font-size: var(--vh-type-lead);
-  line-height: 1.55;
-  font-weight: var(--vh-weight-medium);
-  text-wrap: pretty;
-}
-
-.vh-body-text {
-  max-width: var(--vh-reading-width);
-  margin: 0;
-  color: var(--vh-text-muted);
-  font-size: var(--vh-type-body);
-  line-height: var(--vh-leading-body);
-  font-weight: var(--vh-weight-regular);
-  text-wrap: pretty;
-}
-
-.vh-label {
-  color: var(--vh-text-soft);
-  font-size: var(--vh-type-small);
-  line-height: 1.2;
-  font-weight: var(--vh-weight-label);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-:is(
-  .vh-video-section__subtitle,
-  .vh-video-section__description,
-  .vh-formats-description,
-  .vh-booking__description,
-  .vh-price-calc__description,
-  .vh-reviews-subtitle,
-  .vh-reviews-description,
-  .vh-faq__description,
-  .vh-contacts-section__description,
-  .vh-artists-page__subtitle,
-  .vr-head__meta
-) {
-  max-width: 62ch;
-  color: var(--vh-text-muted);
-  font-family: var(--vh-font-body);
-  font-size: var(--vh-type-lead);
-  line-height: 1.55;
-  font-weight: var(--vh-weight-medium);
-  text-wrap: pretty;
-}
-
 /* ===== Buttons ===== */
 .vh-button {
   min-height: var(--vh-control-height-md);
