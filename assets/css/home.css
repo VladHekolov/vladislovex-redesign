@@ -540,7 +540,6 @@ body#top .vh-contact-card__arrow .vh-icon {
 
 @media (min-width: 1025px) {
   .vh-hero-benefits { bottom: 10px; }
-  .vh-reviews-header { margin-bottom: 118px; }
 }
 
 .vh-price-calc__description {
@@ -880,10 +879,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
   /* Video and formats use the same vertical rhythm. */
   body#top :is(.vh-video-section, .vh-formats-section) {
     padding-top: 52px;
-  }
-
-  body#top :is(.vh-video-section__header, .vh-formats-header) {
-    margin-bottom: 30px;
   }
 
   body#top :is(.vh-video-section__icon-row, .vh-formats-icon-row) {

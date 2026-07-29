@@ -99,7 +99,8 @@ for (const selector of [
   '.vh-lead',
   '.vh-body-text',
   '.vh-text--small',
-  '.vh-label'
+  '.vh-label',
+  '.vh-section-head'
 ]) {
   if (!typographySource.includes(selector)) {
     errors.push(`assets/css/typography.css: missing shared typography component ${selector}.`);

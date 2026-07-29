@@ -18,6 +18,7 @@
   --vh-reading-width: 68ch;
   --vh-heading-width: 18ch;
   --vh-title-gap: var(--vh-space-5);
+  --vh-section-head-gap: 54px;
 }
 
 body {
@@ -169,6 +170,14 @@ html :is(body#top, body.vh-subpage) .vh-title + .vh-lead {
   margin-top: var(--vh-title-gap);
 }
 
+html body#top .vh-section-head {
+  margin-bottom: var(--vh-section-head-gap);
+}
+
+html body#top .vh-section-head > .vh-title + .vh-lead {
+  margin-top: var(--vh-title-gap);
+}
+
 /* Existing generated content uses the same centralized card-title contract. */
 html body :is(
   #artists .vh-artist-card h3,
@@ -193,9 +202,14 @@ html body :is(
     --vh-type-h3: clamp(1.08rem, 5vw, 1.42rem);
     --vh-type-lead: clamp(.95rem, 4vw, 1.08rem);
     --vh-type-body: clamp(.9rem, 3.8vw, 1rem);
+    --vh-section-head-gap: var(--vh-space-7);
   }
 
   html :is(body#top, body.vh-subpage) :is(.vh-title--display, .vh-title--page, .vh-title--section) {
     max-width: 100%;
+  }
+
+  html body.vh-subpage .vh-title--page + .vh-lead {
+    margin-top: var(--vh-title-gap);
   }
 }
