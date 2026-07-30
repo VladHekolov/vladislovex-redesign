@@ -1015,10 +1015,6 @@ to {
 #artists .vh-artist-card__text {
   display: block;
   margin: 0;
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 13px;
-  line-height: 1.45;
-  font-weight: 450;
   overflow: visible;
 }
 
@@ -1151,11 +1147,6 @@ to {
     font-size: 24px;
     line-height: 1.12;
     letter-spacing: -.01em;
-  }
-
-  #artists .vh-artist-card__text {
-    font-size: 13px;
-    line-height: 1.45;
   }
 
   #artists .vh-artist-card__actions {
@@ -2143,10 +2134,6 @@ to {
 .vh-artist-modal__about {
   max-width: 560px;
   margin: 18px 0 24px;
-  color: rgba(255, 255, 255, 0.70);
-  font-size: 15px;
-  line-height: 1.56;
-  font-weight: 450;
   white-space: pre-line;
 }
 
@@ -2420,8 +2407,6 @@ to {
     grid-row: 3;
     max-width: none;
     margin: 2px 0 0;
-    font-size: 13px;
-    line-height: 1.48;
   }
 
   .vh-artist-modal__photos,

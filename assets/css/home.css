@@ -67,17 +67,6 @@
   color: var(--vh-text-strong);
 }
 
-.vh-benefit-text p,
-.vh-booking__steps p,
-.vh-booking__included p,
-.vh-price-calc__note,
-.vh-faq__answer p,
-.vh-faq__card p,
-.vh-contact-card__content > span {
-  color: var(--vh-text-muted);
-  overflow-wrap: break-word;
-}
-
 /* ===== Benefits ===== */
 .vh-benefit-card {
   border-color: var(--vh-border);

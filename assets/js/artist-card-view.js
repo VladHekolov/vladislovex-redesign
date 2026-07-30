@@ -42,14 +42,14 @@
               '<div class="vh-artist-modal__label" id="vhArtistModalType">VOCAVA</div>' +
               '<div class="vh-artist-modal__age-pill" id="vhArtistModalAgeCard" hidden><span id="vhArtistModalAge"></span></div>' +
               '<div class="vh-artist-modal__title-row"><h2 class="vh-title vh-title--card" id="vhArtistModalName">Карточка артиста</h2></div>' +
-              '<p class="vh-artist-modal__short" id="vhArtistModalShortText" hidden></p>' +
+              '<p class="vh-artist-modal__short vh-body-text" id="vhArtistModalShortText" hidden></p>' +
               '<div class="vh-artist-modal__info-grid">' +
-                '<div class="vh-artist-modal__info-card" id="vhArtistModalRepertoireDescriptionCard" hidden><span>Описание репертуара</span><p id="vhArtistModalRepertoireDescription"></p></div>' +
+                '<div class="vh-artist-modal__info-card" id="vhArtistModalRepertoireDescriptionCard" hidden><span>Описание репертуара</span><p class="vh-body-text" id="vhArtistModalRepertoireDescription"></p></div>' +
               '</div>' +
             '</div>' +
           '</div>' +
           '<section class="vh-artist-modal__about-section" id="vhArtistModalAboutSection" hidden>' +
-            '<p class="vh-artist-modal__about" id="vhArtistModalLongAbout"></p>' +
+            '<p class="vh-artist-modal__about vh-body-text" id="vhArtistModalLongAbout"></p>' +
           '</section>' +
           '<div class="vh-artist-modal__photos" id="vhArtistModalPhotos" aria-label="Фотографии музыканта"></div>' +
         '</section>' +

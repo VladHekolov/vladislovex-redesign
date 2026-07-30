@@ -147,6 +147,26 @@ for (const requirement of [
 ]) {
   if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
 }
+for (const textClass of ['vh-body-text', 'vh-text--small']) {
+  if (!homepagePage.includes(textClass)) {
+    errors.push(`index.html: shared text role ${textClass} is not used.`);
+  }
+}
+
+const artistsScript = read('assets/js/artists.js');
+if (!artistsScript.includes('vh-artist-card__text vh-text--small')) {
+  errors.push('assets/js/artists.js: artist-card copy is not connected to the compact text role.');
+}
+
+const artistCardView = read('assets/js/artist-card-view.js');
+for (const selector of [
+  'vh-artist-modal__short vh-body-text',
+  'vh-artist-modal__about vh-body-text'
+]) {
+  if (!artistCardView.includes(selector)) {
+    errors.push(`assets/js/artist-card-view.js: modal copy is not connected to ${selector}.`);
+  }
+}
 
 const homepageConfig = read('assets/js/config.js');
 if (homepageConfig.includes('loadStylesheet')) {

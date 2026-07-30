@@ -922,7 +922,7 @@
         '<div class="vh-artist-card__body" role="button" tabindex="0" aria-label="Открыть карточку артиста">' +
           '<div class="vh-artist-card__type"><span>' + esc(label) + '</span>' + (ageText ? '<b>' + esc(ageText) + '</b>' : '') + '</div>' +
           '<div class="vh-artist-card__top"><h3>' + esc(artist.name || 'Музыкант') + '</h3></div>' +
-          '<p class="vh-artist-card__text">' + esc(shortText) + '</p>' +
+          '<p class="vh-artist-card__text vh-text--small">' + esc(shortText) + '</p>' +
           '<div class="vh-artist-card__actions"><button class="vh-artist-card__choose" type="button">Смотреть видео</button><a class="vh-artist-card__repertoire" href="' + esc(repertoireUrl(artist)) + '" data-repertoire-artist="' + esc(artist.id || '') + '">Репертуар</a></div>' +
         '</div>' +
       '</article>';
