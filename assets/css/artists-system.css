@@ -317,6 +317,10 @@
   color: var(--vh-accent-light);
 }
 
+#artists .vh-artist-card__type + .vh-artist-card__top {
+  margin-top: var(--vh-flow-label-title);
+}
+
 #artists .vh-artist-card h3 {
   color: var(--vh-text-strong);
 }
@@ -330,9 +334,13 @@
   color: var(--vh-text-muted);
 }
 
+#artists .vh-artist-card__top + .vh-artist-card__text {
+  padding-top: var(--vh-flow-title-text);
+}
+
 #artists .vh-artist-card__actions {
   gap: var(--vh-space-3);
-  padding-top: var(--vh-space-5);
+  padding-top: var(--vh-flow-content-action);
 }
 
 /* ===== Favorites panel ===== */

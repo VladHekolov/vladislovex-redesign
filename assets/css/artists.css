@@ -860,7 +860,7 @@ to {
 }
 
 #artists .vh-artist-card__type {
-  margin: 0 0 8px;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -893,7 +893,7 @@ to {
   align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 12px;
+  margin: 0;
 }
 
 #artists .vh-artist-card h3 {
@@ -942,7 +942,7 @@ to {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: var(--vh-flow-content-action);
 }
 
 @media (max-width: 980px) {
@@ -1015,10 +1015,6 @@ to {
     font-size: 24px;
     line-height: 1.12;
     letter-spacing: -.01em;
-  }
-
-  #artists .vh-artist-card__actions {
-    padding-top: 16px;
   }
 
   .vh-favorites-panel {

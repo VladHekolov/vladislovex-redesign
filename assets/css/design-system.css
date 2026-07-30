@@ -151,6 +151,10 @@ textarea {
   --vh-heading-width: 18ch;
   --vh-title-gap: var(--vh-space-5);
   --vh-section-head-gap: 54px;
+  --vh-flow-label-title: var(--vh-space-2);
+  --vh-flow-title-text: var(--vh-space-4);
+  --vh-flow-row: var(--vh-space-4);
+  --vh-flow-content-action: var(--vh-space-6);
 }
 
 body {

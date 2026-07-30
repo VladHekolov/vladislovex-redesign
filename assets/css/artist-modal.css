@@ -196,7 +196,7 @@
 
 .vh-artist-modal__title-row {
   min-width: 0;
-  margin: 0 0 var(--vh-space-5);
+  margin: 0 0 var(--vh-flow-title-text);
 }
 
 .vh-artist-modal__title-row h2 {
@@ -209,7 +209,7 @@
 .vh-artist-modal__short {
   width: 100%;
   max-width: none;
-  margin: 0 0 var(--vh-space-4);
+  margin: 0 0 var(--vh-flow-content-action);
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
@@ -235,7 +235,7 @@
 
 .vh-artist-modal__info-card > span {
   display: block;
-  margin-bottom: var(--vh-space-2);
+  margin-bottom: var(--vh-flow-label-title);
 }
 
 .vh-artist-modal__info-card p {
@@ -436,7 +436,7 @@
   }
 
   .vh-artist-modal__title-row {
-    margin-bottom: var(--vh-space-3);
+    margin-bottom: var(--vh-flow-title-text);
   }
 
   .vh-artist-modal__title-row h2 {
@@ -447,7 +447,7 @@
 
   .vh-artist-modal__short {
     width: 100%;
-    margin: 0 0 var(--vh-space-3);
+    margin: 0 0 var(--vh-flow-content-action);
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
@@ -469,7 +469,7 @@
   }
 
   .vh-artist-modal__info-card > span {
-    margin-bottom: 5px;
+    margin-bottom: var(--vh-flow-label-title);
     font-size: 8px;
     line-height: 1.25;
   }

@@ -67,6 +67,78 @@
   color: var(--vh-text-strong);
 }
 
+/* ===== Shared content rhythm ===== */
+body#top .vh-contact-form__top > div:last-child {
+  display: grid;
+  align-content: center;
+  gap: var(--vh-flow-title-text);
+}
+
+body#top .vh-contact-form__top > div:last-child > * {
+  margin: 0;
+}
+
+@media (min-width: 641px) {
+  body#top .vh-benefit-text {
+    display: grid;
+    align-content: center;
+    gap: var(--vh-flow-title-text);
+  }
+
+  body#top .vh-benefit-text > * {
+    margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body#top .vh-benefit-card {
+    row-gap: var(--vh-flow-title-text);
+  }
+
+  body#top .vh-benefit-text {
+    display: contents;
+  }
+}
+
+body#top :is(
+  .vh-video-card__content > span + strong,
+  .vh-format-number + .vh-format-title,
+  .vh-contact-card__content > small + strong
+) {
+  margin-top: var(--vh-flow-label-title);
+}
+
+body#top :is(
+  .vh-video-card__content > strong + p,
+  .vh-format-title + .vh-format-subtitle,
+  .vh-faq__card > h3 + p
+) {
+  margin-top: var(--vh-flow-title-text);
+}
+
+body#top .vh-format-subtitle + .vh-format-line,
+body#top .vh-format-line + .vh-format-list {
+  margin-top: var(--vh-space-5);
+}
+
+body#top :is(
+  .vh-format-list + .vh-format-select,
+  .vh-faq__card > p + .vh-faq__cta
+) {
+  margin-top: var(--vh-flow-content-action);
+}
+
+body#top :is(.vh-faq__card, .vh-contact-card__content) {
+  display: grid;
+}
+
+body#top :is(
+  .vh-faq__card > .vh-faq__cta + .vh-faq__phone,
+  .vh-contact-card__content > strong + span
+) {
+  margin-top: var(--vh-space-3);
+}
+
 /* ===== Benefits ===== */
 .vh-benefit-card {
   border-color: var(--vh-border);
