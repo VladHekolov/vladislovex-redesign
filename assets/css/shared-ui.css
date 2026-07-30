@@ -20,6 +20,8 @@
 
 /* ===== Buttons ===== */
 .vh-button {
+  box-sizing: border-box;
+  min-width: 0;
   min-height: var(--vh-control-height-md);
   padding-inline: var(--vh-control-padding-md);
   display: inline-flex;
@@ -32,11 +34,14 @@
   font-size: var(--vh-control-font-size);
   line-height: var(--vh-control-line-height);
   font-weight: var(--vh-weight-button);
+  letter-spacing: 0;
   text-align: center;
   text-decoration: none;
-  white-space: nowrap;
+  text-wrap: balance;
+  overflow-wrap: break-word;
   cursor: pointer;
   appearance: none;
+  -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   transition:
     color var(--vh-transition-fast),
@@ -59,7 +64,7 @@
 }
 
 .vh-button--primary {
-  color: #15110d;
+  color: #ffffff;
   border-color: color-mix(in srgb, var(--vh-accent-light) 72%, transparent);
   background: linear-gradient(135deg, var(--vh-accent-light), var(--vh-accent));
   box-shadow: 0 12px 32px color-mix(in srgb, var(--vh-accent) 24%, transparent);
@@ -89,6 +94,19 @@
   transform: translateY(-2px);
 }
 
+.vh-button--primary:hover:not(:disabled):not([aria-disabled="true"]),
+.vh-button--primary:focus-visible {
+  color: #ffffff;
+  filter: brightness(1.05);
+}
+
+.vh-button--secondary:hover:not(:disabled):not([aria-disabled="true"]),
+.vh-button--secondary:focus-visible {
+  color: var(--vh-accent-light);
+  border-color: var(--vh-border-accent);
+  background: var(--vh-accent-soft);
+}
+
 .vh-button:active:not(:disabled):not([aria-disabled="true"]) {
   transform: translateY(0);
 }
@@ -108,69 +126,7 @@
   flex: 0 0 auto;
 }
 
-/* Migration map: all primary text actions share one font, weight and geometry. */
-:is(
-  .vh-action-button,
-  .vh-artists-page__main-btn,
-  .vr-actions > button,
-  .vh-format-select,
-  .vh-booking__included > a,
-  .vh-price-calc__btn,
-  .vh-favorites-panel__actions button,
-  .vh-artist-card__choose,
-  .vh-artist-card__repertoire,
-  .vh-artist-card__select
-) {
-  box-sizing: border-box;
-  min-height: var(--vh-control-height-md);
-  padding-inline: var(--vh-control-padding-md);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--vh-space-3);
-  border-radius: var(--vh-radius-pill);
-  font-family: var(--vh-font-family);
-  font-size: var(--vh-control-font-size);
-  line-height: var(--vh-control-line-height);
-  font-weight: var(--vh-weight-button);
-  letter-spacing: 0;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  -webkit-font-smoothing: antialiased;
-}
-
-:is(
-  .vh-hero__btn,
-  .vh-format-select,
-  .vh-booking__included > a,
-  .vh-price-calc__btn,
-  .vh-artists-page__main-btn,
-  .vr-actions > button
-) {
-  min-height: var(--vh-control-height-lg);
-  padding-inline: var(--vh-control-padding-lg);
-}
-
-:is(.vh-premium-header__cta, .vh-premium-header__outline) {
-  min-height: var(--vh-control-height-sm);
-  padding-inline: var(--vh-control-padding-sm);
-  font-size: 13px;
-}
-
-:is(
-  .vh-action-button,
-  .vh-artists-page__main-btn,
-  .vr-actions > button,
-  .vh-format-select,
-  .vh-booking__included > a,
-  .vh-price-calc__btn,
-  .vh-favorites-panel__actions button,
-  .vh-artist-card__choose,
-  .vh-artist-card__repertoire,
-  .vh-artist-card__select
-) > :is(span, strong, b) {
+.vh-button > :is(span, strong, b) {
   font-weight: inherit;
 }
 
@@ -328,15 +284,7 @@
 }
 
 @media (max-width: 720px) {
-  :is(
-    .vh-action-button,
-    .vh-artists-page__main-btn,
-    .vr-actions > button,
-    .vh-format-select,
-    .vh-booking__included > a,
-    .vh-price-calc__btn
-  ) {
-    min-height: var(--vh-control-height-lg);
+  .vh-button--lg {
     padding-inline: var(--vh-control-padding-md);
   }
 }

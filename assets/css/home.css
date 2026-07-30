@@ -94,23 +94,6 @@
   text-align: left;
 }
 
-.vh-format-select,
-.vh-booking__included > a,
-.vh-price-calc__btn,
-.vh-reviews-avito-button,
-.vh-faq__cta,
-.vh-faq__phone,
-.vh-contact-submit {
-  min-height: var(--vh-control-height-lg);
-  padding-inline: var(--vh-control-padding-lg);
-  border-radius: var(--vh-radius-pill);
-  font-family: var(--vh-font-family);
-  font-size: var(--vh-control-font-size);
-  line-height: var(--vh-control-line-height);
-  font-weight: var(--vh-weight-button);
-  letter-spacing: 0;
-}
-
 /* ===== Booking ===== */
 
 /* ===== Calculator controls ===== */
@@ -730,16 +713,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
     overflow: visible;
   }
 
-  body#top .vh-premium-mobile-dropdown__buttons .vh-premium-header__cta {
-    overflow: visible;
-    animation: none;
-    box-shadow: 0 10px 24px rgba(246, 138, 31, .28);
-  }
-
-  body#top .vh-premium-mobile-dropdown__buttons .vh-premium-header__cta::before {
-    display: none;
-  }
-
   /* Keep the small hero label on one line and remove its decorative dash. */
   body#top .vh-hero__label {
     display: block;
@@ -881,44 +854,6 @@ body#top .vh-contact-card[href="/repertoire/"] .vh-contact-card__content > span:
 
   body#top .vh-price-calc__range-shell { --vh-range-thumb-half: 11px; }
   body#top .vh-price-calc__range-scale--six { font-size: 9px; }
-}
-
-/* Source: mobile-tap-color.css */
-/* Preserve branded button colors during iOS touch states. */
-@media (max-width: 860px) {
-  body#top .vh-hero__btn--primary,
-  body#top .vh-hero__btn--primary:link,
-  body#top .vh-hero__btn--primary:visited,
-  body#top .vh-hero__btn--primary:active,
-  body#top .vh-hero__btn--primary:focus,
-  body#top .vh-hero__btn--primary span,
-  body#top .vh-premium-header__cta,
-  body#top .vh-premium-header__cta:link,
-  body#top .vh-premium-header__cta:visited,
-  body#top .vh-premium-header__cta:active,
-  body#top .vh-premium-header__cta:focus,
-  body#top .vh-premium-header__cta span {
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  body#top .vh-hero__btn--outline,
-  body#top .vh-hero__btn--outline:link,
-  body#top .vh-hero__btn--outline:visited,
-  body#top .vh-hero__btn--outline:active,
-  body#top .vh-hero__btn--outline:focus,
-  body#top .vh-hero__btn--outline span,
-  body#top .vh-premium-header__outline,
-  body#top .vh-premium-header__outline:link,
-  body#top .vh-premium-header__outline:visited,
-  body#top .vh-premium-header__outline:active,
-  body#top .vh-premium-header__outline:focus,
-  body#top .vh-premium-header__outline span {
-    color: #f4a259;
-    -webkit-text-fill-color: #f4a259;
-    -webkit-tap-highlight-color: transparent;
-  }
 }
 
 /* Source: mobile-carousel-cleanup.css */

@@ -4441,40 +4441,9 @@ revealWidgetAfterDelay();
 })();
 
 
-/* Unified playful CTA interaction and precise anchor alignment. */
+/* Precise anchor alignment below the fixed header. */
 (function () {
   'use strict';
-
-  function setButtonPoint(button, event) {
-    var rect = button.getBoundingClientRect();
-    var x = ((event.clientX - rect.left) / Math.max(rect.width, 1)) * 100;
-    var y = ((event.clientY - rect.top) / Math.max(rect.height, 1)) * 100;
-    button.style.setProperty('--vh-btn-x', x.toFixed(2) + '%');
-    button.style.setProperty('--vh-btn-y', y.toFixed(2) + '%');
-  }
-
-  document.addEventListener('pointermove', function (event) {
-    var button = event.target.closest('.vh-action-button');
-    if (!button) return;
-    setButtonPoint(button, event);
-  }, { passive: true });
-
-  document.addEventListener('pointerdown', function (event) {
-    var button = event.target.closest('.vh-action-button');
-    if (!button) return;
-    setButtonPoint(button, event);
-    button.classList.add('is-vh-pressed');
-  }, { passive: true });
-
-  function clearPressed() {
-    document.querySelectorAll('.vh-action-button.is-vh-pressed').forEach(function (button) {
-      button.classList.remove('is-vh-pressed');
-    });
-  }
-
-  window.addEventListener('pointerup', clearPressed, { passive: true });
-  window.addEventListener('pointercancel', clearPressed, { passive: true });
-  window.addEventListener('blur', clearPressed);
 
   var anchorSelectors = {
     video: '.vh-video-section__header',

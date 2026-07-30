@@ -37,22 +37,6 @@
   gap: var(--vh-space-7);
 }
 
-#artists .vh-artists-page__main-btn,
-#artists .vh-artists-page__main-btn:link,
-#artists .vh-artists-page__main-btn:visited {
-  min-height: var(--vh-control-height-lg);
-  padding-inline: var(--vh-control-padding-lg);
-  border-color: color-mix(in srgb, var(--vh-accent-light) 72%, transparent);
-  border-radius: var(--vh-radius-pill);
-  color: #15110d;
-  -webkit-text-fill-color: currentColor;
-  background: linear-gradient(135deg, var(--vh-accent-light), var(--vh-accent));
-  box-shadow: 0 12px 32px color-mix(in srgb, var(--vh-accent) 24%, transparent);
-  font-family: var(--vh-font-family);
-  font-size: var(--vh-control-font-size);
-  font-weight: var(--vh-weight-button);
-}
-
 /* ===== Empty and loading states ===== */
 .vh-artists-page__state,
 .vh-artists-page__results,
@@ -351,50 +335,6 @@
   padding-top: var(--vh-space-5);
 }
 
-#artists .vh-artist-card__choose,
-#artists .vh-artist-card__repertoire,
-#artists .vh-artist-card__select {
-  min-height: var(--vh-control-height-md);
-  padding-inline: var(--vh-control-padding-md);
-  border-radius: var(--vh-radius-pill);
-  font-family: var(--vh-font-family);
-  font-size: var(--vh-control-font-size);
-  line-height: var(--vh-control-line-height);
-  font-weight: var(--vh-weight-button);
-  letter-spacing: 0;
-}
-
-#artists .vh-artist-card__choose {
-  border-color: color-mix(in srgb, var(--vh-accent-light) 72%, transparent);
-  color: #15110d;
-  background: linear-gradient(135deg, var(--vh-accent-light), var(--vh-accent));
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--vh-accent) 22%, transparent);
-}
-
-#artists .vh-artist-card__repertoire,
-#artists .vh-artist-card__select {
-  border-color: var(--vh-border-strong);
-  color: var(--vh-text);
-  background: var(--vh-surface);
-  box-shadow: var(--vh-shadow-sm);
-}
-
-#artists .vh-artist-card__choose:hover,
-#artists .vh-artist-card__choose:focus-visible {
-  color: #15110d;
-  filter: brightness(1.04);
-}
-
-#artists .vh-artist-card__repertoire:hover,
-#artists .vh-artist-card__repertoire:focus-visible,
-#artists .vh-artist-card__select:hover,
-#artists .vh-artist-card__select:focus-visible {
-  border-color: var(--vh-border-accent);
-  color: var(--vh-accent-light);
-  background: var(--vh-accent-soft);
-  box-shadow: var(--vh-shadow-md);
-}
-
 /* ===== Favorites panel ===== */
 .vh-favorites-panel {
   width: min(var(--vh-container-narrow), calc(100vw - (var(--vh-page-gutter) * 2)));
@@ -425,38 +365,6 @@
 
 .vh-favorites-panel__actions {
   gap: var(--vh-space-3);
-}
-
-.vh-favorites-panel__actions button,
-#artists #vhFavoritesPdf,
-#artists #vhFavoritesReset {
-  min-height: var(--vh-control-height-md);
-  padding-inline: var(--vh-control-padding-md);
-  border-radius: var(--vh-radius-pill);
-  font-family: var(--vh-font-family);
-  font-size: var(--vh-control-font-size);
-  font-weight: var(--vh-weight-button);
-}
-
-#artists #vhFavoritesPdf {
-  border-color: color-mix(in srgb, var(--vh-accent-light) 72%, transparent);
-  color: #15110d;
-  background: linear-gradient(135deg, var(--vh-accent-light), var(--vh-accent));
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--vh-accent) 22%, transparent);
-}
-
-#artists #vhFavoritesReset {
-  border-color: var(--vh-border-strong);
-  color: var(--vh-text);
-  background: var(--vh-surface);
-  box-shadow: var(--vh-shadow-sm);
-}
-
-#artists #vhFavoritesReset:hover,
-#artists #vhFavoritesReset:focus-visible {
-  border-color: var(--vh-border-accent);
-  color: var(--vh-accent-light);
-  background: var(--vh-accent-soft);
 }
 
 /* ===== Responsive catalog controls ===== */
@@ -505,10 +413,8 @@
   }
 
   #artists .vh-artist-card__choose,
-  #artists .vh-artist-card__repertoire,
-  #artists .vh-artist-card__select {
+  #artists .vh-artist-card__repertoire {
     width: 100%;
-    min-height: var(--vh-control-height-lg);
   }
 
   .vh-favorites-panel {
@@ -521,10 +427,6 @@
     padding: var(--vh-space-4);
     gap: var(--vh-space-4);
     border-radius: var(--vh-radius-lg);
-  }
-
-  .vh-favorites-panel__actions button {
-    min-height: var(--vh-control-height-lg);
   }
 }
 
