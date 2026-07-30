@@ -181,7 +181,7 @@ html :is(body#top, body.vh-subpage) .vh-site-title {
   line-height: var(--vh-leading-title);
   font-weight: var(--vh-weight-heading);
   letter-spacing: 0;
-  text-transform: none;
+  text-transform: uppercase;
   text-wrap: balance;
   overflow-wrap: break-word;
 }
