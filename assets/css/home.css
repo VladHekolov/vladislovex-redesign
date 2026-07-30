@@ -16,43 +16,6 @@
 }
 
 /* ===== Consistent section headings ===== */
-:is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) {
-  max-width: 16ch;
-  margin-inline: auto;
-  text-align: center;
-}
-
-:is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) > :is(span, strong) {
-  display: block;
-}
-
-:is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) > span {
-  color: var(--vh-accent);
-}
 
 :is(
   .vh-video-section__subtitle,
@@ -278,17 +241,6 @@
 }
 
 @media (max-width: 720px) {
-  :is(
-    .vh-video-section__title,
-    .vh-formats-title,
-    .vh-booking__title,
-    .vh-price-calc__title,
-    .vh-reviews-title,
-    .vh-faq__title,
-    .vh-contacts-section__title
-  ) {
-    max-width: 100%;
-  }
 
   :is(
     .vh-video-section__subtitle,
@@ -343,20 +295,6 @@ body#top {
 }
 
 /* ===== Real hero scale: legacy CSS sizes the inner spans directly ===== */
-body#top .vh-hero__title {
-  max-width: 14ch;
-  gap: 8px;
-}
-
-body#top .vh-hero__title > :is(span, strong) {
-  max-width: 100%;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-body#top .vh-hero__title > strong {
-  color: #f4a259;
-}
 
 /* ===== One horizontal content grid ===== */
 body#top :is(
@@ -401,19 +339,6 @@ body#top :is(
 }
 
 /* ===== Section title hierarchy ===== */
-body#top :is(
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title
-) {
-  max-width: 14ch;
-  margin-inline: 0;
-  text-align: left;
-}
 
 body#top :is(
   .vh-video-section__subtitle,
@@ -427,23 +352,6 @@ body#top :is(
   max-width: 56ch;
   margin-inline: 0;
   text-align: left;
-}
-
-/* ===== Formats: remove the unloaded Bebas/Arial fallback ===== */
-body#top :is(
-  .vh-formats-section,
-  .vh-formats-title,
-  .vh-format-card,
-  .vh-format-content,
-  .vh-format-title,
-  .vh-format-subtitle,
-  .vh-format-number,
-  .vh-format-list,
-  .vh-format-list li,
-  .vh-format-badge,
-  .vh-format-select
-) {
-  font-family: var(--vh-font-family);
 }
 
 body#top .vh-format-title {
@@ -479,10 +387,6 @@ body#top .vh-faq__answer p {
 }
 
 @media (max-width: 760px) {
-  body#top .vh-hero__title {
-    max-width: 100%;
-    gap: 5px;
-  }
 
   body#top :is(
     .vh-video-section__subtitle,
@@ -576,17 +480,6 @@ body#top .vh-hero-offer__line {
 @media (max-width: 760px) {
   body#top {
     --vh-home-gutter: 12px;
-  }
-
-  body#top :is(
-    .vh-video-section__title,
-    .vh-formats-title,
-    .vh-price-calc__title,
-    .vh-reviews-title,
-    .vh-faq__title,
-    .vh-contacts-section__title
-  ) {
-    max-width: 12ch;
   }
 
   body#top .vh-hero-offer__line {

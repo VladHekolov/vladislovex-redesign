@@ -92,9 +92,7 @@ for (const selector of ['.vh-button', '.vh-card', '.vh-input']) {
 const typographySource = read('assets/css/typography.css');
 for (const selector of [
   '.vh-title',
-  '.vh-title--display',
-  '.vh-title--page',
-  '.vh-title--section',
+  '.vh-site-title',
   '.vh-title--card',
   '.vh-lead',
   '.vh-body-text',
@@ -116,8 +114,8 @@ for (const page of pages) {
   if (!source.includes('/assets/css/typography.css')) {
     errors.push(`${page}: typography.css is not connected.`);
   }
-  if (!source.includes('vh-title')) {
-    errors.push(`${page}: page title is not connected to the shared title component.`);
+  if (!source.includes('vh-site-title')) {
+    errors.push(`${page}: page title is not connected to the shared site-title component.`);
   }
   if (!source.includes('vh-button')) {
     errors.push(`${page}: primary actions are not connected to the shared button component.`);
@@ -166,7 +164,6 @@ for (const page of pages) {
 
 const visualFixes = read('assets/css/home.css');
 for (const requiredRule of [
-  '.vh-hero__title > :is(span, strong)',
   '--vh-home-content-width',
   '.vh-video-grid',
   '.vh-formats-container',

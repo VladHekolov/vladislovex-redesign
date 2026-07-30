@@ -67,77 +67,16 @@
   var artistMapStorageKey = 'vocava:repertoire:artist-map:v1';
   var activePdfJob = null;
   var pdfLibraryPromise = null;
-  var headNameAnimated = false;
-  var headNameFinalizeTimer = 0;
-
-  function setArtistHeadingName(name, options) {
-    options = options || {};
+  function setArtistHeadingName(name) {
     var cleanName = String(name || '').replace(/\s+/g, ' ').trim();
     if (!artistName || !cleanName || cleanName === 'Музыкант') return false;
 
     var currentName = artistName.getAttribute('data-current-name') || '';
-    if (currentName === cleanName) {
-      root.classList.add('is-head-ready');
-      return true;
-    }
+    if (currentName === cleanName) return true;
 
-    window.clearTimeout(headNameFinalizeTimer);
-
-    var shouldAnimate = options.animate === true || (!headNameAnimated && !options.instant);
     artistName.setAttribute('aria-label', cleanName);
     artistName.setAttribute('data-current-name', cleanName);
-    artistName.classList.remove('is-title-plain');
-
-    if (!shouldAnimate) {
-      artistName.textContent = cleanName;
-      artistName.classList.add('is-title-plain');
-      artistName.setAttribute('data-render-complete', '1');
-      root.classList.add('is-head-ready');
-      return true;
-    }
-
-    headNameAnimated = true;
-    artistName.textContent = '';
-    artistName.setAttribute('data-render-complete', '0');
-    root.classList.remove('is-head-ready');
-
-    var chunks = cleanName.match(/\S+|\s+/g) || [cleanName];
-    var letterIndex = 0;
-
-    chunks.forEach(function (chunk) {
-      if (/^\s+$/.test(chunk)) {
-        var space = document.createElement('span');
-        space.className = 'vr-head__title-space';
-        space.textContent = ' ';
-        artistName.appendChild(space);
-        return;
-      }
-
-      var word = document.createElement('span');
-      word.className = 'vr-head__title-word';
-
-      Array.prototype.forEach.call(chunk, function (char) {
-        var letter = document.createElement('span');
-        letter.className = 'vr-head__title-char';
-        letter.textContent = char;
-        letter.style.setProperty('--vr-letter-delay', Math.min(letterIndex * 0.035, 0.72).toFixed(3) + 's');
-        word.appendChild(letter);
-        letterIndex += 1;
-      });
-
-      artistName.appendChild(word);
-    });
-
-    requestAnimationFrame(function () {
-      root.classList.add('is-head-ready');
-    });
-
-    headNameFinalizeTimer = window.setTimeout(function () {
-      if (!artistName || artistName.getAttribute('data-current-name') !== cleanName) return;
-      artistName.textContent = cleanName;
-      artistName.classList.add('is-title-plain');
-      artistName.setAttribute('data-render-complete', '1');
-    }, Math.min(letterIndex * 35, 720) + 920);
+    artistName.textContent = cleanName;
 
     return true;
   }

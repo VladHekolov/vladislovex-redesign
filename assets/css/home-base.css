@@ -1024,35 +1024,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   text-transform: uppercase;
 }
 
-.vh-hero__title {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  font-family: "BebasNeue", "Montserrat", Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.055em;
-  line-height: 0.88;
-}
-
-.vh-hero__title span,
-.vh-hero__title strong {
-  display: block;
-  color: #ffffff;
-  font-size: clamp(54px, 4.2vw, 76px);
-  font-weight: 800;
-  text-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.42),
-    0 0 22px rgba(255, 255, 255, 0.08);
-}
-
-.vh-hero__title strong {
-  color: #f4a259;
-  text-shadow:
-    0 12px 42px rgba(0, 0, 0, 0.45),
-    0 0 26px rgba(246, 138, 31, 0.18);
-}
-
 .vh-hero__text {
   margin-top: 34px;
   max-width: 540px;
@@ -1546,7 +1517,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 
 .vh-benefit-text h3 {
   margin: 0;
-  font-family: "BebasNeue", "Montserrat", Arial, sans-serif;
   color: #ffffff;
   font-size: 27px;
   line-height: 1;
@@ -1711,16 +1681,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     letter-spacing: 0.20em;
   }
 
-  .vh-hero__title {
-    gap: 8px;
-    letter-spacing: 0.045em;
-  }
-
-  .vh-hero__title span,
-  .vh-hero__title strong {
-    font-size: clamp(39px, 10.8vw, 48px);
-  }
-
   .vh-hero__text {
     margin-top: 22px;
     max-width: 100%;
@@ -1863,11 +1823,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     padding-bottom: 258px;
   }
 
-  .vh-hero__title span,
-  .vh-hero__title strong {
-    font-size: clamp(39px, 10.8vw, 44px);
-  }
-
   .vh-hero-offer {
     min-height: 90px;
     padding: 0;
@@ -1983,26 +1938,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   height: 34px;
   object-fit: contain;
   display: block;
-}
-
-.vh-video-section__title {
-  margin: 0 0 34px;
-  font-family: "BebasNeue", "Montserrat", Arial, sans-serif;
-  font-size: 92px;
-  line-height: 0.92;
-  font-weight: 900;
-  letter-spacing: 0.012em;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
-.vh-video-section__title span {
-  color: #ffffff;
-}
-
-.vh-video-section__title strong {
-  color: #f4a259;
-  font-weight: 900;
 }
 
 .vh-video-section__subtitle {
@@ -2497,12 +2432,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     height: 26px;
   }
 
-  .vh-video-section__title {
-    margin-bottom: 24px;
-    font-size: clamp(44px, 13vw, 68px);
-    line-height: 0.95;
-  }
-
   .vh-video-section__subtitle {
     max-width: 340px;
     font-size: 17px;
@@ -2642,10 +2571,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     flex-basis: 88vw;
   }
 
-  .vh-video-section__title {
-    font-size: clamp(40px, 12vw, 56px);
-  }
-
   .vh-video-section__subtitle {
     font-size: 15px;
   }
@@ -2698,25 +2623,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   height: 28px;
   object-fit: contain;
   display: block;
-}
-
-.vh-formats-title {
-  margin: 0 0 32px;
-  font-family: "BebasNeue", Arial, sans-serif;
-  font-size: clamp(58px, 5.8vw, 92px);
-  line-height: 0.95;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-.vh-formats-title span {
-  color: #ffffff;
-}
-
-.vh-formats-title strong {
-  color: #f4a259;
-  font-weight: 700;
 }
 
 .vh-formats-description {
@@ -2816,7 +2722,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 
 .vh-format-title {
   margin: 0 0 10px;
-  font-family: "BebasNeue", Arial, sans-serif;
   font-size: clamp(40px, 3.15vw, 54px);
   line-height: 0.92;
   letter-spacing: 0.01em;
@@ -2960,11 +2865,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     height: 24px;
   }
 
-  .vh-formats-title {
-    margin-bottom: 22px;
-    font-size: clamp(44px, 12vw, 64px);
-  }
-
   .vh-formats-description {
     font-size: 17px;
     line-height: 1.45;
@@ -3030,10 +2930,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 @media (max-width: 480px) {
   .vh-formats-section {
     padding: 34px 12px 34px;
-  }
-
-  .vh-formats-title {
-    font-size: clamp(40px, 12vw, 52px);
   }
 
   .vh-formats-description {
@@ -3116,7 +3012,7 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 }
 
 /* ===== SOURCE STYLE BLOCK 6 ===== */
-.vh-booking,.vh-booking *{box-sizing:border-box}.vh-booking{padding:104px 20px;background:linear-gradient(180deg,#111,#050505);color:#fff;font-family:"Montserrat",Arial,sans-serif}.vh-booking__head{text-align:center;max-width:850px;margin:0 auto 44px}.vh-booking__head h2{margin:0 0 18px;font:700 clamp(48px,6vw,82px)/.95 "Bebas Neue",sans-serif}.vh-booking__head h2 strong{color:#f4a259}.vh-booking__head p{margin:0;color:rgba(255,255,255,.68);font-size:18px}@media(max-width:900px){}@media(max-width:560px){.vh-booking{padding:72px 12px}.vh-booking__head p{font-size:15px}}
+.vh-booking,.vh-booking *{box-sizing:border-box}.vh-booking{padding:104px 20px;background:linear-gradient(180deg,#111,#050505);color:#fff;font-family:"Montserrat",Arial,sans-serif}.vh-booking__head{text-align:center;max-width:850px;margin:0 auto 44px}.vh-booking__head h2{margin:0 0 18px}.vh-booking__head h2 strong{color:#f4a259}.vh-booking__head p{margin:0;color:rgba(255,255,255,.68);font-size:18px}@media(max-width:560px){.vh-booking{padding:72px 12px}.vh-booking__head p{font-size:15px}}
 
 /* ===== SOURCE STYLE BLOCK 7 ===== */
 .vh-price-calc,
@@ -3179,25 +3075,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   height: 28px;
   object-fit: contain;
   display: block;
-}
-
-.vh-price-calc__title {
-  margin: 0 0 32px;
-  font-family: "BebasNeue", "Bebas Neue", Arial, sans-serif;
-  font-size: clamp(58px, 5.8vw, 92px);
-  line-height: 0.95;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-.vh-price-calc__title span {
-  color: #ffffff;
-}
-
-.vh-price-calc__title strong {
-  color: #f4a259;
-  font-weight: 700;
 }
 
 .vh-price-calc__description {
@@ -4483,11 +4360,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     height: 24px;
   }
 
-  .vh-price-calc__title {
-    margin-bottom: 22px;
-    font-size: clamp(44px, 12vw, 64px);
-  }
-
   .vh-price-calc__description {
     font-size: 17px;
     line-height: 1.45;
@@ -4575,9 +4447,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 }
 
 @media (max-width: 480px) {
-  .vh-price-calc__title {
-    font-size: clamp(40px, 12vw, 52px);
-  }
 
   .vh-price-calc__description {
     font-size: 15px;
@@ -4654,25 +4523,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   height: 26px;
   object-fit: contain;
   display: block;
-}
-
-.vh-reviews-title {
-  margin: 0 0 30px;
-  font-family: "BebasNeue", Arial, sans-serif;
-  font-size: clamp(58px, 5.5vw, 88px);
-  line-height: 0.92;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-.vh-reviews-title span {
-  color: #ffffff;
-}
-
-.vh-reviews-title strong {
-  color: #f4a259;
-  font-weight: 700;
 }
 
 .vh-reviews-subtitle {
@@ -5054,11 +4904,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     height: 24px;
   }
 
-  .vh-reviews-title {
-    margin-bottom: 16px;
-    font-size: clamp(46px, 14vw, 64px);
-  }
-
   .vh-reviews-subtitle {
     font-size: 17px;
     line-height: 1.42;
@@ -5138,10 +4983,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 
   .vh-reviews-header {
     margin-bottom: 22px;
-  }
-
-  .vh-reviews-title {
-    font-size: clamp(42px, 15vw, 54px);
   }
 
   .vh-reviews-subtitle {
@@ -5266,25 +5107,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   height: 28px;
   object-fit: contain;
   display: block;
-}
-
-.vh-faq__title {
-  margin: 0 0 32px;
-  font-family: "BebasNeue", "Bebas Neue", Arial, sans-serif;
-  font-size: clamp(58px, 5.8vw, 92px);
-  line-height: 0.95;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-.vh-faq__title span {
-  color: #ffffff;
-}
-
-.vh-faq__title strong {
-  color: #f4a259;
-  font-weight: 700;
 }
 
 .vh-faq__description {
@@ -5618,11 +5440,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
     height: 24px;
   }
 
-  .vh-faq__title {
-    margin-bottom: 22px;
-    font-size: clamp(44px, 12vw, 64px);
-  }
-
   .vh-faq__description {
     font-size: 17px;
     line-height: 1.45;
@@ -5671,9 +5488,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 }
 
 @media (max-width: 480px) {
-  .vh-faq__title {
-    font-size: clamp(40px, 12vw, 52px);
-  }
 
   .vh-faq__description {
     font-size: 15px;
@@ -5889,8 +5703,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
 
 .vh-contact-form__top h3 {
   margin: 0;
-
-  font-family: "BebasNeue", "Montserrat", Arial, sans-serif;
   color: #ffffff;
 
   font-size: 34px;
@@ -7126,43 +6938,6 @@ body.vh-overlay-open .vh-mobile-contact-fab { opacity: 0; pointer-events: none; 
   object-fit: contain;
 }
 
-.vh-video-section__title,
-.vh-formats-title,
-.vh-booking__title,
-.vh-price-calc__title,
-.vh-reviews-title,
-.vh-faq__title,
-.vh-contacts-section__title {
-  margin: 0 0 32px;
-  font-family: "Bebas Neue", "Montserrat", Arial, sans-serif;
-  font-size: clamp(58px, 5.8vw, 92px);
-  line-height: 0.95;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-.vh-video-section__title span,
-.vh-formats-title span,
-.vh-booking__title span,
-.vh-price-calc__title span,
-.vh-reviews-title span,
-.vh-faq__title span,
-.vh-contacts-section__title span {
-  color: #ffffff;
-}
-
-.vh-video-section__title strong,
-.vh-formats-title strong,
-.vh-booking__title strong,
-.vh-price-calc__title strong,
-.vh-reviews-title strong,
-.vh-faq__title strong,
-.vh-contacts-section__title strong {
-  color: #f4a259;
-  font-weight: 700;
-}
-
 .vh-video-section__subtitle,
 .vh-formats-description,
 .vh-booking__description,
@@ -7419,14 +7194,6 @@ button.vh-contact-card { width: 100%; }
   .vh-faq__icon,
   .vh-contacts-section__icon { width: 24px; height: 24px; }
 
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title { margin-bottom: 22px; font-size: clamp(44px,12vw,64px); }
-
   .vh-video-section__subtitle,
   .vh-formats-description,
   .vh-booking__description,
@@ -7457,14 +7224,6 @@ button.vh-contact-card { width: 100%; }
   .vh-reviews-section,
   .vh-faq,
   .vh-contacts-section { padding: 58px 12px; }
-
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title { font-size: clamp(40px,12vw,52px); }
 
   .vh-video-section__subtitle,
   .vh-formats-description,
@@ -7735,59 +7494,6 @@ body,
   display: none;
 }
 
-.vh-video-section__title,
-.vh-formats-title,
-.vh-booking__title,
-.vh-price-calc__title,
-.vh-reviews-title,
-.vh-faq__title,
-.vh-contacts-section__title {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 .20em;
-  max-width: 930px;
-  margin: 0;
-  font-family: "Montserrat", Arial, sans-serif;
-  font-size: clamp(40px, 4.5vw, 72px);
-  line-height: 1.04;
-  font-weight: 800;
-  letter-spacing: -.025em;
-  text-transform: uppercase;
-  filter: drop-shadow(0 0 18px rgba(246,138,31,.10));
-}
-
-.vh-video-section__title span,
-.vh-video-section__title strong,
-.vh-formats-title span,
-.vh-formats-title strong,
-.vh-booking__title span,
-.vh-booking__title strong,
-.vh-price-calc__title span,
-.vh-price-calc__title strong,
-.vh-reviews-title span,
-.vh-reviews-title strong,
-.vh-faq__title span,
-.vh-faq__title strong,
-.vh-contacts-section__title span,
-.vh-contacts-section__title strong {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  background:
-    linear-gradient(105deg,
-      #fff 0%,
-      #fff7ec 20%,
-      #ffbd6d 36%,
-      #f68a1f 48%,
-      #ffe2b8 60%,
-      #fff 75%,
-      #ffbd6d 88%,
-      #fff 100%);
-  background-size: 320% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: vhSectionTitleShine 7.2s ease-in-out infinite;
-}
-
 .vh-video-section__subtitle,
 .vh-formats-description,
 .vh-booking__description,
@@ -7945,10 +7651,6 @@ body,
   flex: 0 1 auto;
 }
 
-@media (max-width: 1680px) {
-
-}
-
 /* Anchor positioning is handled in JS against the real heading, not section padding. */
 html { scroll-padding-top: 0; }
 #video,
@@ -7975,17 +7677,6 @@ html { scroll-padding-top: 0; }
   .vh-contacts-section__head {
     margin-bottom: 34px;
     padding-bottom: 19px;
-  }
-
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title {
-    font-size: clamp(36px, 10vw, 52px);
-    line-height: 1.06;
   }
 
   .vh-video-section__subtitle,
@@ -8016,16 +7707,6 @@ html { scroll-padding-top: 0; }
 
 @media (max-width: 480px) {
   :root { --vh-section-space: 54px; }
-
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title {
-    font-size: clamp(32px, 9.6vw, 44px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -8044,21 +7725,7 @@ html { scroll-padding-top: 0; }
   .vh-price-calc__head::after,
   .vh-reviews-header::after,
   .vh-faq__head::after,
-  .vh-contacts-section__head::after,
-  .vh-video-section__title span,
-  .vh-video-section__title strong,
-  .vh-formats-title span,
-  .vh-formats-title strong,
-  .vh-booking__title span,
-  .vh-booking__title strong,
-  .vh-price-calc__title span,
-  .vh-price-calc__title strong,
-  .vh-reviews-title span,
-  .vh-reviews-title strong,
-  .vh-faq__title span,
-  .vh-faq__title strong,
-  .vh-contacts-section__title span,
-  .vh-contacts-section__title strong {
+  .vh-contacts-section__head::after {
     animation: none;
   }
 }
@@ -8505,31 +8172,6 @@ body,
 /* ===== VISUAL POLISH / MOBILE CAROUSELS / MENU FIX SUPPORT — v5 ===== */
 
 /* Both words in every section title use exactly the same weight. */
-.vh-video-section__title,
-.vh-formats-title,
-.vh-booking__title,
-.vh-price-calc__title,
-.vh-reviews-title,
-.vh-faq__title,
-.vh-contacts-section__title,
-.vh-video-section__title span,
-.vh-video-section__title strong,
-.vh-formats-title span,
-.vh-formats-title strong,
-.vh-booking__title span,
-.vh-booking__title strong,
-.vh-price-calc__title span,
-.vh-price-calc__title strong,
-.vh-reviews-title span,
-.vh-reviews-title strong,
-.vh-faq__title span,
-.vh-faq__title strong,
-.vh-contacts-section__title span,
-.vh-contacts-section__title strong {
-  font-family: "Montserrat", Arial, sans-serif;
-  font-weight: 800;
-  font-synthesis: none;
-}
 
 /* Darker, calmer common background. */
 html,
@@ -8880,35 +8522,6 @@ html[data-vh-theme="light"] .vh-theme-toggle {
 
 html[data-vh-theme="light"] .vh-premium-burger span { background: #28221d; }
 
-html[data-vh-theme="light"] .vh-video-section__title,
-html[data-vh-theme="light"] .vh-formats-title,
-html[data-vh-theme="light"] .vh-booking__title,
-html[data-vh-theme="light"] .vh-price-calc__title,
-html[data-vh-theme="light"] .vh-reviews-title,
-html[data-vh-theme="light"] .vh-faq__title,
-html[data-vh-theme="light"] .vh-contacts-section__title,
-html[data-vh-theme="light"] .vh-video-section__title span,
-html[data-vh-theme="light"] .vh-formats-title span,
-html[data-vh-theme="light"] .vh-booking__title span,
-html[data-vh-theme="light"] .vh-price-calc__title span,
-html[data-vh-theme="light"] .vh-reviews-title span,
-html[data-vh-theme="light"] .vh-faq__title span,
-html[data-vh-theme="light"] .vh-contacts-section__title span,
-html[data-vh-theme="light"] .vh-video-section__title strong,
-html[data-vh-theme="light"] .vh-formats-title strong,
-html[data-vh-theme="light"] .vh-booking__title strong,
-html[data-vh-theme="light"] .vh-price-calc__title strong,
-html[data-vh-theme="light"] .vh-reviews-title strong,
-html[data-vh-theme="light"] .vh-faq__title strong,
-html[data-vh-theme="light"] .vh-contacts-section__title strong {
-  background: linear-gradient(105deg, #171411 0%, #4b3523 34%, #d96d0b 50%, #3b2b1f 68%, #171411 100%);
-  background-size: 260% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
 html[data-vh-theme="light"] .vh-video-section__subtitle,
 html[data-vh-theme="light"] .vh-formats-description,
 html[data-vh-theme="light"] .vh-booking__description,
@@ -9028,13 +8641,6 @@ html[data-vh-theme="light"] .vh-contact-form {
   .vh-premium-header__cta,
   .vh-action-button,
   .vh-action-button::before,
-  .vh-video-section__title,
-  .vh-formats-title,
-  .vh-booking__title,
-  .vh-price-calc__title,
-  .vh-reviews-title,
-  .vh-faq__title,
-  .vh-contacts-section__title,
   .vh-hero__glow {
     animation: none;
   }
@@ -9065,13 +8671,11 @@ html[data-vh-theme="light"] .vh-hero {
 
 html[data-vh-theme="light"] .vh-hero__label p,
 html[data-vh-theme="light"] .vh-hero-offer__line,
-html[data-vh-theme="light"] .vh-hero-offer__line span,
-html[data-vh-theme="light"] .vh-hero__title span {
+html[data-vh-theme="light"] .vh-hero-offer__line span {
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
 }
 
-html[data-vh-theme="light"] .vh-hero__title strong,
 html[data-vh-theme="light"] .vh-hero-offer__line strong,
 html[data-vh-theme="light"] .vh-hero__label p strong {
   color: #ff9f4a;
@@ -9155,12 +8759,6 @@ html[data-vh-theme="light"] .vh-contact-card__arrow::before {
     max-width: 780px;
   }
 
-  .vh-hero__title span,
-  .vh-hero__title strong {
-    font-size: clamp(64px, 5.35vw, 92px);
-    letter-spacing: 0.035em;
-  }
-
   .vh-hero__text--offer,
   .vh-hero-offer {
     max-width: 620px;
@@ -9175,10 +8773,6 @@ html[data-vh-theme="light"] .vh-contact-card__arrow::before {
 
   .vh-hero__label {
     margin-bottom: 20px;
-  }
-
-  .vh-hero__title {
-    gap: 10px;
   }
 
   .vh-hero__text--offer,

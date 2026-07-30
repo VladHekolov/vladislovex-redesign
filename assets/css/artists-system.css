@@ -37,16 +37,6 @@
   gap: var(--vh-space-7);
 }
 
-.vh-artists-page__title {
-  max-width: 18ch;
-  color: var(--vh-text-strong);
-}
-
-.vh-artists-page__title span {
-  color: var(--vh-accent-light);
-  text-shadow: 0 0 28px color-mix(in srgb, var(--vh-accent) 18%, transparent);
-}
-
 #artists .vh-artists-page__main-btn,
 #artists .vh-artists-page__main-btn:link,
 #artists .vh-artists-page__main-btn:visited {

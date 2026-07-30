@@ -153,10 +153,6 @@ li {
 }
 
 /* ===== MAIN PAGE TYPOGRAPHY ===== */
-.vh-hero__title > span,
-.vh-hero__title > strong {
-  max-width: 100%;
-}
 
 .vh-hero-offer__line {
   max-width: 48ch;
@@ -193,11 +189,6 @@ li {
 /* ===== REPERTOIRE ===== */
 .vr-head__content {
   min-width: 0;
-}
-
-.vr-head__title .vr-head__title-word {
-  max-width: 100%;
-  white-space: normal;
 }
 
 .vr-song__title {

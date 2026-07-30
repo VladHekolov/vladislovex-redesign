@@ -14,10 +14,6 @@
   font-weight: var(--vh-weight-label);
 }
 
-.vr-head__title {
-  max-width: 18ch;
-}
-
 /* ===== Shared text labels ===== */
 .vr-picker__label,
 .vr-picker label,

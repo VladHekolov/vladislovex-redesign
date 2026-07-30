@@ -1,5 +1,4 @@
 /* Vocava Artists — cleaned CSS. Removed obsolete patch layers and unused selectors without changing active classes. */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 .vh-artists-page,
 .vh-artists-page *,
 .vh-pdf-stage,
@@ -562,20 +561,6 @@
   justify-content: space-between;
   gap: 32px;
 }
-.vh-artists-page__title {
-  max-width: 780px;
-  margin: 0;
-  color: #ffffff;
-  font-size: clamp(42px, 5vw, 78px);
-  line-height: 0.96;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-.vh-artists-page__title span {
-  display: block;
-  color: #f4a259;
-  text-shadow: 0 0 28px rgba(246, 138, 31, 0.18);
-}
 .vh-artists-page__subtitle {
   max-width: 760px;
   margin: 22px 0 0;
@@ -654,10 +639,6 @@
 .vh-artists-page__title-row {
   display: block;
 }
-.vh-artists-page__title {
-  font-size: 42px;
-  line-height: 0.98;
-}
 .vh-artists-page__subtitle {
   margin-top: 16px;
   font-size: 14px;
@@ -668,11 +649,6 @@
   margin-top: 22px;
 }
 
-}
-@media (max-width: 390px) {
-.vh-artists-page__title {
-  font-size: 38px;
-}
 }
 @keyframes vhArtistsFilterIn {
 from {
