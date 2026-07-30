@@ -41,7 +41,6 @@ jobs:
       - name: Verify shared design assets
         run: |
           test -f assets/css/design-tokens.css
-          test -f assets/css/typography.css
           test -f assets/css/components.css
           test -f assets/css/themes.css
           test -f assets/css/icons.css
@@ -52,13 +51,11 @@ jobs:
           grep -q 'data-vh-theme="dark"' repertoire/index.html
           grep -q '/assets/js/theme.js' artists/index.html
           grep -q '/assets/js/theme.js' repertoire/index.html
-          grep -q '/assets/css/typography.css' artists/index.html
-          grep -q '/assets/css/typography.css' repertoire/index.html
+          grep -q 'vh-site-title' assets/css/design-system.css
           grep -q '/assets/css/components.css' artists/index.html
           grep -q '/assets/css/components.css' repertoire/index.html
           grep -q '/assets/css/themes.css' artists/index.html
           grep -q '/assets/css/themes.css' repertoire/index.html
-          grep -q '/assets/css/typography.css' index.html
           grep -q '/assets/css/components.css' index.html
           grep -q '/assets/css/home-system.css' index.html
           grep -q '/assets/css/visual-fixes.css' index.html

@@ -89,7 +89,7 @@ for (const selector of ['.vh-button', '.vh-card', '.vh-input']) {
   }
 }
 
-const typographySource = read('assets/css/typography.css');
+const typographySource = read('assets/css/design-system.css');
 for (const selector of [
   '.vh-title',
   '.vh-site-title',
@@ -101,7 +101,7 @@ for (const selector of [
   '.vh-section-head'
 ]) {
   if (!typographySource.includes(selector)) {
-    errors.push(`assets/css/typography.css: missing shared typography component ${selector}.`);
+    errors.push(`assets/css/design-system.css: missing shared typography component ${selector}.`);
   }
 }
 
@@ -111,8 +111,8 @@ for (const page of pages) {
   if (!source.includes('/assets/css/shared-ui.css')) {
     errors.push(`${page}: shared-ui.css is not connected.`);
   }
-  if (!source.includes('/assets/css/typography.css')) {
-    errors.push(`${page}: typography.css is not connected.`);
+  if (!source.includes('/assets/css/design-system.css')) {
+    errors.push(`${page}: design-system.css is not connected.`);
   }
   if (!source.includes('vh-site-title')) {
     errors.push(`${page}: page title is not connected to the shared site-title component.`);
@@ -143,8 +143,7 @@ for (const requirement of [
   ['/assets/css/home.css', 'home.css is not connected in index.html.'],
   ['data-vh-home', 'homepage stylesheet marker is missing in index.html.'],
   ['/assets/css/design-system.css', 'design-system.css is not connected in index.html.'],
-  ['/assets/css/shared-ui.css', 'shared-ui.css is not connected in index.html.'],
-  ['/assets/css/typography.css', 'typography.css is not connected in index.html.']
+  ['/assets/css/shared-ui.css', 'shared-ui.css is not connected in index.html.']
 ]) {
   if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
 }
