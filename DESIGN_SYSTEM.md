@@ -1,16 +1,16 @@
 # VLADISLOVEX Design System
 
-The public site uses one shared visual system across the main page, `/artists/` and `/repertoire/`.
+The homepage uses the new lightweight editorial system. `/artists/` and `/repertoire/` temporarily retain the previous shared system until their redesign.
 
 ## Source files
 
-- `assets/css/design-system.css` — tokens, responsive type scale and reading widths.
-- `assets/css/shared-ui.css` — reusable components, theme adaptations and icon behavior.
-- `assets/css/home-base.css` — legacy homepage foundation.
-- `assets/css/home.css` — homepage layout, responsive behavior and visual refinements.
+- `assets/css/site.css` — complete homepage system: tokens, layout, components and responsive behavior.
+- `assets/js/site.js` — homepage interactions, calculator and lead form.
+- `assets/css/design-system.css` — temporary shared tokens for internal pages.
+- `assets/css/shared-ui.css` — temporary shared components for internal pages.
 - `assets/css/subpages.css`, `artists*.css` and `repertoire*.css` — subpage-specific layout and interactions.
 
-Page-specific files should primarily control layout, media and unique interactions. They should not introduce arbitrary button weights, control heights or heading scales.
+The homepage must not reconnect `home-base.css`, `home.css`, `app.js` or other legacy layers. New homepage work belongs in `site.css` and `site.js` until components are extracted during the internal-page redesign.
 
 ## Typography
 

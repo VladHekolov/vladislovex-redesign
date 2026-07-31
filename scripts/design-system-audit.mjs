@@ -140,17 +140,13 @@ if (!artistsPage.includes('data-vh-artists-system')) {
 
 const homepagePage = read('index.html');
 for (const requirement of [
-  ['/assets/css/home.css', 'home.css is not connected in index.html.'],
-  ['data-vh-home', 'homepage stylesheet marker is missing in index.html.'],
-  ['/assets/css/design-system.css', 'design-system.css is not connected in index.html.'],
-  ['/assets/css/shared-ui.css', 'shared-ui.css is not connected in index.html.']
+  ['/assets/css/site.css', 'site.css is not connected in index.html.'],
+  ['/assets/js/site.js', 'site.js is not connected in index.html.']
 ]) {
   if (!homepagePage.includes(requirement[0])) errors.push(`index.html: ${requirement[1]}`);
 }
-for (const textClass of ['vh-body-text', 'vh-text--small']) {
-  if (!homepagePage.includes(textClass)) {
-    errors.push(`index.html: shared text role ${textClass} is not used.`);
-  }
+for (const legacyAsset of ['home-base.css', 'home.css', 'app.js', 'redesign.css', 'redesign.js']) {
+  if (homepagePage.includes(legacyAsset)) errors.push(`index.html: legacy asset ${legacyAsset} must not be connected.`);
 }
 
 const artistsScript = read('assets/js/artists.js');
@@ -172,30 +168,27 @@ const homepageConfig = read('assets/js/config.js');
 if (homepageConfig.includes('loadStylesheet')) {
   errors.push('assets/js/config.js: CSS must not be injected after first paint.');
 }
-if (!homepagePage.includes('/assets/js/route-distance-openrouteservice.js')) {
-  errors.push('index.html: route-distance adapter is not connected.');
-}
 for (const page of pages) {
   if (read(page).includes('/assets/js/route-distance-openrouteservice.js')) {
     errors.push(`${page}: homepage route-distance adapter must not be loaded on subpages.`);
   }
 }
 
-const visualFixes = read('assets/css/home.css');
+const visualFixes = read('assets/css/site.css');
 for (const requiredRule of [
-  '--vh-home-content-width',
-  '.vh-video-grid',
-  '.vh-formats-container',
-  '.vh-format-title',
-  'font-family: var(--vh-font-family)'
+  '--container',
+  '.video-grid',
+  '.format-list',
+  '.calculator__grid',
+  'font-family: var(--sans)'
 ]) {
   if (!visualFixes.includes(requiredRule)) {
-    errors.push(`assets/css/home.css: missing required visual correction ${requiredRule}.`);
+    errors.push(`assets/css/site.css: missing required visual foundation ${requiredRule}.`);
   }
 }
 
 const legacyFiles = [
-  'assets/css/home-base.css',
+  'assets/css/site.css',
   'assets/css/repertoire.css',
   'assets/css/artists.css',
   'assets/css/shared-ui.css'
