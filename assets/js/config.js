@@ -37,18 +37,34 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
 
 /* Load the experimental experience after the stable site bundle. Keeping it separate makes rollback instant. */
 (function loadExperienceV2() {
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/assets/css/experience-v2.css?v=20260801-1';
-  document.head.appendChild(link);
+  var experienceStyles = document.createElement('link');
+  experienceStyles.rel = 'stylesheet';
+  experienceStyles.href = '/assets/css/experience-v2.css?v=20260801-2';
+  document.head.appendChild(experienceStyles);
 
-  function addScript() {
-    var script = document.createElement('script');
-    script.src = '/assets/js/experience-v2.js?v=20260801-1';
-    script.async = false;
-    document.body.appendChild(script);
+  var portraitFixStyles = document.createElement('link');
+  portraitFixStyles.rel = 'stylesheet';
+  portraitFixStyles.href = '/assets/css/hero-portrait-fix.css?v=20260801-1';
+  document.head.appendChild(portraitFixStyles);
+
+  function addPortraitFixScript() {
+    var fixScript = document.createElement('script');
+    fixScript.src = '/assets/js/hero-portrait-fix.js?v=20260801-1';
+    fixScript.async = false;
+    document.body.appendChild(fixScript);
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addScript, { once: true });
-  else addScript();
+  function addExperienceScript() {
+    var experienceScript = document.createElement('script');
+    experienceScript.src = '/assets/js/experience-v2.js?v=20260801-2';
+    experienceScript.async = false;
+    experienceScript.addEventListener('load', addPortraitFixScript, { once: true });
+    document.body.appendChild(experienceScript);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addExperienceScript, { once: true });
+  } else {
+    addExperienceScript();
+  }
 })();
