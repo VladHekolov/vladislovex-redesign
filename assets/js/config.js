@@ -47,10 +47,26 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   portraitFixStyles.href = '/assets/css/hero-portrait-fix.css?v=20260801-1';
   document.head.appendChild(portraitFixStyles);
 
+  var runnerStyles = document.createElement('link');
+  runnerStyles.rel = 'stylesheet';
+  runnerStyles.href = '/assets/css/runner-game.css?v=20260801-1';
+  document.head.appendChild(runnerStyles);
+
+  function addRunnerScript() {
+    if (document.querySelector('script[data-runner-game]')) return;
+    var runnerScript = document.createElement('script');
+    runnerScript.src = '/assets/js/runner-game.js?v=20260801-1';
+    runnerScript.async = false;
+    runnerScript.dataset.runnerGame = 'true';
+    document.body.appendChild(runnerScript);
+  }
+
   function addPortraitFixScript() {
     var fixScript = document.createElement('script');
     fixScript.src = '/assets/js/hero-portrait-fix.js?v=20260801-1';
     fixScript.async = false;
+    fixScript.addEventListener('load', addRunnerScript, { once: true });
+    fixScript.addEventListener('error', addRunnerScript, { once: true });
     document.body.appendChild(fixScript);
   }
 
