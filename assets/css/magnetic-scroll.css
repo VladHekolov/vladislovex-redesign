@@ -1,0 +1,54 @@
+/* Soft section snapping: blocks settle cleanly after the user stops scrolling. */
+:root {
+  --magnetic-scroll-offset: clamp(72px, 8vh, 96px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: var(--magnetic-scroll-offset);
+  }
+
+  main > .section,
+  main > .contact {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    scroll-margin-top: var(--magnetic-scroll-offset);
+  }
+
+  /* The cinematic hero has its own pinned scroll choreography and must remain free. */
+  main > .hero,
+  main > .marquee {
+    scroll-snap-align: none;
+  }
+}
+
+/* On large screens the magnetic pull can be slightly stronger without trapping mobile scroll. */
+@media (min-width: 960px) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  main > .section,
+  main > .contact {
+    scroll-snap-stop: always;
+  }
+
+  /* Long sections still allow normal reading before the next section captures the viewport. */
+  main > .section {
+    min-block-size: min-content;
+  }
+}
+
+/* Forms, dialogs and the game should never inherit snapping inside their own controls. */
+:is(dialog, [role="dialog"], .rhythm-runner-v2, .contact-panel, .modal) {
+  scroll-snap-type: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+}
