@@ -1,6 +1,8 @@
 /* Vocava Artists — cleaned CSS. Removed obsolete patch layers and unused selectors without changing active classes. */
-.vh-artists-page,
-.vh-artists-page *,
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+.vh-artists-page, .vh-artists-page * {
+  box-sizing: border-box;
+}
 .vh-pdf-stage,
 .vh-pdf-stage * {
   box-sizing: border-box;
@@ -276,15 +278,15 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  min-width: 100%;
-  min-height: 100%;
-  max-width: none;
-  max-height: none;
-  display: block;
-  object-fit: cover;
-  object-position: center center;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
   aspect-ratio: 1 / 1;
   transform: none;
   image-rendering: auto;
@@ -360,7 +362,7 @@
 }
 
 .vh-favorites-panel[hidden] {
-  display: none;
+  display: none !important;
 }
 
 .vh-favorites-panel {
@@ -424,6 +426,64 @@
   flex-shrink: 0;
 }
 
+.vh-favorites-panel__actions button {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 255, 255, .05);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+}
+
+.vh-favorites-panel__actions button:hover,
+.vh-favorites-panel__actions button:focus-visible {
+  color: #fff;
+  background: rgba(255, 255, 255, .09);
+  border-color: rgba(255, 255, 255, .20);
+  transform: translateY(-1px);
+}
+
+#artists #vhFavoritesPdf {
+  border: 1px solid rgba(255, 189, 109, 0.34);
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.20), transparent 30%),
+    linear-gradient(135deg, var(--vh-orange-light) 0%, var(--vh-orange) 100%);
+  box-shadow:
+    0 14px 30px rgba(246, 138, 31, 0.24),
+    inset 0 0 0 1px rgba(255, 210, 160, 0.14);
+  font-weight: 680;
+}
+
+#artists #vhFavoritesPdf:hover,
+#artists #vhFavoritesPdf:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 189, 109, 0.42);
+  color: #ffffff;
+}
+
+#artists #vhFavoritesReset {
+  border: 1px solid rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .78);
+  background: rgba(255, 255, 255, .055);
+}
+
+#artists #vhFavoritesReset:hover,
+#artists #vhFavoritesReset:focus-visible {
+  border-color: rgba(255, 189, 109, .42);
+  color: #ffbd6d;
+  background: rgba(255, 189, 109, .08);
+}
+
+.vh-favorites-panel__actions button:focus-visible {
+  outline: 2px solid rgba(255, 189, 109, .48);
+  outline-offset: 3px;
+}
 .vh-artists-page {
   --vh-bg: #050505;
   --vh-card: rgba(13, 13, 13, 0.82);
@@ -503,6 +563,20 @@
   justify-content: space-between;
   gap: 32px;
 }
+.vh-artists-page__title {
+  max-width: 780px;
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(42px, 5vw, 78px);
+  line-height: 0.96;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.vh-artists-page__title span {
+  display: block;
+  color: #f4a259;
+  text-shadow: 0 0 28px rgba(246, 138, 31, 0.18);
+}
 .vh-artists-page__subtitle {
   max-width: 760px;
   margin: 22px 0 0;
@@ -511,6 +585,29 @@
   line-height: 1.58;
   font-weight: 500;
   letter-spacing: -0.015em;
+}
+#artists .vh-artists-page__main-btn, #artists .vh-artists-page__main-btn:link, #artists .vh-artists-page__main-btn:visited {
+  min-height: 54px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 999px;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.24), transparent 30%),
+    linear-gradient(135deg, var(--vh-orange-light) 0%, var(--vh-orange) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 210, 160, 0.20);
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+}
+#artists .vh-artists-page__main-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
 }
 .vh-artists-page__state {
   grid-column: 1 / -1;
@@ -528,6 +625,63 @@
   color: #ffd1bb;
   border-color: rgba(246, 138, 31, 0.35);
 }
+.vh-artists-page__note {
+  margin-top: 22px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border: 1px solid rgba(246, 138, 31, 0.20);
+  border-radius: 28px;
+  background: radial-gradient(circle at 8% 0%, rgba(246, 138, 31, 0.10), transparent 36%),
+    rgba(255, 255, 255, 0.045);
+}
+.vh-artists-page__note strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.15;
+  font-weight: 850;
+}
+.vh-artists-page__note p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+#artists .vh-artists-page__note a, #artists .vh-artists-page__note a:link, #artists .vh-artists-page__note a:visited {
+  min-height: 48px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(246, 138, 31, 0.48);
+  border-radius: 999px;
+  color: #f4a259;
+  -webkit-text-fill-color: #f4a259;
+  background: rgba(246, 138, 31, 0.06);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 980px) {
 .vh-artists-page {
@@ -558,6 +712,10 @@
 .vh-artists-page__title-row {
   display: block;
 }
+.vh-artists-page__title {
+  font-size: 42px;
+  line-height: 0.98;
+}
 .vh-artists-page__subtitle {
   margin-top: 16px;
   font-size: 14px;
@@ -567,7 +725,26 @@
   width: 100%;
   margin-top: 22px;
 }
+.vh-artists-page__note {
+  display: block;
+  padding: 22px;
+}
+.vh-artists-page__note a {
+  width: 100%;
+  margin-top: 18px;
+}
 
+
+
+
+
+
+
+}
+@media (max-width: 390px) {
+.vh-artists-page__title {
+  font-size: 38px;
+}
 }
 @keyframes vhArtistsFilterIn {
 from {
@@ -581,6 +758,29 @@ to {
 }
 
 /* PAGE UTILITY — clean block without forced overrides */
+.vh-artists-page__results {
+  display: none;
+  justify-content: flex-start;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  border: 1px solid rgba(246, 138, 31, 0.18);
+  border-radius: 18px;
+  background: rgba(246, 138, 31, 0.055);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.vh-artists-page__results > span:nth-child(2) {
+  display: none;
+}
+.vh-artists-page__results strong {
+  color: #ffffff;
+  font-weight: 950;
+}
 
 @media (max-width: 640px) {
 .vh-artists-page {
@@ -588,7 +788,9 @@ to {
   padding-left: 0;
   padding-right: 0;
 }
-
+.vh-artists-page__results {
+  margin: 0 16px 14px;
+}
 }
 
 /* ARTIST CARDS — clean block */
@@ -860,7 +1062,7 @@ to {
 }
 
 #artists .vh-artist-card__type {
-  margin: 0;
+  margin: 0 0 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -893,7 +1095,7 @@ to {
   align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
-  margin: 0;
+  margin-bottom: 12px;
 }
 
 #artists .vh-artist-card h3 {
@@ -934,6 +1136,10 @@ to {
 #artists .vh-artist-card__text {
   display: block;
   margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 450;
   overflow: visible;
 }
 
@@ -942,7 +1148,58 @@ to {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: auto;
-  padding-top: var(--vh-flow-content-action);
+  padding-top: 16px;
+}
+
+#artists .vh-artist-card__choose,
+#artists .vh-artist-card__repertoire,
+#artists .vh-artist-card__select {
+  min-height: 44px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: .005em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease, color .22s ease;
+}
+
+#artists .vh-artist-card__choose {
+  border: 1px solid rgba(255, 189, 109, 0.34);
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.20), transparent 30%),
+    linear-gradient(135deg, var(--vh-orange-light) 0%, var(--vh-orange) 100%);
+  box-shadow:
+    0 14px 30px rgba(246, 138, 31, 0.24),
+    inset 0 0 0 1px rgba(255, 210, 160, 0.14);
+}
+
+#artists .vh-artist-card__repertoire,
+#artists .vh-artist-card__select {
+  border: 1px solid rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .78);
+  background: rgba(255, 255, 255, .055);
+}
+
+#artists .vh-artist-card__choose:hover,
+#artists .vh-artist-card__repertoire:hover,
+#artists .vh-artist-card__select:hover {
+  transform: translateY(-2px);
+}
+
+#artists .vh-artist-card__repertoire:hover,
+#artists .vh-artist-card__select:hover {
+  border-color: rgba(255, 189, 109, .42);
+  color: #ffbd6d;
+  background: rgba(255, 189, 109, .08);
 }
 
 @media (max-width: 980px) {
@@ -1017,12 +1274,32 @@ to {
     letter-spacing: -.01em;
   }
 
+  #artists .vh-artist-card__text {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  #artists .vh-artist-card__actions {
+    padding-top: 16px;
+  }
+
+  #artists .vh-artist-card__choose,
+  #artists .vh-artist-card__repertoire,
+  #artists .vh-artist-card__select {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
   .vh-favorites-panel {
     left: 8px;
     right: 8px;
     bottom: 8px;
     width: auto;
     transform: translateY(18px);
+  }
+
+  .vh-favorites-panel.is-visible {
+    transform: translateY(0);
   }
 
   .vh-favorites-panel__inner {
@@ -1032,7 +1309,17 @@ to {
     gap: 14px;
   }
 
+  .vh-favorites-panel__actions {
+    width: 100%;
+  }
+
+  .vh-favorites-panel__actions button {
+    flex: 1 1 0;
+    min-height: 44px;
+    padding: 0 14px;
+  }
 }
+
 
 /* FILTER AND SORT — clean block */
 #artists .vh-artists-page__toolbar,
@@ -1071,7 +1358,25 @@ to {
 }
 
 #artists .vh-mobile-filter__button,
-#artists .vh-sort-dd__icon,
+#artists .vh-sort-dd__icon {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(246, 138, 31, .34);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(9, 9, 9, .62);
+  box-shadow: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
 #artists .vh-favorites-filter {
   width: 48px;
   min-width: 48px;
@@ -1092,7 +1397,7 @@ to {
 }
 
 #artists .vh-favorites-filter[hidden] {
-  display: none;
+  display: none !important;
 }
 
 #artists .vh-favorites-filter svg {
@@ -1630,6 +1935,8 @@ to {
   background: var(--vh-check-black) no-repeat center / 14px 14px;
 }
 
+
+
 #artists .vh-filter-artist-option,
 #artists .vh-filter-gender-option {
   display: grid;
@@ -1988,9 +2295,21 @@ to {
   line-height: 1;
 }
 
+.vh-artist-modal__repertoire-inline {
+  display: none;
+}
+
+.vh-artist-modal__repertoire-inline[hidden] {
+  display: none;
+}
+
 .vh-artist-modal__about {
   max-width: 560px;
   margin: 18px 0 24px;
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 15px;
+  line-height: 1.56;
+  font-weight: 450;
   white-space: pre-line;
 }
 
@@ -2129,6 +2448,8 @@ to {
 
   .vh-favorites-panel__actions button {
     flex: 1 1 0;
+    min-height: 44px;
+    padding: 0 14px;
   }
 
   .vh-artist-modal {
@@ -2257,11 +2578,51 @@ to {
     display: none;
   }
 
+  .vh-artist-modal__repertoire-inline {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    min-width: 0;
+    margin: 8px 0 0;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    color: rgba(255, 255, 255, 0.70);
+    background: rgba(255, 255, 255, 0.045);
+    font-size: 12px;
+    line-height: 1.48;
+    font-weight: 500;
+    white-space: pre-line;
+  }
+
+  .vh-artist-modal__repertoire-inline::before {
+    content: "Репертуар";
+    display: block;
+    margin-bottom: 7px;
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 10px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .vh-artist-modal__repertoire-inline[hidden] {
+    display: none;
+  }
+
+  .vh-artist-modal__repertoire-card {
+    display: none;
+  }
+
   .vh-artist-modal__about {
     grid-column: 1 / -1;
     grid-row: 3;
     max-width: none;
     margin: 2px 0 0;
+    font-size: 13px;
+    line-height: 1.48;
   }
 
   .vh-artist-modal__photos,
@@ -2315,6 +2676,9 @@ to {
     margin-top: 24px;
   }
 
+  .vh-artist-modal__repertoire-inline {
+    display: block;
+  }
 }
 /* END ARTIST MODAL */
 

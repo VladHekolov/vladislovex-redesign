@@ -2,6 +2,8 @@
   var root = document.getElementById('artists');
   if (!root) return;
 
+  var apiUrl = (root.getAttribute('data-api-url') || '').trim().replace(/\/dev(\?|$)/, '/exec$1');
+  var jsonUrl = (root.getAttribute('data-json-url') || '').trim();
   var repertoireBaseUrl = (root.getAttribute('data-repertoire-url') || 'https://vladislovex.ru/repertoire').trim();
 
   var grid = document.getElementById('vhArtistsGrid') || root.querySelector('.vh-artists-page__grid');
@@ -58,7 +60,6 @@
   var currentPhotoIndex = 0;
   var openLayers = 0;
   var pendingOpenArtistId = '';
-  var isPdfGenerating = false;
 
   var ROLE_ORDER = ['guitar-vocal', 'piano-vocal', 'vocalist', 'guitarist', 'cajon'];
   var ROLE_LABELS = {
@@ -475,6 +476,37 @@
     if (n1 === 1) return 'музыкант';
     if (n1 >= 2 && n1 <= 4) return 'музыканта';
     return 'музыкантов';
+  }
+
+  function jsonp(action) {
+    return new Promise(function (resolve, reject) {
+      var callback = 'vhArtistsCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+      var script = document.createElement('script');
+      var timeout = setTimeout(function () {
+        cleanup();
+        reject(new Error('таймаут загрузки'));
+      }, 15000);
+
+      function cleanup() {
+        clearTimeout(timeout);
+        delete window[callback];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[callback] = function (data) {
+        cleanup();
+        resolve(data);
+      };
+
+      script.onerror = function () {
+        cleanup();
+        reject(new Error('Apps Script недоступен'));
+      };
+
+      var sep = apiUrl.indexOf('?') === -1 ? '?' : '&';
+      script.src = apiUrl + sep + 'action=' + encodeURIComponent(action) + '&callback=' + encodeURIComponent(callback) + '&_=' + Date.now();
+      document.head.appendChild(script);
+    });
   }
 
   function getSavedFavorites() {
@@ -922,8 +954,8 @@
         '<div class="vh-artist-card__body" role="button" tabindex="0" aria-label="Открыть карточку артиста">' +
           '<div class="vh-artist-card__type"><span>' + esc(label) + '</span>' + (ageText ? '<b>' + esc(ageText) + '</b>' : '') + '</div>' +
           '<div class="vh-artist-card__top"><h3>' + esc(artist.name || 'Музыкант') + '</h3></div>' +
-          '<p class="vh-artist-card__text vh-text--small">' + esc(shortText) + '</p>' +
-          '<div class="vh-artist-card__actions"><button class="vh-artist-card__choose vh-button vh-button--primary" type="button">Смотреть видео</button><a class="vh-artist-card__repertoire vh-button vh-button--secondary" href="' + esc(repertoireUrl(artist)) + '" data-repertoire-artist="' + esc(artist.id || '') + '">Репертуар</a></div>' +
+          '<p class="vh-artist-card__text">' + esc(shortText) + '</p>' +
+          '<div class="vh-artist-card__actions"><button class="vh-artist-card__choose" type="button">Смотреть видео</button><a class="vh-artist-card__repertoire" href="' + esc(repertoireUrl(artist)) + '" data-repertoire-artist="' + esc(artist.id || '') + '">Репертуар</a></div>' +
         '</div>' +
       '</article>';
   }
@@ -948,6 +980,35 @@
 
     updateFavoritesUi();
   }
+
+  function setupHorizontalSwipe(element, onSwipeLeft, onSwipeRight) {
+    if (!element) return;
+
+    var startX = 0;
+    var startY = 0;
+    var started = false;
+
+    element.addEventListener('touchstart', function (event) {
+      if (!event.touches || event.touches.length !== 1) return;
+      started = true;
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    }, { passive: true });
+
+    element.addEventListener('touchend', function (event) {
+      if (!started || !event.changedTouches || !event.changedTouches.length) return;
+      started = false;
+
+      var dx = event.changedTouches[0].clientX - startX;
+      var dy = event.changedTouches[0].clientY - startY;
+
+      if (Math.abs(dx) < 42 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+
+      if (dx < 0) onSwipeLeft();
+      else onSwipeRight();
+    }, { passive: true });
+  }
+
 
   function setupPhotoViewerSwipe(element) {
     if (!element) return;
@@ -1449,8 +1510,6 @@
   }
 
   async function generatePdfReport() {
-    if (isPdfGenerating) return;
-
     var artists = getFavoriteArtists();
 
     if (!artists.length) {
@@ -1461,13 +1520,6 @@
     if (!window.html2canvas || !window.jspdf || !window.jspdf.jsPDF) {
       alert('PDF-модуль ещё загружается. Попробуйте через пару секунд.');
       return;
-    }
-
-    isPdfGenerating = true;
-    var originalPdfText = favoritesPdf ? favoritesPdf.textContent : '';
-    if (favoritesPdf) {
-      favoritesPdf.disabled = true;
-      favoritesPdf.textContent = 'Формирую PDF...';
     }
 
     var stage = document.getElementById('vhPdfStage');
@@ -1815,12 +1867,6 @@
       console.error('Vocava PDF error:', error);
       stage.innerHTML = '';
       alert('Не удалось сформировать PDF. Попробуйте ещё раз.');
-    } finally {
-      isPdfGenerating = false;
-      if (favoritesPdf) {
-        favoritesPdf.disabled = false;
-        favoritesPdf.textContent = originalPdfText || 'Скачать PDF';
-      }
     }
   }
 
@@ -2124,14 +2170,34 @@
     try {
       showState('Загрузка музыкантов...', false);
 
-      if (!window.VocavaPublicData || typeof window.VocavaPublicData.loadArtists !== 'function') {
-        throw new Error('Модуль данных VOCAVA не загрузился. Обновите страницу.');
+      var rows = null;
+
+      if (jsonUrl && !/PASTE_JSON_URL/i.test(jsonUrl)) {
+        try {
+          var url = jsonUrl + (jsonUrl.indexOf('?') === -1 ? '?' : '&') + '_=' + Date.now();
+          var res = await fetch(url, { method: 'GET', cache: 'no-store' });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          var json = await res.json();
+          if (!json || !json.ok || !Array.isArray(json.rows)) throw new Error('Некорректный JSON');
+          rows = json.rows;
+        } catch (jsonError) {
+          console.warn('JSON-база не загрузилась, пробую Apps Script:', jsonError);
+        }
       }
 
-      var data = await window.VocavaPublicData.loadArtists();
-      if (!data || !data.ok) throw new Error((data && data.error) || 'ошибка ответа');
+      if (!rows) {
+        if (!apiUrl || /PASTE_APPS_SCRIPT/i.test(apiUrl)) {
+          throw new Error('Вставьте Web App URL или JSON URL в секцию artists.');
+        }
 
-      var rows = data.rows || [];
+        var data = await jsonp('publicList');
+
+        if (!data || !data.ok) {
+          throw new Error((data && data.error) || 'ошибка ответа');
+        }
+
+        rows = data.rows || [];
+      }
 
       allArtists = dedupeArtists((rows || [])
         .map(cleanArtist)

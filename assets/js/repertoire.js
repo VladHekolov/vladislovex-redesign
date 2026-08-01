@@ -5,6 +5,7 @@
   if (!root || root.dataset.vrReady === '1') return false;
   root.dataset.vrReady = '1';
 
+  var apiUrl = (root.getAttribute('data-api-url') || '').trim().replace(/\/dev(\?|$)/, '/exec$1');
   var artistId = (root.getAttribute('data-artist-id') || '').trim() || new URLSearchParams(location.search).get('artist') || '';
   var artistNamePreset = (root.getAttribute('data-artist-name') || new URLSearchParams(location.search).get('artist_name') || '').trim();
   var artistName = document.getElementById('vrArtistName');
@@ -67,16 +68,77 @@
   var artistMapStorageKey = 'vocava:repertoire:artist-map:v1';
   var activePdfJob = null;
   var pdfLibraryPromise = null;
-  function setArtistHeadingName(name) {
+  var headNameAnimated = false;
+  var headNameFinalizeTimer = 0;
+
+  function setArtistHeadingName(name, options) {
+    options = options || {};
     var cleanName = String(name || '').replace(/\s+/g, ' ').trim();
     if (!artistName || !cleanName || cleanName === 'Музыкант') return false;
 
     var currentName = artistName.getAttribute('data-current-name') || '';
-    if (currentName === cleanName) return true;
+    if (currentName === cleanName) {
+      root.classList.add('is-head-ready');
+      return true;
+    }
 
+    window.clearTimeout(headNameFinalizeTimer);
+
+    var shouldAnimate = options.animate === true || (!headNameAnimated && !options.instant);
     artistName.setAttribute('aria-label', cleanName);
     artistName.setAttribute('data-current-name', cleanName);
-    artistName.textContent = cleanName;
+    artistName.classList.remove('is-title-plain');
+
+    if (!shouldAnimate) {
+      artistName.textContent = cleanName;
+      artistName.classList.add('is-title-plain');
+      artistName.setAttribute('data-render-complete', '1');
+      root.classList.add('is-head-ready');
+      return true;
+    }
+
+    headNameAnimated = true;
+    artistName.textContent = '';
+    artistName.setAttribute('data-render-complete', '0');
+    root.classList.remove('is-head-ready');
+
+    var chunks = cleanName.match(/\S+|\s+/g) || [cleanName];
+    var letterIndex = 0;
+
+    chunks.forEach(function (chunk) {
+      if (/^\s+$/.test(chunk)) {
+        var space = document.createElement('span');
+        space.className = 'vr-head__title-space';
+        space.textContent = ' ';
+        artistName.appendChild(space);
+        return;
+      }
+
+      var word = document.createElement('span');
+      word.className = 'vr-head__title-word';
+
+      Array.prototype.forEach.call(chunk, function (char) {
+        var letter = document.createElement('span');
+        letter.className = 'vr-head__title-char';
+        letter.textContent = char;
+        letter.style.setProperty('--vr-letter-delay', Math.min(letterIndex * 0.035, 0.72).toFixed(3) + 's');
+        word.appendChild(letter);
+        letterIndex += 1;
+      });
+
+      artistName.appendChild(word);
+    });
+
+    requestAnimationFrame(function () {
+      root.classList.add('is-head-ready');
+    });
+
+    headNameFinalizeTimer = window.setTimeout(function () {
+      if (!artistName || artistName.getAttribute('data-current-name') !== cleanName) return;
+      artistName.textContent = cleanName;
+      artistName.classList.add('is-title-plain');
+      artistName.setAttribute('data-render-complete', '1');
+    }, Math.min(letterIndex * 35, 720) + 920);
 
     return true;
   }
@@ -148,26 +210,64 @@
     });
   }
 
-  var loadingStatePhrases = [
-    'Собираю музыкальное меню',
-    'Ищу песни для вашего праздника',
-    'Открываю интерактивный репертуар',
-    'Подбираю музыку под настроение',
-    'Готовлю список любимых треков',
-    'Настраиваю поиск по песням',
-    'Проверяю исполнителей и названия',
-    'Собираю репертуар мечты',
-    'Скоро здесь появятся песни',
-    'Музыка уже близко',
-    'Навожу порядок в песнях',
-    'Готовлю удобный список',
-    'Подгружаю песни для выбора',
-    'Почти готово, осталось чуть-чуть',
-    'Собираю атмосферу вечера'
-  ];
+  function jsonp(action, params) {
+    params = params || {};
+    return new Promise(function (resolve, reject) {
+      var callback = 'vrCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+      var script = document.createElement('script');
+      var timeout = setTimeout(function () {
+        cleanup();
+        reject(new Error('таймаут загрузки'));
+      }, 15000);
+
+      function cleanup() {
+        clearTimeout(timeout);
+        delete window[callback];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[callback] = function (response) {
+        cleanup();
+        resolve(response);
+      };
+
+      script.onerror = function () {
+        cleanup();
+        reject(new Error('Apps Script недоступен'));
+      };
+
+      var query = new URLSearchParams(Object.assign({}, params, {
+        action: action,
+        callback: callback,
+        _: Date.now()
+      }));
+      script.src = apiUrl + (apiUrl.indexOf('?') === -1 ? '?' : '&') + query.toString();
+      document.head.appendChild(script);
+    });
+  }
+
+  function loadingStatePhrases() {
+    return [
+      'Собираю музыкальное меню',
+      'Ищу песни для вашего праздника',
+      'Открываю интерактивный репертуар',
+      'Подбираю музыку под настроение',
+      'Готовлю список любимых треков',
+      'Настраиваю поиск по песням',
+      'Проверяю исполнителей и названия',
+      'Собираю репертуар мечты',
+      'Скоро здесь появятся песни',
+      'Музыка уже близко',
+      'Навожу порядок в песнях',
+      'Готовлю удобный список',
+      'Подгружаю песни для выбора',
+      'Почти готово, осталось чуть-чуть',
+      'Собираю атмосферу вечера'
+    ];
+  }
 
   function nextLoadingStatePhrase() {
-    var phrases = loadingStatePhrases;
+    var phrases = loadingStatePhrases();
     if (!phrases.length) return 'Загрузка репертуара...';
     if (phrases.length === 1) return phrases[0];
     var next = statePhraseIndex;
@@ -680,10 +780,16 @@
     sortButton.setAttribute('aria-expanded', sortWrap.classList.contains('is-open') ? 'true' : 'false');
 
     var likedCount = songsByChoice('like').length;
+    if (!likedCount && favoritesOnly) {
+      favoritesOnly = false;
+    }
     favoritesToggle.hidden = !likedCount;
     favoritesToggle.classList.toggle('is-active', favoritesOnly);
 
     var stopCount = songsByChoice('stop').length;
+    if (!stopCount && stopOnly) {
+      stopOnly = false;
+    }
     stopToggle.hidden = !stopCount;
     stopToggle.classList.toggle('is-active', stopOnly);
   }
@@ -722,6 +828,10 @@
 
   function updateSummary(visibleCount) {
     shownCount.innerHTML = '<b>' + (visibleCount == null ? data.songs.length : visibleCount) + '</b> показано';
+  }
+
+  function applySearch() {
+    renderSongs();
   }
 
   function songsByChoice(choice) {
@@ -769,8 +879,9 @@
     }, 680);
   }
 
-  function shouldRenderAfterChoice() {
-    return favoritesOnly || stopOnly;
+  function shouldRenderAfterChoice(previousChoice, nextChoice) {
+    if (favoritesOnly || stopOnly) return true;
+    return false;
   }
 
 
@@ -1510,7 +1621,7 @@
 
     var listResponse = null;
     try {
-      listResponse = await window.VocavaPublicData.loadArtists();
+      listResponse = await jsonp('publicList');
     } catch (error) {
       if (required) throw error;
       return false;
@@ -1546,8 +1657,8 @@
   }
 
   async function load() {
-    if (!window.VocavaPublicData || typeof window.VocavaPublicData.loadArtists !== 'function' || typeof window.VocavaPublicData.loadRepertoire !== 'function') {
-      setState('Модуль данных VOCAVA не загрузился. Обновите страницу.', true);
+    if (!apiUrl || /PASTE_APPS_SCRIPT/i.test(apiUrl)) {
+      setState('Вставьте Web App URL в data-api-url.', true);
       return;
     }
     try {
@@ -1561,7 +1672,7 @@
       }
 
       setState('Загрузка репертуара...', false, true);
-      var response = await window.VocavaPublicData.loadRepertoire(artistId);
+      var response = await jsonp('publicRepertoire', { artist_id: artistId });
       if (!response || !response.ok) throw new Error((response && response.error) || 'ошибка ответа');
       data = response.data || { artist: {}, songs: [] };
       choices = loadStoredChoices();
@@ -1589,7 +1700,7 @@
     saveStoredChoices();
     hapticFeedback(choice);
 
-    if (shouldRenderAfterChoice()) {
+    if (shouldRenderAfterChoice(currentChoice, choice)) {
       renderSongs();
       return;
     }
@@ -1612,7 +1723,7 @@
     });
   });
 
-  search.addEventListener('input', renderSongs);
+  search.addEventListener('input', applySearch);
   infoButton.addEventListener('click', openGuide);
   guide.addEventListener('click', function (event) {
     if (event.target.closest('[data-guide-close]')) closeGuide();
