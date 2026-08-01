@@ -34,3 +34,21 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     ])
   })
 });
+
+/* Load the experimental experience after the stable site bundle. Keeping it separate makes rollback instant. */
+(function loadExperienceV2() {
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/assets/css/experience-v2.css?v=20260801-1';
+  document.head.appendChild(link);
+
+  function addScript() {
+    var script = document.createElement('script');
+    script.src = '/assets/js/experience-v2.js?v=20260801-1';
+    script.async = false;
+    document.body.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addScript, { once: true });
+  else addScript();
+})();
