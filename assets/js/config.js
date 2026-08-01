@@ -47,25 +47,17 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   portraitFixStyles.href = '/assets/css/hero-portrait-fix.css?v=20260801-1';
   document.head.appendChild(portraitFixStyles);
 
-  var runnerStyles = document.createElement('link');
-  runnerStyles.rel = 'stylesheet';
-  runnerStyles.href = '/assets/css/runner-game.css?v=20260801-1';
-  document.head.appendChild(runnerStyles);
+  var runnerV2Styles = document.createElement('link');
+  runnerV2Styles.rel = 'stylesheet';
+  runnerV2Styles.href = '/assets/css/runner-game-v2.css?v=20260801-2';
+  document.head.appendChild(runnerV2Styles);
 
-  function addRunnerFixScript() {
-    var fix = document.createElement('script');
-    fix.src = '/assets/js/runner-game-fix.js?v=20260801-1';
-    fix.async = false;
-    document.body.appendChild(fix);
-  }
-
-  function addRunnerScript() {
-    if (document.querySelector('script[data-runner-game]')) return;
+  function addRunnerV2Script() {
+    if (document.querySelector('script[data-runner-game-v2]')) return;
     var runnerScript = document.createElement('script');
-    runnerScript.src = '/assets/js/runner-game.js?v=20260801-1';
+    runnerScript.src = '/assets/js/runner-game-v2.js?v=20260801-2';
     runnerScript.async = false;
-    runnerScript.dataset.runnerGame = 'true';
-    runnerScript.addEventListener('load', addRunnerFixScript, { once: true });
+    runnerScript.dataset.runnerGameV2 = 'true';
     document.body.appendChild(runnerScript);
   }
 
@@ -73,8 +65,8 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
     var fixScript = document.createElement('script');
     fixScript.src = '/assets/js/hero-portrait-fix.js?v=20260801-1';
     fixScript.async = false;
-    fixScript.addEventListener('load', addRunnerScript, { once: true });
-    fixScript.addEventListener('error', addRunnerScript, { once: true });
+    fixScript.addEventListener('load', addRunnerV2Script, { once: true });
+    fixScript.addEventListener('error', addRunnerV2Script, { once: true });
     document.body.appendChild(fixScript);
   }
 
