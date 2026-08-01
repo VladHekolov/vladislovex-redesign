@@ -52,12 +52,20 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   runnerStyles.href = '/assets/css/runner-game.css?v=20260801-1';
   document.head.appendChild(runnerStyles);
 
+  function addRunnerFixScript() {
+    var fix = document.createElement('script');
+    fix.src = '/assets/js/runner-game-fix.js?v=20260801-1';
+    fix.async = false;
+    document.body.appendChild(fix);
+  }
+
   function addRunnerScript() {
     if (document.querySelector('script[data-runner-game]')) return;
     var runnerScript = document.createElement('script');
     runnerScript.src = '/assets/js/runner-game.js?v=20260801-1';
     runnerScript.async = false;
     runnerScript.dataset.runnerGame = 'true';
+    runnerScript.addEventListener('load', addRunnerFixScript, { once: true });
     document.body.appendChild(runnerScript);
   }
 
