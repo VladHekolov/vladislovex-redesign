@@ -47,11 +47,6 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   portraitFixStyles.href = '/assets/css/hero-portrait-fix.css?v=20260801-1';
   document.head.appendChild(portraitFixStyles);
 
-  var magneticScrollStyles = document.createElement('link');
-  magneticScrollStyles.rel = 'stylesheet';
-  magneticScrollStyles.href = '/assets/css/magnetic-scroll.css?v=20260801-1';
-  document.head.appendChild(magneticScrollStyles);
-
   var runnerV2Styles = document.createElement('link');
   runnerV2Styles.rel = 'stylesheet';
   runnerV2Styles.href = '/assets/css/runner-game-v2.css?v=20260801-2';
