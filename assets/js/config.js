@@ -35,34 +35,31 @@ window.VLADISLOVEX_CONFIG = Object.freeze({
   })
 });
 
-/* Load experimental visual layers after the stable site bundle. Each layer can be disabled independently. */
+/* Load the experimental experience after the stable site bundle. Keeping it separate makes rollback instant. */
 (function loadExperienceV2() {
-  function addStylesheet(path) {
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = path;
-    document.head.appendChild(link);
-  }
+  var experienceStyles = document.createElement('link');
+  experienceStyles.rel = 'stylesheet';
+  experienceStyles.href = '/assets/css/experience-v2.css?v=20260801-2';
+  document.head.appendChild(experienceStyles);
 
-  addStylesheet('/assets/css/experience-v2.css?v=20260801-2');
-  addStylesheet('/assets/css/hero-portrait-fix.css?v=20260801-1');
-  addStylesheet('/assets/css/section-worlds.css?v=20260801-1');
+  var portraitFixStyles = document.createElement('link');
+  portraitFixStyles.rel = 'stylesheet';
+  portraitFixStyles.href = '/assets/css/hero-portrait-fix.css?v=20260801-1';
+  document.head.appendChild(portraitFixStyles);
 
-  function addScript(path, onLoad) {
-    var script = document.createElement('script');
-    script.src = path;
-    script.async = false;
-    if (onLoad) script.addEventListener('load', onLoad, { once: true });
-    document.body.appendChild(script);
-  }
-
-  function addPostExperienceScripts() {
-    addScript('/assets/js/hero-portrait-fix.js?v=20260801-1');
-    addScript('/assets/js/section-worlds.js?v=20260801-1');
+  function addPortraitFixScript() {
+    var fixScript = document.createElement('script');
+    fixScript.src = '/assets/js/hero-portrait-fix.js?v=20260801-1';
+    fixScript.async = false;
+    document.body.appendChild(fixScript);
   }
 
   function addExperienceScript() {
-    addScript('/assets/js/experience-v2.js?v=20260801-2', addPostExperienceScripts);
+    var experienceScript = document.createElement('script');
+    experienceScript.src = '/assets/js/experience-v2.js?v=20260801-2';
+    experienceScript.async = false;
+    experienceScript.addEventListener('load', addPortraitFixScript, { once: true });
+    document.body.appendChild(experienceScript);
   }
 
   if (document.readyState === 'loading') {
