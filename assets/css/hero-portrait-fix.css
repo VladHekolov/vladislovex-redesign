@@ -1,0 +1,58 @@
+/* Keep the portrait visually clean: one emotion at a time, all decoration behind the person. */
+.hero--story .hero-story-bg {
+  z-index: -1;
+}
+
+.hero--story .hero__copy {
+  z-index: 2;
+}
+
+.hero--story .hero__portrait {
+  z-index: 3;
+  isolation: isolate;
+}
+
+.hero--story .hero__portal {
+  z-index: 0 !important;
+}
+
+.hero--story .hero__portal-rim {
+  z-index: 1 !important;
+  pointer-events: none;
+}
+
+.hero--story .head-turn {
+  z-index: 4 !important;
+}
+
+/* Never cross-fade portrait frames: semi-transparent overlap creates a doubled face. */
+.hero--story .head-turn__frame {
+  opacity: 0 !important;
+  transition: none !important;
+  will-change: auto;
+}
+
+.hero--story .hero__portrait:not(.is-emotion-front):not(.is-emotion-right) .head-turn__frame--left,
+.hero--story .hero__portrait.is-emotion-left .head-turn__frame--left {
+  opacity: 1 !important;
+}
+
+.hero--story .hero__portrait.is-emotion-front .head-turn__frame--front {
+  opacity: 1 !important;
+}
+
+.hero--story .hero__portrait.is-emotion-right .head-turn__frame--right {
+  opacity: 1 !important;
+}
+
+/* The circle and its outline stay behind the portrait and cannot cross the face. */
+.hero--story .hero__portrait figcaption {
+  z-index: 6;
+}
+
+@media (max-width: 760px) {
+  .hero--story .hero-story-bg__note,
+  .hero--story .hero-story-bg__ring {
+    opacity: .35;
+  }
+}
