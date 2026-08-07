@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260801-5">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260807-1">
   <script>
     if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110736648','ym');
@@ -26,7 +26,7 @@
   <div class="scroll-ui" aria-hidden="true">
     <span id="scroll-current">01</span>
     <div class="scroll-ui__line"><i id="scroll-progress"></i></div>
-    <span>09</span>
+    <span>08</span>
     <small id="scroll-label">Начало</small>
   </div>
 
@@ -40,7 +40,6 @@
       <nav class="nav" id="main-nav" aria-label="Основная навигация">
         <a href="#sound">Видео</a>
         <a href="#formats">Форматы</a>
-        <a href="#rhythm">Игра</a>
         <a href="#price">Стоимость</a>
         <a href="#reviews">Отзывы</a>
       </nav>
@@ -158,74 +157,10 @@
       </div>
     </section>
 
-    <section class="section rhythm" id="rhythm" data-scroll-section data-scroll-label="Игра">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-index">03 · Поймать настроение</p>
-          <h2>Попадите<br><em>в мой ритм</em></h2>
-          <p>Наберите 1000 очков и откройте подарок — скидку 1000 ₽ за честный видеоотзыв. Нажимайте, когда бегущая точка входит в синюю мишень.</p>
-        </header>
-
-        <div class="rhythm-game reveal" data-rhythm-game>
-          <div class="rhythm-game__top">
-            <p><span>Счёт</span><strong data-game-score>000</strong></p>
-            <p><span>Комбо</span><strong data-game-combo>×0</strong></p>
-            <p><span>Время</span><strong data-game-time>20.0</strong></p>
-          </div>
-
-          <div class="rhythm-game__stage" data-game-stage tabindex="0" role="application" aria-label="Игра Попади в ритм. Нажмите пробел или коснитесь поля, когда точка попадёт в синюю мишень.">
-            <div class="rhythm-game__disc" aria-hidden="true"><i></i><i></i><i></i></div>
-            <div class="rhythm-game__orbit" aria-hidden="true">
-              <i class="rhythm-game__target" data-game-target></i>
-              <i class="rhythm-game__pulse" data-game-pulse></i>
-            </div>
-            <div class="rhythm-game__message" data-game-message><strong>Поймай<br>бит</strong><span>клик · тап · пробел</span></div>
-          </div>
-
-          <div class="rhythm-game__goal" aria-label="Прогресс до награды">
-            <span>Цель · скидка 1000 ₽</span>
-            <i><b data-game-progress></b></i>
-            <strong><span data-game-goal-score>0</span> / 1000</strong>
-          </div>
-
-          <div class="gift-reveal" data-game-gift aria-live="polite" hidden>
-            <p>Цель достигнута</p>
-            <h3>Внутри —<br><em>ваш подарок</em></h3>
-            <button class="gift-reveal__button" type="button" data-open-gift>
-              <span class="gift-reveal__package" aria-hidden="true"><i></i><b>1000</b><small>потяните за ленту →</small></span>
-              <strong>Открыть подарок</strong>
-            </button>
-          </div>
-
-          <div class="rhythm-game__bottom">
-            <p data-game-status>Двадцать секунд. Точность и комбо быстрее ведут к 1000 очков.</p>
-            <button class="button button--accent button--large" type="button" data-game-start data-magnetic>Начать игру <span>↗</span></button>
-          </div>
-        </div>
-
-        <div class="game-reward" data-game-reward aria-live="polite" hidden>
-          <div>
-            <p class="section-index">Награда разблокирована</p>
-            <h3>1000 ₽<br><em>за видеоотзыв</em></h3>
-          </div>
-          <div class="game-reward__content">
-            <p>Если вы уже были гостем или заказчиком выступления, запишите короткий честный отзыв. После проверки я подтвержу скидку 1000 ₽ на следующее выступление.</p>
-            <ol>
-              <li><span>01</span><p>Снимите вертикальное видео на 15–45 секунд.</p></li>
-              <li><span>02</span><p>Расскажите, какое было событие и что запомнилось.</p></li>
-              <li><span>03</span><p>Отправьте видео в Telegram с пометкой «Ритм».</p></li>
-            </ol>
-            <a class="button button--accent button--large" href="https://t.me/vladislove_xv?text=%D0%AF%20%D0%B2%D1%8B%D0%B8%D0%B3%D1%80%D0%B0%D0%BB%20%D0%B2%20%D0%B8%D0%B3%D1%80%D0%B5%20%C2%AB%D0%9F%D0%BE%D0%BF%D0%B0%D0%B4%D0%B8%20%D0%B2%20%D1%80%D0%B8%D1%82%D0%BC%C2%BB%20%D0%B8%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BE%D1%82%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D0%BE%D1%82%D0%B7%D1%8B%D0%B2." target="_blank" rel="noopener">Отправить видеоотзыв ↗</a>
-            <small>Один бонус на клиента. Скидка 1000 ₽ действует на следующее бронирование после проверки подлинного видеоотзыва и не суммируется с другими предложениями.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section process" data-scroll-section data-scroll-label="Процесс">
       <div class="container process__grid">
         <header class="section-head section-head--stack reveal">
-          <p class="section-index">04 · Без лишних забот</p>
+          <p class="section-index">03 · Без лишних забот</p>
           <h2>Вы отдыхаете.<br><em>Я веду музыку</em></h2>
         </header>
         <ol class="steps">
@@ -239,7 +174,7 @@
     <section class="section calculator" id="price" data-scroll-section data-scroll-label="Стоимость">
       <div class="container">
         <header class="section-head reveal">
-          <p class="section-index">05 · Рассчитать</p>
+          <p class="section-index">04 · Рассчитать</p>
           <h2>Понятная цена.<br><em>Сразу на сайте</em></h2>
           <p>Выберите формат и длительность. Дорогу за пределы МКАД рассчитаю отдельно после адреса.</p>
         </header>
@@ -265,7 +200,7 @@
     <section class="section reviews" id="reviews" data-scroll-section data-scroll-label="Отзывы">
       <div class="container">
         <header class="section-head reveal">
-          <p class="section-index">06 · Доверие</p>
+          <p class="section-index">05 · Доверие</p>
           <h2>Слова гостей<br><em>после праздника</em></h2>
           <p>Не рекламные формулировки, а реальные сообщения клиентов после выступлений.</p>
         </header>
@@ -284,7 +219,7 @@
     <section class="section faq" data-scroll-section data-scroll-label="Вопросы">
       <div class="container faq__grid">
         <header class="section-head section-head--stack reveal">
-          <p class="section-index">07 · Коротко</p>
+          <p class="section-index">06 · Коротко</p>
           <h2>Важные<br><em>вопросы</em></h2>
           <p>Если вашего вопроса здесь нет — напишите, отвечу без долгих анкет.</p>
         </header>
@@ -301,7 +236,7 @@
 
     <section class="contact" id="contact" data-scroll-section data-scroll-label="Контакт">
       <div class="container contact__inner reveal">
-        <p class="section-index">08 · Следующий шаг</p>
+        <p class="section-index">07 · Следующий шаг</p>
         <h2>Расскажите<br><em>про ваш вечер</em></h2>
         <p>Напишите дату и адрес — проверю занятость, предложу формат и назову точную стоимость.</p>
         <button class="button button--dark button--large" type="button" data-open-contact data-magnetic>Проверить свободную дату</button>
@@ -346,7 +281,7 @@
     </form>
   </dialog>
 
-  <script src="/assets/js/config.js?v=20260731-1"></script>
-  <script src="/assets/js/site.js?v=20260801-5"></script>
+  <script src="/assets/js/config.js?v=20260807-1"></script>
+  <script src="/assets/js/site.js?v=20260807-1"></script>
 </body>
 </html>
